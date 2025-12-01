@@ -1363,15 +1363,20 @@ highchart() %>%
 
   /* Make title smaller on mobile */
   h1.title {
-    font-size: 1.8em !important;
+    font-size: 1.6em !important;
+    line-height: 1.2 !important;
   }
 
   h1 {
-    font-size: 1.5em !important;
+    font-size: 1.4em !important;
   }
 
   h2 {
-    font-size: 1.3em !important;
+    font-size: 1.2em !important;
+  }
+
+  h3 {
+    font-size: 1.1em !important;
   }
 
   /* Species cards full width on mobile */
@@ -1400,21 +1405,72 @@ highchart() %>%
     overflow-x: auto !important;
   }
 
-  /* Charts responsive on mobile */
+  /* Charts responsive on mobile - ensure they fit */
   .highchart, .plotly, .leaflet {
-    min-height: 300px !important;
+    min-height: 280px !important;
+    overflow-x: auto !important;
   }
 
-  /* Tab navigation wrap on mobile */
+  /* Highcharts title fix for mobile */
+  .highcharts-title {
+    font-size: 14px !important;
+  }
+
+  .highcharts-subtitle {
+    font-size: 11px !important;
+  }
+
+  /* Tab navigation wrap on mobile - improved styling */
+  .nav-tabs {
+    border-bottom: none !important;
+  }
+
   .nav-tabs > li {
     float: none !important;
     display: block !important;
+    width: 100% !important;
   }
 
   .nav-tabs > li > a {
     margin-right: 0 !important;
     border-radius: 4px !important;
-    margin-bottom: 2px !important;
+    margin-bottom: 3px !important;
+    background-color: #f5f5f5 !important;
+    border: 1px solid #ddd !important;
+    text-align: center !important;
+  }
+
+  .nav-tabs > li.active > a {
+    background-color: #2c7873 !important;
+    color: white !important;
+    border-color: #2c7873 !important;
+  }
+
+  /* Plotly charts - make responsive */
+  .js-plotly-plot .plotly .main-svg {
+    max-width: 100% !important;
+  }
+
+  /* Leaflet map height on mobile */
+  .leaflet-container {
+    height: 300px !important;
+  }
+
+  /* Better spacing for mobile sections */
+  .section {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* Fix row display on mobile */
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .col-md-4 {
+    width: 100% !important;
+    padding: 5px !important;
   }
 }
 
