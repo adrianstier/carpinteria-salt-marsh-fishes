@@ -480,7 +480,13 @@ enclosure_totals <- csm_enclosure %>%
  filter(total_count > 0) %>%
  left_join(common_names, by = "species_code") %>%
  mutate(
-   common_name = ifelse(is.na(common_name), paste(genus_name, species_name), common_name),
+   # Create clean labels for unknown species
+   common_name = case_when(
+     !is.na(common_name) ~ common_name,
+     grepl("Unknown Species of", genus_name) ~ paste0("Unidentified ", species_name),
+     genus_name != species_name ~ paste0(genus_name, " ", species_name),
+     TRUE ~ paste0("Unidentified ", family, " sp.")
+   ),
    prop = total_count / sum(total_count)
  ) %>%
  arrange(desc(total_count))
@@ -498,7 +504,13 @@ seine_totals <- csm_seine %>%
  filter(total_count > 0) %>%
  left_join(common_names, by = "species_code") %>%
  mutate(
-   common_name = ifelse(is.na(common_name), paste(genus_name, species_name), common_name),
+   # Create clean labels for unknown species
+   common_name = case_when(
+     !is.na(common_name) ~ common_name,
+     grepl("Unknown Species of", genus_name) ~ paste0("Unidentified ", species_name),
+     genus_name != species_name ~ paste0(genus_name, " ", species_name),
+     TRUE ~ paste0("Unidentified ", family, " sp.")
+   ),
    prop = total_count / sum(total_count)
  ) %>%
  arrange(desc(total_count))
