@@ -71,15 +71,45 @@ fish_colors <- c(
  "Other" = "#7f7f7f"
 )
 
-# Highcharter theme
+# Publication-quality Highcharter theme
 hc_theme_csm <- hc_theme(
- colors = c("#3498db", "#e74c3c", "#2ecc71", "#f39c12", "#9b59b6", "#1abc9c"),
+ colors = c("#2171b5", "#cb181d", "#238b45", "#fe9929", "#6a51a3", "#41b6c4"),
  chart = list(
    backgroundColor = "#ffffff",
-   style = list(fontFamily = "Source Sans Pro, sans-serif")
+   style = list(fontFamily = "Helvetica Neue, Arial, sans-serif")
  ),
- title = list(style = list(fontWeight = "bold", fontSize = "18px")),
- subtitle = list(style = list(color = "#7f8c8d"))
+ title = list(style = list(
+   fontWeight = "600",
+   fontSize = "16px",
+   color = "#1a1a1a"
+ )),
+ subtitle = list(style = list(
+   color = "#666666",
+   fontSize = "12px"
+ )),
+ xAxis = list(
+   lineColor = "#333333",
+   tickColor = "#333333",
+   labels = list(style = list(color = "#333333", fontSize = "11px")),
+   title = list(style = list(color = "#333333", fontSize = "12px", fontWeight = "500"))
+ ),
+ yAxis = list(
+   gridLineColor = "#e6e6e6",
+   lineColor = "#333333",
+   labels = list(style = list(color = "#333333", fontSize = "11px")),
+   title = list(style = list(color = "#333333", fontSize = "12px", fontWeight = "500"))
+ ),
+ legend = list(
+   itemStyle = list(color = "#333333", fontSize = "11px"),
+   itemHoverStyle = list(color = "#1a1a1a")
+ ),
+ tooltip = list(
+   backgroundColor = "rgba(255,255,255,0.95)",
+   borderColor = "#cccccc",
+   borderRadius = 4,
+   style = list(fontSize = "12px")
+ ),
+ credits = list(enabled = FALSE)
 )
 ```
 
@@ -477,33 +507,61 @@ seine_totals <- csm_seine %>%
 ### Enclosure Trap Catches (Gobies) - Interactive
 
 ```{r goby-plot-interactive}
-# Interactive bar chart with Highcharter
+# Interactive bar chart with Highcharter - Publication Quality
 goby_data <- enclosure_totals %>%
  slice_head(n = 5) %>%
- mutate(family = ifelse(is.na(family), "Other", family))
+ mutate(
+   family = ifelse(is.na(family), "Other", family),
+   pct = round(prop * 100, 1)
+ )
+
+# Professional color palette for gobies
+goby_colors <- c("#1f77b4", "#4292c6", "#6baed6", "#9ecae1", "#c6dbef")
 
 highchart() %>%
- hc_chart(type = "bar") %>%
- hc_title(text = "Most Abundant Gobies in Carpinteria Salt Marsh") %>%
- hc_subtitle(text = "Enclosure trap sampling (2012-2024) - Hover for details") %>%
- hc_xAxis(categories = goby_data$common_name) %>%
- hc_yAxis(title = list(text = "Total Individuals Captured")) %>%
+ hc_chart(type = "bar", backgroundColor = "#ffffff") %>%
+ hc_title(
+   text = "Goby Species Abundance",
+   style = list(fontSize = "16px", fontWeight = "600")
+ ) %>%
+ hc_subtitle(
+   text = "Enclosure trap sampling, Carpinteria Salt Marsh (2012–2024)",
+   style = list(fontSize = "12px", color = "#666666")
+ ) %>%
+ hc_xAxis(
+   categories = goby_data$common_name,
+   labels = list(style = list(fontSize = "12px", fontWeight = "500")),
+   lineWidth = 0
+ ) %>%
+ hc_yAxis(
+   title = list(text = "Total Individuals Captured", style = list(fontSize = "12px")),
+   labels = list(format = "{value:,.0f}"),
+   gridLineColor = "#e6e6e6"
+ ) %>%
  hc_add_series(
    name = "Count",
    data = goby_data$total_count,
-   colorByPoint = TRUE
+   colorByPoint = TRUE,
+   colors = goby_colors
  ) %>%
  hc_tooltip(
-   pointFormat = "<b>{point.category}</b><br>Total caught: <b>{point.y:,.0f}</b><br>Proportion: <b>{point.percentage:.1f}%</b>",
-   headerFormat = ""
+   pointFormat = "<b>{point.category}</b><br>Total: <b>{point.y:,.0f}</b> individuals",
+   headerFormat = "",
+   backgroundColor = "rgba(255,255,255,0.95)",
+   borderColor = "#cccccc"
  ) %>%
  hc_plotOptions(
    bar = list(
-     dataLabels = list(enabled = TRUE, format = "{point.y:,.0f}")
+     borderRadius = 3,
+     dataLabels = list(
+       enabled = TRUE,
+       format = "{point.y:,.0f}",
+       style = list(fontSize = "11px", fontWeight = "500", textOutline = "none")
+     )
    )
  ) %>%
- hc_add_theme(hc_theme_csm) %>%
- hc_legend(enabled = FALSE)
+ hc_legend(enabled = FALSE) %>%
+ hc_credits(enabled = FALSE)
 ```
 
 > **Key Finding:** The **Arrow Goby** (*Clevelandia ios*) is by far the most abundant fish in the salt marsh, followed by the Cheekspot Goby and Shadow Goby. These small gobies are specialists of soft-bottom estuarine habitats.
@@ -511,15 +569,21 @@ highchart() %>%
 ### Beach Seine Catches (Larger Fishes) - Interactive
 
 ```{r seine-plot-interactive}
-# Interactive treemap showing species composition
+# Interactive treemap showing species composition - Publication Quality
 seine_top <- seine_totals %>%
- slice_head(n = 15) %>%
+ slice_head(n = 12) %>%
  mutate(family = ifelse(is.na(family), "Other", family))
 
 highchart() %>%
- hc_chart(type = "treemap") %>%
- hc_title(text = "Fish Community Composition - Seine Catches") %>%
- hc_subtitle(text = "Size represents total abundance - Click to explore") %>%
+ hc_chart(type = "treemap", backgroundColor = "#ffffff") %>%
+ hc_title(
+   text = "Seine Catch Composition by Species",
+   style = list(fontSize = "16px", fontWeight = "600")
+ ) %>%
+ hc_subtitle(
+   text = "Area proportional to total abundance (2012–2024)",
+   style = list(fontSize = "12px", color = "#666666")
+ ) %>%
  hc_add_series(
    data = list_parse(
      seine_top %>%
@@ -530,17 +594,28 @@ highchart() %>%
        )
    ),
    layoutAlgorithm = "squarified",
-   allowTraversingTree = TRUE
+   borderColor = "#ffffff",
+   borderWidth = 2
  ) %>%
  hc_colorAxis(
-   minColor = "#f7fbff",
+   minColor = "#deebf7",
    maxColor = "#08519c",
    type = "linear"
  ) %>%
  hc_tooltip(
-   pointFormat = "<b>{point.name}</b><br>Total: {point.value:,.0f} individuals"
+   pointFormat = "<b>{point.name}</b><br>Total: <b>{point.value:,.0f}</b> individuals",
+   backgroundColor = "rgba(255,255,255,0.95)",
+   borderColor = "#cccccc"
  ) %>%
- hc_add_theme(hc_theme_csm)
+ hc_plotOptions(
+   treemap = list(
+     dataLabels = list(
+       enabled = TRUE,
+       style = list(fontSize = "11px", fontWeight = "500", textOutline = "none", color = "#ffffff")
+     )
+   )
+ ) %>%
+ hc_credits(enabled = FALSE)
 ```
 
 > **Key Finding:** **Topsmelt** (*Atherinops affinis*) and **California Killifish** (*Fundulus parvipinnis*) dominate seine catches. Both species are highly adapted to estuarine conditions with fluctuating salinity and temperature.
@@ -571,7 +646,7 @@ habitat_summary <- csm_ps %>%
 ## Fish Density by Habitat - Interactive
 
 ```{r habitat-density-interactive}
-# Interactive time series with Plotly
+# Interactive time series with Plotly - Publication Quality
 p_density <- habitat_summary %>%
  ggplot(aes(x = year, y = mean_density, color = habitat,
             text = paste0("Year: ", year,
@@ -581,59 +656,95 @@ p_density <- habitat_summary %>%
  geom_ribbon(aes(ymin = mean_density - se_density,
                  ymax = mean_density + se_density,
                  fill = habitat),
-             alpha = 0.2, color = NA) +
- geom_line(size = 1.2) +
+             alpha = 0.15, color = NA) +
+ geom_line(linewidth = 1.2) +
  geom_point(size = 3) +
- scale_color_manual(values = c("Tidal Creek" = "#e74c3c", "Main Channel" = "#3498db")) +
- scale_fill_manual(values = c("Tidal Creek" = "#e74c3c", "Main Channel" = "#3498db")) +
+ scale_color_manual(values = c("Main Channel" = "#2171b5", "Tidal Creek" = "#cb181d")) +
+ scale_fill_manual(values = c("Main Channel" = "#2171b5", "Tidal Creek" = "#cb181d")) +
  scale_x_continuous(breaks = seq(2012, 2024, 2)) +
+ scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, 0.05))) +
  labs(
-   title = "Fish Density in Carpinteria Salt Marsh Habitats",
-   subtitle = "Hover over points for details",
+   title = "Fish Density by Habitat Type",
+   subtitle = "Mean ± SE, Carpinteria Salt Marsh (2012–2024)",
    x = "Year",
-   y = "Fish Density (individuals/m²)",
+   y = expression(paste("Fish Density (individuals/m"^2, ")")),
    color = "Habitat",
    fill = "Habitat"
  ) +
- theme(legend.position = "top")
+ theme_minimal(base_size = 12) +
+ theme(
+   legend.position = "top",
+   legend.title = element_text(face = "bold", size = 10),
+   plot.title = element_text(face = "bold", size = 14),
+   plot.subtitle = element_text(color = "gray40", size = 11),
+   axis.title = element_text(size = 11),
+   axis.text = element_text(size = 10),
+   panel.grid.minor = element_blank(),
+   panel.grid.major = element_line(color = "#e6e6e6")
+ )
 
 ggplotly(p_density, tooltip = "text") %>%
- layout(hoverlabel = list(bgcolor = "white"))
+ layout(
+   hoverlabel = list(bgcolor = "white", font = list(size = 12)),
+   legend = list(orientation = "h", y = 1.1, x = 0.5, xanchor = "center")
+ )
 ```
 
 ## Species Richness by Habitat - Interactive
 
 ```{r habitat-richness-interactive}
-# Highcharter dual-axis comparison
-hc_habitat <- highchart() %>%
- hc_chart(type = "line") %>%
- hc_title(text = "Species Richness by Habitat Over Time") %>%
- hc_subtitle(text = "Compare tidal creeks vs main channels") %>%
- hc_xAxis(categories = unique(habitat_summary$year)) %>%
- hc_yAxis(title = list(text = "Mean Number of Species")) %>%
+# Highcharter line chart - Publication Quality
+highchart() %>%
+ hc_chart(type = "line", backgroundColor = "#ffffff") %>%
+ hc_title(
+   text = "Species Richness by Habitat Type",
+   style = list(fontSize = "16px", fontWeight = "600")
+ ) %>%
+ hc_subtitle(
+   text = "Mean number of species per sample (2012–2024)",
+   style = list(fontSize = "12px", color = "#666666")
+ ) %>%
+ hc_xAxis(
+   categories = unique(habitat_summary$year),
+   labels = list(style = list(fontSize = "11px")),
+   lineColor = "#333333"
+ ) %>%
+ hc_yAxis(
+   title = list(text = "Mean Species Richness", style = list(fontSize = "12px")),
+   labels = list(format = "{value:.0f}"),
+   gridLineColor = "#e6e6e6",
+   min = 0
+ ) %>%
  hc_add_series(
    name = "Tidal Creek",
-   data = habitat_summary %>% filter(habitat == "Tidal Creek") %>% pull(mean_richness),
-   color = "#e74c3c"
+   data = habitat_summary %>% filter(habitat == "Tidal Creek") %>% arrange(year) %>% pull(mean_richness),
+   color = "#cb181d",
+   lineWidth = 2
  ) %>%
  hc_add_series(
    name = "Main Channel",
-   data = habitat_summary %>% filter(habitat == "Main Channel") %>% pull(mean_richness),
-   color = "#3498db"
+   data = habitat_summary %>% filter(habitat == "Main Channel") %>% arrange(year) %>% pull(mean_richness),
+   color = "#2171b5",
+   lineWidth = 2
  ) %>%
  hc_tooltip(
    shared = TRUE,
    crosshairs = TRUE,
-   pointFormat = "{series.name}: <b>{point.y:.1f}</b> species<br>"
+   pointFormat = "{series.name}: <b>{point.y:.1f}</b> species<br>",
+   backgroundColor = "rgba(255,255,255,0.95)",
+   borderColor = "#cccccc"
  ) %>%
  hc_plotOptions(
    line = list(
-     marker = list(enabled = TRUE, radius = 5)
+     marker = list(enabled = TRUE, radius = 4, symbol = "circle")
    )
  ) %>%
- hc_add_theme(hc_theme_csm)
-
-hc_habitat
+ hc_legend(
+   align = "center",
+   verticalAlign = "bottom",
+   itemStyle = list(fontSize = "11px")
+ ) %>%
+ hc_credits(enabled = FALSE)
 ```
 
 ### Habitat Comparison Summary
@@ -690,65 +801,111 @@ annual_summary <- csm_ps %>%
 ```
 
 ```{r annual-plot-interactive}
-# Interactive combined chart
+# Interactive combined chart - Publication Quality
 highchart() %>%
- hc_chart(zoomType = "x") %>%
- hc_title(text = "Long-term Trends in Fish Community") %>%
- hc_subtitle(text = "Drag to zoom, click legend to toggle series") %>%
- hc_xAxis(categories = annual_summary$year) %>%
+ hc_chart(zoomType = "x", backgroundColor = "#ffffff") %>%
+ hc_title(
+   text = "Long-term Trends in Fish Community",
+   style = list(fontSize = "16px", fontWeight = "600")
+ ) %>%
+ hc_subtitle(
+   text = "Carpinteria Salt Marsh (2012–2024)",
+   style = list(fontSize = "12px", color = "#666666")
+ ) %>%
+ hc_xAxis(
+   categories = annual_summary$year,
+   labels = list(style = list(fontSize = "11px")),
+   lineColor = "#333333"
+ ) %>%
  hc_yAxis_multiples(
    list(
-     title = list(text = "Mean Density (fish/m²)", style = list(color = "#3498db")),
-     labels = list(style = list(color = "#3498db"))
+     title = list(
+       text = "Mean Density (fish/m²)",
+       style = list(color = "#2171b5", fontSize = "12px")
+     ),
+     labels = list(style = list(color = "#2171b5", fontSize = "11px"), format = "{value:.1f}"),
+     gridLineColor = "#e6e6e6",
+     min = 0
    ),
    list(
-     title = list(text = "Mean Species Richness", style = list(color = "#e74c3c")),
-     labels = list(style = list(color = "#e74c3c")),
-     opposite = TRUE
+     title = list(
+       text = "Mean Species Richness",
+       style = list(color = "#cb181d", fontSize = "12px")
+     ),
+     labels = list(style = list(color = "#cb181d", fontSize = "11px"), format = "{value:.0f}"),
+     opposite = TRUE,
+     min = 0
    )
  ) %>%
  hc_add_series(
    name = "Fish Density",
    data = round(annual_summary$mean_density, 2),
    type = "column",
-   color = "#3498db",
-   yAxis = 0
+   color = "#2171b5",
+   yAxis = 0,
+   borderRadius = 2
  ) %>%
  hc_add_series(
    name = "Species Richness",
    data = round(annual_summary$mean_richness, 1),
    type = "spline",
-   color = "#e74c3c",
+   color = "#cb181d",
    yAxis = 1,
-   marker = list(radius = 5)
+   lineWidth = 2,
+   marker = list(radius = 4, symbol = "circle")
  ) %>%
  hc_tooltip(
    shared = TRUE,
-   crosshairs = TRUE
+   crosshairs = TRUE,
+   backgroundColor = "rgba(255,255,255,0.95)",
+   borderColor = "#cccccc"
  ) %>%
- hc_add_theme(hc_theme_csm)
+ hc_legend(
+   align = "center",
+   verticalAlign = "bottom",
+   itemStyle = list(fontSize = "11px")
+ ) %>%
+ hc_credits(enabled = FALSE)
 ```
 
 ## Distribution of Fish Densities - Interactive Boxplots
 
 ```{r density-boxplot-interactive}
-# Interactive boxplots by year
+# Interactive boxplots by year - Publication Quality
+# Use a sequential blue palette
+year_colors <- colorRampPalette(c("#c6dbef", "#08519c"))(13)
+
 csm_ps %>%
  plot_ly(x = ~factor(year), y = ~count_per_m2, type = "box",
-         color = ~factor(year), colors = viridis(13),
-         hoverinfo = "y") %>%
+         color = ~factor(year), colors = year_colors,
+         hoverinfo = "y",
+         marker = list(outliercolor = "#333333", size = 4),
+         line = list(color = "#333333", width = 1)) %>%
  layout(
-   title = list(text = "Distribution of Fish Densities by Year<br><sub>Hover over boxes for statistics</sub>"),
-   xaxis = list(title = "Year"),
-   yaxis = list(title = "Fish Density (individuals/m²)"),
-   showlegend = FALSE
+   title = list(
+     text = "Distribution of Fish Densities by Year",
+     font = list(size = 16, family = "Helvetica Neue, Arial", color = "#1a1a1a")
+   ),
+   xaxis = list(
+     title = list(text = "Year", font = list(size = 12)),
+     tickfont = list(size = 11)
+   ),
+   yaxis = list(
+     title = list(text = "Fish Density (individuals/m²)", font = list(size = 12)),
+     tickfont = list(size = 11),
+     gridcolor = "#e6e6e6",
+     rangemode = "tozero"
+   ),
+   showlegend = FALSE,
+   plot_bgcolor = "#ffffff",
+   paper_bgcolor = "#ffffff"
  )
 ```
 
 ## All Sampling Locations - Scatter Explorer
 
 ```{r scatter-explorer}
-# Create linked dataset with crosstalk
+# Create linked dataset with crosstalk - Publication Quality
 csm_shared <- SharedData$new(
  csm_ps %>%
    mutate(
@@ -766,18 +923,36 @@ bscols(
    filter_slider("density", "Density", csm_shared, ~count_per_m2, width = "100%")
  ),
  plot_ly(csm_shared, x = ~species_count, y = ~count_per_m2,
-         color = ~habitat, colors = c("#3498db", "#e74c3c"),
+         color = ~habitat, colors = c("#2171b5", "#cb181d"),
          text = ~paste0("Location: ", location,
                        "<br>Year: ", year,
-                       "<br>Density: ", round(count_per_m2, 2),
+                       "<br>Density: ", round(count_per_m2, 2), " fish/m²",
                        "<br>Species: ", species_count),
          hoverinfo = "text",
          type = "scatter", mode = "markers",
-         marker = list(size = 10, opacity = 0.7)) %>%
+         marker = list(size = 10, opacity = 0.7, line = list(color = "#ffffff", width = 1))) %>%
    layout(
-     title = "Explore: Density vs Species Richness",
-     xaxis = list(title = "Number of Species"),
-     yaxis = list(title = "Fish Density (individuals/m²)")
+     title = list(
+       text = "Density vs Species Richness",
+       font = list(size = 16, family = "Helvetica Neue, Arial", color = "#1a1a1a")
+     ),
+     xaxis = list(
+       title = list(text = "Number of Species", font = list(size = 12)),
+       tickfont = list(size = 11),
+       gridcolor = "#e6e6e6"
+     ),
+     yaxis = list(
+       title = list(text = "Fish Density (individuals/m²)", font = list(size = 12)),
+       tickfont = list(size = 11),
+       gridcolor = "#e6e6e6",
+       rangemode = "tozero"
+     ),
+     legend = list(
+       orientation = "h", y = -0.15, x = 0.5, xanchor = "center",
+       font = list(size = 11)
+     ),
+     plot_bgcolor = "#ffffff",
+     paper_bgcolor = "#ffffff"
    )
 )
 ```
@@ -982,32 +1157,54 @@ The **Arrow Goby** is a small (< 5 cm) benthic fish endemic to the Pacific coast
 ### Abundance Over Time
 
 ```{r arrow-goby-plot-interactive}
+# Arrow Goby stacked chart - Publication Quality
 arrow_goby_wide <- arrow_goby %>%
  mutate(habitat = ifelse(habitat_code == "TC", "Tidal Creek", "Main Channel")) %>%
  pivot_wider(names_from = habitat, values_from = c(total_count, mean_count), values_fill = 0)
 
 highchart() %>%
- hc_chart(type = "column") %>%
- hc_title(text = "Arrow Goby Abundance at Carpinteria Salt Marsh") %>%
- hc_subtitle(text = "Stacked by habitat - hover for details") %>%
- hc_xAxis(categories = unique(arrow_goby$year)) %>%
- hc_yAxis(title = list(text = "Total Count"), stackLabels = list(enabled = TRUE)) %>%
- hc_plotOptions(column = list(stacking = "normal")) %>%
+ hc_chart(type = "column", backgroundColor = "#ffffff") %>%
+ hc_title(
+   text = "Arrow Goby Annual Abundance",
+   style = list(fontSize = "16px", fontWeight = "600")
+ ) %>%
+ hc_subtitle(
+   text = "Total count by habitat (2012–2024)",
+   style = list(fontSize = "12px", color = "#666666")
+ ) %>%
+ hc_xAxis(
+   categories = unique(arrow_goby$year),
+   labels = list(style = list(fontSize = "11px"))
+ ) %>%
+ hc_yAxis(
+   title = list(text = "Total Individuals", style = list(fontSize = "12px")),
+   labels = list(format = "{value:,.0f}"),
+   gridLineColor = "#e6e6e6",
+   stackLabels = list(enabled = FALSE)
+ ) %>%
+ hc_plotOptions(column = list(stacking = "normal", borderRadius = 2)) %>%
  hc_add_series(
    name = "Tidal Creek",
    data = arrow_goby %>% filter(habitat_code == "TC") %>% arrange(year) %>% pull(total_count),
-   color = "#e74c3c"
+   color = "#cb181d"
  ) %>%
  hc_add_series(
    name = "Main Channel",
    data = arrow_goby %>% filter(habitat_code == "BNMC") %>% arrange(year) %>% pull(total_count),
-   color = "#3498db"
+   color = "#2171b5"
  ) %>%
  hc_tooltip(
    shared = TRUE,
-   pointFormat = "{series.name}: <b>{point.y:,.0f}</b><br>"
+   pointFormat = "{series.name}: <b>{point.y:,.0f}</b><br>",
+   backgroundColor = "rgba(255,255,255,0.95)",
+   borderColor = "#cccccc"
  ) %>%
- hc_add_theme(hc_theme_csm)
+ hc_legend(
+   align = "center",
+   verticalAlign = "bottom",
+   itemStyle = list(fontSize = "11px")
+ ) %>%
+ hc_credits(enabled = FALSE)
 ```
 
 ## California Killifish (*Fundulus parvipinnis*)
@@ -1030,20 +1227,38 @@ The **California Killifish** is a euryhaline species (tolerant of wide salinity 
 - **Behavior:** Forms schools in shallow areas
 
 ```{r killifish-plot-interactive}
+# California Killifish grouped bar chart - Publication Quality
 killifish %>%
  mutate(habitat = ifelse(habitat_code == "TC", "Tidal Creek", "Main Channel")) %>%
  plot_ly(x = ~year, y = ~total_count, color = ~habitat,
-         colors = c("#3498db", "#e74c3c"),
+         colors = c("#2171b5", "#cb181d"),
          type = "bar",
          hoverinfo = "text",
          text = ~paste0("Year: ", year, "<br>",
                        "Habitat: ", habitat, "<br>",
                        "Count: ", comma(total_count))) %>%
  layout(
-   title = "California Killifish Abundance by Habitat",
+   title = list(
+     text = "California Killifish Annual Abundance",
+     font = list(size = 16, family = "Helvetica Neue, Arial", color = "#1a1a1a")
+   ),
    barmode = "group",
-   xaxis = list(title = "Year"),
-   yaxis = list(title = "Total Count")
+   xaxis = list(
+     title = list(text = "Year", font = list(size = 12)),
+     tickfont = list(size = 11)
+   ),
+   yaxis = list(
+     title = list(text = "Total Individuals", font = list(size = 12)),
+     tickfont = list(size = 11),
+     gridcolor = "#e6e6e6",
+     rangemode = "tozero"
+   ),
+   legend = list(
+     orientation = "h", y = -0.15, x = 0.5, xanchor = "center",
+     font = list(size = 11)
+   ),
+   plot_bgcolor = "#ffffff",
+   paper_bgcolor = "#ffffff"
  )
 ```
 
@@ -1067,22 +1282,45 @@ topsmelt <- csm_seine %>%
 - **Fishery:** Important forage fish for seabirds and larger predators
 
 ```{r topsmelt-plot-interactive}
+# Topsmelt area chart - Publication Quality
 highchart() %>%
- hc_chart(type = "areaspline") %>%
- hc_title(text = "Topsmelt Abundance at Carpinteria Salt Marsh") %>%
- hc_subtitle(text = "Note the extreme interannual variability") %>%
- hc_xAxis(categories = topsmelt$year) %>%
- hc_yAxis(title = list(text = "Total Count")) %>%
+ hc_chart(type = "areaspline", backgroundColor = "#ffffff") %>%
+ hc_title(
+   text = "Topsmelt Annual Abundance",
+   style = list(fontSize = "16px", fontWeight = "600")
+ ) %>%
+ hc_subtitle(
+   text = "Note the extreme interannual variability",
+   style = list(fontSize = "12px", color = "#666666")
+ ) %>%
+ hc_xAxis(
+   categories = topsmelt$year,
+   labels = list(style = list(fontSize = "11px"))
+ ) %>%
+ hc_yAxis(
+   title = list(text = "Total Individuals", style = list(fontSize = "12px")),
+   labels = list(format = "{value:,.0f}"),
+   gridLineColor = "#e6e6e6",
+   min = 0
+ ) %>%
  hc_add_series(
    name = "Topsmelt",
    data = topsmelt$total_count,
-   color = "#f39c12",
-   fillOpacity = 0.5
+   color = "#fe9929",
+   fillColor = list(
+     linearGradient = list(x1 = 0, y1 = 0, x2 = 0, y2 = 1),
+     stops = list(c(0, "rgba(254,153,41,0.5)"), c(1, "rgba(254,153,41,0.05)"))
+   ),
+   lineWidth = 2,
+   marker = list(radius = 4, symbol = "circle")
  ) %>%
  hc_tooltip(
-   pointFormat = "Year {point.category}: <b>{point.y:,.0f}</b> individuals"
+   pointFormat = "Year {point.category}: <b>{point.y:,.0f}</b> individuals",
+   backgroundColor = "rgba(255,255,255,0.95)",
+   borderColor = "#cccccc"
  ) %>%
- hc_add_theme(hc_theme_csm)
+ hc_legend(enabled = FALSE) %>%
+ hc_credits(enabled = FALSE)
 ```
 
 ---
@@ -1120,33 +1358,58 @@ guild_summary <- csm_seine %>%
 ```
 
 ```{r guild-plot-interactive}
-# Interactive stacked area chart
+# Ecological guild stacked area chart - Publication Quality
 highchart() %>%
- hc_chart(type = "area") %>%
- hc_title(text = "Ecological Guild Composition Over Time") %>%
- hc_subtitle(text = "Proportion of resident vs marine migrant species") %>%
- hc_xAxis(categories = unique(guild_summary$year)) %>%
- hc_yAxis(
-   title = list(text = "Percentage of Total Catch"),
-   max = 100,
-   labels = list(format = "{value}%")
+ hc_chart(type = "area", backgroundColor = "#ffffff") %>%
+ hc_title(
+   text = "Ecological Guild Composition",
+   style = list(fontSize = "16px", fontWeight = "600")
  ) %>%
- hc_plotOptions(area = list(stacking = "percent")) %>%
+ hc_subtitle(
+   text = "Proportion of resident vs marine migrant species (2012–2024)",
+   style = list(fontSize = "12px", color = "#666666")
+ ) %>%
+ hc_xAxis(
+   categories = unique(guild_summary$year),
+   labels = list(style = list(fontSize = "11px"))
+ ) %>%
+ hc_yAxis(
+   title = list(text = "Proportion of Catch", style = list(fontSize = "12px")),
+   max = 100,
+   labels = list(format = "{value}%", style = list(fontSize = "11px")),
+   gridLineColor = "#e6e6e6"
+ ) %>%
+ hc_plotOptions(
+   area = list(
+     stacking = "percent",
+     lineWidth = 1,
+     marker = list(enabled = FALSE)
+   )
+ ) %>%
  hc_add_series(
    name = "Resident",
    data = guild_summary %>% filter(guild == "Resident") %>% arrange(year) %>% pull(total_count),
-   color = "#27ae60"
+   color = "#238b45",
+   fillOpacity = 0.7
  ) %>%
  hc_add_series(
    name = "Marine Migrant",
    data = guild_summary %>% filter(guild == "Marine Migrant") %>% arrange(year) %>% pull(total_count),
-   color = "#3498db"
+   color = "#2171b5",
+   fillOpacity = 0.7
  ) %>%
  hc_tooltip(
    shared = TRUE,
-   pointFormat = "{series.name}: <b>{point.percentage:.1f}%</b> ({point.y:,.0f})<br>"
+   pointFormat = "{series.name}: <b>{point.percentage:.1f}%</b> ({point.y:,.0f})<br>",
+   backgroundColor = "rgba(255,255,255,0.95)",
+   borderColor = "#cccccc"
  ) %>%
- hc_add_theme(hc_theme_csm)
+ hc_legend(
+   align = "center",
+   verticalAlign = "bottom",
+   itemStyle = list(fontSize = "11px")
+ ) %>%
+ hc_credits(enabled = FALSE)
 ```
 
 ---
@@ -1220,11 +1483,26 @@ category_summary <- all_species_counts %>%
  ) %>%
  arrange(desc(`Total Individuals`))
 
-# Interactive pie chart of abundance categories
+# Pie chart of abundance categories - Publication Quality
+# Define custom colors for categories
+category_colors <- c(
+  "Dominant (>10,000)" = "#08519c",
+  "Common (1,000-10,000)" = "#3182bd",
+  "Moderate (100-1,000)" = "#6baed6",
+  "Uncommon (10-100)" = "#9ecae1",
+  "Rare (<10)" = "#c6dbef"
+)
+
 highchart() %>%
- hc_chart(type = "pie") %>%
- hc_title(text = "Species Distribution by Abundance Category") %>%
- hc_subtitle(text = "Click slices to see details") %>%
+ hc_chart(type = "pie", backgroundColor = "#ffffff") %>%
+ hc_title(
+   text = "Species Distribution by Abundance",
+   style = list(fontSize = "16px", fontWeight = "600")
+ ) %>%
+ hc_subtitle(
+   text = "Number of species in each abundance category",
+   style = list(fontSize = "12px", color = "#666666")
+ ) %>%
  hc_add_series(
    name = "Species",
    data = list_parse(
@@ -1232,12 +1510,16 @@ highchart() %>%
        transmute(
          name = category,
          y = `Number of Species`,
-         individuals = `Total Individuals`
+         individuals = `Total Individuals`,
+         color = category_colors[category]
        )
-   )
+   ),
+   innerSize = "40%"
  ) %>%
  hc_tooltip(
-   pointFormat = "<b>{point.name}</b><br>Species: {point.y}<br>Total Individuals: {point.individuals:,.0f}"
+   pointFormat = "<b>{point.name}</b><br>Species count: <b>{point.y}</b><br>Total individuals: <b>{point.individuals:,.0f}</b>",
+   backgroundColor = "rgba(255,255,255,0.95)",
+   borderColor = "#cccccc"
  ) %>%
  hc_plotOptions(
    pie = list(
@@ -1245,11 +1527,13 @@ highchart() %>%
      cursor = "pointer",
      dataLabels = list(
        enabled = TRUE,
-       format = "{point.name}: {point.y} species"
-     )
+       format = "{point.name}: {point.y}",
+       style = list(fontSize = "11px", fontWeight = "500", textOutline = "none")
+     ),
+     showInLegend = FALSE
    )
  ) %>%
- hc_add_theme(hc_theme_csm)
+ hc_credits(enabled = FALSE)
 ```
 
 ---
