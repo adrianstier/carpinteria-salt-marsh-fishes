@@ -1,0 +1,23 @@
+# R files
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Temporary files
+*.knit.md
+*.utf8.md
+*_cache/
+*_files/
+
+# Screenshots (development only)
+screenshot*.png
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large data files (stored separately - use EDI links in README)
+edi.647.8/*.csv
+edi.648.8/*.csv

@@ -1,0 +1,659 @@
+
+   
+      
+         uid=EDI,o=EDI,dc=edirepository,dc=org
+         all
+      
+      
+         uid=dhuang,o=EDI,dc=edirepository,dc=org
+         all
+      
+      
+         public
+         read
+      
+   
+   
+      2-20250828142305
+      doi:10.6073/pasta/a573e343e096c65ba5bc58ca25f48fa0UCSB SONGS Wetland Performance - Fish Abundance and Richness
+      UCSB SONGS Mitigation Monitoring: Wetland Performance Standard - Fish Abundance and Species Richness
+      
+         Stephen Schroeter
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         760-438-5953
+         stephen.schroeter@lifesci.ucsb.edu
+      
+      
+         Henry Page
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         805-893-7568
+         mark.page@lifesci.ucsb.edu
+      
+      
+         Daniel Reed
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         805-893-8363
+         dan.reed@lifesci.ucsb.edu
+         https://orcid.org/0000-0003-3015-8717
+      
+      
+         Kathryn Beheshti
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         805-893-5511
+         katbeheshti@ucsb.edu
+      
+      
+         Rachel Smith
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         805-893-5511
+         rssmith@ucsb.edu
+      
+      
+         David Huang
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         805-893-5559
+         davidhuang@ucsb.edu
+      
+      
+         SONGS Mitigation Monitoring
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106  USA
+         songsmmp@lifesci.ucsb.edu
+      
+      2025-08-28
+      English
+      
+         
+            
+        These data describe the annual estimates of density of wetland fish (all species combined) and the species richness (as the number of unique species) in six main channel and six tidal creek locations at four coastal wetlands as part of the SONGS San Dieguito Wetland Restoration monitoring program to track long-term patterns in species abundance and diversity. 
+This study began in 2012 in the San Dieguito Wetland in San Diego County, CA, Carpinteria Salt Marsh in Santa Barbara County, CA, and Mugu Lagoon in Ventura County, CA. 
+Tijuana Estuary in San Diego County was added in 2013. 
+Beginning in 2024, Tijuana Estuary was replaced with Los Penasquitos Lagoon in San Diego County, CA.
+        
+         
+      
+      
+         
+      This data package is released under the Creative Commons License
+      Attribution 4.0 International (CC BY 4.0, see
+      https://creativecommons.org/licenses/by/4.0/). This license states
+      that consumers ("Data Users" herein) may distribute, adapt,
+      reuse, remix, and build upon this work, as long as they give
+      appropriate credit, provide a link to the license, and indicate if
+      changes were made. If redistributed, a Data User may not apply
+      additional restrictions or technological measures that prevent access.
+      
+         
+      The Data User has an ethical obligation to cite the data source
+      appropriately in any publication or product that results from its use,
+      and notify the data contact or creator. Communication, collaboration,
+      or co-authorship (as appropriate) with the creators of this data
+      package is encouraged to prevent duplicate research or publication.
+      The Data User is urged to contact the authors of these data if any
+      questions about methodology or results occur. The Data User should
+      realize that these data may be actively used by others for ongoing
+      research and that coordination may be necessary to prevent duplication
+      or inappropriate use. The Data User should realize that
+      misinterpretation may occur if data are used outside of the context of
+      the original study. The Data User should be aware that data are
+      updated periodically and it is the responsibility of the Data User to
+      check for new versions of the data.
+      
+         
+      While substantial efforts are made to ensure the accuracy of data and
+      associated documentation, complete accuracy of data sets cannot be
+      guaranteed. This data package (with its components) is made available
+      “as is” and with no warranty of accuracy or fitness for use. The
+      creators of this data package and the repository where these data were
+      obtained shall not be liable for any damages resulting from
+      misinterpretation, use or misuse of the data package or its
+      components.
+      
+      
+      
+         
+            http://marinemitigation.msi.ucsb.edu/
+         
+      
+      https://doi.org/10.6073/pasta/a573e343e096c65ba5bc58ca25f48fa0
+         
+            CSM: Carpinteria Salt Marsh, located in Santa Barbara County, California
+            
+               -119.537990
+               -119.537990
+               34.401189
+               34.401189
+            
+         
+         
+            MUL: Mugu Lagoon, located in Ventura County, California
+            
+               -119.097011
+               -119.097011
+               34.102007
+               34.102007
+            
+         
+         
+            SDW: San Dieguito Wetland, located in San Diego County, California
+            
+               -117.26047
+               -117.26047
+               32.969545
+               32.969545
+            
+         
+         
+            TJE: Tijuana Estuary, located in San Diego County, California
+            
+               -117.126712
+               -117.126712
+               32.569901
+               32.569901
+            
+         
+         
+            LPL: Los Penasquitos Lagoon, located in San Diego County, California
+            
+               -117.252049
+               -117.252049
+               32.930770
+               32.930770
+            
+         
+         
+            
+               
+                  2012
+               
+               
+                  2024
+               
+            
+         
+      
+      
+         Information Manager, SONGS Mitigation Monitoring Project
+         			Marine Science Institute
+			University of California
+			Santa Barbara, California 93106-6150  United States
+         805-893-5511
+         songsmmp@lifesci.ucsb.edu
+         http://marinemitigation.msi.ucsb.edu
+      
+      
+         Environmental Data Initiative
+         info@edirepository.org
+         https://edirepository.org
+         0330j0z60
+      
+      Environmental Data Initiative
+      
+         
+            
+               
+                  Overview
+                  
+The coastal development permit for SONGS Units 2 and 3 require Southern California Edison to create or substantially restore a minimum of 150 acres of coastal wetland. 
+The permit establishes biological performance standards that must be met by the restored wetland. 
+One of these standards requires that within 4 years of construction, the total densities and number of species of fish shall be similar to the densities and number of species of fish in similar habitats in the reference wetlands.
+
+               
+               
+                  Study Sites
+                  
+Time series data of the fish community was collected in tidal creek and main channel / basin habitats using a combination of 0.43m2 x 0.9 m circular enclosure traps and beach seines (generally 100 m2) at the San Dieguito Wetland restoration site (32.9695450N, 117.260470W) and three reference wetlands (Tijuana Estuary 32.5699010N, 117.1267120W (2012-2023); Los Penasquitos Lagoon  32.92950N, 117.25310W (2024-present); Mugu Lagoon 34.1020070N, 119.0970110W; Carpinteria Salt Marsh 34.4011890N, 119.5379900W) as part of a long-term study designed to evaluate the performance of the restoration project. 
+The reference wetlands were chosen to represent relatively undisturbed, natural tidal wetlands within the Southern California Bight. 
+Beginning in 2024, Tijuana Estuary was replaced with Los Penasquitos Lagoon. 
+Fish were sampled in six tidal creek and six main channel-basin habitats at each wetland annually in late summer-early fall. In 2024, four tidal creek and six main channel-basin habitats were sampled at San Dieguito Wetlands.
+
+               
+               
+                  Fish Abundance and Species Richness
+                  
+Estimates of fish abundance and richness (as the number of unique species) at each tidal creek and main channel location were calculated by combining the individual estimates of abundance and richness using two methods: (1) enclosure traps to sample gobies, which are small, numerically abundant fishes that are poorly sampled by other methods and (2) beach seines to sample larger mobile fishes. 
+The methods for these surveys are found in the following data package:
+
+SONGS Mitigation Monitoring: Wetland Survey - Fish Abundance
+
+Five enclosure traps were sampled at each tidal creek and main channel location. 
+Sampling an enclosure trap consisted of multiple hauls through a volume of water trapped by the enclosure. 
+The abundance of fish within an enclosure trap was estimated as the sum of all fish counted in all hauls divided by the total area sampled by the enclosure. 
+The density estimate for each tidal creek and main channel location was calculated as the average of the five sampling stations within each location.  
+
+Two adjacent areas (= sections) were sampled with a beach seine for each tidal creek location, and one section was sampled for each main channel location. 
+Each seine consisted of multiple hauls through a volume of water enclosed by blocking nets. 
+The density of fish at each location was estimated as the sum of all fish counted in all hauls divided by the total area sampled in all sections by the seine.
+
+The density estimates for enclosures and beach seines at each location were standardized to number per 1 m2, then added together to generate a combined estimate of total density of fish for each of the six replicate tidal creek and main channel-basin locations. 
+
+Similarly, the number of unique species was estimated by calculating the number of unique species sampled by both methods at each tidal creek and main channel location, and adding them together to obtain the total number of unique species for the location. 
+The number of unique species at each location sampled using enclosures was calculated as the number of unique species observed at all five sampling stations. 
+The number of unique species at each location sampled using beach seines was calculated as  the number of unique species observed in all seine sections at that location.
+
+               
+            
+            
+               UCSB SONGS Wetland Performance Standard Methods - Fish Abundance and Richness
+               
+                  Stephen Schroeter
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  760-438-5953
+                  stephen.schroeter@lifesci.ucsb.edu
+               
+               
+                  Henry Page
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-7568
+                  mark.page@lifesci.ucsb.edu
+               
+               
+                  Daniel Reed
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-8363
+                  dan.reed@lifesci.ucsb.edu
+                  https://orcid.org/0000-0003-3015-8717
+               
+               
+                  Kathryn Beheshti
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-5511
+                  katbeheshti@ucsb.edu
+               
+               
+                  Rachel Smith
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-5511
+                  rssmith@ucsb.edu
+               
+               
+                  David Huang
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-5559
+                  davidhuang@ucsb.edu
+               
+               
+                  
+                     https://drive.google.com/file/d/1DsfqAe6S0_YAnQ3eMU2tlf3zY0yvprCS/view?usp=drive_link
+                  
+               
+            
+         
+         
+            
+               This method step describes provenance-based metadata as specified in the LTER EML Best Practices.
+               This provenance metadata does not contain entity specific information.
+            
+            
+               UCSB SONGS Mitigation Monitoring: Wetland Survey - Fish Abundance
+               
+                  Stephen Schroeter
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  760-438-5953
+                  stephen.schroeter@lifesci.ucsb.edu
+               
+               
+                  Henry Page
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-7568
+                  mark.page@lifesci.ucsb.edu
+               
+               
+                  Daniel Reed
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-8363
+                  dan.reed@lifesci.ucsb.edu
+                  https://orcid.org/0000-0003-3015-8717
+               
+               
+                  Kathryn Beheshti
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-5511
+                  katbeheshti@ucsb.edu
+               
+               
+                  Rachel Smith
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-5511
+                  rssmith@ucsb.edu
+               
+               
+                  David Huang
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-5559
+                  davidhuang@ucsb.edu
+               
+               
+                  SONGS Mitigation Monitoring
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106  USA
+                  songsmmp@lifesci.ucsb.edu
+               
+               
+                  
+                     This online link references an EML document that describes data used in the creation of this derivative data package.
+                     https://pasta.lternet.edu/package/metadata/eml/edi/647/8
+                  
+               
+               
+                  Information Manager, SONGS Mitigation Monitoring Project
+                  			Marine Science Institute
+			University of California
+			Santa Barbara, California 93106-6150  United States
+                  805-893-5511
+                  songsmmp@lifesci.ucsb.edu
+                  http://marinemitigation.msi.ucsb.edu
+               
+            
+         
+      
+      
+         SONGS Mitigation Monitoring Project
+         
+            Stephen Schroeter
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            760-438-5953
+            stephen.schroeter@lifesci.ucsb.edu
+            principalInvestigator
+         
+         
+            Henry Page
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            805-893-7568
+            mark.page@lifesci.ucsb.edu
+            principalInvestigator
+         
+         
+            Daniel Reed
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            805-893-8363
+            dan.reed@lifesci.ucsb.edu
+            https://orcid.org/0000-0003-3015-8717
+            principalInvestigator
+         
+         
+            Kathryn Beheshti
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            805-893-5511
+            katbeheshti@ucsb.edu
+            principalInvestigator
+         
+         
+            Rachel Smith
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            805-893-5511
+            rssmith@ucsb.edu
+            principalInvestigator
+         
+         
+            David Huang
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            805-893-5559
+            davidhuang@ucsb.edu
+            pointOfContact
+         
+         
+            
+               
+          The San Onofre Nuclear Generating Station (SONGS) Mitigation Monitoring Program is based at the Marine Science Institute, University of California Santa Barbara.
+          Long-term monitoring and evaluation of the SONGS mitigation projects is a condition of the coastal development permit issued by the California Coastal Commission (CCC) for the operation of SONGS Units 2 and 3.
+          The Permit requires Southern California Edison (SCE) as majority owner and operating agent of SONGS to design and build mitigation projects that adequately compensate for the adverse effects of the power plant’s once-through seawater cooling system on coastal marine resources.
+          UCSB scientists working under the direction of the Executive Director of the CCC are responsible for designing and implementing monitoring programs aimed at determining the effectiveness of these mitigation projects.
+          
+            
+         
+         
+            
+               Funding for the SONGS Mitigation Monitoring Program is provided by SCE as a requirement of their coastal development permit for operating SONGS.
+            
+         
+      
+      
+         Wetland community survey, fish abundance and number of species, all years
+         This data table describes the annual abundance and richness of fish collected in beach seines and enclosure traps.
+         
+            wetland_ps_fish_abundance_and_richness-2025-08-27_14-22-49.csv
+            25600
+            
+               
+                  1
+                  \n
+                  column
+                  
+                     ,
+                     no
+                  
+               
+            
+            
+               
+                  https://pasta.lternet.edu/package/data/eml/edi/648/8/1d2580fa7e39c5f0e73f81fb1f58dd12
+               
+            
+         
+         
+            
+               
+                  
+                     2012
+                  
+                  
+                     2024
+                  
+               
+            
+         
+         
+            
+               year
+               year
+               Calendar year of survey (YYYY).
+               int
+               
+                  
+                     YYYY
+                     1
+                     
+                  
+               
+            
+            
+               wetland_code
+               wetland
+               Code for wetland site.
+               char
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               module_code
+               module
+               Code for wetland module. The San Dieguito Wetlands comprises 25 modules. All other wetlands have a single module.
+               char
+               
+                  
+                     
+                        
+                           
+                              W1
+                              Module W1
+                           
+                           
+                              W2
+                              Module W2
+                           
+                           
+                              W4
+                              Module W4
+                           
+                           
+                              CSM
+                              Module encompasses entire lagoon
+                           
+                           
+                              MUL
+                              Module encompasses entire lagoon
+                           
+                           
+                              LPL
+                              Module encompasses entire lagoon
+                           
+                           
+                              TJE
+                              Module encompasses entire lagoon
+                           
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               tc_mc_code
+               tidal creek / main channel site number
+               Code for main channel or tidal creek location.
+               varchar
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               habitat_code
+               habitat
+               Code for habitat type.
+               char
+               
+                  
+                     
+                        
+                           
+                              TC
+                              Tidal Creek
+                           
+                           
+                              BNMC
+                              Basin, Main Channel
+                           
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               count_per_m2
+               density
+               The number of individuals per square meter.
+               decimal
+               
+                  
+                     
+                        numberPerMeterSquared
+                     
+                     
+                        real
+                        
+                           0.00000000
+                           271.62788000
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               species_count
+               unique species count
+               The number of unique species counted.
+               decimal
+               
+                  
+                     
+                        number
+                     
+                     
+                        real
+                        
+                           0
+                           22
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+         
+         622
+      
+   
+   
+      
+         
+            18
+            2025-06-13 16:29:24
+            
+               
+                  wetland_ps_fish_abundance_and_richness
+                  2025-08-27 14:22:49
+               
+            
+         
+      
+   

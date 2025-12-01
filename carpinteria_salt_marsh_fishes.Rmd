@@ -1,0 +1,1436 @@
+---
+title: "Fishes of Carpinteria Salt Marsh"
+subtitle: "A 13-Year Perspective on Salt Marsh Fish Community Dynamics"
+author: "Biology of Fishes Course"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float:
+      collapsed: false
+    toc_depth: 3
+    number_sections: true
+    code_folding: hide
+    fig_caption: true
+    df_print: paged
+    self_contained: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+ echo = TRUE,
+ message = FALSE,
+ warning = FALSE,
+ fig.width = 8,
+ fig.height = 5,
+ fig.align = "center",
+ dpi = 100,
+ out.width = "100%"
+)
+
+# Set default width for htmlwidgets
+options(htmlwidgets.knitr.default_width = "100%")
+```
+
+```{r load-packages}
+# Load required packages
+library(tidyverse)
+library(scales)
+library(viridis)
+library(knitr)
+library(kableExtra)
+library(ggridges)
+library(patchwork)
+
+# Interactive visualization packages
+library(plotly)
+library(highcharter)
+library(DT)
+library(crosstalk)
+library(htmltools)
+
+# Set theme for all plots
+theme_set(theme_minimal(base_size = 12) +
+ theme(
+   plot.title = element_text(face = "bold", size = 14),
+   plot.subtitle = element_text(color = "gray40"),
+   legend.position = "bottom",
+   panel.grid.minor = element_blank()
+ ))
+
+# Custom color palette for fish families
+fish_colors <- c(
+ "Gobiidae" = "#1f77b4",
+ "Atherinopsidae" = "#ff7f0e",
+ "Fundulidae" = "#2ca02c",
+ "Paralichthyidae" = "#d62728",
+ "Syngnathidae" = "#9467bd",
+ "Embiotocidae" = "#8c564b",
+ "Cottidae" = "#e377c2",
+ "Other" = "#7f7f7f"
+)
+
+# Highcharter theme
+hc_theme_csm <- hc_theme(
+ colors = c("#3498db", "#e74c3c", "#2ecc71", "#f39c12", "#9b59b6", "#1abc9c"),
+ chart = list(
+   backgroundColor = "#ffffff",
+   style = list(fontFamily = "Source Sans Pro, sans-serif")
+ ),
+ title = list(style = list(fontWeight = "bold", fontSize = "18px")),
+ subtitle = list(style = list(color = "#7f8c8d"))
+)
+```
+
+# Introduction {.tabset}
+
+## The Carpinteria Salt Marsh
+
+```{r intro-map, out.width="100%"}
+# Interactive map using leaflet
+library(leaflet)
+
+leaflet() %>%
+ addProviderTiles(providers$Esri.WorldImagery) %>%
+ setView(lng = -119.538, lat = 34.401, zoom = 14) %>%
+ addMarkers(
+   lng = -119.538, lat = 34.401,
+   popup = "<b>Carpinteria Salt Marsh</b><br>~230 acres of coastal wetland<br>Santa Barbara County, CA"
+ ) %>%
+ addScaleBar(position = "bottomleft")
+```
+
+**Carpinteria Salt Marsh** is a ~230-acre coastal wetland located in Santa Barbara County, California. It represents one of the few remaining relatively undisturbed tidal wetlands along the Southern California coast and serves as critical habitat for numerous fish species.
+
+### Why Study Salt Marsh Fishes?
+
+Salt marshes provide essential ecosystem services:
+
+- **Nursery habitat** for juvenile fishes of commercial and recreational importance
+- **Foraging grounds** for resident species adapted to fluctuating conditions
+- **Refugia** from predators in shallow, vegetated waters
+- **Productivity hotspots** supporting complex food webs
+
+### Data Source
+
+This report analyzes data from the **SONGS (San Onofre Nuclear Generating Station) Mitigation Monitoring Program** collected by UC Santa Barbara's Marine Science Institute from **2012-2024**. The monitoring uses two complementary sampling methods:
+
+1. **Enclosure traps** (0.43 m²) - targeting small benthic gobies
+2. **Beach seines** (~100 m²) - capturing larger mobile fishes
+
+## Learning Objectives
+
+By the end of this report, you should be able to:
+
+1. **Identify** the dominant fish species in Carpinteria Salt Marsh
+2. **Describe** how fish communities differ between tidal creek and main channel habitats
+3. **Explain** temporal patterns in fish abundance and diversity
+4. **Compare** sampling methods and understand their biases
+5. **Discuss** the ecological significance of salt marsh fishes
+
+---
+
+# Data Preparation
+
+```{r load-data}
+# Load the datasets
+# Performance standard data (summarized annual estimates)
+ps_data <- read_csv("edi.648.8/wetland_ps_fish_abundance_and_richness-2025-08-27_14-22-49.csv")
+
+# Raw enclosure trap data (gobies)
+enclosure_data <- read_csv("edi.647.8/wetland_ts_fish_enclosure-2025-08-27_14-40-54.csv")
+
+# Raw beach seine data (larger fishes)
+seine_data <- read_csv("edi.647.8/wetland_ts_fish_seine-2025-08-27_14-42-14.csv")
+```
+
+```{r filter-csm}
+# Filter to Carpinteria Salt Marsh only
+csm_ps <- ps_data %>%
+ filter(wetland_code == "CSM")
+
+csm_enclosure <- enclosure_data %>%
+ filter(wetland_code == "CSM")
+
+csm_seine <- seine_data %>%
+ filter(wetland_code == "CSM")
+```
+
+```{r data-summary}
+# Quick summary of the CSM dataset
+data_summary <- tibble(
+ `Data Type` = c("Performance Summary", "Enclosure Traps", "Beach Seines"),
+ `Years` = c(
+   paste(range(csm_ps$year), collapse = "-"),
+   paste(range(csm_enclosure$year), collapse = "-"),
+   paste(range(csm_seine$year), collapse = "-")
+ ),
+ `Total Records` = c(
+   nrow(csm_ps),
+   nrow(csm_enclosure),
+   nrow(csm_seine)
+ ),
+ `Sampling Locations` = c(
+   n_distinct(csm_ps$tc_mc_code),
+   n_distinct(csm_enclosure$tc_mc_code),
+   n_distinct(csm_seine$tc_mc_code)
+ )
+)
+
+datatable(data_summary,
+         caption = "Summary of Carpinteria Salt Marsh Fish Data",
+         options = list(dom = 't', pageLength = 5),
+         class = 'cell-border stripe')
+```
+
+---
+
+# Fish Community Composition
+
+## Species Inventory
+
+What fish species call Carpinteria Salt Marsh home? Let's build a comprehensive species list from both sampling methods.
+
+```{r species-inventory}
+# Get species from enclosure data
+enclosure_species <- csm_enclosure %>%
+ filter(count > 0) %>%
+ distinct(species_code, genus_name, species_name) %>%
+ mutate(method = "Enclosure")
+
+# Get species from seine data
+seine_species <- csm_seine %>%
+ filter(count > 0) %>%
+ distinct(species_code, genus_name, species_name) %>%
+ mutate(method = "Seine")
+
+# Combine and identify which method caught each species
+all_species <- bind_rows(enclosure_species, seine_species) %>%
+ group_by(species_code, genus_name, species_name) %>%
+ summarize(
+   caught_by = paste(unique(method), collapse = " & "),
+   .groups = "drop"
+ ) %>%
+ arrange(genus_name, species_name)
+
+# Add common names from FishBase (comprehensive lookup)
+common_names <- tribble(
+ ~species_code, ~common_name, ~family,
+ # Gobies (Gobiidae)
+ "ACFV", "Yellowfin Goby", "Gobiidae",
+ "CLIO", "Arrow Goby", "Gobiidae",
+ "CTSA", "Longtail Goby", "Gobiidae",
+ "GIMI", "Longjaw Mudsucker", "Gobiidae",
+ "ILGI", "Cheekspot Goby", "Gobiidae",
+ "QUYC", "American Shadow Goby", "Gobiidae",
+ # Silversides (Atherinopsidae)
+ "ATAF", "Topsmelt Silverside", "Atherinopsidae",
+ "ATCA", "Jack Silverside", "Atherinopsidae",
+ "LETN", "California Grunion", "Atherinopsidae",
+ "MEBE", "Inland Silverside", "Atherinopsidae",
+ # Killifishes & Livebearers
+ "FUPA", "California Killifish", "Fundulidae",
+ "GAAF", "Mosquitofish", "Poeciliidae",
+ "POLA", "Sailfin Molly", "Poeciliidae",
+ # Anchovies & Herrings (Clupeiformes)
+ "ANCO", "Deepbody Anchovy", "Engraulidae",
+ "ENMO", "Californian Anchovy", "Engraulidae",
+ "CLHA", "Pacific Herring", "Clupeidae",
+ "SASA", "Pacific Sardine", "Clupeidae",
+ # Flatfishes (Pleuronectiformes)
+ "HYGU", "Diamond Turbot", "Pleuronectidae",
+ "PACA", "California Flounder", "Paralichthyidae",
+ "PLCO", "C-O Sole", "Pleuronectidae",
+ "PLRI", "Spotted Turbot", "Pleuronectidae",
+ "SYAT", "California Tonguefish", "Cynoglossidae",
+ # Pipefishes (Syngnathidae)
+ "COAC", "Snubnose Pipefish", "Syngnathidae",
+ "SYAU", "Barred Pipefish", "Syngnathidae",
+ "SYLE", "Bay Pipefish", "Syngnathidae",
+ # Sea Basses (Serranidae)
+ "PACL", "Kelp Bass", "Serranidae",
+ "PAMA", "Spotted Sand Bass", "Serranidae",
+ "PANE", "Barred Sand Bass", "Serranidae",
+ # Croakers (Sciaenidae)
+ "MEUN", "California Kingcroaker", "Sciaenidae",
+ "SEPO", "Queen Croaker", "Sciaenidae",
+ "UMRO", "Yellowfin Drum", "Sciaenidae",
+ # Blennies (Blenniidae)
+ "HYGE", "Bay Blenny", "Blenniidae",
+ "HYGI", "Rockpool Blenny", "Blenniidae",
+ # Kelpfishes & Clinids (Clinidae)
+ "GIME", "Striped Kelpfish", "Clinidae",
+ "HERO", "Giant Kelpfish", "Clinidae",
+ "NEBL", "Sarcastic Fringehead", "Chaenopsidae",
+ "NEUN", "Onespot Fringehead", "Chaenopsidae",
+ # Other Bony Fishes
+ "MUCE", "Flathead Grey Mullet", "Mugilidae",
+ "LEAR", "Pacific Staghorn Sculpin", "Cottidae",
+ "CYAG", "Shiner Perch", "Embiotocidae",
+ "GINI", "Opaleye", "Kyphosidae",
+ "HEAZ", "Zebra-perch Sea Chub", "Kyphosidae",
+ "STEX", "Californian Needlefish", "Belonidae",
+ "SPAR", "Pacific Barracuda", "Sphyraenidae",
+ "SPAN", "Bullseye Puffer", "Tetraodontidae",
+ "POMY", "Specklefin Midshipman", "Batrachoididae",
+ "SERA", "Grass Rockfish", "Sebastidae",
+ "ANDA", "Xantic Sargo", "Haemulidae",
+ "XECA", "Californian Salema", "Haemulidae",
+ # Sharks (Elasmobranchs)
+ "TRSE", "Leopard Shark", "Triakidae",
+ "MUCA", "Gray Smoothhound", "Triakidae",
+ # Rays (Batoidea)
+ "MYCA", "Bat Eagle Ray", "Myliobatidae",
+ "URHA", "Haller's Round Ray", "Urotrygonidae",
+ "GYMA", "California Butterfly Ray", "Gymnuridae",
+ "PLTR", "Thornback Guitarfish", "Platyrhinidae",
+ "RHPR", "Shovelnose Guitarfish", "Rhinobatidae"
+)
+
+species_table <- all_species %>%
+ left_join(common_names, by = "species_code") %>%
+ mutate(
+   common_name = ifelse(is.na(common_name), "Unknown", common_name),
+   family = ifelse(is.na(family), "Other", family)
+ ) %>%
+ select(common_name, genus_name, species_name, family, caught_by) %>%
+ rename(
+   `Common Name` = common_name,
+   `Genus` = genus_name,
+   `Species` = species_name,
+   `Family` = family,
+   `Sampling Method` = caught_by
+ )
+
+n_species <- nrow(species_table)
+```
+
+### Total Species Richness: **`r n_species` species recorded**
+
+```{r species-table-interactive}
+# Interactive searchable species table
+datatable(species_table,
+         caption = "Fish Species Recorded at Carpinteria Salt Marsh (2012-2024) - Click columns to sort, use search box to filter",
+         filter = 'top',
+         options = list(
+           pageLength = 10,
+           autoWidth = TRUE,
+           columnDefs = list(list(className = 'dt-center', targets = "_all"))
+         ),
+         class = 'cell-border stripe hover') %>%
+ formatStyle('Family',
+             backgroundColor = styleEqual(
+               c("Gobiidae", "Atherinopsidae", "Fundulidae"),
+               c("#e3f2fd", "#fff3e0", "#e8f5e9")
+             ))
+```
+
+## Dominant Species
+
+Not all species are equally abundant. Let's identify the most common fishes.
+
+```{r dominant-species-enclosure}
+# Calculate total abundance by species from enclosure data
+enclosure_totals <- csm_enclosure %>%
+ group_by(species_code, genus_name, species_name) %>%
+ summarize(
+   total_count = sum(count, na.rm = TRUE),
+   n_samples = n_distinct(paste(year, date, tc_mc_code)),
+   .groups = "drop"
+ ) %>%
+ filter(total_count > 0) %>%
+ left_join(common_names, by = "species_code") %>%
+ mutate(
+   common_name = ifelse(is.na(common_name), paste(genus_name, species_name), common_name),
+   prop = total_count / sum(total_count)
+ ) %>%
+ arrange(desc(total_count))
+```
+
+```{r dominant-species-seine}
+# Calculate total abundance by species from seine data
+seine_totals <- csm_seine %>%
+ group_by(species_code, genus_name, species_name) %>%
+ summarize(
+   total_count = sum(count, na.rm = TRUE),
+   n_samples = n_distinct(paste(year, date, tc_mc_code)),
+   .groups = "drop"
+ ) %>%
+ filter(total_count > 0) %>%
+ left_join(common_names, by = "species_code") %>%
+ mutate(
+   common_name = ifelse(is.na(common_name), paste(genus_name, species_name), common_name),
+   prop = total_count / sum(total_count)
+ ) %>%
+ arrange(desc(total_count))
+```
+
+### Enclosure Trap Catches (Gobies) - Interactive
+
+```{r goby-plot-interactive}
+# Interactive bar chart with Highcharter
+goby_data <- enclosure_totals %>%
+ slice_head(n = 5) %>%
+ mutate(family = ifelse(is.na(family), "Other", family))
+
+highchart() %>%
+ hc_chart(type = "bar") %>%
+ hc_title(text = "Most Abundant Gobies in Carpinteria Salt Marsh") %>%
+ hc_subtitle(text = "Enclosure trap sampling (2012-2024) - Hover for details") %>%
+ hc_xAxis(categories = goby_data$common_name) %>%
+ hc_yAxis(title = list(text = "Total Individuals Captured")) %>%
+ hc_add_series(
+   name = "Count",
+   data = goby_data$total_count,
+   colorByPoint = TRUE
+ ) %>%
+ hc_tooltip(
+   pointFormat = "<b>{point.category}</b><br>Total caught: <b>{point.y:,.0f}</b><br>Proportion: <b>{point.percentage:.1f}%</b>",
+   headerFormat = ""
+ ) %>%
+ hc_plotOptions(
+   bar = list(
+     dataLabels = list(enabled = TRUE, format = "{point.y:,.0f}")
+   )
+ ) %>%
+ hc_add_theme(hc_theme_csm) %>%
+ hc_legend(enabled = FALSE)
+```
+
+> **Key Finding:** The **Arrow Goby** (*Clevelandia ios*) is by far the most abundant fish in the salt marsh, followed by the Cheekspot Goby and Shadow Goby. These small gobies are specialists of soft-bottom estuarine habitats.
+
+### Beach Seine Catches (Larger Fishes) - Interactive
+
+```{r seine-plot-interactive}
+# Interactive treemap showing species composition
+seine_top <- seine_totals %>%
+ slice_head(n = 15) %>%
+ mutate(family = ifelse(is.na(family), "Other", family))
+
+highchart() %>%
+ hc_chart(type = "treemap") %>%
+ hc_title(text = "Fish Community Composition - Seine Catches") %>%
+ hc_subtitle(text = "Size represents total abundance - Click to explore") %>%
+ hc_add_series(
+   data = list_parse(
+     seine_top %>%
+       transmute(
+         name = common_name,
+         value = total_count,
+         colorValue = log10(total_count + 1)
+       )
+   ),
+   layoutAlgorithm = "squarified",
+   allowTraversingTree = TRUE
+ ) %>%
+ hc_colorAxis(
+   minColor = "#f7fbff",
+   maxColor = "#08519c",
+   type = "linear"
+ ) %>%
+ hc_tooltip(
+   pointFormat = "<b>{point.name}</b><br>Total: {point.value:,.0f} individuals"
+ ) %>%
+ hc_add_theme(hc_theme_csm)
+```
+
+> **Key Finding:** **Topsmelt** (*Atherinops affinis*) and **California Killifish** (*Fundulus parvipinnis*) dominate seine catches. Both species are highly adapted to estuarine conditions with fluctuating salinity and temperature.
+
+---
+
+# Habitat Comparisons
+
+Salt marshes contain diverse microhabitats. At Carpinteria, sampling occurs in two distinct habitat types:
+
+- **Tidal Creeks (TC)**: Narrow, shallow channels that drain the marsh plain
+- **Main Channels/Basins (BNMC)**: Deeper, more permanent waterways
+
+```{r habitat-data}
+# Summarize by habitat
+habitat_summary <- csm_ps %>%
+ mutate(habitat = ifelse(habitat_code == "TC", "Tidal Creek", "Main Channel")) %>%
+ group_by(year, habitat) %>%
+ summarize(
+   mean_density = mean(count_per_m2, na.rm = TRUE),
+   se_density = sd(count_per_m2, na.rm = TRUE) / sqrt(n()),
+   mean_richness = mean(species_count, na.rm = TRUE),
+   se_richness = sd(species_count, na.rm = TRUE) / sqrt(n()),
+   n = n(),
+   .groups = "drop"
+ )
+```
+## Fish Density by Habitat - Interactive
+
+```{r habitat-density-interactive}
+# Interactive time series with Plotly
+p_density <- habitat_summary %>%
+ ggplot(aes(x = year, y = mean_density, color = habitat,
+            text = paste0("Year: ", year,
+                         "<br>Habitat: ", habitat,
+                         "<br>Mean Density: ", round(mean_density, 2), " fish/m²",
+                         "<br>SE: ±", round(se_density, 2)))) +
+ geom_ribbon(aes(ymin = mean_density - se_density,
+                 ymax = mean_density + se_density,
+                 fill = habitat),
+             alpha = 0.2, color = NA) +
+ geom_line(size = 1.2) +
+ geom_point(size = 3) +
+ scale_color_manual(values = c("Tidal Creek" = "#e74c3c", "Main Channel" = "#3498db")) +
+ scale_fill_manual(values = c("Tidal Creek" = "#e74c3c", "Main Channel" = "#3498db")) +
+ scale_x_continuous(breaks = seq(2012, 2024, 2)) +
+ labs(
+   title = "Fish Density in Carpinteria Salt Marsh Habitats",
+   subtitle = "Hover over points for details",
+   x = "Year",
+   y = "Fish Density (individuals/m²)",
+   color = "Habitat",
+   fill = "Habitat"
+ ) +
+ theme(legend.position = "top")
+
+ggplotly(p_density, tooltip = "text") %>%
+ layout(hoverlabel = list(bgcolor = "white"))
+```
+
+## Species Richness by Habitat - Interactive
+
+```{r habitat-richness-interactive}
+# Highcharter dual-axis comparison
+hc_habitat <- highchart() %>%
+ hc_chart(type = "line") %>%
+ hc_title(text = "Species Richness by Habitat Over Time") %>%
+ hc_subtitle(text = "Compare tidal creeks vs main channels") %>%
+ hc_xAxis(categories = unique(habitat_summary$year)) %>%
+ hc_yAxis(title = list(text = "Mean Number of Species")) %>%
+ hc_add_series(
+   name = "Tidal Creek",
+   data = habitat_summary %>% filter(habitat == "Tidal Creek") %>% pull(mean_richness),
+   color = "#e74c3c"
+ ) %>%
+ hc_add_series(
+   name = "Main Channel",
+   data = habitat_summary %>% filter(habitat == "Main Channel") %>% pull(mean_richness),
+   color = "#3498db"
+ ) %>%
+ hc_tooltip(
+   shared = TRUE,
+   crosshairs = TRUE,
+   pointFormat = "{series.name}: <b>{point.y:.1f}</b> species<br>"
+ ) %>%
+ hc_plotOptions(
+   line = list(
+     marker = list(enabled = TRUE, radius = 5)
+   )
+ ) %>%
+ hc_add_theme(hc_theme_csm)
+
+hc_habitat
+```
+
+### Habitat Comparison Summary
+
+```{r habitat-table}
+habitat_overall <- csm_ps %>%
+ mutate(habitat = ifelse(habitat_code == "TC", "Tidal Creek", "Main Channel")) %>%
+ group_by(habitat) %>%
+ summarize(
+   `Mean Density (fish/m²)` = round(mean(count_per_m2, na.rm = TRUE), 2),
+   `SD Density` = round(sd(count_per_m2, na.rm = TRUE), 2),
+   `Max Density` = round(max(count_per_m2, na.rm = TRUE), 2),
+   `Mean Richness` = round(mean(species_count, na.rm = TRUE), 1),
+   `Max Richness` = max(species_count, na.rm = TRUE),
+   `N Samples` = n(),
+   .groups = "drop"
+ )
+
+datatable(habitat_overall,
+         caption = "Summary Statistics by Habitat Type (2012-2024)",
+         options = list(dom = 't'),
+         class = 'cell-border stripe') %>%
+ formatStyle(
+   'Mean Density (fish/m²)',
+   background = styleColorBar(c(0, max(habitat_overall$`Mean Density (fish/m²)`)), '#3498db'),
+   backgroundSize = '98% 88%',
+   backgroundRepeat = 'no-repeat',
+   backgroundPosition = 'center'
+ )
+```
+
+> **Discussion Question:** Why might tidal creeks have higher fish densities but similar or lower species richness compared to main channels?
+
+---
+
+# Temporal Patterns
+
+## Interannual Variation - Interactive Explorer
+
+Fish populations in estuaries can vary dramatically from year to year due to environmental conditions, recruitment variability, and other factors.
+
+```{r annual-trends}
+annual_summary <- csm_ps %>%
+ group_by(year) %>%
+ summarize(
+   total_density = sum(count_per_m2, na.rm = TRUE),
+   mean_density = mean(count_per_m2, na.rm = TRUE),
+   se_density = sd(count_per_m2, na.rm = TRUE) / sqrt(n()),
+   mean_richness = mean(species_count, na.rm = TRUE),
+   se_richness = sd(species_count, na.rm = TRUE) / sqrt(n()),
+   n_locations = n(),
+   .groups = "drop"
+ )
+```
+
+```{r annual-plot-interactive}
+# Interactive combined chart
+highchart() %>%
+ hc_chart(zoomType = "x") %>%
+ hc_title(text = "Long-term Trends in Fish Community") %>%
+ hc_subtitle(text = "Drag to zoom, click legend to toggle series") %>%
+ hc_xAxis(categories = annual_summary$year) %>%
+ hc_yAxis_multiples(
+   list(
+     title = list(text = "Mean Density (fish/m²)", style = list(color = "#3498db")),
+     labels = list(style = list(color = "#3498db"))
+   ),
+   list(
+     title = list(text = "Mean Species Richness", style = list(color = "#e74c3c")),
+     labels = list(style = list(color = "#e74c3c")),
+     opposite = TRUE
+   )
+ ) %>%
+ hc_add_series(
+   name = "Fish Density",
+   data = round(annual_summary$mean_density, 2),
+   type = "column",
+   color = "#3498db",
+   yAxis = 0
+ ) %>%
+ hc_add_series(
+   name = "Species Richness",
+   data = round(annual_summary$mean_richness, 1),
+   type = "spline",
+   color = "#e74c3c",
+   yAxis = 1,
+   marker = list(radius = 5)
+ ) %>%
+ hc_tooltip(
+   shared = TRUE,
+   crosshairs = TRUE
+ ) %>%
+ hc_add_theme(hc_theme_csm)
+```
+
+## Distribution of Fish Densities - Interactive Boxplots
+
+```{r density-boxplot-interactive}
+# Interactive boxplots by year
+csm_ps %>%
+ plot_ly(x = ~factor(year), y = ~count_per_m2, type = "box",
+         color = ~factor(year), colors = viridis(13),
+         hoverinfo = "y") %>%
+ layout(
+   title = list(text = "Distribution of Fish Densities by Year<br><sub>Hover over boxes for statistics</sub>"),
+   xaxis = list(title = "Year"),
+   yaxis = list(title = "Fish Density (individuals/m²)"),
+   showlegend = FALSE
+ )
+```
+
+## All Sampling Locations - Scatter Explorer
+
+```{r scatter-explorer}
+# Create linked dataset with crosstalk
+csm_shared <- SharedData$new(
+ csm_ps %>%
+   mutate(
+     habitat = ifelse(habitat_code == "TC", "Tidal Creek", "Main Channel"),
+     location = tc_mc_code
+   )
+)
+
+# Interactive scatter with crosstalk filtering
+bscols(
+ widths = c(3, 9),
+ list(
+   filter_checkbox("habitat", "Habitat", csm_shared, ~habitat),
+   filter_slider("year", "Year", csm_shared, ~year, step = 1, width = "100%"),
+   filter_slider("density", "Density", csm_shared, ~count_per_m2, width = "100%")
+ ),
+ plot_ly(csm_shared, x = ~species_count, y = ~count_per_m2,
+         color = ~habitat, colors = c("#3498db", "#e74c3c"),
+         text = ~paste0("Location: ", location,
+                       "<br>Year: ", year,
+                       "<br>Density: ", round(count_per_m2, 2),
+                       "<br>Species: ", species_count),
+         hoverinfo = "text",
+         type = "scatter", mode = "markers",
+         marker = list(size = 10, opacity = 0.7)) %>%
+   layout(
+     title = "Explore: Density vs Species Richness",
+     xaxis = list(title = "Number of Species"),
+     yaxis = list(title = "Fish Density (individuals/m²)")
+   )
+)
+```
+
+## Notable Years
+
+```{r notable-years}
+# Find the highest and lowest years
+peak_year <- annual_summary %>% slice_max(mean_density, n = 1)
+low_year <- annual_summary %>% slice_min(mean_density, n = 1)
+```
+
+- **Highest Density Year:** `r peak_year$year` with mean `r round(peak_year$mean_density, 1)` fish/m²
+- **Lowest Density Year:** `r low_year$year` with mean `r round(low_year$mean_density, 1)` fish/m²
+
+> **Question for Discussion:** What environmental factors might explain this variation? Consider: El Niño events, drought conditions, marine heatwaves, and local management changes.
+
+---
+
+# Species Photo Gallery
+
+Get to know the fishes of Carpinteria Salt Marsh! Photos from [iNaturalist](https://www.inaturalist.org/) community scientists.
+
+## Gobies (Family Gobiidae) {.tabset}
+
+The most abundant fishes in the salt marsh are small, bottom-dwelling gobies.
+
+### Arrow Goby
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/450503585/medium.jpeg" alt="Arrow Goby" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Clevelandia ios*</strong> - The most abundant fish in the marsh. Lives in burrows made by ghost shrimp.</p>
+<a href="https://www.inaturalist.org/taxa/117564" target="_blank">View on iNaturalist</a>
+</div>
+
+### Shadow Goby
+<div class="species-card">
+<img src="https://static.inaturalist.org/photos/170392562/medium.jpg" alt="Shadow Goby" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Quietula y-cauda*</strong> - Named for its dark coloration. Common in muddy habitats.</p>
+<a href="https://www.inaturalist.org/taxa/111467" target="_blank">View on iNaturalist</a>
+</div>
+
+### Longjaw Mudsucker
+<div class="species-card">
+<img src="https://static.inaturalist.org/photos/108961802/medium.jpg" alt="Longjaw Mudsucker" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Gillichthys mirabilis*</strong> - Can breathe air and survive out of water for extended periods!</p>
+<a href="https://www.inaturalist.org/taxa/101455" target="_blank">View on iNaturalist</a>
+</div>
+
+### Yellowfin Goby
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/320669567/medium.jpeg" alt="Yellowfin Goby" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Acanthogobius flavimanus*</strong> - An introduced species from Asia, now common in California estuaries.</p>
+<a href="https://www.inaturalist.org/taxa/117563" target="_blank">View on iNaturalist</a>
+</div>
+
+## Silversides & Killifish {.tabset}
+
+Surface-dwelling schooling fishes that are important prey for larger predators.
+
+### Topsmelt
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/265679018/medium.jpg" alt="Topsmelt" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Atherinops affinis*</strong> - A key forage fish species. Forms large schools near the surface.</p>
+<a href="https://www.inaturalist.org/taxa/94801" target="_blank">View on iNaturalist</a>
+</div>
+
+### California Killifish
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/91329082/medium.jpg" alt="California Killifish" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Fundulus parvipinnis*</strong> - Endemic to California. Tolerates extreme salinity changes.</p>
+<a href="https://www.inaturalist.org/taxa/179533" target="_blank">View on iNaturalist</a>
+</div>
+
+## Flatfishes {.tabset}
+
+Masters of camouflage that live on the bottom.
+
+### California Halibut
+<div class="species-card">
+<img src="https://static.inaturalist.org/photos/66857424/medium.jpg" alt="California Halibut" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Paralichthys californicus*</strong> - An important commercial and recreational species. Juveniles use the marsh as nursery habitat.</p>
+<a href="https://www.inaturalist.org/taxa/108561" target="_blank">View on iNaturalist</a>
+</div>
+
+### Diamond Turbot
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/3911410/medium.jpg" alt="Diamond Turbot" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Hypsopsetta guttulata*</strong> - A common small flatfish of bays and estuaries.</p>
+<a href="https://www.inaturalist.org/taxa/1316517" target="_blank">View on iNaturalist</a>
+</div>
+
+## Sharks & Rays {.tabset}
+
+Yes, sharks and rays visit salt marshes! They come to hunt and give birth in the protected waters.
+
+### Leopard Shark
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/520058171/medium.jpg" alt="Leopard Shark" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Triakis semifasciata*</strong> - Harmless to humans. Females use shallow estuaries to give birth.</p>
+<a href="https://www.inaturalist.org/taxa/52297" target="_blank">View on iNaturalist</a>
+</div>
+
+### Round Stingray
+<div class="species-card">
+<img src="https://static.inaturalist.org/photos/15432407/medium.jpg" alt="Round Stingray" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Urobatis halleri*</strong> - Common in shallow waters. Do the "stingray shuffle" when wading!</p>
+<a href="https://www.inaturalist.org/taxa/114782" target="_blank">View on iNaturalist</a>
+</div>
+
+### Thornback Guitarfish
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/10358915/medium.jpg" alt="Thornback Guitarfish" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Platyrhinoidis triseriata*</strong> - Half shark, half ray! A unique California endemic.</p>
+<a href="https://www.inaturalist.org/taxa/48401" target="_blank">View on iNaturalist</a>
+</div>
+
+### Gray Smoothhound
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/250034344/medium.png" alt="Gray Smoothhound" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Mustelus californicus*</strong> - A small shark that hunts crabs and shrimp in shallow bays.</p>
+<a href="https://www.inaturalist.org/taxa/106254" target="_blank">View on iNaturalist</a>
+</div>
+
+## Other Notable Species {.tabset}
+
+### Pacific Staghorn Sculpin
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/98659064/medium.jpeg" alt="Pacific Staghorn Sculpin" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Leptocottus armatus*</strong> - Has venomous spines on its gill covers. Handle with care!</p>
+<a href="https://www.inaturalist.org/taxa/49163" target="_blank">View on iNaturalist</a>
+</div>
+
+### Shiner Perch
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/408765880/medium.jpg" alt="Shiner Perch" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Cymatogaster aggregata*</strong> - Gives live birth! One of many California surfperches.</p>
+<a href="https://www.inaturalist.org/taxa/98855" target="_blank">View on iNaturalist</a>
+</div>
+
+### Northern Anchovy
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/19101/medium.jpg" alt="Northern Anchovy" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Engraulis mordax*</strong> - A keystone forage species. Feeds whales, seabirds, and larger fish.</p>
+<a href="https://www.inaturalist.org/taxa/63770" target="_blank">View on iNaturalist</a>
+</div>
+
+### Opaleye
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/9430036/medium.jpg" alt="Opaleye" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Girella nigricans*</strong> - Named for its beautiful blue-green eyes. Primarily herbivorous.</p>
+<a href="https://www.inaturalist.org/taxa/81963" target="_blank">View on iNaturalist</a>
+</div>
+
+### Kelp Bass
+<div class="species-card">
+<img src="https://static.inaturalist.org/photos/37051188/medium.jpg" alt="Kelp Bass" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Paralabrax clathratus*</strong> - California's most popular sport fish. Juveniles use estuaries.</p>
+<a href="https://www.inaturalist.org/taxa/108547" target="_blank">View on iNaturalist</a>
+</div>
+
+### Flathead Grey Mullet
+<div class="species-card">
+<img src="https://inaturalist-open-data.s3.amazonaws.com/photos/11976021/medium.jpeg" alt="Flathead Grey Mullet" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Mugil cephalus*</strong> - A cosmopolitan species found worldwide. Feeds on algae and detritus.</p>
+<a href="https://www.inaturalist.org/taxa/106222" target="_blank">View on iNaturalist</a>
+</div>
+
+### Sarcastic Fringehead
+<div class="species-card">
+<img src="https://static.inaturalist.org/photos/72790372/medium.jpg" alt="Sarcastic Fringehead" style="width:100%; max-width:400px; border-radius:8px;">
+<p><strong>*Neoclinus blanchardi*</strong> - Famous for its dramatic territorial displays with enormous jaws!</p>
+<a href="https://www.inaturalist.org/taxa/317244" target="_blank">View on iNaturalist</a>
+</div>
+
+---
+
+# Species Profiles
+
+Let's take a closer look at some key species found in Carpinteria Salt Marsh.
+
+## Arrow Goby (*Clevelandia ios*) {.tabset}
+
+```{r arrow-goby-data}
+arrow_goby <- csm_enclosure %>%
+ filter(species_code == "CLIO") %>%
+ group_by(year, habitat_code) %>%
+ summarize(
+   total_count = sum(count, na.rm = TRUE),
+   mean_count = mean(count, na.rm = TRUE),
+   .groups = "drop"
+ )
+```
+
+### Biology
+
+The **Arrow Goby** is a small (< 5 cm) benthic fish endemic to the Pacific coast of North America. Key traits include:
+- **Habitat:** Soft mud bottoms, often associated with ghost shrimp burrows
+- **Diet:** Small invertebrates, detritus
+- **Reproduction:** Males guard eggs in burrow chambers
+- **Ecological Role:** Important prey for larger fishes and wading birds
+
+### Abundance Over Time
+
+```{r arrow-goby-plot-interactive}
+arrow_goby_wide <- arrow_goby %>%
+ mutate(habitat = ifelse(habitat_code == "TC", "Tidal Creek", "Main Channel")) %>%
+ pivot_wider(names_from = habitat, values_from = c(total_count, mean_count), values_fill = 0)
+
+highchart() %>%
+ hc_chart(type = "column") %>%
+ hc_title(text = "Arrow Goby Abundance at Carpinteria Salt Marsh") %>%
+ hc_subtitle(text = "Stacked by habitat - hover for details") %>%
+ hc_xAxis(categories = unique(arrow_goby$year)) %>%
+ hc_yAxis(title = list(text = "Total Count"), stackLabels = list(enabled = TRUE)) %>%
+ hc_plotOptions(column = list(stacking = "normal")) %>%
+ hc_add_series(
+   name = "Tidal Creek",
+   data = arrow_goby %>% filter(habitat_code == "TC") %>% arrange(year) %>% pull(total_count),
+   color = "#e74c3c"
+ ) %>%
+ hc_add_series(
+   name = "Main Channel",
+   data = arrow_goby %>% filter(habitat_code == "BNMC") %>% arrange(year) %>% pull(total_count),
+   color = "#3498db"
+ ) %>%
+ hc_tooltip(
+   shared = TRUE,
+   pointFormat = "{series.name}: <b>{point.y:,.0f}</b><br>"
+ ) %>%
+ hc_add_theme(hc_theme_csm)
+```
+
+## California Killifish (*Fundulus parvipinnis*)
+
+```{r killifish-data}
+killifish <- csm_seine %>%
+ filter(species_code == "FUPA") %>%
+ group_by(year, habitat_code) %>%
+ summarize(
+   total_count = sum(count, na.rm = TRUE),
+   .groups = "drop"
+ )
+```
+
+The **California Killifish** is a euryhaline species (tolerant of wide salinity ranges) that is endemic to California and Baja California estuaries.
+
+- **Size:** Up to 11 cm
+- **Diet:** Invertebrates, algae, detritus
+- **Special Adaptation:** Can tolerate salinities from fresh water to >100 ppt
+- **Behavior:** Forms schools in shallow areas
+
+```{r killifish-plot-interactive}
+killifish %>%
+ mutate(habitat = ifelse(habitat_code == "TC", "Tidal Creek", "Main Channel")) %>%
+ plot_ly(x = ~year, y = ~total_count, color = ~habitat,
+         colors = c("#3498db", "#e74c3c"),
+         type = "bar",
+         hoverinfo = "text",
+         text = ~paste0("Year: ", year, "<br>",
+                       "Habitat: ", habitat, "<br>",
+                       "Count: ", comma(total_count))) %>%
+ layout(
+   title = "California Killifish Abundance by Habitat",
+   barmode = "group",
+   xaxis = list(title = "Year"),
+   yaxis = list(title = "Total Count")
+ )
+```
+
+## Topsmelt (*Atherinops affinis*)
+
+```{r topsmelt-data}
+topsmelt <- csm_seine %>%
+ filter(species_code == "ATAF") %>%
+ group_by(year) %>%
+ summarize(
+   total_count = sum(count, na.rm = TRUE),
+   .groups = "drop"
+ )
+```
+
+**Topsmelt** are schooling silversides that are abundant in California bays and estuaries.
+
+- **Size:** Up to 37 cm (commonly 15-25 cm)
+- **Diet:** Zooplankton, small invertebrates, algae
+- **Reproduction:** Spawns in eelgrass and algae beds
+- **Fishery:** Important forage fish for seabirds and larger predators
+
+```{r topsmelt-plot-interactive}
+highchart() %>%
+ hc_chart(type = "areaspline") %>%
+ hc_title(text = "Topsmelt Abundance at Carpinteria Salt Marsh") %>%
+ hc_subtitle(text = "Note the extreme interannual variability") %>%
+ hc_xAxis(categories = topsmelt$year) %>%
+ hc_yAxis(title = list(text = "Total Count")) %>%
+ hc_add_series(
+   name = "Topsmelt",
+   data = topsmelt$total_count,
+   color = "#f39c12",
+   fillOpacity = 0.5
+ ) %>%
+ hc_tooltip(
+   pointFormat = "Year {point.category}: <b>{point.y:,.0f}</b> individuals"
+ ) %>%
+ hc_add_theme(hc_theme_csm)
+```
+
+---
+
+# Ecological Guilds
+
+Fish species can be grouped into **ecological guilds** based on their habitat use and life history strategies.
+
+```{r guilds}
+# Assign guilds to key species
+guild_assignments <- tribble(
+ ~species_code, ~guild, ~description,
+ "CLIO", "Resident", "Spends entire life in estuary",
+ "ILGI", "Resident", "Spends entire life in estuary",
+ "QUYC", "Resident", "Spends entire life in estuary",
+ "GIMI", "Resident", "Spends entire life in estuary",
+ "FUPA", "Resident", "Spends entire life in estuary",
+ "ATAF", "Marine Migrant", "Uses estuary seasonally",
+ "PACA", "Marine Migrant", "Juvenile nursery habitat",
+ "HYGU", "Marine Migrant", "Juvenile nursery habitat",
+ "SYLE", "Resident", "Spends entire life in estuary",
+ "MUCE", "Marine Migrant", "Adults enter to feed",
+ "MYCA", "Marine Migrant", "Foraging habitat",
+ "ANCO", "Marine Migrant", "Uses estuary seasonally"
+)
+
+# Calculate proportions by guild from seine data
+guild_summary <- csm_seine %>%
+ left_join(guild_assignments, by = "species_code") %>%
+ filter(!is.na(guild)) %>%
+ group_by(year, guild) %>%
+ summarize(total_count = sum(count, na.rm = TRUE), .groups = "drop") %>%
+ group_by(year) %>%
+ mutate(proportion = total_count / sum(total_count) * 100)
+```
+
+```{r guild-plot-interactive}
+# Interactive stacked area chart
+highchart() %>%
+ hc_chart(type = "area") %>%
+ hc_title(text = "Ecological Guild Composition Over Time") %>%
+ hc_subtitle(text = "Proportion of resident vs marine migrant species") %>%
+ hc_xAxis(categories = unique(guild_summary$year)) %>%
+ hc_yAxis(
+   title = list(text = "Percentage of Total Catch"),
+   max = 100,
+   labels = list(format = "{value}%")
+ ) %>%
+ hc_plotOptions(area = list(stacking = "percent")) %>%
+ hc_add_series(
+   name = "Resident",
+   data = guild_summary %>% filter(guild == "Resident") %>% arrange(year) %>% pull(total_count),
+   color = "#27ae60"
+ ) %>%
+ hc_add_series(
+   name = "Marine Migrant",
+   data = guild_summary %>% filter(guild == "Marine Migrant") %>% arrange(year) %>% pull(total_count),
+   color = "#3498db"
+ ) %>%
+ hc_tooltip(
+   shared = TRUE,
+   pointFormat = "{series.name}: <b>{point.percentage:.1f}%</b> ({point.y:,.0f})<br>"
+ ) %>%
+ hc_add_theme(hc_theme_csm)
+```
+
+---
+
+# Summary Statistics
+
+## Overall Community Summary
+
+```{r final-summary}
+overall_stats <- csm_ps %>%
+ summarize(
+   `Years of Data` = paste(min(year), "-", max(year)),
+   `Total Sampling Events` = n(),
+   `Mean Density (fish/m²)` = round(mean(count_per_m2), 2),
+   `Max Density (fish/m²)` = round(max(count_per_m2), 2),
+   `Mean Species Richness` = round(mean(species_count), 1),
+   `Max Species Richness` = max(species_count)
+ )
+
+# Create nice summary cards with HTML
+div(class = "row",
+   div(class = "col-md-4",
+       div(class = "panel panel-primary",
+           div(class = "panel-heading", "Years of Monitoring"),
+           div(class = "panel-body", style = "font-size: 24px; text-align: center;",
+               overall_stats$`Years of Data`))),
+   div(class = "col-md-4",
+       div(class = "panel panel-success",
+           div(class = "panel-heading", "Mean Fish Density"),
+           div(class = "panel-body", style = "font-size: 24px; text-align: center;",
+               paste(overall_stats$`Mean Density (fish/m²)`, "fish/m²")))),
+   div(class = "col-md-4",
+       div(class = "panel panel-info",
+           div(class = "panel-heading", "Mean Species Richness"),
+           div(class = "panel-body", style = "font-size: 24px; text-align: center;",
+               paste(overall_stats$`Mean Species Richness`, "species"))))
+)
+```
+
+## Species Summary by Abundance Category
+
+```{r abundance-categories}
+# Categorize species by abundance
+all_species_counts <- bind_rows(
+ csm_enclosure %>%
+   group_by(species_code) %>%
+   summarize(total = sum(count), .groups = "drop"),
+ csm_seine %>%
+   group_by(species_code) %>%
+   summarize(total = sum(count), .groups = "drop")
+) %>%
+ group_by(species_code) %>%
+ summarize(total = sum(total), .groups = "drop") %>%
+ left_join(common_names, by = "species_code") %>%
+ mutate(
+   category = case_when(
+     total > 10000 ~ "Dominant (>10,000)",
+     total > 1000 ~ "Common (1,000-10,000)",
+     total > 100 ~ "Moderate (100-1,000)",
+     total > 10 ~ "Uncommon (10-100)",
+     TRUE ~ "Rare (<10)"
+   )
+ )
+
+category_summary <- all_species_counts %>%
+ group_by(category) %>%
+ summarize(
+   `Number of Species` = n(),
+   `Total Individuals` = sum(total),
+   .groups = "drop"
+ ) %>%
+ arrange(desc(`Total Individuals`))
+
+# Interactive pie chart of abundance categories
+highchart() %>%
+ hc_chart(type = "pie") %>%
+ hc_title(text = "Species Distribution by Abundance Category") %>%
+ hc_subtitle(text = "Click slices to see details") %>%
+ hc_add_series(
+   name = "Species",
+   data = list_parse(
+     category_summary %>%
+       transmute(
+         name = category,
+         y = `Number of Species`,
+         individuals = `Total Individuals`
+       )
+   )
+ ) %>%
+ hc_tooltip(
+   pointFormat = "<b>{point.name}</b><br>Species: {point.y}<br>Total Individuals: {point.individuals:,.0f}"
+ ) %>%
+ hc_plotOptions(
+   pie = list(
+     allowPointSelect = TRUE,
+     cursor = "pointer",
+     dataLabels = list(
+       enabled = TRUE,
+       format = "{point.name}: {point.y} species"
+     )
+   )
+ ) %>%
+ hc_add_theme(hc_theme_csm)
+```
+
+---
+
+# Key Takeaways
+
+## What We've Learned About Carpinteria Salt Marsh Fishes
+
+1. **High Diversity:** At least **`r n_species` fish species** use Carpinteria Salt Marsh, from tiny gobies to large elasmobranchs
+
+2. **Goby Dominance:** Small benthic gobies, especially the **Arrow Goby**, numerically dominate the fish community
+
+3. **Habitat Partitioning:** Tidal creeks and main channels support different fish densities and compositions
+
+4. **Temporal Variability:** Fish populations fluctuate dramatically between years, likely driven by environmental conditions and recruitment
+
+5. **Estuarine Specialists:** The community is dominated by resident species highly adapted to fluctuating estuarine conditions
+
+## Discussion Questions
+
+1. Why are gobies so abundant in salt marshes compared to other habitats?
+
+2. How might climate change affect salt marsh fish communities?
+
+3. What is the value of long-term monitoring datasets like this one?
+
+4. How do sampling methods influence our perception of community composition?
+
+---
+
+# References & Further Reading
+
+- Allen, L.G., M.H. Horn, F.A. Edmands II, and C.A. Usui. 1983. Structure and seasonal dynamics of the fish assemblage in the Cabrillo Beach area of Los Angeles Harbor, California. *Bulletin of the Southern California Academy of Sciences* 82:47-70.
+
+- Horn, M.H., and L.G. Allen. 1985. Fish community ecology in southern California bays and estuaries. Pages 169-190 *in* A. Yanez-Arancibia, editor. Fish community ecology in estuaries and coastal lagoons: Towards ecosystem integration. UNAM Press, Mexico City.
+
+- Steele, M.A., S.C. Schroeter, and H.M. Page. 2006. Sampling characteristics and biases of enclosure traps for sampling fishes in estuaries. *Estuaries and Coasts* 29:630-638.
+
+- SONGS Mitigation Monitoring Program: http://marinemitigation.msi.ucsb.edu/
+
+---
+
+*Report generated on `r Sys.Date()` using R version `r R.version.string`*
+
+<style>
+/* Custom CSS for better formatting */
+
+/* Fix the main content container */
+.main-container {
+  max-width: 940px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Add space between TOC and main content - approximately 1 inch (96px) */
+.col-md-9 {
+  padding-left: 100px !important;
+}
+
+/* Ensure the content doesn't crowd the TOC */
+.tocify {
+  margin-right: 10px !important;
+}
+
+/* Ensure section content doesn't overflow */
+.section {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+
+/* Fix all htmlwidget containers */
+.html-widget {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  position: relative !important;
+}
+
+/* Fix highcharts specifically - prevent negative margins */
+.highchart {
+  max-width: 100% !important;
+  width: 100% !important;
+  overflow: visible !important;
+}
+
+.highcharts-container {
+  max-width: 100% !important;
+  width: 100% !important;
+  position: relative !important;
+  left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.highcharts-root {
+  max-width: 100% !important;
+}
+
+/* Fix plotly containers */
+.plotly {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.js-plotly-plot {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Fix leaflet */
+.leaflet {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Fix datatables */
+.datatables {
+  max-width: 100% !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+}
+
+/* Species photo gallery cards */
+.species-card {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.species-card img {
+  display: block;
+  margin: 0 auto 15px auto;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.species-card p {
+  font-size: 14px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.species-card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #2c7873;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.species-card a:hover {
+  background: #1a5653;
+}
+
+.panel {
+ margin-bottom: 20px;
+ border-radius: 4px;
+ box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.panel-heading {
+ padding: 10px 15px;
+ border-bottom: 1px solid transparent;
+ border-top-left-radius: 3px;
+ border-top-right-radius: 3px;
+ font-weight: bold;
+}
+.panel-body {
+ padding: 15px;
+}
+.panel-primary {
+ border-color: #3498db;
+}
+.panel-primary > .panel-heading {
+ color: #fff;
+ background-color: #3498db;
+ border-color: #3498db;
+}
+.panel-success {
+ border-color: #27ae60;
+}
+.panel-success > .panel-heading {
+ color: #fff;
+ background-color: #27ae60;
+ border-color: #27ae60;
+}
+.panel-info {
+ border-color: #3498db;
+}
+.panel-info > .panel-heading {
+ color: #fff;
+ background-color: #5dade2;
+ border-color: #5dade2;
+}
+
+/* ========== MOBILE RESPONSIVE STYLES ========== */
+@media screen and (max-width: 768px) {
+  /* Stack TOC above content on mobile */
+  .col-md-3, .col-md-9 {
+    width: 100% !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  /* Hide floating TOC on mobile, show inline */
+  .tocify {
+    position: relative !important;
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Reduce padding on mobile */
+  .main-container {
+    padding: 10px !important;
+  }
+
+  /* Make title smaller on mobile */
+  h1.title {
+    font-size: 1.8em !important;
+  }
+
+  h1 {
+    font-size: 1.5em !important;
+  }
+
+  h2 {
+    font-size: 1.3em !important;
+  }
+
+  /* Species cards full width on mobile */
+  .species-card {
+    padding: 15px !important;
+    margin: 10px 0 !important;
+  }
+
+  .species-card img {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Summary panels stack on mobile */
+  .panel {
+    margin-bottom: 15px !important;
+  }
+
+  .panel-body {
+    font-size: 18px !important;
+    padding: 10px !important;
+  }
+
+  /* Tables scroll horizontally */
+  .dataTables_wrapper {
+    overflow-x: auto !important;
+  }
+
+  /* Charts responsive on mobile */
+  .highchart, .plotly, .leaflet {
+    min-height: 300px !important;
+  }
+
+  /* Tab navigation wrap on mobile */
+  .nav-tabs > li {
+    float: none !important;
+    display: block !important;
+  }
+
+  .nav-tabs > li > a {
+    margin-right: 0 !important;
+    border-radius: 4px !important;
+    margin-bottom: 2px !important;
+  }
+}
+
+/* Small phones */
+@media screen and (max-width: 480px) {
+  h1.title {
+    font-size: 1.5em !important;
+  }
+
+  .species-card p {
+    font-size: 12px !important;
+  }
+
+  .species-card a {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+  }
+}
+</style>
