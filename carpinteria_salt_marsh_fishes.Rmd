@@ -131,6 +131,114 @@ By the end of this report, you should be able to:
 
 ---
 
+# Fish Adaptations & Ecology {.tabset}
+
+Living in a salt marsh presents extreme physiological challenges. Understanding these challenges helps explain why certain fish species thrive here while others cannot survive.
+
+## Environmental Challenges
+
+### Life on the Edge
+
+Salt marsh fishes face some of the most demanding conditions in the marine environment:
+
+**Temperature Extremes**
+Water temperature can swing **15-32°C (59-90°F) twice daily** with tidal cycles. During low tide, shallow pools heat rapidly under the sun, then cool dramatically when oceanic water floods back in. Few marine fishes can tolerate such rapid temperature changes.
+
+**Oxygen Depletion**
+Warm water holds less dissolved oxygen than cold water. Combined with the high biological oxygen demand from decomposing organic matter, salt marsh waters frequently become hypoxic (low oxygen), especially at night when photosynthesis stops but respiration continues.
+
+**Salinity Fluctuations**
+Tidal mixing creates salinity gradients from nearly fresh (during rain events) to hypersaline (>40 ppt in evaporating pools). Fish must constantly osmoregulate—expending energy to maintain internal salt balance.
+
+**Tidal Stranding**
+Twice daily, receding tides can trap fish in isolated pools or expose them to air. Species that cannot find refugia or tolerate brief air exposure are excluded from this habitat.
+
+## Remarkable Adaptations
+
+### Goby Specializations
+
+The gobies (Family Gobiidae) that dominate salt marshes possess remarkable adaptations:
+
+**Fused Pelvic Fins**
+Goby pelvic fins are fused into a **sucking disc** that allows them to cling to rocks, mud, and vegetation. This prevents them from being swept away by strong tidal currents and helps them stay in place while foraging.
+
+**Air Breathing**
+Several goby species, especially the **Longjaw Mudsucker** (*Gillichthys mirabilis*), can survive out of water for extended periods. They accomplish this through a **capillary network in the roof of their mouth** that allows gas exchange with air—essentially breathing through their mouth lining!
+
+**Burrowing Behavior**
+Mudsuckers don't dig their own burrows—they're "cheaters" that move into abandoned burrows dug by ghost shrimp and crabs. Males will even suck crabs right out of their burrows to take over the space! These burrows provide refuge from predators and temperature extremes.
+
+### Flatfish Transformations
+
+Flatfishes like **California Halibut** undergo one of the most remarkable transformations in the fish world:
+
+**Eye Migration**
+Flatfish larvae start life as normal-looking fish with eyes on both sides of their head. As they develop, one eye physically migrates across the skull to join the other eye on what becomes the "top" side. In halibut, this creates "left-eyed" and "right-eyed" individuals—their "handedness" is determined during development.
+
+**Master Camouflage**
+Flatfish can rapidly change their skin color and pattern to match the substrate below them. They achieve near-perfect camouflage by using specialized pigment cells (chromatophores) that expand or contract to create different colors and patterns.
+
+**Counter-Shading**
+Like many fishes, flatfish display counter-shading—dark on top (to blend with the bottom when viewed from above) and light on the bottom (to blend with the bright surface when viewed from below). This provides protection throughout the water column.
+
+## Nursery Function
+
+### Critical Habitat for Juveniles
+
+Salt marshes serve as essential **nursery habitat** for many commercially and ecologically important species:
+
+**California Halibut** (*Paralichthys californicus*)
+Juvenile halibut spend their first 1-2 years in shallow estuarine habitats before moving offshore as adults. The marsh provides abundant food (small fishes, shrimp) and protection from larger predators. Without healthy salt marshes, halibut populations would decline.
+
+**Leopard Sharks & Round Stingrays**
+Female leopard sharks and round stingrays enter salt marshes specifically to give birth in warm, protected waters. The warm temperatures accelerate embryonic development, and the shallow habitat excludes larger sharks that might prey on newborns.
+
+## Conservation Context
+
+### A Vanishing Ecosystem
+
+> **Only 3% of California's original coastal wetlands remain intact.**
+
+Since European settlement, over 90% of California's tidal wetlands have been destroyed by:
+- Agricultural conversion
+- Urban development
+- Port and marina construction
+- Flood control projects
+
+**Carpinteria Salt Marsh** represents one of the last relatively undisturbed tidal wetlands in Southern California. Its fish community provides a valuable reference for understanding what healthy wetland function looks like—critical information for evaluating restoration projects like the San Dieguito Wetland.
+
+### Why Fishes Matter
+
+The fish community serves as an **indicator of ecosystem health**:
+- High fish diversity suggests good habitat quality
+- Presence of nursery species indicates connectivity with the ocean
+- Resident specialists (gobies) reflect stable, functioning marsh processes
+- Visiting predators (sharks, rays) indicate adequate prey resources
+
+Long-term monitoring of salt marsh fishes helps scientists detect changes in ecosystem condition and evaluate whether management actions are working.
+
+## Sampling Considerations
+
+### What We Catch vs. What's There
+
+No sampling method captures all fishes equally. Understanding gear biases is essential for interpreting community data:
+
+**Beach Seine Limitations**
+- Fast-swimming fishes can **outswim** the net
+- Some species **jump over** the net when cornered
+- Burrowing fishes (like mudsuckers in their burrows) are **missed entirely**
+- Rare or cryptic species may avoid capture
+
+**Enclosure Trap Limitations**
+- Only samples small areas (0.43 m²)
+- Targets benthic gobies; misses pelagic species
+- Placement affects what's caught (burrow vs. open mud)
+
+**Complementary Methods**
+Scientists increasingly use **environmental DNA (eDNA)** as a complementary approach. By filtering water samples and extracting DNA, researchers can detect species that avoid traditional sampling gear—providing a more complete picture of the fish community.
+
+---
+
 # Data Preparation
 
 ```{r load-data}
@@ -714,7 +822,7 @@ The most abundant fishes in the salt marsh are small, bottom-dwelling gobies.
 ### Longjaw Mudsucker
 <div class="species-card">
 <img src="https://static.inaturalist.org/photos/108961802/medium.jpg" alt="Longjaw Mudsucker" style="width:100%; max-width:400px; border-radius:8px;">
-<p><strong>*Gillichthys mirabilis*</strong> - Can breathe air and survive out of water for extended periods!</p>
+<p><strong>*Gillichthys mirabilis*</strong> - Can breathe air through capillaries in its mouth and survive out of water for extended periods! Males provide parental care, guarding eggs in borrowed burrows.</p>
 <a href="https://www.inaturalist.org/taxa/101455" target="_blank">View on iNaturalist</a>
 </div>
 
@@ -750,7 +858,7 @@ Masters of camouflage that live on the bottom.
 ### California Halibut
 <div class="species-card">
 <img src="https://static.inaturalist.org/photos/66857424/medium.jpg" alt="California Halibut" style="width:100%; max-width:400px; border-radius:8px;">
-<p><strong>*Paralichthys californicus*</strong> - An important commercial and recreational species. Juveniles use the marsh as nursery habitat.</p>
+<p><strong>*Paralichthys californicus*</strong> - An important commercial and recreational species. Juveniles spend 1-2 years in salt marsh nursery habitat. A "left-eyed" flatfish whose eye migrates during development.</p>
 <a href="https://www.inaturalist.org/taxa/108561" target="_blank">View on iNaturalist</a>
 </div>
 
@@ -768,14 +876,14 @@ Yes, sharks and rays visit salt marshes! They come to hunt and give birth in the
 ### Leopard Shark
 <div class="species-card">
 <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/520058171/medium.jpg" alt="Leopard Shark" style="width:100%; max-width:400px; border-radius:8px;">
-<p><strong>*Triakis semifasciata*</strong> - Harmless to humans. Females use shallow estuaries to give birth.</p>
+<p><strong>*Triakis semifasciata*</strong> - Harmless to humans. Females visit warm, shallow estuaries specifically to give birth—the warm water accelerates embryo development and excludes larger predators.</p>
 <a href="https://www.inaturalist.org/taxa/52297" target="_blank">View on iNaturalist</a>
 </div>
 
 ### Round Stingray
 <div class="species-card">
 <img src="https://static.inaturalist.org/photos/15432407/medium.jpg" alt="Round Stingray" style="width:100%; max-width:400px; border-radius:8px;">
-<p><strong>*Urobatis halleri*</strong> - Common in shallow waters. Do the "stingray shuffle" when wading!</p>
+<p><strong>*Urobatis halleri*</strong> - Common in shallow waters. Like leopard sharks, females use warm estuaries for reproduction. Do the "stingray shuffle" when wading!</p>
 <a href="https://www.inaturalist.org/taxa/114782" target="_blank">View on iNaturalist</a>
 </div>
 
