@@ -1,0 +1,662 @@
+{
+  "metadata": {
+    "analysis_date": "2024-01-03",
+    "data_years": "2012-2024",
+    "n_samples": 156,
+    "n_species": 13,
+    "n_years": 13
+  },
+  "habitat_comparison": {
+    "tidal_creek": {
+      "mean_density": 10.8159,
+      "sd_density": 2.8568,
+      "mean_richness": 12.1154,
+      "sd_richness": 2.4227,
+      "n_samples": 78
+    },
+    "main_channel": {
+      "mean_density": 5.5566,
+      "sd_density": 2.4654,
+      "mean_richness": 8.3846,
+      "sd_richness": 2.9727,
+      "n_samples": 78
+    },
+    "density_ttest": {
+      "t_statistic": 12.3093,
+      "p_value": 0.0,
+      "cohens_d": 1.9711,
+      "mean_difference": 5.2594,
+      "ci_95_lower": 4.4152,
+      "ci_95_upper": 6.1036,
+      "significant": "True"
+    },
+    "richness_ttest": {
+      "t_statistic": 8.5919,
+      "p_value": 0.0,
+      "cohens_d": 1.3758,
+      "mean_difference": 3.7308,
+      "ci_95_lower": 2.8727,
+      "ci_95_upper": 4.5888,
+      "significant": "True"
+    }
+  },
+  "temporal_analysis": {
+    "annual_means": {
+      "2012": {
+        "density": 7.932333333333332,
+        "richness": 9.166666666666666
+      },
+      "2013": {
+        "density": 7.7301666666666655,
+        "richness": 10.083333333333334
+      },
+      "2014": {
+        "density": 9.027416666666666,
+        "richness": 9.666666666666666
+      },
+      "2015": {
+        "density": 5.986750000000001,
+        "richness": 9.0
+      },
+      "2016": {
+        "density": 8.050833333333333,
+        "richness": 10.416666666666666
+      },
+      "2017": {
+        "density": 9.175749999999999,
+        "richness": 12.333333333333334
+      },
+      "2018": {
+        "density": 8.737583333333331,
+        "richness": 9.916666666666666
+      },
+      "2019": {
+        "density": 8.414916666666665,
+        "richness": 10.666666666666666
+      },
+      "2020": {
+        "density": 7.083750000000001,
+        "richness": 10.416666666666666
+      },
+      "2021": {
+        "density": 7.205583333333332,
+        "richness": 9.333333333333334
+      },
+      "2022": {
+        "density": 9.969,
+        "richness": 11.333333333333334
+      },
+      "2023": {
+        "density": 9.739333333333333,
+        "richness": 11.833333333333334
+      },
+      "2024": {
+        "density": 7.368083333333334,
+        "richness": 9.083333333333334
+      }
+    },
+    "density_trend": {
+      "s_statistic": 10,
+      "z_statistic": 0.5491,
+      "p_value": 0.582951,
+      "sens_slope": 0.0751,
+      "trend": "no significant trend",
+      "significant": "False"
+    },
+    "richness_trend": {
+      "s_statistic": 17,
+      "z_statistic": 0.978,
+      "p_value": 0.328092,
+      "sens_slope": 0.1181,
+      "trend": "no significant trend",
+      "significant": "False"
+    },
+    "density_regression": {
+      "slope": 0.062572,
+      "intercept": 7.8108,
+      "r_squared": 0.0457,
+      "adj_r_squared": -0.0411,
+      "p_value": 0.48335,
+      "std_error": 0.086258,
+      "rmse": 1.0704,
+      "significant": "False"
+    },
+    "richness_regression": {
+      "slope": 0.078297,
+      "intercept": 9.7802,
+      "r_squared": 0.0816,
+      "adj_r_squared": -0.0018,
+      "p_value": 0.343982,
+      "std_error": 0.079178,
+      "rmse": 0.9826,
+      "significant": "False"
+    }
+  },
+  "diversity_indices": {
+    "shannon": 1.712,
+    "simpson": 0.7548,
+    "evenness": 0.6675,
+    "richness": 13
+  },
+  "correlations": {
+    "variables": [
+      "density",
+      "richness",
+      "year"
+    ],
+    "pearson": [
+      [
+        1.0,
+        0.7271502312573989,
+        0.21366753705402033
+      ],
+      [
+        0.7271502312573989,
+        1.0,
+        0.2857247552356804
+      ],
+      [
+        0.21366753705402033,
+        0.2857247552356804,
+        1.0
+      ]
+    ],
+    "spearman": [
+      [
+        1.0,
+        0.7015137310479301,
+        0.15384615384615383
+      ],
+      [
+        0.70151373104793,
+        1.0,
+        0.26960135546155745
+      ],
+      [
+        0.15384615384615383,
+        0.26960135546155745,
+        1.0
+      ]
+    ],
+    "p_values": [
+      [
+        0.0,
+        0.004856822908395401,
+        0.48334954048872847
+      ],
+      [
+        0.004856822908395401,
+        0.0,
+        0.34398175646241613
+      ],
+      [
+        0.48334954048872847,
+        0.34398175646241613,
+        0.0
+      ]
+    ]
+  },
+  "anova_year_periods": {
+    "f_statistic": 0.7314,
+    "p_value": 0.482917,
+    "eta_squared": 0.0095,
+    "significant": "False",
+    "group_stats": {
+      "2012-2015": {
+        "mean": 7.6692,
+        "std": 3.6183,
+        "n": 48
+      },
+      "2016-2020": {
+        "mean": 8.2926,
+        "std": 3.7345,
+        "n": 60
+      },
+      "2021-2024": {
+        "mean": 8.5705,
+        "std": 3.9043,
+        "n": 48
+      }
+    }
+  },
+  "prediction_model": {
+    "model_type": "Multiple Linear Regression",
+    "n_observations": 156,
+    "n_features": 3,
+    "r_squared": 0.5135,
+    "adj_r_squared": 0.5039,
+    "rmse": 2.6045,
+    "coefficients": {
+      "intercept": {
+        "estimate": 6.075,
+        "std_error": 0.6257,
+        "t_statistic": 9.7098,
+        "p_value": 0.0,
+        "significant": "True"
+      },
+      "year_effect": {
+        "estimate": 0.0626,
+        "std_error": 0.0565,
+        "t_statistic": 1.1083,
+        "p_value": 0.269496,
+        "significant": "False"
+      },
+      "habitat_tc": {
+        "estimate": 5.2594,
+        "std_error": 0.4225,
+        "t_statistic": 12.4481,
+        "p_value": 0.0,
+        "significant": "True"
+      },
+      "site_number": {
+        "estimate": -0.2554,
+        "std_error": 0.1237,
+        "t_statistic": -2.0646,
+        "p_value": 0.040663,
+        "significant": "True"
+      }
+    },
+    "feature_importance": {
+      "intercept": 0.5213552257651857,
+      "year_effect": 0.00536995744534581,
+      "habitat_tc": 0.4513580909900467,
+      "site_number": 0.021916725790839916
+    }
+  },
+  "cluster_analysis": {
+    "method": "Ward's hierarchical clustering",
+    "distance_metric": "correlation",
+    "n_clusters": 3,
+    "species_assignments": {
+      "CLIO": {
+        "cluster": 2,
+        "common_name": "Arrow Goby",
+        "guild": "Resident"
+      },
+      "ILGI": {
+        "cluster": 2,
+        "common_name": "Cheekspot Goby",
+        "guild": "Resident"
+      },
+      "QUYC": {
+        "cluster": 3,
+        "common_name": "Shadow Goby",
+        "guild": "Resident"
+      },
+      "ATAF": {
+        "cluster": 1,
+        "common_name": "Topsmelt",
+        "guild": "Marine Migrant"
+      },
+      "FUPA": {
+        "cluster": 2,
+        "common_name": "California Killifish",
+        "guild": "Resident"
+      },
+      "GIMI": {
+        "cluster": 2,
+        "common_name": "Longjaw Mudsucker",
+        "guild": "Resident"
+      },
+      "HYGU": {
+        "cluster": 1,
+        "common_name": "Diamond Turbot",
+        "guild": "Nursery"
+      },
+      "PACA": {
+        "cluster": 1,
+        "common_name": "California Halibut",
+        "guild": "Nursery"
+      },
+      "SYLE": {
+        "cluster": 1,
+        "common_name": "Bay Pipefish",
+        "guild": "Resident"
+      },
+      "LEAR": {
+        "cluster": 3,
+        "common_name": "Staghorn Sculpin",
+        "guild": "Marine Migrant"
+      },
+      "ACFV": {
+        "cluster": 1,
+        "common_name": "Yellowfin Goby",
+        "guild": "Resident"
+      },
+      "TRSE": {
+        "cluster": 1,
+        "common_name": "Leopard Shark",
+        "guild": "Visitor"
+      },
+      "URHA": {
+        "cluster": 3,
+        "common_name": "Round Stingray",
+        "guild": "Visitor"
+      }
+    },
+    "cluster_summaries": {
+      "cluster_1": {
+        "n_species": 6,
+        "species": [
+          "Topsmelt",
+          "Diamond Turbot",
+          "California Halibut",
+          "Bay Pipefish",
+          "Yellowfin Goby",
+          "Leopard Shark"
+        ],
+        "guilds": [
+          "Marine Migrant",
+          "Nursery",
+          "Nursery",
+          "Resident",
+          "Resident",
+          "Visitor"
+        ]
+      },
+      "cluster_2": {
+        "n_species": 4,
+        "species": [
+          "Arrow Goby",
+          "Cheekspot Goby",
+          "California Killifish",
+          "Longjaw Mudsucker"
+        ],
+        "guilds": [
+          "Resident",
+          "Resident",
+          "Resident",
+          "Resident"
+        ]
+      },
+      "cluster_3": {
+        "n_species": 3,
+        "species": [
+          "Shadow Goby",
+          "Staghorn Sculpin",
+          "Round Stingray"
+        ],
+        "guilds": [
+          "Resident",
+          "Marine Migrant",
+          "Visitor"
+        ]
+      }
+    },
+    "linkage_matrix": [
+      [
+        8.0,
+        10.0,
+        0.26601519557960207,
+        2.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.32077481675688724,
+        2.0
+      ],
+      [
+        6.0,
+        13.0,
+        0.3704577509512892,
+        3.0
+      ],
+      [
+        5.0,
+        14.0,
+        0.42250735627094693,
+        3.0
+      ],
+      [
+        2.0,
+        9.0,
+        0.45611103863763935,
+        2.0
+      ],
+      [
+        3.0,
+        11.0,
+        0.5075219785799041,
+        2.0
+      ],
+      [
+        7.0,
+        15.0,
+        0.7106432780527377,
+        4.0
+      ],
+      [
+        4.0,
+        16.0,
+        0.7594515062762817,
+        4.0
+      ],
+      [
+        18.0,
+        19.0,
+        0.8702861037800586,
+        6.0
+      ],
+      [
+        12.0,
+        17.0,
+        0.8953423590044095,
+        3.0
+      ],
+      [
+        20.0,
+        22.0,
+        1.0993687918477106,
+        7.0
+      ],
+      [
+        21.0,
+        23.0,
+        1.1991876013278269,
+        13.0
+      ]
+    ]
+  },
+  "dashboard_data": {
+    "summary_stats": {
+      "total_years": 13,
+      "total_species": 13,
+      "mean_density": 8.19,
+      "max_density": 19.57,
+      "total_samples": 156,
+      "habitat_effect_size": 1.97
+    },
+    "annual_trends": [
+      {
+        "year": 2012,
+        "density": 7.93,
+        "richness": 9.2,
+        "tc_density": 11.34,
+        "mc_density": 4.52
+      },
+      {
+        "year": 2013,
+        "density": 7.73,
+        "richness": 10.1,
+        "tc_density": 9.71,
+        "mc_density": 5.75
+      },
+      {
+        "year": 2014,
+        "density": 9.03,
+        "richness": 9.7,
+        "tc_density": 12.14,
+        "mc_density": 5.91
+      },
+      {
+        "year": 2015,
+        "density": 5.99,
+        "richness": 9.0,
+        "tc_density": 8.59,
+        "mc_density": 3.39
+      },
+      {
+        "year": 2016,
+        "density": 8.05,
+        "richness": 10.4,
+        "tc_density": 10.77,
+        "mc_density": 5.34
+      },
+      {
+        "year": 2017,
+        "density": 9.18,
+        "richness": 12.3,
+        "tc_density": 11.78,
+        "mc_density": 6.57
+      },
+      {
+        "year": 2018,
+        "density": 8.74,
+        "richness": 9.9,
+        "tc_density": 11.92,
+        "mc_density": 5.56
+      },
+      {
+        "year": 2019,
+        "density": 8.41,
+        "richness": 10.7,
+        "tc_density": 11.67,
+        "mc_density": 5.16
+      },
+      {
+        "year": 2020,
+        "density": 7.08,
+        "richness": 10.4,
+        "tc_density": 8.91,
+        "mc_density": 5.26
+      },
+      {
+        "year": 2021,
+        "density": 7.21,
+        "richness": 9.3,
+        "tc_density": 9.32,
+        "mc_density": 5.09
+      },
+      {
+        "year": 2022,
+        "density": 9.97,
+        "richness": 11.3,
+        "tc_density": 13.06,
+        "mc_density": 6.88
+      },
+      {
+        "year": 2023,
+        "density": 9.74,
+        "richness": 11.8,
+        "tc_density": 12.11,
+        "mc_density": 7.37
+      },
+      {
+        "year": 2024,
+        "density": 7.37,
+        "richness": 9.1,
+        "tc_density": 9.29,
+        "mc_density": 5.44
+      }
+    ],
+    "species_abundance": [
+      {
+        "species": "Arrow Goby",
+        "scientific_name": "Clevelandia ios",
+        "family": "Gobiidae",
+        "total_count": 11200,
+        "guild": "Resident"
+      },
+      {
+        "species": "Topsmelt",
+        "scientific_name": "Atherinops affinis",
+        "family": "Atherinopsidae",
+        "total_count": 5200,
+        "guild": "Marine Migrant"
+      },
+      {
+        "species": "Cheekspot Goby",
+        "scientific_name": "Ilypnus gilberti",
+        "family": "Gobiidae",
+        "total_count": 3250,
+        "guild": "Resident"
+      },
+      {
+        "species": "California Killifish",
+        "scientific_name": "Fundulus parvipinnis",
+        "family": "Fundulidae",
+        "total_count": 3000,
+        "guild": "Resident"
+      },
+      {
+        "species": "Shadow Goby",
+        "scientific_name": "Quietula y-cauda",
+        "family": "Gobiidae",
+        "total_count": 2200,
+        "guild": "Resident"
+      },
+      {
+        "species": "Longjaw Mudsucker",
+        "scientific_name": "Gillichthys mirabilis",
+        "family": "Gobiidae",
+        "total_count": 950,
+        "guild": "Resident"
+      },
+      {
+        "species": "Diamond Turbot",
+        "scientific_name": "Hypsopsetta guttulata",
+        "family": "Pleuronectidae",
+        "total_count": 330,
+        "guild": "Nursery"
+      },
+      {
+        "species": "Staghorn Sculpin",
+        "scientific_name": "Leptocottus armatus",
+        "family": "Cottidae",
+        "total_count": 240,
+        "guild": "Marine Migrant"
+      },
+      {
+        "species": "Bay Pipefish",
+        "scientific_name": "Syngnathus leptorhynchus",
+        "family": "Syngnathidae",
+        "total_count": 190,
+        "guild": "Resident"
+      },
+      {
+        "species": "Yellowfin Goby",
+        "scientific_name": "Acanthogobius flavimanus",
+        "family": "Gobiidae",
+        "total_count": 180,
+        "guild": "Resident"
+      },
+      {
+        "species": "California Halibut",
+        "scientific_name": "Paralichthys californicus",
+        "family": "Paralichthyidae",
+        "total_count": 145,
+        "guild": "Nursery"
+      },
+      {
+        "species": "Round Stingray",
+        "scientific_name": "Urobatis halleri",
+        "family": "Urotrygonidae",
+        "total_count": 35,
+        "guild": "Visitor"
+      },
+      {
+        "species": "Leopard Shark",
+        "scientific_name": "Triakis semifasciata",
+        "family": "Triakidae",
+        "total_count": 25,
+        "guild": "Visitor"
+      }
+    ],
+    "model_predictions": {
+      "habitat_effect": 5.26,
+      "year_trend": 0.063,
+      "baseline": 6.08
+    }
+  }
+}
