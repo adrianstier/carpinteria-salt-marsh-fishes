@@ -44,6 +44,25 @@
             --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
         }
 
+        /* Inline SVG Icon System */
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.125em;
+        }
+        .icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+        .icon-lg { font-size: 1.5rem; }
+        .icon-xl { font-size: 2rem; }
+        .icon-2xl { font-size: 2.5rem; }
+        .icon-hero { font-size: 8rem; opacity: 0.15; }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; font-size: 16px; }
         body {
@@ -886,32 +905,40 @@
                     <p>Since 2012, researchers have systematically monitored fish populations as part of the San Onofre Nuclear Generating Station (SONGS) mitigation program. This long-term dataset provides unprecedented insight into how fish communities respond to environmental change.</p>
                     <p>The data tells a story of ecological resilience—from tiny gobies that spend their entire lives in the marsh to juvenile halibut using it as a nursery before heading to open waters.</p>
                 </div>
-                <div class="intro-visual">🐟</div>
+                <div class="intro-visual">
+                    <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 280px; opacity: 0.12;">
+                        <path d="M95 30c0 12-18 22-40 22S5 42 5 30 23 8 55 8s40 10 40 22z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M95 30c8-8 20-12 20-12s-12 4-20 12c8 8 20 12 20 12s-12-4-20-12z" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="25" cy="28" r="4" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M55 15c10 0 25 5 30 15-5 10-20 15-30 15" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                        <path d="M35 30h40M55 20v20" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.3"/>
+                    </svg>
+                </div>
             </div>
 
             <!-- Why Study Salt Marsh Fishes -->
             <div class="ecosystem-services" style="margin-top: 4rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
                 <div style="background: var(--cream); padding: 1.75rem; border-radius: 6px; border-left: 4px solid var(--marsh);">
-                    <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--navy-deep); margin-bottom: 0.75rem;">🐣 Nursery Habitat</h4>
+                    <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--navy-deep); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="12" rx="8" ry="5"/><ellipse cx="12" cy="12" rx="5" ry="3" opacity="0.5"/><circle cx="8" cy="11" r="1.5" fill="currentColor" stroke="none"/></svg> Nursery Habitat</h4>
                     <p style="font-size: 0.9rem; color: var(--gray); line-height: 1.6;">Essential rearing grounds for juvenile fishes of commercial and recreational importance, including California halibut.</p>
                 </div>
                 <div style="background: var(--cream); padding: 1.75rem; border-radius: 6px; border-left: 4px solid var(--ocean);">
-                    <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--navy-deep); margin-bottom: 0.75rem;">🍽️ Foraging Grounds</h4>
+                    <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--navy-deep); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12c0-3 4-6 9-6s9 3 9 6-4 6-9 6-9-3-9-6z"/><path d="M7 12c0 1 2 3 5 3s5-2 5-3" opacity="0.5"/><circle cx="6" cy="10" r="1" fill="currentColor"/><path d="M15 8l3-3M15 16l3 3" stroke-linecap="round" opacity="0.6"/></svg> Foraging Grounds</h4>
                     <p style="font-size: 0.9rem; color: var(--gray); line-height: 1.6;">Productive feeding areas for resident species adapted to the marsh's fluctuating environmental conditions.</p>
                 </div>
                 <div style="background: var(--cream); padding: 1.75rem; border-radius: 6px; border-left: 4px solid var(--sand);">
-                    <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--navy-deep); margin-bottom: 0.75rem;">🏠 Refugia</h4>
+                    <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--navy-deep); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V10l8-6 8 6v10a1 1 0 01-1 1H5a1 1 0 01-1-1z"/><path d="M9 21V14h6v7" opacity="0.5"/><path d="M2 10l10-8 10 8" stroke-linecap="round"/></svg> Refugia</h4>
                     <p style="font-size: 0.9rem; color: var(--gray); line-height: 1.6;">Shallow, vegetated waters provide protection from predators for small and juvenile fishes.</p>
                 </div>
                 <div style="background: var(--cream); padding: 1.75rem; border-radius: 6px; border-left: 4px solid var(--coral);">
-                    <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--navy-deep); margin-bottom: 0.75rem;">🌿 Productivity Hotspots</h4>
+                    <h4 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--navy-deep); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V8M12 8c-2-4-6-6-6-6s2 4 6 6M12 8c2-4 6-6 6-6s-2 4-6 6"/><path d="M12 16c-3 0-5-2-5-2s2-2 5-2 5 2 5 2-2 2-5 2z" opacity="0.5"/><path d="M8 22h8" stroke-linecap="round"/></svg> Productivity Hotspots</h4>
                     <p style="font-size: 0.9rem; color: var(--gray); line-height: 1.6;">High primary productivity supports complex food webs that sustain diverse fish communities.</p>
                 </div>
             </div>
 
             <!-- Learning Objectives -->
             <div style="margin-top: 4rem; background: linear-gradient(135deg, var(--navy-deep), var(--navy)); padding: 2.5rem; border-radius: 8px; color: var(--white);">
-                <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--sand);">📚 Learning Objectives</h3>
+                <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--sand); display: flex; align-items: center; gap: 0.75rem;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><path d="M8 7h8M8 11h8M8 15h5" opacity="0.5" stroke-linecap="round"/></svg> Learning Objectives</h3>
                 <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem;">By exploring this observatory, you will be able to:</p>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
                     <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
@@ -951,22 +978,22 @@
             <!-- Environmental Challenges -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
                 <div class="method-card">
-                    <div class="method-icon">🌡️</div>
+                    <div class="method-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/><circle cx="11.5" cy="17.5" r="2" fill="currentColor" opacity="0.3"/><path d="M11.5 14V6" stroke-linecap="round"/></svg></div>
                     <h4>Temperature Extremes</h4>
                     <p>Water temperature swings <strong>15–32°C (59–90°F) twice daily</strong> with tidal cycles. During low tide, shallow pools heat rapidly under the sun, then cool dramatically when oceanic water floods back in.</p>
                 </div>
                 <div class="method-card">
-                    <div class="method-icon">💨</div>
+                    <div class="method-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" opacity="0.4"/><path d="M8 12a4 4 0 018 0" stroke-dasharray="2 2"/></svg></div>
                     <h4>Oxygen Depletion</h4>
                     <p>Warm water holds less dissolved oxygen. Combined with decomposing organic matter, waters frequently become <strong>hypoxic</strong>—especially at night when photosynthesis stops but respiration continues.</p>
                 </div>
                 <div class="method-card">
-                    <div class="method-icon">🧂</div>
+                    <div class="method-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L8 8h8l-4-6z"/><circle cx="12" cy="15" r="6"/><path d="M9 14l2 2 4-4" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/><circle cx="10" cy="16" r="1" fill="currentColor" opacity="0.3"/><circle cx="14" cy="14" r="1" fill="currentColor" opacity="0.3"/></svg></div>
                     <h4>Salinity Fluctuations</h4>
                     <p>Tidal mixing creates gradients from <strong>nearly fresh</strong> (during rain) to <strong>hypersaline (>40 ppt)</strong> in evaporating pools. Fish must constantly osmoregulate to survive.</p>
                 </div>
                 <div class="method-card">
-                    <div class="method-icon">🏖️</div>
+                    <div class="method-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0" opacity="0.4"/><path d="M8 10V6M16 10V6" stroke-linecap="round"/><path d="M6 6h4M14 6h4" stroke-linecap="round"/></svg></div>
                     <h4>Tidal Stranding</h4>
                     <p>Twice daily, receding tides can <strong>trap fish in isolated pools</strong> or expose them to air. Species that cannot find refugia are excluded from this habitat.</p>
                 </div>
@@ -978,7 +1005,7 @@
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
                     <div>
-                        <h4 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--marsh); margin-bottom: 1rem;">🐡 Goby Specializations</h4>
+                        <h4 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--marsh); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="10" cy="12" rx="7" ry="4"/><path d="M17 12c2-2 5-3 5-3s-3 1-5 3c2 2 5 3 5 3s-3-1-5-3z"/><circle cx="6" cy="11" r="1.5" fill="currentColor"/><path d="M10 16c2 0 4-1 5-2" opacity="0.5"/></svg> Goby Specializations</h4>
                         <p style="margin-bottom: 1rem; color: var(--text);">The gobies that dominate salt marshes possess remarkable adaptations:</p>
                         <ul style="list-style: none; padding: 0; color: var(--gray);">
                             <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--gray-light);"><strong style="color: var(--navy);">Fused Pelvic Fins:</strong> Form a sucking disc to cling to rocks and mud, preventing them from being swept away by tidal currents.</li>
@@ -987,7 +1014,7 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--ocean); margin-bottom: 1rem;">🐟 Flatfish Transformations</h4>
+                        <h4 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--ocean); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="14" rx="9" ry="4" transform="rotate(-15 12 14)"/><circle cx="8" cy="12" r="1.5" fill="currentColor"/><circle cx="11" cy="11" r="1" fill="currentColor"/><path d="M15 14c3 0 5-1 6-2" opacity="0.5"/><path d="M4 16l-1 3M20 12l2-1" stroke-linecap="round" opacity="0.4"/></svg> Flatfish Transformations</h4>
                         <p style="margin-bottom: 1rem; color: var(--text);">Flatfishes like California Halibut undergo one of nature's most remarkable transformations:</p>
                         <ul style="list-style: none; padding: 0; color: var(--gray);">
                             <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--gray-light);"><strong style="color: var(--navy);">Eye Migration:</strong> Larvae start with eyes on both sides. As they develop, one eye physically migrates across the skull to join the other!</li>
@@ -1000,7 +1027,7 @@
 
             <!-- Nursery Function -->
             <div style="background: linear-gradient(135deg, var(--marsh-dark), var(--marsh)); border-radius: 8px; padding: 2.5rem; color: var(--white);">
-                <h3 style="font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1.5rem;">🐣 Critical Nursery Habitat</h3>
+                <h3 style="font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="12" rx="8" ry="5"/><ellipse cx="12" cy="12" rx="5" ry="3" opacity="0.5"/><ellipse cx="12" cy="12" rx="2.5" ry="1.5" opacity="0.3"/><circle cx="8" cy="11" r="1" fill="currentColor"/></svg> Critical Nursery Habitat</h3>
                 <p style="color: rgba(255,255,255,0.85); margin-bottom: 2rem; font-size: 1.05rem;">Salt marshes serve as essential nursery habitat for many commercially and ecologically important species:</p>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
@@ -1041,19 +1068,19 @@
                     <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 2rem; color: var(--sand);">Threats to California Wetlands</h3>
                     <div style="display: grid; gap: 1rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 6px;">
-                            <span style="font-size: 1.5rem;">🌾</span>
+                            <span style="font-size: 1.5rem; display: flex; align-items: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V12M12 12c-2-4-5-6-5-6s1 4 5 6M12 12c2-4 5-6 5-6s-1 4-5 6"/><path d="M7 22h10" stroke-linecap="round"/><path d="M4 12h4M16 12h4" opacity="0.4" stroke-linecap="round"/></svg></span>
                             <div><strong style="color: var(--white);">Agricultural Conversion</strong><p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin: 0;">Wetlands drained for farming</p></div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 6px;">
-                            <span style="font-size: 1.5rem;">🏘️</span>
+                            <span style="font-size: 1.5rem; display: flex; align-items: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="10" width="6" height="12" rx="1"/><rect x="9" y="6" width="6" height="16" rx="1"/><rect x="15" y="8" width="6" height="14" rx="1"/><path d="M5 13h2M5 16h2M11 9h2M11 12h2M11 15h2M17 11h2M17 14h2" stroke-linecap="round" opacity="0.5"/></svg></span>
                             <div><strong style="color: var(--white);">Urban Development</strong><p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin: 0;">Coastal cities expanding</p></div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 6px;">
-                            <span style="font-size: 1.5rem;">⚓</span>
+                            <span style="font-size: 1.5rem; display: flex; align-items: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V14"/><path d="M12 14c-4 0-8 2-8 2l4-8 4-6 4 6 4 8s-4-2-8-2z"/><path d="M8 8l4-6 4 6" opacity="0.4"/><circle cx="12" cy="18" r="1" fill="currentColor"/></svg></span>
                             <div><strong style="color: var(--white);">Port & Marina Construction</strong><p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin: 0;">Dredging and fill operations</p></div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 6px;">
-                            <span style="font-size: 1.5rem;">🌊</span>
+                            <span style="font-size: 1.5rem; display: flex; align-items: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0" opacity="0.5"/><path d="M2 7c2-2 4-2 6 0s4 2 6 0 4-2 6 0" opacity="0.3"/></svg></span>
                             <div><strong style="color: var(--white);">Flood Control Projects</strong><p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin: 0;">Channelization and levees</p></div>
                         </div>
                     </div>
@@ -1071,19 +1098,19 @@
             </div>
             <div class="method-cards">
                 <div class="method-card">
-                    <div class="method-icon">🪤</div>
+                    <div class="method-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="16" height="12" rx="1"/><path d="M4 12h16M8 8V6M16 8V6" stroke-linecap="round"/><path d="M7 14v3M12 14v3M17 14v3" opacity="0.4" stroke-linecap="round"/></svg></div>
                     <h4>Enclosure Traps</h4>
                     <p>Small (0.43 m2) enclosure traps capture resident gobies and other small benthic fish in tidal creek habitats.</p>
                     <span class="method-stat" id="enclosure-records">26,685 records</span>
                 </div>
                 <div class="method-card">
-                    <div class="method-icon">🎣</div>
+                    <div class="method-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4c0 8 4 12 8 16 4-4 8-8 8-16"/><path d="M4 4c4 1 8 1 8 1s4 0 8-1" stroke-linecap="round"/><path d="M6 8c3 0.5 6 0.5 6 0.5s3 0 6-0.5M8 12c2 0.3 4 0.3 4 0.3s2 0 4-0.3" opacity="0.4"/></svg></div>
                     <h4>Beach Seines</h4>
                     <p>Larger beach seines (~100 m2) sample the main channel, capturing mobile species like topsmelt and killifish.</p>
                     <span class="method-stat" id="seine-records">340,560 records</span>
                 </div>
                 <div class="method-card">
-                    <div class="method-icon">📊</div>
+                    <div class="method-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17V10M12 17V7M17 17V12" stroke-linecap="round" stroke-width="2"/><path d="M3 7h18" opacity="0.3"/></svg></div>
                     <h4>R Statistical Analysis</h4>
                     <p>Comprehensive analysis using vegan, Kendall, lme4, and mgcv packages for ecological statistics and predictive modeling.</p>
                     <span class="method-stat">R v4.5</span>
@@ -1219,23 +1246,38 @@
 
     <script>
         let DATA = null;
-        const SPECIES_INFO = {
-            "ATAF": { common: "Topsmelt", scientific: "Atherinops affinis", icon: "🐟", guild: "Marine Migrant", photo: "assets/fish/topsmelt.jpg" },
-            "FUPA": { common: "California Killifish", scientific: "Fundulus parvipinnis", icon: "🐠", guild: "Resident Specialist", photo: "assets/fish/killifish.jpg" },
-            "ATFA": { common: "Atherinopsidae (unid.)", scientific: "Atherinopsidae sp.", icon: "🐟", guild: "Marine Migrant", photo: "assets/fish/topsmelt.jpg" },
-            "CLIO": { common: "Arrow Goby", scientific: "Clevelandia ios", icon: "🐡", guild: "Resident Specialist", photo: "assets/fish/arrow_goby.jpg" },
-            "POMY": { common: "Specklefin Midshipman", scientific: "Porichthys myriaster", icon: "🎸", guild: "Marine Migrant", photo: "assets/fish/midshipman.jpg" },
-            "GOFA": { common: "Gobiidae (unid.)", scientific: "Gobiidae sp.", icon: "🐡", guild: "Resident Specialist", photo: "assets/fish/arrow_goby.jpg" },
-            "LEAR": { common: "Staghorn Sculpin", scientific: "Leptocottus armatus", icon: "🦂", guild: "Marine Migrant", photo: "assets/fish/sculpin.jpg" },
-            "PACA": { common: "California Halibut", scientific: "Paralichthys californicus", icon: "🐟", guild: "Nursery User", photo: "assets/fish/halibut.jpg" },
-            "GIMI": { common: "Longjaw Mudsucker", scientific: "Gillichthys mirabilis", icon: "🐡", guild: "Resident Specialist", photo: "assets/fish/mudsucker.jpg" },
-            "PAMA": { common: "Spotted Sand Bass", scientific: "Paralabrax maculatofasciatus", icon: "🐟", guild: "Nursery User", photo: "assets/fish/sand_bass.jpg" },
-            "ACFV": { common: "Yellowfin Goby", scientific: "Acanthogobius flavimanus", icon: "🐡", guild: "Occasional Visitor", photo: "assets/fish/yellowfin_goby.jpg" },
-            "QUYC": { common: "Shadow Goby", scientific: "Quietula y-cauda", icon: "🐡", guild: "Resident Specialist", photo: "assets/fish/shadow_goby.jpg" },
-            "ILGI": { common: "Cheekspot Goby", scientific: "Ilypnus gilberti", icon: "🐡", guild: "Resident Specialist", photo: "assets/fish/cheekspot_goby.jpg" },
-            "CYAG": { common: "Shiner Perch", scientific: "Cymatogaster aggregata", icon: "🐟", guild: "Marine Migrant", photo: "assets/fish/shiner_perch.jpg" },
-            "URHA": { common: "Round Stingray", scientific: "Urolophus halleri", icon: "🦈", guild: "Marine Migrant", photo: "assets/fish/stingray.jpg" }
+
+        // SVG Icons for fish types
+        const FISH_ICONS = {
+            fish: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="10" cy="12" rx="7" ry="4"/><path d="M17 12c2-2 5-3 5-3s-3 1-5 3c2 2 5 3 5 3s-3-1-5-3z"/><circle cx="6" cy="11" r="1.5" fill="currentColor"/></svg>',
+            goby: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="10" cy="13" rx="6" ry="3"/><path d="M16 13c1.5-1.5 4-2 4-2s-2.5 0.5-4 2c1.5 1.5 4 2 4 2s-2.5-0.5-4-2z"/><circle cx="6" cy="12" r="1" fill="currentColor"/><path d="M8 16c0 1 1 2 2 2" opacity="0.5"/></svg>',
+            flatfish: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="14" rx="9" ry="4" transform="rotate(-10 12 14)"/><circle cx="8" cy="12" r="1" fill="currentColor"/><circle cx="11" cy="11" r="0.8" fill="currentColor"/><path d="M16 13c2 0 4-1 5-2" opacity="0.5"/></svg>',
+            ray: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6c-6 0-10 4-10 8s4 4 10 4 10 0 10-4-4-8-10-8z"/><path d="M12 18v4" stroke-linecap="round"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="15" cy="10" r="1" fill="currentColor"/></svg>',
+            sculpin: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="10" cy="12" rx="7" ry="4"/><path d="M17 12c2-2 5-3 5-3s-3 1-5 3c2 2 5 3 5 3s-3-1-5-3z"/><circle cx="6" cy="11" r="1" fill="currentColor"/><path d="M8 8l-2-3M10 7l0-3M12 8l2-3" stroke-linecap="round" opacity="0.6"/></svg>',
+            midshipman: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="10" cy="12" rx="7" ry="5"/><path d="M17 12c2-2 5-3 5-3s-3 1-5 3c2 2 5 3 5 3s-3-1-5-3z"/><circle cx="6" cy="11" r="1" fill="currentColor"/><path d="M7 14h6" stroke-dasharray="1 1" opacity="0.4"/></svg>'
         };
+
+        const SPECIES_INFO = {
+            "ATAF": { common: "Topsmelt", scientific: "Atherinops affinis", iconType: "fish", guild: "Marine Migrant", photo: "assets/fish/topsmelt.jpg" },
+            "FUPA": { common: "California Killifish", scientific: "Fundulus parvipinnis", iconType: "fish", guild: "Resident Specialist", photo: "assets/fish/killifish.jpg" },
+            "ATFA": { common: "Atherinopsidae (unid.)", scientific: "Atherinopsidae sp.", iconType: "fish", guild: "Marine Migrant", photo: "assets/fish/topsmelt.jpg" },
+            "CLIO": { common: "Arrow Goby", scientific: "Clevelandia ios", iconType: "goby", guild: "Resident Specialist", photo: "assets/fish/arrow_goby.jpg" },
+            "POMY": { common: "Specklefin Midshipman", scientific: "Porichthys myriaster", iconType: "midshipman", guild: "Marine Migrant", photo: "assets/fish/midshipman.jpg" },
+            "GOFA": { common: "Gobiidae (unid.)", scientific: "Gobiidae sp.", iconType: "goby", guild: "Resident Specialist", photo: "assets/fish/arrow_goby.jpg" },
+            "LEAR": { common: "Staghorn Sculpin", scientific: "Leptocottus armatus", iconType: "sculpin", guild: "Marine Migrant", photo: "assets/fish/sculpin.jpg" },
+            "PACA": { common: "California Halibut", scientific: "Paralichthys californicus", iconType: "flatfish", guild: "Nursery User", photo: "assets/fish/halibut.jpg" },
+            "GIMI": { common: "Longjaw Mudsucker", scientific: "Gillichthys mirabilis", iconType: "goby", guild: "Resident Specialist", photo: "assets/fish/mudsucker.jpg" },
+            "PAMA": { common: "Spotted Sand Bass", scientific: "Paralabrax maculatofasciatus", iconType: "fish", guild: "Nursery User", photo: "assets/fish/sand_bass.jpg" },
+            "ACFV": { common: "Yellowfin Goby", scientific: "Acanthogobius flavimanus", iconType: "goby", guild: "Occasional Visitor", photo: "assets/fish/yellowfin_goby.jpg" },
+            "QUYC": { common: "Shadow Goby", scientific: "Quietula y-cauda", iconType: "goby", guild: "Resident Specialist", photo: "assets/fish/shadow_goby.jpg" },
+            "ILGI": { common: "Cheekspot Goby", scientific: "Ilypnus gilberti", iconType: "goby", guild: "Resident Specialist", photo: "assets/fish/cheekspot_goby.jpg" },
+            "CYAG": { common: "Shiner Perch", scientific: "Cymatogaster aggregata", iconType: "fish", guild: "Marine Migrant", photo: "assets/fish/shiner_perch.jpg" },
+            "URHA": { common: "Round Stingray", scientific: "Urolophus halleri", iconType: "ray", guild: "Marine Migrant", photo: "assets/fish/stingray.jpg" }
+        };
+
+        function getFishIcon(iconType) {
+            return FISH_ICONS[iconType] || FISH_ICONS.fish;
+        }
         const COLORS = { ocean: '#68a6d4', marsh: '#52b788', sand: '#e9c46a', coral: '#e76f51' };
 
         async function loadData() {
@@ -1426,11 +1468,12 @@
                 'Occasional Visitor': '#6a51a3'
             };
             document.getElementById('species-grid').innerHTML = species.map(s => {
-                const info = SPECIES_INFO[s.species_code] || { common: s.species_code, scientific: s.species_name, icon: '🐟', guild: 'Unknown', photo: null };
+                const info = SPECIES_INFO[s.species_code] || { common: s.species_code, scientific: s.species_name, iconType: 'fish', guild: 'Unknown', photo: null };
                 const guildColor = guildColors[info.guild] || '#666';
+                const iconSvg = getFishIcon(info.iconType);
                 const headerContent = info.photo
                     ? `<div class="species-header species-photo" style="background-image:url('${info.photo}');"></div>`
-                    : `<div class="species-header">${info.icon}</div>`;
+                    : `<div class="species-header">${iconSvg}</div>`;
                 return `
                     <div class="species-card">
                         ${headerContent}
