@@ -1092,28 +1092,123 @@
     <section class="methodology" id="methodology">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-number">02 - Methodology</span>
+                <span class="section-number">03 - Data Collection</span>
                 <h2 class="section-title">How We Monitor the Marsh</h2>
-                <p class="section-subtitle">Two complementary sampling techniques capture the full diversity of the fish community.</p>
+                <p class="section-subtitle">A 13-year monitoring program using complementary sampling techniques to capture the full diversity of the fish community.</p>
             </div>
+
+            <!-- Data Source Context -->
+            <div style="background: linear-gradient(135deg, var(--ocean), var(--ocean-light)); border-radius: 8px; padding: 2.5rem; color: var(--white); margin-bottom: 3rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                    <div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" opacity="0.5"/></svg>
+                            SONGS Mitigation Program
+                        </h3>
+                        <p style="color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 1rem;">This dataset comes from the <strong>San Onofre Nuclear Generating Station (SONGS) Mitigation Monitoring Program</strong>, conducted by UC Santa Barbara's Marine Science Institute.</p>
+                        <p style="color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.7;">The program was established to monitor the ecological success of wetland restoration projects required as mitigation for impacts from the power plant's cooling water intake. Carpinteria Salt Marsh serves as a <strong>reference site</strong>—representing natural, undisturbed wetland function.</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 2rem;">
+                        <h4 style="color: var(--sand); margin-bottom: 1.5rem; font-family: var(--font-display);">Dataset Summary</h4>
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.15);">
+                                <span style="color: rgba(255,255,255,0.7);">Time Period</span>
+                                <strong>2012 – 2024</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.15);">
+                                <span style="color: rgba(255,255,255,0.7);">Total Records</span>
+                                <strong id="total-records-display">367,245</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.15);">
+                                <span style="color: rgba(255,255,255,0.7);">Species Detected</span>
+                                <strong id="species-detected-display">40+</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: rgba(255,255,255,0.7);">Habitat Types</span>
+                                <strong>Tidal Creek & Main Channel</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sampling Methods -->
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--navy-deep); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>
+                Sampling Protocol
+            </h3>
+
             <div class="method-cards">
                 <div class="method-card">
                     <div class="method-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="16" height="12" rx="1"/><path d="M4 12h16M8 8V6M16 8V6" stroke-linecap="round"/><path d="M7 14v3M12 14v3M17 14v3" opacity="0.4" stroke-linecap="round"/></svg></div>
                     <h4>Enclosure Traps</h4>
-                    <p>Small (0.43 m2) enclosure traps capture resident gobies and other small benthic fish in tidal creek habitats.</p>
+                    <p>Small (0.43 m²) enclosure traps target <strong>resident gobies</strong> and other small benthic fish in tidal creek habitats. Traps are placed during low tide and retrieved after the tide recedes.</p>
                     <span class="method-stat" id="enclosure-records">26,685 records</span>
                 </div>
                 <div class="method-card">
                     <div class="method-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4c0 8 4 12 8 16 4-4 8-8 8-16"/><path d="M4 4c4 1 8 1 8 1s4 0 8-1" stroke-linecap="round"/><path d="M6 8c3 0.5 6 0.5 6 0.5s3 0 6-0.5M8 12c2 0.3 4 0.3 4 0.3s2 0 4-0.3" opacity="0.4"/></svg></div>
                     <h4>Beach Seines</h4>
-                    <p>Larger beach seines (~100 m2) sample the main channel, capturing mobile species like topsmelt and killifish.</p>
+                    <p>Larger beach seines (~100 m²) sample the main channel, capturing <strong>mobile species</strong> like topsmelt, killifish, and juvenile halibut. Nets are deployed at standardized sites.</p>
                     <span class="method-stat" id="seine-records">340,560 records</span>
                 </div>
                 <div class="method-card">
                     <div class="method-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17V10M12 17V7M17 17V12" stroke-linecap="round" stroke-width="2"/><path d="M3 7h18" opacity="0.3"/></svg></div>
                     <h4>R Statistical Analysis</h4>
-                    <p>Comprehensive analysis using vegan, Kendall, lme4, and mgcv packages for ecological statistics and predictive modeling.</p>
+                    <p>Comprehensive analysis using <strong>vegan</strong> (community ecology), <strong>Kendall</strong> (trend tests), <strong>lme4</strong> (mixed models), and <strong>mgcv</strong> (GAMs).</p>
                     <span class="method-stat">R v4.5</span>
+                </div>
+            </div>
+
+            <!-- Sampling Considerations -->
+            <div style="margin-top: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div style="background: var(--cream); border-radius: 8px; padding: 2rem; border-left: 4px solid var(--coral);">
+                    <h4 style="font-family: var(--font-display); color: var(--navy-deep); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="1.5"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+                        Sampling Limitations
+                    </h4>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem;">No sampling method captures all fishes equally. Understanding gear biases is essential for interpreting the data:</p>
+                    <ul style="color: var(--gray); font-size: 0.9rem; line-height: 1.8; padding-left: 1.25rem;">
+                        <li>Fast-swimming fishes can <strong>outswim</strong> the seine net</li>
+                        <li>Some species <strong>jump over</strong> the net when cornered</li>
+                        <li>Burrowing fishes in their burrows are <strong>missed entirely</strong></li>
+                        <li>Enclosure traps only sample <strong>small areas</strong> (0.43 m²)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--cream); border-radius: 8px; padding: 2rem; border-left: 4px solid var(--marsh);">
+                    <h4 style="font-family: var(--font-display); color: var(--navy-deep); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--marsh)" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Why Two Methods?
+                    </h4>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem;">The complementary sampling design captures different components of the fish community:</p>
+                    <ul style="color: var(--gray); font-size: 0.9rem; line-height: 1.8; padding-left: 1.25rem;">
+                        <li><strong>Enclosure traps</strong> target small, benthic gobies in tidal creeks</li>
+                        <li><strong>Beach seines</strong> capture larger, mobile fish in main channels</li>
+                        <li>Together they provide a <strong>comprehensive picture</strong></li>
+                        <li>Different habitats support <strong>distinct communities</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Data Access -->
+            <div style="margin-top: 3rem; background: var(--navy-deep); border-radius: 8px; padding: 2rem; color: var(--white);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+                    <div>
+                        <h4 style="font-family: var(--font-display); color: var(--sand); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Open Data Access
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">All data is publicly available through the Environmental Data Initiative (EDI) repository.</p>
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://portal.edirepository.org/nis/mapbrowse?packageid=edi.647.8" target="_blank" style="background: var(--marsh); color: var(--white); padding: 0.75rem 1.25rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            Seine Data (EDI)
+                        </a>
+                        <a href="https://portal.edirepository.org/nis/mapbrowse?packageid=edi.648.8" target="_blank" style="background: var(--ocean); color: var(--white); padding: 0.75rem 1.25rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            Enclosure Data (EDI)
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1122,7 +1217,7 @@
     <section class="dashboard" id="dashboard">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-number" style="color: var(--sand);">03 - Interactive Data</span>
+                <span class="section-number" style="color: var(--sand);">04 - Interactive Data</span>
                 <h2 class="section-title">Explore the Dataset</h2>
                 <p class="section-subtitle">Dive into 13 years of fish community data with interactive visualizations.</p>
             </div>
@@ -1191,7 +1286,7 @@
     <section class="stats-panel" id="stats">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-number">04 - Statistical Results</span>
+                <span class="section-number">05 - Statistical Results</span>
                 <h2 class="section-title">Model Summary</h2>
                 <p class="section-subtitle">Comprehensive statistical analysis from R</p>
             </div>
@@ -1202,7 +1297,7 @@
     <section class="species" id="species">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-number">05 - Species Profiles</span>
+                <span class="section-number">06 - Species Profiles</span>
                 <h2 class="section-title">Meet the Fish</h2>
                 <p class="section-subtitle">The most abundant species in the marsh.</p>
             </div>
