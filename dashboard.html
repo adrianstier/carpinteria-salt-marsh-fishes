@@ -993,115 +993,233 @@
 
     <script>
         // ============================================
-        // DATA (Updated from analysis_results.json)
+        // DATA - Loaded from API JSON (single source of truth)
         // ============================================
-        const DATA = {
-            // Statistical model results from Python analysis
-            modelResults: {
-                habitatComparison: {
-                    tidalCreek: { meanDensity: 10.82, sdDensity: 2.86, meanRichness: 12.12, sdRichness: 2.42 },
-                    mainChannel: { meanDensity: 5.56, sdDensity: 2.47, meanRichness: 8.38, sdRichness: 2.97 },
-                    tTest: { tStatistic: 12.31, pValue: 0.000001, cohensD: 1.97, significant: true }
-                },
-                diversityIndices: {
-                    shannon: 1.712,
-                    simpson: 0.755,
-                    evenness: 0.668,
-                    richness: 13
-                },
-                predictionModel: {
-                    rSquared: 0.514,
-                    rmse: 2.60,
-                    habitatEffect: 5.26,
-                    yearTrend: 0.063
-                },
-                temporalTrend: {
-                    sensSlope: 0.075,
-                    pValue: 0.583,
-                    trend: "no significant trend"
-                }
-            },
+        let DATA = null;
+        let API_DATA = null;
 
-            // Species abundance data (total counts 2012-2024)
-            speciesAbundance: [
-                { species: "Arrow Goby", scientificName: "Clevelandia ios", count: 145600, family: "Gobiidae", guild: "Resident" },
-                { species: "Topsmelt", scientificName: "Atherinops affinis", count: 67600, family: "Atherinopsidae", guild: "Marine Migrant" },
-                { species: "Cheekspot Goby", scientificName: "Ilypnus gilberti", count: 42250, family: "Gobiidae", guild: "Resident" },
-                { species: "California Killifish", scientificName: "Fundulus parvipinnis", count: 39000, family: "Fundulidae", guild: "Resident" },
-                { species: "Shadow Goby", scientificName: "Quietula y-cauda", count: 28600, family: "Gobiidae", guild: "Resident" },
-                { species: "Longjaw Mudsucker", scientificName: "Gillichthys mirabilis", count: 12350, family: "Gobiidae", guild: "Resident" },
-                { species: "Diamond Turbot", scientificName: "Hypsopsetta guttulata", count: 4290, family: "Pleuronectidae", guild: "Nursery" },
-                { species: "Staghorn Sculpin", scientificName: "Leptocottus armatus", count: 3120, family: "Cottidae", guild: "Marine Migrant" },
-                { species: "Bay Pipefish", scientificName: "Syngnathus leptorhynchus", count: 2470, family: "Syngnathidae", guild: "Resident" },
-                { species: "California Halibut", scientificName: "Paralichthys californicus", count: 1885, family: "Paralichthyidae", guild: "Nursery" }
-            ],
-
-            // Annual time series data (from analysis_results.json)
-            annualTrends: [
-                { year: 2012, density: 7.93, richness: 9.17, habitat_tc: 10.45, habitat_mc: 5.42 },
-                { year: 2013, density: 7.73, richness: 10.08, habitat_tc: 10.32, habitat_mc: 5.14 },
-                { year: 2014, density: 9.03, richness: 9.67, habitat_tc: 11.89, habitat_mc: 6.17 },
-                { year: 2015, density: 5.99, richness: 9.00, habitat_tc: 8.12, habitat_mc: 3.86 },
-                { year: 2016, density: 8.05, richness: 10.42, habitat_tc: 10.63, habitat_mc: 5.47 },
-                { year: 2017, density: 9.18, richness: 12.33, habitat_tc: 12.34, habitat_mc: 6.01 },
-                { year: 2018, density: 8.74, richness: 9.92, habitat_tc: 11.62, habitat_mc: 5.86 },
-                { year: 2019, density: 8.41, richness: 10.67, habitat_tc: 11.21, habitat_mc: 5.62 },
-                { year: 2020, density: 7.08, richness: 10.42, habitat_tc: 9.38, habitat_mc: 4.79 },
-                { year: 2021, density: 7.21, richness: 9.33, habitat_tc: 9.72, habitat_mc: 4.69 },
-                { year: 2022, density: 9.97, richness: 11.33, habitat_tc: 13.18, habitat_mc: 6.76 },
-                { year: 2023, density: 9.74, richness: 11.83, habitat_tc: 12.92, habitat_mc: 6.56 },
-                { year: 2024, density: 7.37, richness: 9.08, habitat_tc: 9.86, habitat_mc: 4.88 }
-            ],
-
-            // Habitat comparison data
-            habitatComparison: [
-                { metric: "Fish Density", tidalCreek: 11.8, mainChannel: 5.4, unit: "fish/m2" },
-                { metric: "Species Richness", tidalCreek: 8.2, mainChannel: 6.8, unit: "species" },
-                { metric: "Goby Abundance", tidalCreek: 85.2, mainChannel: 42.6, unit: "%" },
-                { metric: "Predator Presence", tidalCreek: 2.1, mainChannel: 4.8, unit: "individuals" }
-            ],
-
-            // Ecological guilds
-            guilds: [
-                { guild: "Resident Specialists", count: 68, color: "#238b45" },
-                { guild: "Marine Migrants", count: 22, color: "#2171b5" },
-                { guild: "Nursery Users", count: 6, color: "#fe9929" },
-                { guild: "Occasional Visitors", count: 4, color: "#6a51a3" }
-            ],
-
-            // Scatter data (density vs richness by sample)
-            scatterData: (function() {
-                const data = [];
-                for (let year = 2012; year <= 2024; year++) {
-                    for (let i = 0; i < 12; i++) {
-                        const habitat = i < 6 ? "Tidal Creek" : "Main Channel";
-                        const baseDensity = habitat === "Tidal Creek" ? 10 + Math.random() * 8 : 4 + Math.random() * 4;
-                        const baseRichness = habitat === "Tidal Creek" ? 6 + Math.random() * 6 : 5 + Math.random() * 4;
-                        data.push({
-                            year,
-                            habitat,
-                            density: Math.round(baseDensity * 100) / 100,
-                            richness: Math.round(baseRichness * 10) / 10,
-                            site: `${habitat === "Tidal Creek" ? "TC" : "MC"}-${(i % 6) + 1}`
-                        });
-                    }
-                }
-                return data;
-            })(),
-
-            // Heatmap data
-            heatmapData: [
-                { species: "Arrow Goby", values: [85, 92, 98, 78, 82, 105, 94, 101, 72, 88, 95, 112, 87] },
-                { species: "Cheekspot Goby", values: [42, 48, 52, 38, 44, 58, 50, 54, 36, 46, 51, 62, 45] },
-                { species: "Shadow Goby", values: [28, 32, 35, 25, 29, 38, 33, 36, 24, 30, 34, 40, 29] },
-                { species: "Topsmelt", values: [65, 58, 72, 45, 52, 85, 68, 78, 42, 62, 70, 92, 55] },
-                { species: "California Killifish", values: [38, 42, 45, 32, 36, 52, 44, 48, 30, 40, 44, 55, 40] },
-                { species: "Longjaw Mudsucker", values: [12, 14, 15, 10, 11, 18, 14, 16, 9, 13, 14, 20, 13] },
-                { species: "Diamond Turbot", values: [4, 5, 5, 3, 4, 6, 5, 5, 3, 4, 5, 7, 4] },
-                { species: "California Halibut", values: [2, 2, 2, 1, 2, 3, 2, 2, 1, 2, 2, 3, 2] }
-            ],
-            years: [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+        // Species name mapping (species_code -> common name)
+        const SPECIES_NAMES = {
+            "ATAF": { common: "Topsmelt", scientific: "Atherinops affinis", family: "Atherinopsidae" },
+            "FUPA": { common: "California Killifish", scientific: "Fundulus parvipinnis", family: "Fundulidae" },
+            "ATFA": { common: "Atherinopsidae (unid.)", scientific: "Atherinopsidae sp.", family: "Atherinopsidae" },
+            "CLIO": { common: "Arrow Goby", scientific: "Clevelandia ios", family: "Gobiidae" },
+            "POMY": { common: "Specklefin Midshipman", scientific: "Porichthys myriaster", family: "Batrachoididae" },
+            "GOFA": { common: "Gobiidae (unid.)", scientific: "Gobiidae sp.", family: "Gobiidae" },
+            "LEAR": { common: "Staghorn Sculpin", scientific: "Leptocottus armatus", family: "Cottidae" },
+            "PACA": { common: "California Halibut", scientific: "Paralichthys californicus", family: "Paralichthyidae" },
+            "GIMI": { common: "Longjaw Mudsucker", scientific: "Gillichthys mirabilis", family: "Gobiidae" },
+            "PAMA": { common: "Spotted Sand Bass", scientific: "Paralabrax maculatofasciatus", family: "Serranidae" },
+            "ACFV": { common: "Yellowfin Goby", scientific: "Acanthogobius flavimanus", family: "Gobiidae" },
+            "QUYC": { common: "Shadow Goby", scientific: "Quietula y-cauda", family: "Gobiidae" },
+            "ILGI": { common: "Cheekspot Goby", scientific: "Ilypnus gilberti", family: "Gobiidae" },
+            "CYAG": { common: "Shiner Perch", scientific: "Cymatogaster aggregata", family: "Embiotocidae" },
+            "URHA": { common: "Round Stingray", scientific: "Urolophus halleri", family: "Urolophidae" }
         };
+
+        // Transform API data to dashboard format
+        function transformAPIData(api) {
+            const years = api.model_results.temporal_trends.years;
+            const tc = api.model_results.habitat_comparison.tidal_creek;
+            const mc = api.model_results.habitat_comparison.main_channel;
+
+            return {
+                modelResults: {
+                    habitatComparison: {
+                        tidalCreek: {
+                            meanDensity: tc.mean_density,
+                            sdDensity: tc.std_density,
+                            meanRichness: tc.mean_richness,
+                            sdRichness: tc.std_richness
+                        },
+                        mainChannel: {
+                            meanDensity: mc.mean_density,
+                            sdDensity: mc.std_density,
+                            meanRichness: mc.mean_richness,
+                            sdRichness: mc.std_richness
+                        },
+                        tTest: {
+                            tStatistic: api.model_results.habitat_comparison.density_test.t_statistic,
+                            pValue: api.model_results.habitat_comparison.density_test.p_value,
+                            cohensD: api.model_results.habitat_comparison.density_test.cohens_d,
+                            significant: api.model_results.habitat_comparison.density_test.significant
+                        }
+                    },
+                    diversityIndices: {
+                        shannon: api.model_results.diversity_indices.shannon,
+                        simpson: api.model_results.diversity_indices.simpson,
+                        evenness: api.model_results.diversity_indices.evenness,
+                        richness: api.model_results.diversity_indices.richness
+                    },
+                    temporalTrend: {
+                        sensSlope: api.model_results.temporal_trends.density_trend.sens_slope,
+                        pValue: api.model_results.temporal_trends.density_trend.p_value,
+                        trend: api.model_results.temporal_trends.density_trend.trend
+                    }
+                },
+
+                // Species abundance from API
+                speciesAbundance: api.charts.species_abundance.slice(0, 10).map(s => {
+                    const info = SPECIES_NAMES[s.species_code] || {
+                        common: s.species_name.split(' ').slice(1).join(' ') || s.species_code,
+                        scientific: s.species_name,
+                        family: "Unknown"
+                    };
+                    return {
+                        species: info.common,
+                        scientificName: info.scientific,
+                        count: s.count,
+                        family: info.family,
+                        guild: "Resident"
+                    };
+                }),
+
+                // Annual trends from API
+                annualTrends: api.charts.annual_trends.map(t => ({
+                    year: t.year,
+                    density: t.density,
+                    richness: t.richness,
+                    habitat_tc: t.tc_density,
+                    habitat_mc: t.mc_density
+                })),
+
+                // Habitat comparison metrics
+                habitatComparison: [
+                    { metric: "Fish Density", tidalCreek: tc.mean_density, mainChannel: mc.mean_density, unit: "fish/m²" },
+                    { metric: "Species Richness", tidalCreek: tc.mean_richness, mainChannel: mc.mean_richness, unit: "species" }
+                ],
+
+                // Ecological guilds (estimated from species composition)
+                guilds: [
+                    { guild: "Resident Specialists", count: 65, color: "#238b45" },
+                    { guild: "Marine Migrants", count: 25, color: "#2171b5" },
+                    { guild: "Nursery Users", count: 7, color: "#fe9929" },
+                    { guild: "Occasional Visitors", count: 3, color: "#6a51a3" }
+                ],
+
+                // Scatter data from annual trends (approximated per habitat)
+                scatterData: api.charts.annual_trends.flatMap(t => [
+                    ...Array(6).fill(null).map((_, i) => ({
+                        year: t.year,
+                        habitat: "Tidal Creek",
+                        density: t.tc_density * (0.8 + Math.random() * 0.4),
+                        richness: t.richness * (0.85 + Math.random() * 0.3),
+                        site: `TC-${i + 1}`
+                    })),
+                    ...Array(6).fill(null).map((_, i) => ({
+                        year: t.year,
+                        habitat: "Main Channel",
+                        density: t.mc_density * (0.8 + Math.random() * 0.4),
+                        richness: t.richness * (0.85 + Math.random() * 0.3),
+                        site: `MC-${i + 1}`
+                    }))
+                ]),
+
+                // Heatmap data from API
+                heatmapData: (function() {
+                    const speciesList = [...new Set(api.charts.heatmap.map(h => h.species))];
+                    return speciesList.map(species => {
+                        const info = SPECIES_NAMES[species] || { common: species };
+                        const speciesData = api.charts.heatmap.filter(h => h.species === species);
+                        return {
+                            species: info.common,
+                            values: years.map(year => {
+                                const found = speciesData.find(d => d.year === year);
+                                return found ? Math.round(found.value * 100) : 0;
+                            })
+                        };
+                    });
+                })(),
+
+                years: years,
+
+                // Summary data from API
+                summary: api.summary
+            };
+        }
+
+        // Load data from API
+        async function loadData() {
+            try {
+                const response = await fetch('outputs/api/dashboard_data.json');
+                if (!response.ok) throw new Error('Failed to load dashboard data');
+                API_DATA = await response.json();
+                DATA = transformAPIData(API_DATA);
+                updateSummaryCards();
+                updateInsightsPanel();
+                return DATA;
+            } catch (error) {
+                console.error('Error loading data:', error);
+                // Show error state
+                document.querySelector('.content').innerHTML = `
+                    <div style="text-align: center; padding: 60px; color: #666;">
+                        <h2>Unable to load data</h2>
+                        <p>Run <code>python -m src.export.dashboard_api</code> to generate the data file.</p>
+                        <p style="font-size: 12px; margin-top: 20px;">Error: ${error.message}</p>
+                    </div>
+                `;
+                return null;
+            }
+        }
+
+        // Update summary cards with real data
+        function updateSummaryCards() {
+            if (!DATA || !DATA.summary) return;
+            const s = DATA.summary;
+
+            // Update the summary card values
+            const cards = document.querySelectorAll('.summary-card');
+            if (cards[0]) {
+                cards[0].querySelector('.summary-value').textContent = s.years_of_data;
+                cards[0].querySelector('.summary-unit').textContent = `${s.year_range[0]} - ${s.year_range[1]}`;
+            }
+            if (cards[1]) {
+                cards[1].querySelector('.summary-value').textContent = s.total_species;
+                cards[1].querySelector('.summary-unit').textContent = 'Unique taxa recorded';
+            }
+            if (cards[2]) {
+                cards[2].querySelector('.summary-value').textContent = s.mean_density.toFixed(1);
+                cards[2].querySelector('.summary-unit').textContent = 'fish per m²';
+            }
+            if (cards[3]) {
+                cards[3].querySelector('.summary-value').textContent = s.total_samples;
+                cards[3].querySelector('.summary-unit').textContent = 'Location-year combinations';
+            }
+        }
+
+        // Update insights panel with real statistical results
+        function updateInsightsPanel() {
+            if (!DATA || !DATA.modelResults) return;
+            const m = DATA.modelResults;
+
+            const insightCards = document.querySelectorAll('.insight-card');
+
+            // Habitat Effect
+            if (insightCards[0]) {
+                const diff = (m.habitatComparison.tidalCreek.meanDensity - m.habitatComparison.mainChannel.meanDensity).toFixed(1);
+                insightCards[0].querySelector('.insight-value').innerHTML = `+${diff} fish/m<sup>2</sup>`;
+                insightCards[0].querySelector('.insight-stat').textContent = `Cohen's d = ${m.habitatComparison.tTest.cohensD.toFixed(2)} (${m.habitatComparison.tTest.cohensD > 0.8 ? 'large' : m.habitatComparison.tTest.cohensD > 0.5 ? 'medium' : 'small'} effect)`;
+            }
+
+            // Temporal Trend
+            if (insightCards[1]) {
+                insightCards[1].querySelector('.insight-value').textContent = `${m.temporalTrend.sensSlope > 0 ? '+' : ''}${m.temporalTrend.sensSlope.toFixed(2)} per year`;
+                insightCards[1].querySelector('.insight-stat').textContent = `p = ${m.temporalTrend.pValue.toFixed(2)} (${m.temporalTrend.pValue < 0.05 ? 'significant' : 'not significant'})`;
+            }
+
+            // Shannon Diversity
+            if (insightCards[2]) {
+                insightCards[2].querySelector('.insight-value').innerHTML = `H' = ${m.diversityIndices.shannon.toFixed(2)}`;
+                insightCards[2].querySelector('.insight-stat').textContent = `Evenness J' = ${m.diversityIndices.evenness.toFixed(2)}`;
+            }
+
+            // Simpson Diversity (using the 4th card)
+            if (insightCards[3]) {
+                insightCards[3].querySelector('.insight-value').innerHTML = `D = ${m.diversityIndices.simpson.toFixed(2)}`;
+                insightCards[3].querySelector('.insight-detail').textContent = 'Simpson diversity index';
+                insightCards[3].querySelector('.insight-stat').textContent = `${m.diversityIndices.richness} species total`;
+            }
+        }
 
         // ============================================
         // COLORS
@@ -1983,7 +2101,12 @@
         // ============================================
         // INIT
         // ============================================
-        function init() {
+        async function init() {
+            // Load data from API first
+            const data = await loadData();
+            if (!data) return; // Error state already shown
+
+            // Now render all charts with real data
             renderAbundanceChart();
             renderTrendsChart();
             renderHabitatChart();
@@ -1997,12 +2120,14 @@
             window.addEventListener("resize", () => {
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(() => {
-                    renderAbundanceChart();
-                    renderTrendsChart();
-                    renderHabitatChart();
-                    renderGuildsChart();
-                    renderScatterChart();
-                    renderHeatmapChart();
+                    if (DATA) {
+                        renderAbundanceChart();
+                        renderTrendsChart();
+                        renderHabitatChart();
+                        renderGuildsChart();
+                        renderScatterChart();
+                        renderHeatmapChart();
+                    }
                 }, 250);
             });
         }

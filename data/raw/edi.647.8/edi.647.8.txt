@@ -1,0 +1,2429 @@
+
+   
+      
+         uid=EDI,o=EDI,dc=edirepository,dc=org
+         all
+      
+      
+         uid=dhuang,o=EDI,dc=edirepository,dc=org
+         all
+      
+      
+         public
+         read
+      
+   
+   
+      1-20250828141245
+      doi:10.6073/pasta/643f86b3043a15cb7d597e10fcff47a2UCSB SONGS Wetland Survey - Fish Abundance
+      UCSB SONGS Mitigation Monitoring: Wetland Survey - Fish Abundance
+      
+         Stephen Schroeter
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         760-438-5953
+         stephen.schroeter@lifesci.ucsb.edu
+      
+      
+         Henry Page
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         805-893-7568
+         mark.page@lifesci.ucsb.edu
+      
+      
+         Daniel Reed
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         805-893-8363
+         dan.reed@lifesci.ucsb.edu
+         https://orcid.org/0000-0003-3015-8717
+      
+      
+         Kathryn Beheshti
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         805-893-5511
+         katbeheshti@ucsb.edu
+      
+      
+         Rachel Smith
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         805-893-5511
+         rssmith@ucsb.edu
+      
+      
+         David Huang
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+         805-893-5559
+         davidhuang@ucsb.edu
+      
+      
+         SONGS Mitigation Monitoring
+         			Marine Science Institute University of California
+			Santa Barbara, CA 93106  USA
+         songsmmp@lifesci.ucsb.edu
+      
+      2025-08-28
+      English
+      
+         
+            
+        These data describe annual estimates of the density of fish in main channel and tidal creek habitats collected as part of the SONGS San Dieguito Wetland Restoration mitigation monitoring program designed to evaluate compliance of the restoration project with conditions of the SONGS permit. 
+Monitoring began in 2012 in the San Dieguito Wetlands and Tijuana Estuary in San Diego County, CA, Carpinteria Salt Marsh in Santa Barbara County, CA, and Mugu Lagoon in Ventura County, CA. 
+Beginning in 2024, Los Penasquitos Lagoon in San Diego County replaced Tijuana Estuary. 
+The abundance of fish is determined using beach seine and enclosure trap sampling at six main channel and six tidal creek locations at each wetland. 
+Both seine and enclosure trap sampling consist of several hauls through an enclosed volume of water. 
+Sampling is conducted annually in early fall.
+        
+         
+      
+      
+         
+      This data package is released under the Creative Commons License
+      Attribution 4.0 International (CC BY 4.0, see
+      https://creativecommons.org/licenses/by/4.0/). This license states
+      that consumers ("Data Users" herein) may distribute, adapt,
+      reuse, remix, and build upon this work, as long as they give
+      appropriate credit, provide a link to the license, and indicate if
+      changes were made. If redistributed, a Data User may not apply
+      additional restrictions or technological measures that prevent access.
+      
+         
+      The Data User has an ethical obligation to cite the data source
+      appropriately in any publication or product that results from its use,
+      and notify the data contact or creator. Communication, collaboration,
+      or co-authorship (as appropriate) with the creators of this data
+      package is encouraged to prevent duplicate research or publication.
+      The Data User is urged to contact the authors of these data if any
+      questions about methodology or results occur. The Data User should
+      realize that these data may be actively used by others for ongoing
+      research and that coordination may be necessary to prevent duplication
+      or inappropriate use. The Data User should realize that
+      misinterpretation may occur if data are used outside of the context of
+      the original study. The Data User should be aware that data are
+      updated periodically and it is the responsibility of the Data User to
+      check for new versions of the data.
+      
+         
+      While substantial efforts are made to ensure the accuracy of data and
+      associated documentation, complete accuracy of data sets cannot be
+      guaranteed. This data package (with its components) is made available
+      “as is” and with no warranty of accuracy or fitness for use. The
+      creators of this data package and the repository where these data were
+      obtained shall not be liable for any damages resulting from
+      misinterpretation, use or misuse of the data package or its
+      components.
+      
+      
+      
+         
+            http://marinemitigation.msi.ucsb.edu/
+         
+      
+      https://doi.org/10.6073/pasta/643f86b3043a15cb7d597e10fcff47a2
+         
+            CSM: Carpinteria Salt Marsh, located in Santa Barbara County, California
+            
+               -119.537990
+               -119.537990
+               34.401189
+               34.401189
+            
+         
+         
+            MUL: Mugu Lagoon, located in Ventura County, California
+            
+               -119.097011
+               -119.097011
+               34.102007
+               34.102007
+            
+         
+         
+            SDW: San Dieguito Wetland, located in San Diego County, California
+            
+               -117.26047
+               -117.26047
+               32.969545
+               32.969545
+            
+         
+         
+            TJE: Tijuana Estuary, located in San Diego County, California
+            
+               -117.126712
+               -117.126712
+               32.569901
+               32.569901
+            
+         
+         
+            LPL: Los Penasquitos Lagoon, located in San Diego County, California
+            
+               -117.252049
+               -117.252049
+               32.930770
+               32.930770
+            
+         
+         
+            
+               
+                  2011-02-10
+               
+               
+                  2024-11-07
+               
+            
+         
+         
+            
+               species
+               Clevelandia ios
+            
+            
+               species
+               Ilypnus gilberti
+            
+            
+               species
+               Quietula y_cauda
+            
+            
+               species
+               Unknown species of gobiidae gobiidae
+            
+            
+               species
+               Unknown species of osteichthyes osteichthyes
+            
+            
+               species
+               Acanthogobius flavimanus
+            
+            
+               species
+               Anchoa compressa
+            
+            
+               species
+               Atherinops affinis
+            
+            
+               species
+               Cosmocampus arctus
+            
+            
+               species
+               Cymatogaster aggregata
+            
+            
+               species
+               Fundulus parvipinnis
+            
+            
+               species
+               Gambusia affinis
+            
+            
+               species
+               Gillichthys mirabilis
+            
+            
+               species
+               Girella nigricans
+            
+            
+               species
+               Hypsoblennius gentilis
+            
+            
+               species
+               Hypsopsetta guttulata
+            
+            
+               species
+               Leptocottus armatus
+            
+            
+               species
+               Leuresthes tenuis
+            
+            
+               species
+               Mugil cephalus
+            
+            
+               species
+               Myliobatis californicus
+            
+            
+               species
+               Paralabrax clathratus
+            
+            
+               species
+               Paralabrax maculatofasciatus
+            
+            
+               species
+               Paralabrax nebulifer
+            
+            
+               species
+               Paralichthys californicus
+            
+            
+               species
+               Pleuronichthys ritteri
+            
+            
+               species
+               Sardinops sagax
+            
+            
+               species
+               Seriphus politus
+            
+            
+               species
+               Strongylura exilis
+            
+            
+               species
+               Syngnathus auliscus
+            
+            
+               species
+               Syngnathus leptorhynchus
+            
+            
+               species
+               Unknown species of syngnathidae syngnathidae
+            
+            
+               species
+               Urolophus halleri
+            
+            
+               species
+               Gibbonsia gibbonsia
+            
+            
+               species
+               Symphurus atricauda
+            
+            
+               species
+               Porichthys myriaster
+            
+            
+               species
+               Gymnura marmorata
+            
+            
+               species
+               Unknown species of osteichthyes osteichthyes
+            
+            
+               species
+               Heterostichus rostratus
+            
+            
+               species
+               Unknown species of atherinopsidae atherinopsidae
+            
+            
+               species
+               Hypsoblennius gilberti
+            
+            
+               species
+               Unknown species of pleuronectiformes pleuronectiformes
+            
+            
+               species
+               Gibbonsia metzi
+            
+            
+               species
+               Unknown species of sciaenidae sciaenidae
+            
+            
+               species
+               Hypsoblennius hypsoblennius
+            
+            
+               species
+               Engraulis mordax
+            
+            
+               species
+               Sebastes rastrelliger
+            
+            
+               species
+               Clupea pallasii
+            
+            
+               species
+               Unknown species of cottidae cottidae
+            
+            
+               species
+               Pleuronichthys coenosus
+            
+            
+               species
+               Girella girella
+            
+            
+               species
+               Neoclinus uninotatus
+            
+            
+               species
+               Mustelus californicus
+            
+            
+               species
+               Paralabrax paralabrax
+            
+            
+               species
+               Triakis semifasciata
+            
+            
+               species
+               Anisotremus davidsoni
+            
+            
+               species
+               Sphoeroides annulatus
+            
+            
+               species
+               Rhinobatos productus
+            
+            
+               species
+               Menticirrhus undulatus
+            
+            
+               species
+               Sphyraena argentea
+            
+            
+               species
+               Hermosilla azurea
+            
+            
+               species
+               Ctenogobius sagittula
+            
+            
+               species
+               Atherinops californiensis
+            
+            
+               species
+               Unkonwn species of albula vulpes
+            
+            
+               species
+               Xenistius californiensis
+            
+            
+               species
+               Ophichthus zophochir
+            
+            
+               species
+               Platyrhinoidis triesriata
+            
+            
+               species
+               Neoclinus blanchardi
+            
+            
+               species
+               Umbrina roncador
+            
+            
+               species
+               Menidia beryllina
+            
+            
+               species
+               Unknown species of scorpaenidae scorpaenidae
+            
+            
+               species
+               Poecilia latipinna
+            
+         
+      
+      
+         Information Manager, SONGS Mitigation Monitoring Project
+         			Marine Science Institute
+			University of California
+			Santa Barbara, California 93106-6150  United States
+         805-893-5511
+         songsmmp@lifesci.ucsb.edu
+         http://marinemitigation.msi.ucsb.edu
+      
+      
+         Environmental Data Initiative
+         info@edirepository.org
+         https://edirepository.org
+         0330j0z60
+      
+      Environmental Data Initiative
+      
+         
+            
+               
+                  Overview
+                  
+The coastal development permit for SONGS Units 2 and 3 requires Southern California Edison to create or substantially restore a minimum of 150 acres of coastal tidal wetland. 
+The permit establishes biological performance standards that must be met by the restored wetland. 
+One of these standards requires that within 4 years of construction, the total densities and number of species of fish shall be similar to the densities and number of species of fish in similar habitats in the reference wetlands.
+
+               
+               
+                  Study Sites
+                  
+Time series data of the fish community were collected in tidal creek and main channel / basin habitats using a combination of 0.43 m2 x 0.9 m circular enclosure traps and beach seines (generally 100m2) at the San Dieguito Wetland restoration site (32.9695450N, 117.260470W) and three reference wetlands (Tijuana Estuary 32.5699010N, 117.1267120W (2012-2023); Los Penasquitos Lagoon  32.92950N, 117.25310W (2024-present); Mugu Lagoon 34.1020070N, 119.0970110W; Carpinteria Salt Marsh 34.4011890N, 119.5379900W) as part of a long-term study designed to evaluate the performance of the restoration project. 
+Beginning in 2024, Tijuana Estuary was replaced with Los Penasquitos Lagoon. 
+The reference wetlands were chosen to represent relatively undisturbed, natural tidal wetlands within the Southern California Bight. 
+Samples were collected annually in late-summer to fall (September – October). There are six tidal creeks and six main channel sampling locations in each lagoon. 
+In 2024, four tidal creeks and six main channels were sampled at San Dieguito Wetlands. 
+
+Enclosure traps were used to sample gobies, which are small, numerically abundant fishes that are poorly sampled by other methods (Steele et al., 1996a). 
+There were five enclosure sampling stations at each tidal creek and main channel location. 
+Traps were deployed in undisturbed areas during mid to low tides in main channels and at the thalweg of tidal creeks. 
+Deployment depths were ≤ 0.9 m NGVD to avoid flooding the enclosed sampling area. 
+Fish within the trap were collected using a Benthic Ichthyofauna Net for Coral/Kelp Environments (BINCKE), identified to species, counted and released (Anderson and Carr, 1998). 
+Each trap was sampled with hauls of the BINCKE until no fish were collected in a total of three passes of the net. 
+An annual survey using this method consisted of sampling five enclosure traps spaced ~10 m apart at each main channel and tidal creek location.
+
+Beach seines in combination with blocking nets were used to sample larger more mobile fishes (Steele et al., 1996b). 
+Main channel sampling locations were blocked off with two blocking nets (2 m high x 12.2 m wide and 2 m high x 24.4 m wide) rolled out 7.62 m apart on shore. 
+They were deployed perpendicular to the shore reaching a depth of ~1.5 m or a distance of 12.2 m from shore, whichever came first. 
+A dowel was placed marking the corner of the sampling area and the remaining length of the nets were pulled toward each other to close the blocked area. 
+A beach seine (2 m high x 7.62 m wide) was hauled through the blocked area five times and non-goby fishes were identified to species, counted  and released. 
+The two blocking nets were then pulled in and sampled for fish. 
+The area sampled in tidal creeks was blocked off with two blocking nets (2 m high x 12.2 m wide) deployed perpendicular to the shore 7.62 m apart and extending across the creek. 
+A beach seine (2 m high x 7.62 m wide) was hauled through the blocked area five times and non-goby fishes were identified to species, counted and released. 
+The blocking net closest to the inlet of the creek was pulled in, sampled for fish, and then redeployed 7.62 m from the upland side of the still deployed blocking net. 
+This second section of the tidal creek was sampled with five hauls of the beach seine and then the two blocking nets were pulled in and sampled for fish. 
+This method was repeated on three dates. 
+An annual survey using beach seines consisted of repeating this method at each main channel and tidal creek location on three different dates during late summer –fall. 
+The location of the sampling areas on the three dates was slightly offset to minimize effects of physical alteration of habitat and to avoid sampling areas that might have been affected by previous sampling.  
+
+Anderson, T.W. and M. H. Carr. 1998. BINCKE: a highly efficient net for collecting reef fishes. Environmental Biology of Fishes 51: 111-115.
+ 
+Steele, M. A, S. C. Schroeter, and H. M. Page. 2006a. Sampling characteristics and biases of enclosure sampling fishes in estuaries. Estuaries and Coasts 29:630-638.
+ 
+Steele, M. A, S. C. Schroeter, and H. M. Page. 2006b. Sampling characteristics and biases of enclosure sampling fishes in estuaries. Estuaries and Coasts 29:1172-1184.
+
+               
+            
+            
+               UCSB SONGS Wetland Survey Methods - Fish Abundance
+               
+                  Stephen Schroeter
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  760-438-5953
+                  stephen.schroeter@lifesci.ucsb.edu
+               
+               
+                  Henry Page
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-7568
+                  mark.page@lifesci.ucsb.edu
+               
+               
+                  Daniel Reed
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-8363
+                  dan.reed@lifesci.ucsb.edu
+                  https://orcid.org/0000-0003-3015-8717
+               
+               
+                  Kathryn Beheshti
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-5511
+                  katbeheshti@ucsb.edu
+               
+               
+                  Rachel Smith
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-5511
+                  rssmith@ucsb.edu
+               
+               
+                  David Huang
+                  			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+                  805-893-5559
+                  davidhuang@ucsb.edu
+               
+               
+                  
+                     https://drive.google.com/file/d/1qPcHP3wzX6hFBh_cuBZnGmbtn8StQ30e/view?usp=drive_link
+                  
+               
+            
+         
+      
+      
+         SONGS Mitigation Monitoring Project
+         
+            Stephen Schroeter
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            760-438-5953
+            stephen.schroeter@lifesci.ucsb.edu
+            principalInvestigator
+         
+         
+            Henry Page
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            805-893-7568
+            mark.page@lifesci.ucsb.edu
+            principalInvestigator
+         
+         
+            Daniel Reed
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            805-893-8363
+            dan.reed@lifesci.ucsb.edu
+            https://orcid.org/0000-0003-3015-8717
+            principalInvestigator
+         
+         
+            Kathryn Beheshti
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            805-893-5511
+            katbeheshti@ucsb.edu
+            principalInvestigator
+         
+         
+            Rachel Smith
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            805-893-5511
+            rssmith@ucsb.edu
+            principalInvestigator
+         
+         
+            David Huang
+            			Marine Science Institute University of California
+			Santa Barbara, CA 93106-6150  US
+            805-893-5559
+            davidhuang@ucsb.edu
+            pointOfContact
+         
+         
+            
+               
+          The San Onofre Nuclear Generating Station (SONGS) Mitigation Monitoring Program is based at the Marine Science Institute, University of California Santa Barbara.
+          Long-term monitoring and evaluation of the SONGS mitigation projects is a condition of the coastal development permit issued by the California Coastal Commission (CCC) for the operation of SONGS Units 2 and 3.
+          The Permit requires Southern California Edison (SCE) as majority owner and operating agent of SONGS to design and build mitigation projects that adequately compensate for the adverse effects of the power plant’s once-through seawater cooling system on coastal marine resources.
+          UCSB scientists working under the direction of the Executive Director of the CCC are responsible for designing and implementing monitoring programs aimed at determining the effectiveness of these mitigation projects.
+          
+            
+         
+         
+            
+               Funding for the SONGS Mitigation Monitoring Program is provided by SCE as a requirement of their coastal development permit for operating SONGS.
+            
+         
+      
+      
+         Wetland community survey, fish enclosures, all years
+         This data table describes the abundance of fish collected in enclosure traps.
+         
+            wetland_ts_fish_enclosure-2025-08-27_14-40-54.csv
+            10472286
+            
+               
+                  1
+                  \n
+                  column
+                  
+                     ,
+                     no
+                  
+               
+            
+            
+               
+                  https://pasta.lternet.edu/package/data/eml/edi/647/8/8c3e35d92cb89c98514df81d6260e270
+               
+            
+         
+         
+            
+               
+                  
+                     2011-02-10
+                  
+                  
+                     2024-11-07
+                  
+               
+            
+            
+               
+                  species
+                  Clevelandia ios
+               
+               
+                  species
+                  Ilypnus gilberti
+               
+               
+                  species
+                  Quietula y_cauda
+               
+               
+                  species
+                  Unknown species of gobiidae gobiidae
+               
+               
+                  species
+                  Unknown species of osteichthyes osteichthyes
+               
+            
+         
+         
+            
+               year
+               year
+               Calendar year of survey (YYYY).
+               int
+               
+                  
+                     YYYY
+                     1
+                     
+                  
+               
+            
+            
+               date
+               date
+               The date of data collection (YYYY-MM-DD).
+               date
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               survey
+               survey
+               Survey number
+               smallint
+               
+                  
+                     
+                        
+                           text values formatted as integers (12 to 30)
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               wetland_code
+               wetland
+               Code for wetland site.
+               char
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               area_code
+               area code
+               Code referring to a distinct area found within a lagoon.
+               char
+               
+                  
+                     
+                        
+                           
+                              2A
+                              Area 2A
+                           
+                           
+                              3
+                              Area 3
+                           
+                           
+                              CSM
+                              Area encompasses entire lagoon
+                           
+                           
+                              PML
+                              Area encompasses entire lagoon
+                           
+                           
+                              LPL
+                              Area encompasses entire lagoon
+                           
+                           
+                              TJE
+                              Area encompasses entire lagoon
+                           
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               module_code
+               module
+               Code for wetland module. The San Dieguito Wetlands comprises 25 modules. All other wetlands have a single module.
+               char
+               
+                  
+                     
+                        
+                           
+                              W1
+                              Module W1
+                           
+                           
+                              W2
+                              Module W2
+                           
+                           
+                              W4
+                              Module W4
+                           
+                           
+                              FGB
+                              Fish and Game Basin
+                           
+                           
+                              CSM
+                              Module encompasses entire lagoon
+                           
+                           
+                              MUL
+                              Module encompasses entire lagoon
+                           
+                           
+                              LPL
+                              Module encompasses entire lagoon
+                           
+                           
+                              TJE
+                              Module encompasses entire lagoon
+                           
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               tc_mc_code
+               tidal creek / main channel site number
+               Code for main channel or tidal creek location.
+               varchar
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               habitat_code
+               habitat
+               Code for habitat type.
+               char
+               
+                  
+                     
+                        
+                           
+                              TC
+                              Tidal Creek
+                           
+                           
+                              BNMC
+                              Basin, Main Channel
+                           
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               enclosure_number
+               sampling station number
+               Code used to identify enclosure within habitat types.
+               smallint
+               
+                  
+                     
+                        
+                           text values formatted as integers (1 to 125)
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               sampling_station_label
+               sampling station label
+               Unique identification code assigned to a sampling station. The value of the code identifies the wetland, module, tidal creek / main channel site number, and sampling station number.
+               varchar
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               depth
+               depth
+               Water depth measured at the center of the sampling area at time of sampling.
+               tinyint
+               
+                  
+                     
+                        centimeter
+                     
+                     
+                        whole
+                        
+                           0
+                           108
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               haul_no
+               haul
+               The ordinal repetition number of the haul.
+               tinyint
+               
+                  
+                     
+                        
+                           text values formatted as integers (0 to 23)
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               species_id
+               species id
+               Unique identification number assigned to each individual species.
+               int
+               
+                  
+                     
+                        
+                           
+                              2709
+                              Goby: Clevelandia ios: Arrow Goby
+                           
+                           
+                              2751
+                              Goby: Ilypnus gilberti: Cheekspot Goby
+                           
+                           
+                              2839
+                              Goby: Quietula y_cauda: Shadow Goby
+                           
+                           
+                              2964
+                              Goby: Unknown species of gobiidae gobiidae: Unknown Species Of Goby
+                           
+                           
+                              2991
+                              Bony fish: Unknown species of osteichthyes osteichthyes: Unknown Species Of Bony Fish
+                           
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               species_code
+               species code
+               Code used to identify a species, generally composed of the first two letters of the genus (G) name and the first two letters of the species (S) name (format=GGSS). Species may have several codes used to identify different characteristics (e.g. size, age classes, etc). Some codes represent groups of unidentifiable or indistinguishable species.
+               char
+               
+                  
+                     
+                        
+                           
+                              CLIO
+                              Goby: Clevelandia ios: Arrow Goby
+                           
+                           
+                              GOFA
+                              Goby: Unknown species of gobiidae gobiidae: Unknown Species Of Goby
+                           
+                           
+                              ILGI
+                              Goby: Ilypnus gilberti: Cheekspot Goby
+                           
+                           
+                              OSCR
+                              Bony fish: Unknown species of osteichthyes osteichthyes: Unknown Species Of Bony Fish
+                           
+                           
+                              QUYC
+                              Goby: Quietula y_cauda: Shadow Goby
+                           
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               genus_name
+               genus
+               Taxonomic genus name.
+               varchar
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               species_name
+               species
+               Taxonomic species name.
+               varchar
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               count
+               count
+               Number of individuals counted.
+               decimal
+               
+                  
+                     
+                        number
+                     
+                     
+                        real
+                        
+                           0
+                           137
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               enclosure_area
+               area sampled
+               Area sampled by enclosure.
+               decimal
+               
+                  
+                     
+                        squareMeter
+                     
+                     
+                        real
+                        
+                           0.43
+                           0.43
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+         
+         91370
+      
+      
+         Wetland community survey, fish seine, all years
+         This data table describes the abundance of fish collected in beach seines.
+         
+            wetland_ts_fish_seine-2025-08-27_14-42-14.csv
+            149510713
+            
+               
+                  1
+                  \n
+                  column
+                  
+                     ,
+                     no
+                  
+               
+            
+            
+               
+                  https://pasta.lternet.edu/package/data/eml/edi/647/8/44dc7a48b659dcc41e145ee5135d0947
+               
+            
+         
+         
+            
+               
+                  
+                     2012-06-04
+                  
+                  
+                     2024-11-07
+                  
+               
+            
+            
+               
+                  species
+                  Acanthogobius flavimanus
+               
+               
+                  species
+                  Anchoa compressa
+               
+               
+                  species
+                  Atherinops affinis
+               
+               
+                  species
+                  Cosmocampus arctus
+               
+               
+                  species
+                  Cymatogaster aggregata
+               
+               
+                  species
+                  Fundulus parvipinnis
+               
+               
+                  species
+                  Gambusia affinis
+               
+               
+                  species
+                  Gillichthys mirabilis
+               
+               
+                  species
+                  Girella nigricans
+               
+               
+                  species
+                  Hypsoblennius gentilis
+               
+               
+                  species
+                  Hypsopsetta guttulata
+               
+               
+                  species
+                  Leptocottus armatus
+               
+               
+                  species
+                  Leuresthes tenuis
+               
+               
+                  species
+                  Mugil cephalus
+               
+               
+                  species
+                  Myliobatis californicus
+               
+               
+                  species
+                  Paralabrax clathratus
+               
+               
+                  species
+                  Paralabrax maculatofasciatus
+               
+               
+                  species
+                  Paralabrax nebulifer
+               
+               
+                  species
+                  Paralichthys californicus
+               
+               
+                  species
+                  Pleuronichthys ritteri
+               
+               
+                  species
+                  Sardinops sagax
+               
+               
+                  species
+                  Seriphus politus
+               
+               
+                  species
+                  Strongylura exilis
+               
+               
+                  species
+                  Syngnathus auliscus
+               
+               
+                  species
+                  Syngnathus leptorhynchus
+               
+               
+                  species
+                  Unknown species of syngnathidae syngnathidae
+               
+               
+                  species
+                  Urolophus halleri
+               
+               
+                  species
+                  Gibbonsia gibbonsia
+               
+               
+                  species
+                  Symphurus atricauda
+               
+               
+                  species
+                  Porichthys myriaster
+               
+               
+                  species
+                  Gymnura marmorata
+               
+               
+                  species
+                  Unknown species of osteichthyes osteichthyes
+               
+               
+                  species
+                  Heterostichus rostratus
+               
+               
+                  species
+                  Unknown species of atherinopsidae atherinopsidae
+               
+               
+                  species
+                  Hypsoblennius gilberti
+               
+               
+                  species
+                  Unknown species of pleuronectiformes pleuronectiformes
+               
+               
+                  species
+                  Gibbonsia metzi
+               
+               
+                  species
+                  Unknown species of sciaenidae sciaenidae
+               
+               
+                  species
+                  Hypsoblennius hypsoblennius
+               
+               
+                  species
+                  Engraulis mordax
+               
+               
+                  species
+                  Sebastes rastrelliger
+               
+               
+                  species
+                  Clupea pallasii
+               
+               
+                  species
+                  Unknown species of cottidae cottidae
+               
+               
+                  species
+                  Pleuronichthys coenosus
+               
+               
+                  species
+                  Girella girella
+               
+               
+                  species
+                  Neoclinus uninotatus
+               
+               
+                  species
+                  Mustelus californicus
+               
+               
+                  species
+                  Paralabrax paralabrax
+               
+               
+                  species
+                  Triakis semifasciata
+               
+               
+                  species
+                  Anisotremus davidsoni
+               
+               
+                  species
+                  Sphoeroides annulatus
+               
+               
+                  species
+                  Rhinobatos productus
+               
+               
+                  species
+                  Menticirrhus undulatus
+               
+               
+                  species
+                  Sphyraena argentea
+               
+               
+                  species
+                  Hermosilla azurea
+               
+               
+                  species
+                  Ctenogobius sagittula
+               
+               
+                  species
+                  Atherinops californiensis
+               
+               
+                  species
+                  Unkonwn species of albula vulpes
+               
+               
+                  species
+                  Xenistius californiensis
+               
+               
+                  species
+                  Ophichthus zophochir
+               
+               
+                  species
+                  Platyrhinoidis triesriata
+               
+               
+                  species
+                  Neoclinus blanchardi
+               
+               
+                  species
+                  Umbrina roncador
+               
+               
+                  species
+                  Menidia beryllina
+               
+               
+                  species
+                  Unknown species of scorpaenidae scorpaenidae
+               
+               
+                  species
+                  Poecilia latipinna
+               
+            
+         
+         
+            
+               year
+               year
+               Calendar year of survey (YYYY).
+               int
+               
+                  
+                     YYYY
+                     1
+                     
+                  
+               
+            
+            
+               survey
+               survey
+               Survey number
+               smallint
+               
+                  
+                     
+                        
+                           text values formatted as integers (16 to 30)
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               date
+               date
+               The date of data collection (YYYY-MM-DD).
+               date
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               wetland_code
+               wetland
+               Code for wetland site.
+               char
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               module_code
+               module
+               Code for wetland module. The San Dieguito Wetlands comprises 25 modules. All other wetlands have a single module.
+               char
+               
+                  
+                     
+                        
+                           
+                              W1
+                              Module W1
+                           
+                           
+                              W2
+                              Module W2
+                           
+                           
+                              W4
+                              Module W4
+                           
+                           
+                              CSM
+                              Module encompasses entire lagoon
+                           
+                           
+                              MUL
+                              Module encompasses entire lagoon
+                           
+                           
+                              LPL
+                              Module encompasses entire lagoon
+                           
+                           
+                              TJE
+                              Module encompasses entire lagoon
+                           
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               tc_mc_code
+               tidal creek / main channel site number
+               Code for main channel or tidal creek location.
+               varchar
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               habitat_code
+               habitat
+               Code for habitat type.
+               char
+               
+                  
+                     
+                        
+                           
+                              TC
+                              Tidal Creek
+                           
+                           
+                              BNMC
+                              Basin, Main Channel
+                           
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               seine_section_code
+               seine section
+               Code used to identify portion of seining area when it is divided into multiple smaller sections to sample effectively.
+               enum
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               seine_label
+               seine label
+               Unique identification code assigned to a seine sampling location. The value of the code identifies the wetland, module, tidal creek / main channel site number, and section (if applicable).
+               varchar
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               seine_sample_width
+               sample width
+               Width of seine area.
+               decimal
+               
+                  
+                     
+                        meter
+                     
+                     
+                        real
+                        
+                           3.00
+                           15.20
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               seine_sample_length
+               sample length
+               Length of seine area.
+               decimal
+               
+                  
+                     
+                        meter
+                     
+                     
+                        real
+                        
+                           1.70
+                           22.00
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               seine_sample_area
+               sample area
+               Area of habitat sampled. Value is derived from product of habitat width and habitat length.
+               decimal
+               
+                  
+                     
+                        squareMeter
+                     
+                     
+                        real
+                        
+                           12.9540
+                           167.6400
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               depth
+               depth
+               Water depth measured at the center of the sampling area at time of sampling.
+               smallint
+               
+                  
+                     
+                        centimeter
+                     
+                     
+                        whole
+                        
+                           0
+                           248
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               haul_no
+               haul
+               The ordinal repetition number of the haul.
+               tinyint
+               
+                  
+                     
+                        
+                           text values formatted as integers (1 to 7)
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               species_id
+               species id
+               Unique identification number assigned to each individual species.
+               int
+               
+                  
+                     
+                        
+                           
+                              2665
+                              Goby: Acanthogobius flavimanus: Yellowfin Goby
+                           
+                           
+                              2672
+                              Clupeiformes: Anchoa compressa: Deepbody Anchovy
+                           
+                           
+                              2681
+                              Silverside: Atherinops affinis: Topsmelt
+                           
+                           
+                              2712
+                              Pipefish: Cosmocampus arctus: Snubnose Pipefish
+                           
+                           
+                              2719
+                              Perciformes: Cymatogaster aggregata: Shiner Surfperch
+                           
+                           
+                              2732
+                              Killifish: Fundulus parvipinnis: California Killifish
+                           
+                           
+                              2733
+                              Killifish: Gambusia affinis: Mosquitofish
+                           
+                           
+                              2734
+                              Goby: Gillichthys mirabilis: Longjaw Mudsucker
+                           
+                           
+                              2735
+                              Kyphosid: Girella nigricans: Opaleye
+                           
+                           
+                              2749
+                              Blenny: Hypsoblennius gentilis: Bay Blenny
+                           
+                           
+                              2750
+                              Flatfish: Hypsopsetta guttulata: Diamond Turbot
+                           
+                           
+                              2764
+                              Sculpin: Leptocottus armatus: Staghorn Sculpin
+                           
+                           
+                              2766
+                              Silverside: Leuresthes tenuis: California Grunion
+                           
+                           
+                              2790
+                              Perciformes: Mugil cephalus: Striped Mullet
+                           
+                           
+                              2792
+                              Ray: Myliobatis californicus: Bat Ray
+                           
+                           
+                              2812
+                              Bass: Paralabrax clathratus: Kelp Bass
+                           
+                           
+                              2813
+                              Bass: Paralabrax maculatofasciatus: Spotted Sand Bass
+                           
+                           
+                              2814
+                              Bass: Paralabrax nebulifer: Barred Sand Bass
+                           
+                           
+                              2815
+                              Flatfish: Paralichthys californicus: California Halibut
+                           
+                           
+                              2825
+                              Flatfish: Pleuronichthys ritteri: Spotted Turbot
+                           
+                           
+                              2849
+                              Clupeiformes: Sardinops sagax: Pacific Sardine
+                           
+                           
+                              2854
+                              Croaker: Seriphus politus: Queenfish
+                           
+                           
+                              2863
+                              Needlefish: Strongylura exilis: California Needlefish
+                           
+                           
+                              2865
+                              Pipefish: Syngnathus auliscus: Barred Pipefish
+                           
+                           
+                              2866
+                              Pipefish: Syngnathus leptorhynchus: Bay Pipefish
+                           
+                           
+                              2867
+                              Pipefish: Unknown species of syngnathidae syngnathidae: Unknown Species Of Pipefish
+                           
+                           
+                              2933
+                              Ray: Urolophus halleri: Round Stingray
+                           
+                           
+                              2971
+                              Kelpfish: Gibbonsia gibbonsia: Unknown Species Of Kelpfish
+                           
+                           
+                              2983
+                              Flatfish: Symphurus atricauda: California Tonguefish
+                           
+                           
+                              2984
+                              Toadfish: Porichthys myriaster: Specklefin Midshipman
+                           
+                           
+                              2985
+                              Ray: Gymnura marmorata: Butterfly Ray
+                           
+                           
+                              2991
+                              Bony fish: Unknown species of osteichthyes osteichthyes: Unknown Species Of Bony Fish
+                           
+                           
+                              2992
+                              Kelpfish: Heterostichus rostratus: Giant Kelpfish
+                           
+                           
+                              2993
+                              Silverside: Unknown species of atherinopsidae atherinopsidae: Unknown Species Of Smelt
+                           
+                           
+                              3007
+                              Blenny: Hypsoblennius gilberti: Rockpool Blenny
+                           
+                           
+                              3064
+                              Flatfish: Unknown species of pleuronectiformes pleuronectiformes: Unknown Species Of Flat Fish
+                           
+                           
+                              3065
+                              Kelpfish: Gibbonsia metzi: Striped Kelpfish
+                           
+                           
+                              3172
+                              Croaker: Unknown species of sciaenidae sciaenidae: Unknown Species Of Drums Or Croaker
+                           
+                           
+                              3174
+                              Blenny: Hypsoblennius hypsoblennius: Unknown Species Of Blenny
+                           
+                           
+                              3177
+                              Clupeiformes: Engraulis mordax: Northern Anchovy
+                           
+                           
+                              3178
+                              Rockfish: Sebastes rastrelliger: Grass Rockfish
+                           
+                           
+                              3179
+                              Clupeiformes: Clupea pallasii: Pacific Herring
+                           
+                           
+                              3219
+                              Sculpin: Unknown species of cottidae cottidae: Unknown Species Of Sculpin
+                           
+                           
+                              3230
+                              Flatfish: Pleuronichthys coenosus: C-o Turbot
+                           
+                           
+                              3284
+                              Kyphosid: Girella girella: 'doug' Unknown Juvenile Opaleye. To Be Identified.
+                           
+                           
+                              3292
+                              Perciformes: Neoclinus uninotatus: Onespot Fringehead
+                           
+                           
+                              3293
+                              Shark: Mustelus californicus: Grey Smoothhound
+                           
+                           
+                              3301
+                              Bass: Paralabrax paralabrax: Unknown Species Of Bass
+                           
+                           
+                              3303
+                              Shark: Triakis semifasciata: Leopard Shark
+                           
+                           
+                              3323
+                              Perciformes: Anisotremus davidsoni: Sargo
+                           
+                           
+                              3324
+                              Pufferfish: Sphoeroides annulatus: Bullseye Puffer
+                           
+                           
+                              3325
+                              Ray: Rhinobatos productus: Shovelnose Guitarfish
+                           
+                           
+                              3326
+                              Croaker: Menticirrhus undulatus: California Corbina
+                           
+                           
+                              3328
+                              Perciformes: Sphyraena argentea: Barracuda
+                           
+                           
+                              3343
+                              Kyphosid: Hermosilla azurea: Zebraperch
+                           
+                           
+                              3344
+                              Goby: Ctenogobius sagittula: Longtail Goby
+                           
+                           
+                              3348
+                              Silverside: Atherinops californiensis: Jacksmelt
+                           
+                           
+                              3350
+                              Bonefish: Unkonwn species of albula vulpes: Bonefish
+                           
+                           
+                              3378
+                              Perciformes: Xenistius californiensis: Salema
+                           
+                           
+                              3383
+                              Eel: Ophichthus zophochir: Yellow Snake-eel
+                           
+                           
+                              3399
+                              Ray: Platyrhinoidis triesriata: Thornback Guitarfish
+                           
+                           
+                              3401
+                              Perciformes: Neoclinus blanchardi: Sarcastic Fringehead
+                           
+                           
+                              3409
+                              Croaker: Umbrina roncador: Yellowfin Croaker
+                           
+                           
+                              3418
+                              Silverside: Menidia beryllina: Inland Silverside
+                           
+                           
+                              3423
+                              Scorpionfish: Unknown species of scorpaenidae scorpaenidae: Unknown Species Of Scorpaenidae
+                           
+                           
+                              3424
+                              Bony fish: Poecilia latipinna: Sailfin Molly
+                           
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               species_code
+               species code
+               Code used to identify a species, generally composed of the first two letters of the genus (G) name and the first two letters of the species (S) name (format=GGSS). Species may have several codes used to identify different characteristics (e.g. size, age classes, etc). Some codes represent groups of unidentifiable or indistinguishable species.
+               char
+               
+                  
+                     
+                        
+                           
+                              ACFV
+                              Goby: Acanthogobius flavimanus: Yellowfin Goby
+                           
+                           
+                              ALVU
+                              Bonefish: Unkonwn species of albula vulpes: Bonefish
+                           
+                           
+                              ANCO
+                              Clupeiformes: Anchoa compressa: Deepbody Anchovy
+                           
+                           
+                              ANDA
+                              Perciformes: Anisotremus davidsoni: Sargo
+                           
+                           
+                              ATAF
+                              Silverside: Atherinops affinis: Topsmelt
+                           
+                           
+                              ATCA
+                              Silverside: Atherinops californiensis: Jacksmelt
+                           
+                           
+                              ATFA
+                              Silverside: Unknown species of atherinopsidae atherinopsidae: Unknown Species Of Smelt
+                           
+                           
+                              CLHA
+                              Clupeiformes: Clupea pallasii: Pacific Herring
+                           
+                           
+                              COAC
+                              Pipefish: Cosmocampus arctus: Snubnose Pipefish
+                           
+                           
+                              COFA
+                              Sculpin: Unknown species of cottidae cottidae: Unknown Species Of Sculpin
+                           
+                           
+                              CTSA
+                              Goby: Ctenogobius sagittula: Longtail Goby
+                           
+                           
+                              CYAG
+                              Perciformes: Cymatogaster aggregata: Shiner Surfperch
+                           
+                           
+                              DOUG
+                              Kyphosid: Girella girella: 'doug' Unknown Juvenile Opaleye. To Be Identified.
+                           
+                           
+                              ENMO
+                              Clupeiformes: Engraulis mordax: Northern Anchovy
+                           
+                           
+                              FUPA
+                              Killifish: Fundulus parvipinnis: California Killifish
+                           
+                           
+                              GAAF
+                              Killifish: Gambusia affinis: Mosquitofish
+                           
+                           
+                              GIGE
+                              Kelpfish: Gibbonsia gibbonsia: Unknown Species Of Kelpfish
+                           
+                           
+                              GIME
+                              Kelpfish: Gibbonsia metzi: Striped Kelpfish
+                           
+                           
+                              GIMI
+                              Goby: Gillichthys mirabilis: Longjaw Mudsucker
+                           
+                           
+                              GINI
+                              Kyphosid: Girella nigricans: Opaleye
+                           
+                           
+                              GYMA
+                              Ray: Gymnura marmorata: Butterfly Ray
+                           
+                           
+                              HEAZ
+                              Kyphosid: Hermosilla azurea: Zebraperch
+                           
+                           
+                              HERO
+                              Kelpfish: Heterostichus rostratus: Giant Kelpfish
+                           
+                           
+                              HYGE
+                              Blenny: Hypsoblennius gentilis: Bay Blenny
+                           
+                           
+                              HYGI
+                              Blenny: Hypsoblennius gilberti: Rockpool Blenny
+                           
+                           
+                              HYGU
+                              Flatfish: Hypsopsetta guttulata: Diamond Turbot
+                           
+                           
+                              HYPG
+                              Blenny: Hypsoblennius hypsoblennius: Unknown Species Of Blenny
+                           
+                           
+                              LEAR
+                              Sculpin: Leptocottus armatus: Staghorn Sculpin
+                           
+                           
+                              LETN
+                              Silverside: Leuresthes tenuis: California Grunion
+                           
+                           
+                              MEBE
+                              Silverside: Menidia beryllina: Inland Silverside
+                           
+                           
+                              MEUN
+                              Croaker: Menticirrhus undulatus: California Corbina
+                           
+                           
+                              MUCA
+                              Shark: Mustelus californicus: Grey Smoothhound
+                           
+                           
+                              MUCE
+                              Perciformes: Mugil cephalus: Striped Mullet
+                           
+                           
+                              MYCA
+                              Ray: Myliobatis californicus: Bat Ray
+                           
+                           
+                              NEBL
+                              Perciformes: Neoclinus blanchardi: Sarcastic Fringehead
+                           
+                           
+                              NEUN
+                              Perciformes: Neoclinus uninotatus: Onespot Fringehead
+                           
+                           
+                              OPZO
+                              Eel: Ophichthus zophochir: Yellow Snake-eel
+                           
+                           
+                              OSCL
+                              Bony fish: Unknown species of osteichthyes osteichthyes: Unknown Species Of Bony Fish
+                           
+                           
+                              PACA
+                              Flatfish: Paralichthys californicus: California Halibut
+                           
+                           
+                              PACL
+                              Bass: Paralabrax clathratus: Kelp Bass
+                           
+                           
+                              PAMA
+                              Bass: Paralabrax maculatofasciatus: Spotted Sand Bass
+                           
+                           
+                              PANE
+                              Bass: Paralabrax nebulifer: Barred Sand Bass
+                           
+                           
+                              PARG
+                              Bass: Paralabrax paralabrax: Unknown Species Of Bass
+                           
+                           
+                              PLCO
+                              Flatfish: Pleuronichthys coenosus: C-o Turbot
+                           
+                           
+                              PLOR
+                              Flatfish: Unknown species of pleuronectiformes pleuronectiformes: Unknown Species Of Flat Fish
+                           
+                           
+                              PLRI
+                              Flatfish: Pleuronichthys ritteri: Spotted Turbot
+                           
+                           
+                              PLTR
+                              Ray: Platyrhinoidis triesriata: Thornback Guitarfish
+                           
+                           
+                              POLA
+                              Bony fish: Poecilia latipinna: Sailfin Molly
+                           
+                           
+                              POMY
+                              Toadfish: Porichthys myriaster: Specklefin Midshipman
+                           
+                           
+                              RHPR
+                              Ray: Rhinobatos productus: Shovelnose Guitarfish
+                           
+                           
+                              SASA
+                              Clupeiformes: Sardinops sagax: Pacific Sardine
+                           
+                           
+                              SCFA
+                              Croaker: Unknown species of sciaenidae sciaenidae: Unknown Species Of Drums Or Croaker
+                           
+                           
+                              SCOF
+                              Scorpionfish: Unknown species of scorpaenidae scorpaenidae: Unknown Species Of Scorpaenidae
+                           
+                           
+                              SEPO
+                              Croaker: Seriphus politus: Queenfish
+                           
+                           
+                              SERA
+                              Rockfish: Sebastes rastrelliger: Grass Rockfish
+                           
+                           
+                              SPAN
+                              Pufferfish: Sphoeroides annulatus: Bullseye Puffer
+                           
+                           
+                              SPAR
+                              Perciformes: Sphyraena argentea: Barracuda
+                           
+                           
+                              STEX
+                              Needlefish: Strongylura exilis: California Needlefish
+                           
+                           
+                              SYAT
+                              Flatfish: Symphurus atricauda: California Tonguefish
+                           
+                           
+                              SYAU
+                              Pipefish: Syngnathus auliscus: Barred Pipefish
+                           
+                           
+                              SYFA
+                              Pipefish: Unknown species of syngnathidae syngnathidae: Unknown Species Of Pipefish
+                           
+                           
+                              SYLE
+                              Pipefish: Syngnathus leptorhynchus: Bay Pipefish
+                           
+                           
+                              TRSE
+                              Shark: Triakis semifasciata: Leopard Shark
+                           
+                           
+                              UMRO
+                              Croaker: Umbrina roncador: Yellowfin Croaker
+                           
+                           
+                              URHA
+                              Ray: Urolophus halleri: Round Stingray
+                           
+                           
+                              XECA
+                              Perciformes: Xenistius californiensis: Salema
+                           
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               genus_name
+               genus
+               Taxonomic genus name.
+               varchar
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               species_name
+               species
+               Taxonomic species name.
+               varchar
+               
+                  
+                     
+                        
+                           text
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+            
+               count
+               count
+               Number of individuals counted.
+               decimal
+               
+                  
+                     
+                        number
+                     
+                     
+                        real
+                        
+                           0
+                           3056
+                        
+                     
+                  
+               
+               
+                  .
+                  value not recorded or not available
+               
+            
+         
+         1296108
+      
+   
+   
+      
+         
+            18
+            2025-06-13 16:24:26
+            
+               
+                  wetland_ts_fish_enclosure
+                  2025-08-27 14:40:54
+               
+               
+                  wetland_ts_fish_seine
+                  2025-08-27 14:42:14
+               
+            
+         
+      
+   

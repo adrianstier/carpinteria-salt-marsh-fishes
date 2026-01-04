@@ -1,0 +1,1089 @@
+{
+  "meta": {
+    "generated_at": "2026-01-03T14:17:33.481206",
+    "data_source": "edi.648.8, edi.647.8",
+    "wetland": "Carpinteria Salt Marsh (CSM)",
+    "description": "SONGS Mitigation Monitoring Program fish community data"
+  },
+  "summary": {
+    "years_of_data": 13,
+    "year_range": [
+      2012,
+      2024
+    ],
+    "total_species": 43,
+    "mean_density": 24.27,
+    "total_samples": 156,
+    "total_enclosure_records": 26685,
+    "total_seine_records": 340560
+  },
+  "model_results": {
+    "habitat_comparison": {
+      "tidal_creek": {
+        "mean_density": 30.85,
+        "std_density": 29.73,
+        "mean_richness": 8.24,
+        "std_richness": 2.8,
+        "n": 78
+      },
+      "main_channel": {
+        "mean_density": 17.69,
+        "std_density": 20.3,
+        "mean_richness": 8.86,
+        "std_richness": 2.82,
+        "n": 78
+      },
+      "density_test": {
+        "group1": {
+          "mean": 30.847,
+          "std": 29.542,
+          "n": 78
+        },
+        "group2": {
+          "mean": 17.689,
+          "std": 20.165,
+          "n": 78
+        },
+        "t_statistic": 3.228,
+        "p_value": 0.001561,
+        "cohens_d": 0.52,
+        "significant": true
+      },
+      "richness_test": {
+        "group1": {
+          "mean": 8.244,
+          "std": 2.779,
+          "n": 78
+        },
+        "group2": {
+          "mean": 8.859,
+          "std": 2.8,
+          "n": 78
+        },
+        "t_statistic": -1.369,
+        "p_value": 0.173034,
+        "cohens_d": 0.221,
+        "significant": false
+      }
+    },
+    "temporal_trends": {
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "annual_density": [
+        3.22,
+        7.71,
+        35.96,
+        56.7,
+        35.2,
+        37.39,
+        21.32,
+        23.78,
+        22.48,
+        9.34,
+        9.71,
+        14.02,
+        38.64
+      ],
+      "annual_richness": [
+        6.42,
+        8.0,
+        9.75,
+        9.75,
+        10.33,
+        9.92,
+        9.25,
+        9.92,
+        6.0,
+        7.92,
+        6.75,
+        7.92,
+        9.25
+      ],
+      "density_trend": {
+        "sens_slope": 0.1914,
+        "p_value": 0.9514,
+        "trend": "no significant trend",
+        "significant": false
+      },
+      "richness_trend": {
+        "sens_slope": -0.0302,
+        "p_value": 0.6693,
+        "trend": "no significant trend",
+        "significant": false
+      }
+    },
+    "diversity_indices": {
+      "shannon": 1.598,
+      "simpson": 0.716,
+      "evenness": 0.425,
+      "richness": 43
+    }
+  },
+  "charts": {
+    "species_abundance": [
+      {
+        "species_code": "ATAF",
+        "species_name": "Atherinops affinis",
+        "count": 39226
+      },
+      {
+        "species_code": "FUPA",
+        "species_name": "Fundulus parvipinnis",
+        "count": 27410
+      },
+      {
+        "species_code": "ATFA",
+        "species_name": "Unknown Species of Atherinopsidae Atherinopsidae",
+        "count": 10662
+      },
+      {
+        "species_code": "CLIO",
+        "species_name": "Clevelandia ios",
+        "count": 5706
+      },
+      {
+        "species_code": "POMY",
+        "species_name": "Porichthys myriaster",
+        "count": 3546
+      },
+      {
+        "species_code": "GOFA",
+        "species_name": "Unknown Species of Gobiidae Gobiidae",
+        "count": 2179
+      },
+      {
+        "species_code": "LEAR",
+        "species_name": "Leptocottus armatus",
+        "count": 1718
+      },
+      {
+        "species_code": "PACA",
+        "species_name": "Paralichthys californicus",
+        "count": 736
+      },
+      {
+        "species_code": "GIMI",
+        "species_name": "Gillichthys mirabilis",
+        "count": 428
+      },
+      {
+        "species_code": "PAMA",
+        "species_name": "Paralabrax maculatofasciatus",
+        "count": 260
+      },
+      {
+        "species_code": "ACFV",
+        "species_name": "Acanthogobius flavimanus",
+        "count": 222
+      },
+      {
+        "species_code": "QUYC",
+        "species_name": "Quietula y_cauda",
+        "count": 184
+      },
+      {
+        "species_code": "ILGI",
+        "species_name": "Ilypnus gilberti",
+        "count": 162
+      },
+      {
+        "species_code": "CYAG",
+        "species_name": "Cymatogaster aggregata",
+        "count": 156
+      },
+      {
+        "species_code": "URHA",
+        "species_name": "Urolophus halleri",
+        "count": 126
+      }
+    ],
+    "annual_trends": [
+      {
+        "year": 2012,
+        "density": 3.22,
+        "richness": 6.4,
+        "tc_density": 3.27,
+        "mc_density": 3.17
+      },
+      {
+        "year": 2013,
+        "density": 7.71,
+        "richness": 8.0,
+        "tc_density": 9.99,
+        "mc_density": 5.44
+      },
+      {
+        "year": 2014,
+        "density": 35.96,
+        "richness": 9.8,
+        "tc_density": 37.1,
+        "mc_density": 34.83
+      },
+      {
+        "year": 2015,
+        "density": 56.7,
+        "richness": 9.8,
+        "tc_density": 54.48,
+        "mc_density": 58.92
+      },
+      {
+        "year": 2016,
+        "density": 35.2,
+        "richness": 10.3,
+        "tc_density": 48.9,
+        "mc_density": 21.5
+      },
+      {
+        "year": 2017,
+        "density": 37.39,
+        "richness": 9.9,
+        "tc_density": 58.64,
+        "mc_density": 16.14
+      },
+      {
+        "year": 2018,
+        "density": 21.32,
+        "richness": 9.2,
+        "tc_density": 29.83,
+        "mc_density": 12.82
+      },
+      {
+        "year": 2019,
+        "density": 23.78,
+        "richness": 9.9,
+        "tc_density": 34.07,
+        "mc_density": 13.5
+      },
+      {
+        "year": 2020,
+        "density": 22.48,
+        "richness": 6.0,
+        "tc_density": 27.2,
+        "mc_density": 17.76
+      },
+      {
+        "year": 2021,
+        "density": 9.34,
+        "richness": 7.9,
+        "tc_density": 13.67,
+        "mc_density": 5.01
+      },
+      {
+        "year": 2022,
+        "density": 9.71,
+        "richness": 6.8,
+        "tc_density": 15.1,
+        "mc_density": 4.32
+      },
+      {
+        "year": 2023,
+        "density": 14.02,
+        "richness": 7.9,
+        "tc_density": 21.43,
+        "mc_density": 6.61
+      },
+      {
+        "year": 2024,
+        "density": 38.64,
+        "richness": 9.2,
+        "tc_density": 47.36,
+        "mc_density": 29.93
+      }
+    ],
+    "heatmap": [
+      {
+        "species": "ATAF",
+        "year": 2012,
+        "value": 0.549,
+        "count": 4151
+      },
+      {
+        "species": "ATAF",
+        "year": 2013,
+        "value": 0.565,
+        "count": 4268
+      },
+      {
+        "species": "ATAF",
+        "year": 2014,
+        "value": 0.38,
+        "count": 2875
+      },
+      {
+        "species": "ATAF",
+        "year": 2015,
+        "value": 0.474,
+        "count": 3580
+      },
+      {
+        "species": "ATAF",
+        "year": 2016,
+        "value": 0.694,
+        "count": 5243
+      },
+      {
+        "species": "ATAF",
+        "year": 2017,
+        "value": 0.283,
+        "count": 2136
+      },
+      {
+        "species": "ATAF",
+        "year": 2018,
+        "value": 1.0,
+        "count": 7559
+      },
+      {
+        "species": "ATAF",
+        "year": 2019,
+        "value": 0.209,
+        "count": 1583
+      },
+      {
+        "species": "ATAF",
+        "year": 2020,
+        "value": 0.174,
+        "count": 1313
+      },
+      {
+        "species": "ATAF",
+        "year": 2021,
+        "value": 0.267,
+        "count": 2018
+      },
+      {
+        "species": "ATAF",
+        "year": 2022,
+        "value": 0.185,
+        "count": 1402
+      },
+      {
+        "species": "ATAF",
+        "year": 2023,
+        "value": 0.216,
+        "count": 1629
+      },
+      {
+        "species": "ATAF",
+        "year": 2024,
+        "value": 0.194,
+        "count": 1469
+      },
+      {
+        "species": "ATFA",
+        "year": 2012,
+        "value": 0.218,
+        "count": 697
+      },
+      {
+        "species": "ATFA",
+        "year": 2013,
+        "value": 0.422,
+        "count": 1349
+      },
+      {
+        "species": "ATFA",
+        "year": 2014,
+        "value": 0.119,
+        "count": 380
+      },
+      {
+        "species": "ATFA",
+        "year": 2015,
+        "value": 1.0,
+        "count": 3194
+      },
+      {
+        "species": "ATFA",
+        "year": 2016,
+        "value": 0.237,
+        "count": 758
+      },
+      {
+        "species": "ATFA",
+        "year": 2017,
+        "value": 0.399,
+        "count": 1275
+      },
+      {
+        "species": "ATFA",
+        "year": 2018,
+        "value": 0.237,
+        "count": 758
+      },
+      {
+        "species": "ATFA",
+        "year": 2019,
+        "value": 0.435,
+        "count": 1390
+      },
+      {
+        "species": "ATFA",
+        "year": 2020,
+        "value": 0.016,
+        "count": 51
+      },
+      {
+        "species": "ATFA",
+        "year": 2021,
+        "value": 0.012,
+        "count": 39
+      },
+      {
+        "species": "ATFA",
+        "year": 2022,
+        "value": 0.009,
+        "count": 29
+      },
+      {
+        "species": "ATFA",
+        "year": 2023,
+        "value": 0.211,
+        "count": 674
+      },
+      {
+        "species": "ATFA",
+        "year": 2024,
+        "value": 0.021,
+        "count": 68
+      },
+      {
+        "species": "CLIO",
+        "year": 2012,
+        "value": 0.202,
+        "count": 184
+      },
+      {
+        "species": "CLIO",
+        "year": 2013,
+        "value": 0.56,
+        "count": 511
+      },
+      {
+        "species": "CLIO",
+        "year": 2014,
+        "value": 0.525,
+        "count": 479
+      },
+      {
+        "species": "CLIO",
+        "year": 2015,
+        "value": 1.0,
+        "count": 913
+      },
+      {
+        "species": "CLIO",
+        "year": 2016,
+        "value": 0.632,
+        "count": 577
+      },
+      {
+        "species": "CLIO",
+        "year": 2017,
+        "value": 0.71,
+        "count": 648
+      },
+      {
+        "species": "CLIO",
+        "year": 2018,
+        "value": 0.321,
+        "count": 293
+      },
+      {
+        "species": "CLIO",
+        "year": 2019,
+        "value": 0.475,
+        "count": 434
+      },
+      {
+        "species": "CLIO",
+        "year": 2020,
+        "value": 0.435,
+        "count": 397
+      },
+      {
+        "species": "CLIO",
+        "year": 2021,
+        "value": 0.21,
+        "count": 192
+      },
+      {
+        "species": "CLIO",
+        "year": 2022,
+        "value": 0.205,
+        "count": 187
+      },
+      {
+        "species": "CLIO",
+        "year": 2023,
+        "value": 0.307,
+        "count": 280
+      },
+      {
+        "species": "CLIO",
+        "year": 2024,
+        "value": 0.669,
+        "count": 611
+      },
+      {
+        "species": "FUPA",
+        "year": 2012,
+        "value": 0.184,
+        "count": 1897
+      },
+      {
+        "species": "FUPA",
+        "year": 2013,
+        "value": 0.502,
+        "count": 5185
+      },
+      {
+        "species": "FUPA",
+        "year": 2014,
+        "value": 1.0,
+        "count": 10321
+      },
+      {
+        "species": "FUPA",
+        "year": 2015,
+        "value": 0.194,
+        "count": 2000
+      },
+      {
+        "species": "FUPA",
+        "year": 2016,
+        "value": 0.061,
+        "count": 629
+      },
+      {
+        "species": "FUPA",
+        "year": 2017,
+        "value": 0.221,
+        "count": 2280
+      },
+      {
+        "species": "FUPA",
+        "year": 2018,
+        "value": 0.067,
+        "count": 688
+      },
+      {
+        "species": "FUPA",
+        "year": 2019,
+        "value": 0.079,
+        "count": 817
+      },
+      {
+        "species": "FUPA",
+        "year": 2020,
+        "value": 0.024,
+        "count": 243
+      },
+      {
+        "species": "FUPA",
+        "year": 2021,
+        "value": 0.068,
+        "count": 702
+      },
+      {
+        "species": "FUPA",
+        "year": 2022,
+        "value": 0.2,
+        "count": 2061
+      },
+      {
+        "species": "FUPA",
+        "year": 2023,
+        "value": 0.011,
+        "count": 115
+      },
+      {
+        "species": "FUPA",
+        "year": 2024,
+        "value": 0.046,
+        "count": 472
+      },
+      {
+        "species": "GIMI",
+        "year": 2012,
+        "value": 1.0,
+        "count": 208
+      },
+      {
+        "species": "GIMI",
+        "year": 2013,
+        "value": 0.861,
+        "count": 179
+      },
+      {
+        "species": "GIMI",
+        "year": 2014,
+        "value": 0.01,
+        "count": 2
+      },
+      {
+        "species": "GIMI",
+        "year": 2015,
+        "value": 0.014,
+        "count": 3
+      },
+      {
+        "species": "GIMI",
+        "year": 2016,
+        "value": 0.005,
+        "count": 1
+      },
+      {
+        "species": "GIMI",
+        "year": 2017,
+        "value": 0.019,
+        "count": 4
+      },
+      {
+        "species": "GIMI",
+        "year": 2018,
+        "value": 0.029,
+        "count": 6
+      },
+      {
+        "species": "GIMI",
+        "year": 2019,
+        "value": 0.038,
+        "count": 8
+      },
+      {
+        "species": "GIMI",
+        "year": 2020,
+        "value": 0.0,
+        "count": 0
+      },
+      {
+        "species": "GIMI",
+        "year": 2021,
+        "value": 0.005,
+        "count": 1
+      },
+      {
+        "species": "GIMI",
+        "year": 2022,
+        "value": 0.005,
+        "count": 1
+      },
+      {
+        "species": "GIMI",
+        "year": 2023,
+        "value": 0.0,
+        "count": 0
+      },
+      {
+        "species": "GIMI",
+        "year": 2024,
+        "value": 0.072,
+        "count": 15
+      },
+      {
+        "species": "GOFA",
+        "year": 2012,
+        "value": 0.25,
+        "count": 100
+      },
+      {
+        "species": "GOFA",
+        "year": 2013,
+        "value": 0.528,
+        "count": 211
+      },
+      {
+        "species": "GOFA",
+        "year": 2014,
+        "value": 0.758,
+        "count": 303
+      },
+      {
+        "species": "GOFA",
+        "year": 2015,
+        "value": 1.0,
+        "count": 400
+      },
+      {
+        "species": "GOFA",
+        "year": 2016,
+        "value": 0.568,
+        "count": 227
+      },
+      {
+        "species": "GOFA",
+        "year": 2017,
+        "value": 0.6,
+        "count": 240
+      },
+      {
+        "species": "GOFA",
+        "year": 2018,
+        "value": 0.365,
+        "count": 146
+      },
+      {
+        "species": "GOFA",
+        "year": 2019,
+        "value": 0.26,
+        "count": 104
+      },
+      {
+        "species": "GOFA",
+        "year": 2020,
+        "value": 0.1,
+        "count": 40
+      },
+      {
+        "species": "GOFA",
+        "year": 2021,
+        "value": 0.005,
+        "count": 2
+      },
+      {
+        "species": "GOFA",
+        "year": 2022,
+        "value": 0.055,
+        "count": 22
+      },
+      {
+        "species": "GOFA",
+        "year": 2023,
+        "value": 0.102,
+        "count": 41
+      },
+      {
+        "species": "GOFA",
+        "year": 2024,
+        "value": 0.858,
+        "count": 343
+      },
+      {
+        "species": "LEAR",
+        "year": 2012,
+        "value": 1.0,
+        "count": 1229
+      },
+      {
+        "species": "LEAR",
+        "year": 2013,
+        "value": 0.28,
+        "count": 344
+      },
+      {
+        "species": "LEAR",
+        "year": 2014,
+        "value": 0.015,
+        "count": 18
+      },
+      {
+        "species": "LEAR",
+        "year": 2015,
+        "value": 0.001,
+        "count": 1
+      },
+      {
+        "species": "LEAR",
+        "year": 2016,
+        "value": 0.011,
+        "count": 13
+      },
+      {
+        "species": "LEAR",
+        "year": 2017,
+        "value": 0.009,
+        "count": 11
+      },
+      {
+        "species": "LEAR",
+        "year": 2018,
+        "value": 0.007,
+        "count": 9
+      },
+      {
+        "species": "LEAR",
+        "year": 2019,
+        "value": 0.026,
+        "count": 32
+      },
+      {
+        "species": "LEAR",
+        "year": 2020,
+        "value": 0.007,
+        "count": 9
+      },
+      {
+        "species": "LEAR",
+        "year": 2021,
+        "value": 0.019,
+        "count": 23
+      },
+      {
+        "species": "LEAR",
+        "year": 2022,
+        "value": 0.002,
+        "count": 2
+      },
+      {
+        "species": "LEAR",
+        "year": 2023,
+        "value": 0.009,
+        "count": 11
+      },
+      {
+        "species": "LEAR",
+        "year": 2024,
+        "value": 0.013,
+        "count": 16
+      },
+      {
+        "species": "PACA",
+        "year": 2012,
+        "value": 0.073,
+        "count": 11
+      },
+      {
+        "species": "PACA",
+        "year": 2013,
+        "value": 0.113,
+        "count": 17
+      },
+      {
+        "species": "PACA",
+        "year": 2014,
+        "value": 0.207,
+        "count": 31
+      },
+      {
+        "species": "PACA",
+        "year": 2015,
+        "value": 0.18,
+        "count": 27
+      },
+      {
+        "species": "PACA",
+        "year": 2016,
+        "value": 0.78,
+        "count": 117
+      },
+      {
+        "species": "PACA",
+        "year": 2017,
+        "value": 0.547,
+        "count": 82
+      },
+      {
+        "species": "PACA",
+        "year": 2018,
+        "value": 1.0,
+        "count": 150
+      },
+      {
+        "species": "PACA",
+        "year": 2019,
+        "value": 0.487,
+        "count": 73
+      },
+      {
+        "species": "PACA",
+        "year": 2020,
+        "value": 0.153,
+        "count": 23
+      },
+      {
+        "species": "PACA",
+        "year": 2021,
+        "value": 0.233,
+        "count": 35
+      },
+      {
+        "species": "PACA",
+        "year": 2022,
+        "value": 0.193,
+        "count": 29
+      },
+      {
+        "species": "PACA",
+        "year": 2023,
+        "value": 0.393,
+        "count": 59
+      },
+      {
+        "species": "PACA",
+        "year": 2024,
+        "value": 0.547,
+        "count": 82
+      },
+      {
+        "species": "PAMA",
+        "year": 2012,
+        "value": 0.0,
+        "count": 0
+      },
+      {
+        "species": "PAMA",
+        "year": 2013,
+        "value": 0.027,
+        "count": 4
+      },
+      {
+        "species": "PAMA",
+        "year": 2014,
+        "value": 0.047,
+        "count": 7
+      },
+      {
+        "species": "PAMA",
+        "year": 2015,
+        "value": 0.416,
+        "count": 62
+      },
+      {
+        "species": "PAMA",
+        "year": 2016,
+        "value": 0.034,
+        "count": 5
+      },
+      {
+        "species": "PAMA",
+        "year": 2017,
+        "value": 1.0,
+        "count": 149
+      },
+      {
+        "species": "PAMA",
+        "year": 2018,
+        "value": 0.074,
+        "count": 11
+      },
+      {
+        "species": "PAMA",
+        "year": 2019,
+        "value": 0.134,
+        "count": 20
+      },
+      {
+        "species": "PAMA",
+        "year": 2020,
+        "value": 0.007,
+        "count": 1
+      },
+      {
+        "species": "PAMA",
+        "year": 2021,
+        "value": 0.007,
+        "count": 1
+      },
+      {
+        "species": "PAMA",
+        "year": 2022,
+        "value": 0.0,
+        "count": 0
+      },
+      {
+        "species": "PAMA",
+        "year": 2023,
+        "value": 0.0,
+        "count": 0
+      },
+      {
+        "species": "PAMA",
+        "year": 2024,
+        "value": 0.0,
+        "count": 0
+      },
+      {
+        "species": "POMY",
+        "year": 2012,
+        "value": 0.345,
+        "count": 294
+      },
+      {
+        "species": "POMY",
+        "year": 2013,
+        "value": 0.475,
+        "count": 404
+      },
+      {
+        "species": "POMY",
+        "year": 2014,
+        "value": 0.1,
+        "count": 85
+      },
+      {
+        "species": "POMY",
+        "year": 2015,
+        "value": 0.024,
+        "count": 20
+      },
+      {
+        "species": "POMY",
+        "year": 2016,
+        "value": 0.059,
+        "count": 50
+      },
+      {
+        "species": "POMY",
+        "year": 2017,
+        "value": 0.353,
+        "count": 300
+      },
+      {
+        "species": "POMY",
+        "year": 2018,
+        "value": 0.161,
+        "count": 137
+      },
+      {
+        "species": "POMY",
+        "year": 2019,
+        "value": 0.467,
+        "count": 397
+      },
+      {
+        "species": "POMY",
+        "year": 2020,
+        "value": 0.135,
+        "count": 115
+      },
+      {
+        "species": "POMY",
+        "year": 2021,
+        "value": 0.438,
+        "count": 373
+      },
+      {
+        "species": "POMY",
+        "year": 2022,
+        "value": 0.108,
+        "count": 92
+      },
+      {
+        "species": "POMY",
+        "year": 2023,
+        "value": 0.503,
+        "count": 428
+      },
+      {
+        "species": "POMY",
+        "year": 2024,
+        "value": 1.0,
+        "count": 851
+      }
+    ]
+  }
+}

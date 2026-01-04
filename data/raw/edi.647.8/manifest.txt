@@ -1,0 +1,6 @@
+Manifest file for edi.647.8.zip created on Mon Dec 01 13:47:05 UTC 2025
+wetland_ts_fish_enclosure-2025-08-27_14-40-54.csv (10472286 bytes)
+wetland_ts_fish_seine-2025-08-27_14-42-14.csv (149510713 bytes)
+edi.647.8.xml (139239 bytes)
+edi.647.8.txt (78726 bytes)
+edi.647.8.report.xml (48249 bytes)

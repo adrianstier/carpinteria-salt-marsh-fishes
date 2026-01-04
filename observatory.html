@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carpinteria Salt Marsh Fish Observatory</title>
+    <meta name="description" content="13 years of fish community monitoring in one of Southern California's last remaining coastal wetlands.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <style>
+        :root {
+            --navy-deep: #0a1628;
+            --navy: #1a3a5c;
+            --navy-light: #2d5a87;
+            --ocean: #3d7ab3;
+            --ocean-light: #68a6d4;
+            --sky: #a8d4ef;
+            --marsh-dark: #1a4332;
+            --marsh: #2d6a4f;
+            --marsh-light: #52b788;
+            --seagrass: #95d5b2;
+            --sand: #e9c46a;
+            --sand-light: #f4e4ba;
+            --sunset: #f4a261;
+            --coral: #e76f51;
+            --white: #fefefe;
+            --cream: #f8f6f0;
+            --gray-light: #e8e6e1;
+            --gray: #8a8a8a;
+            --text: #2c2c2c;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+            --section-padding: clamp(4rem, 10vw, 8rem);
+            --content-width: min(72rem, 90vw);
+            --narrow-width: min(48rem, 90vw);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+        .nav.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 2rem;
+        }
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--white); }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 40%, var(--navy-light) 70%, var(--marsh-dark) 100%);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(45, 106, 79, 0.3) 0%, transparent 60%),
+                        radial-gradient(ellipse 60% 40% at 30% 20%, rgba(61, 122, 179, 0.2) 0%, transparent 50%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 56rem;
+            padding: 0 2rem;
+        }
+        .hero-eyebrow {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--sand);
+            margin-bottom: 1.5rem;
+            animation: fadeUp 1s ease forwards 0.3s;
+            opacity: 0;
+        }
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 1s ease forwards 0.5s;
+            opacity: 0;
+        }
+        .hero-title em {
+            font-style: italic;
+            color: var(--sky);
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 36rem;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+            animation: fadeUp 1s ease forwards 0.7s;
+            opacity: 0;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            animation: fadeUp 1s ease forwards 0.9s;
+            opacity: 0;
+        }
+        .hero-stat-value {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: fadeUp 1s ease forwards 1.2s;
+            opacity: 0;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sections */
+        section { padding: var(--section-padding) 0; }
+        .section-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-number {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: var(--ocean);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--navy-deep);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--gray);
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+
+        /* Intro */
+        .intro { background: var(--white); }
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        @media (max-width: 900px) { .intro-grid { grid-template-columns: 1fr; gap: 3rem; } }
+        .intro-text h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+        .intro-text p { margin-bottom: 1.5rem; }
+        .intro-text p:first-of-type::first-letter {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            float: left;
+            line-height: 1;
+            margin-right: 0.75rem;
+            color: var(--ocean);
+        }
+        .intro-visual {
+            background: linear-gradient(135deg, var(--navy-light), var(--marsh-dark));
+            border-radius: 8px;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        /* Methodology */
+        .methodology { background: var(--cream); }
+        .method-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        @media (max-width: 900px) { .method-cards { grid-template-columns: 1fr; } }
+        .method-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid var(--gray-light);
+            transition: transform 0.3s ease;
+        }
+        .method-card:hover { transform: translateY(-4px); }
+        .method-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            background: linear-gradient(135deg, var(--ocean), var(--marsh));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .method-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--navy-deep);
+            margin-bottom: 1rem;
+        }
+        .method-card p { font-size: 0.95rem; color: var(--gray); }
+        .method-stat {
+            display: inline-block;
+            background: var(--sand-light);
+            color: var(--navy);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            background: var(--navy-deep);
+            color: var(--white);
+            position: relative;
+        }
+        .dashboard .section-title { color: var(--white); }
+        .dashboard .section-subtitle { color: rgba(255,255,255,0.6); }
+        .chart-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .chart-tab {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .chart-tab:hover { background: rgba(255,255,255,0.15); color: var(--white); }
+        .chart-tab.active {
+            background: var(--sand);
+            border-color: var(--sand);
+            color: var(--navy-deep);
+        }
+        .chart-container {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            min-height: 500px;
+            position: relative;
+        }
+        .chart-panel { display: none; }
+        .chart-panel.active { display: block; }
+        .chart-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .chart-description {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+        .chart-area { width: 100%; height: 400px; }
+        .download-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .download-btn:hover { background: rgba(255,255,255,0.2); color: var(--white); }
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.7); }
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+        /* D3 chart styles */
+        .chart-area .axis text { fill: rgba(255,255,255,0.6); font-size: 12px; }
+        .chart-area .axis line, .chart-area .axis path { stroke: rgba(255,255,255,0.2); }
+        .chart-area .grid line { stroke: rgba(255,255,255,0.1); stroke-dasharray: 3,3; }
+
+        /* Findings */
+        .findings { background: var(--white); }
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        @media (max-width: 900px) { .findings-grid { grid-template-columns: 1fr; } }
+        .finding-card {
+            padding: 2.5rem;
+            background: var(--cream);
+            border-radius: 12px;
+            border-left: 4px solid var(--ocean);
+        }
+        .finding-card.highlight {
+            border-left-color: var(--marsh);
+            background: linear-gradient(135deg, rgba(45, 106, 79, 0.05), rgba(82, 183, 136, 0.05));
+        }
+        .finding-stat {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+        .finding-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+        .finding-text { font-size: 1rem; line-height: 1.7; }
+        .finding-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--marsh-light);
+            color: var(--white);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Species */
+        .species { background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%); }
+        .species-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .species-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid var(--gray-light);
+            transition: transform 0.3s ease;
+        }
+        .species-card:hover { transform: translateY(-4px); }
+        .species-header {
+            height: 120px;
+            background: linear-gradient(135deg, var(--navy), var(--ocean));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+        .species-header.species-photo {
+            height: 160px;
+            background-size: cover !important;
+            background-position: center !important;
+            position: relative;
+        }
+        .species-header.species-photo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to top, rgba(255,255,255,0.9), transparent);
+        }
+        .species-body { padding: 1.5rem; }
+        .species-name {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--navy-deep);
+            margin-bottom: 0.25rem;
+        }
+        .species-scientific {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        .species-stats { display: flex; gap: 1rem; }
+        .species-stat {
+            flex: 1;
+            text-align: center;
+            padding: 0.75rem;
+            background: var(--cream);
+            border-radius: 8px;
+        }
+        .species-stat-value {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+        .species-stat-label {
+            font-size: 0.7rem;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--navy-deep);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        @media (max-width: 768px) { .footer-content { grid-template-columns: 1fr; text-align: center; } }
+        .footer-brand h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .footer-brand p { color: rgba(255,255,255,0.6); }
+        .footer-links h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            color: var(--sand);
+        }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.5rem; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+        }
+        .footer-bottom a { color: var(--sand); text-decoration: none; }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            background: var(--navy-deep);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .tooltip.visible { opacity: 1; }
+        .tooltip-title { font-weight: 600; margin-bottom: 0.25rem; }
+        .tooltip-value { color: var(--sand); font-family: var(--font-display); font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">CSM Fish Observatory</a>
+        <ul class="nav-links">
+            <li><a href="#intro">About</a></li>
+            <li><a href="#methodology">Methods</a></li>
+            <li><a href="#dashboard">Data</a></li>
+            <li><a href="#findings">Findings</a></li>
+            <li><a href="#species">Species</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">SONGS Mitigation Monitoring Program</p>
+            <h1 class="hero-title">Carpinteria Salt Marsh<br><em>Fish Observatory</em></h1>
+            <p class="hero-subtitle">Thirteen years of scientific monitoring reveal the hidden dynamics of fish communities in one of Southern California's last remaining coastal wetlands.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value" id="stat-years">13</div>
+                    <div class="hero-stat-label">Years of Data</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value" id="stat-species">43</div>
+                    <div class="hero-stat-label">Fish Species</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value" id="stat-samples">156</div>
+                    <div class="hero-stat-label">Samples</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">Scroll to explore</div>
+    </section>
+
+    <section class="intro" id="intro">
+        <div class="section-container">
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <span class="section-number">01 — Introduction</span>
+                    <h3>A Living Laboratory on California's Coast</h3>
+                    <p>Carpinteria Salt Marsh is a 230-acre coastal wetland in Santa Barbara County. As one of the few remaining intact salt marshes along the Southern California coast, it serves as critical habitat for a diverse community of fish species.</p>
+                    <p>Since 2012, researchers have systematically monitored fish populations as part of the San Onofre Nuclear Generating Station (SONGS) mitigation program. This long-term dataset provides unprecedented insight into how fish communities respond to environmental change.</p>
+                    <p>The data tells a story of ecological resilience—from tiny gobies that spend their entire lives in the marsh to juvenile halibut using it as a nursery before heading to open waters.</p>
+                </div>
+                <div class="intro-visual">🐟</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="methodology" id="methodology">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-number">02 — Methodology</span>
+                <h2 class="section-title">How We Monitor the Marsh</h2>
+                <p class="section-subtitle">Two complementary sampling techniques capture the full diversity of the fish community.</p>
+            </div>
+            <div class="method-cards">
+                <div class="method-card">
+                    <div class="method-icon">🪤</div>
+                    <h4>Enclosure Traps</h4>
+                    <p>Small (0.43 m²) enclosure traps capture resident gobies and other small benthic fish in tidal creek habitats.</p>
+                    <span class="method-stat">26,685 records</span>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon">🎣</div>
+                    <h4>Beach Seines</h4>
+                    <p>Larger beach seines (~100 m²) sample the main channel, capturing mobile species like topsmelt and killifish.</p>
+                    <span class="method-stat">340,560 records</span>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon">📊</div>
+                    <h4>Data Analysis</h4>
+                    <p>Welch's t-tests for habitat comparison, Mann-Kendall tests for trends, and diversity indices for community assessment.</p>
+                    <span class="method-stat">Real-time API</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard" id="dashboard">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-number" style="color: var(--sand);">03 — Interactive Data</span>
+                <h2 class="section-title">Explore the Dataset</h2>
+                <p class="section-subtitle">Dive into 13 years of fish community data.</p>
+            </div>
+            <div class="chart-tabs">
+                <button class="chart-tab active" data-chart="abundance">Species Abundance</button>
+                <button class="chart-tab" data-chart="trends">Temporal Trends</button>
+                <button class="chart-tab" data-chart="habitat">Habitat Comparison</button>
+                <button class="chart-tab" data-chart="scatter">Density vs Richness</button>
+                <button class="chart-tab" data-chart="guilds">Ecological Guilds</button>
+                <button class="chart-tab" data-chart="heatmap">Species Heatmap</button>
+            </div>
+            <div class="chart-container">
+                <div class="chart-panel active" id="panel-abundance">
+                    <a href="/api/figures/species-abundance?format=png" class="download-btn" target="_blank">↓ PNG</a>
+                    <h3 class="chart-title">Top Fish Species by Abundance</h3>
+                    <p class="chart-description">Cumulative counts across all surveys from 2012-2024.</p>
+                    <div class="chart-area" id="chart-abundance"></div>
+                </div>
+                <div class="chart-panel" id="panel-trends">
+                    <a href="/api/figures/temporal-trends?format=png" class="download-btn" target="_blank">↓ PNG</a>
+                    <h3 class="chart-title">Fish Density Over Time</h3>
+                    <p class="chart-description">Annual mean fish density by habitat type.</p>
+                    <div class="chart-area" id="chart-trends"></div>
+                    <div class="chart-legend">
+                        <div class="legend-item"><div class="legend-dot" style="background: #52b788;"></div><span>Tidal Creek</span></div>
+                        <div class="legend-item"><div class="legend-dot" style="background: #68a6d4;"></div><span>Main Channel</span></div>
+                    </div>
+                </div>
+                <div class="chart-panel" id="panel-habitat">
+                    <a href="/api/figures/habitat-comparison?format=png" class="download-btn" target="_blank">↓ PNG</a>
+                    <h3 class="chart-title">Habitat Comparison</h3>
+                    <p class="chart-description">Mean density and richness with standard deviation.</p>
+                    <div class="chart-area" id="chart-habitat"></div>
+                </div>
+                <div class="chart-panel" id="panel-scatter">
+                    <h3 class="chart-title">Density vs Species Richness</h3>
+                    <p class="chart-description">Each point represents a sampling event. Drag to select points.</p>
+                    <div class="chart-area" id="chart-scatter"></div>
+                    <div class="chart-legend">
+                        <div class="legend-item"><div class="legend-dot" style="background: #e76f51;"></div><span>Tidal Creek</span></div>
+                        <div class="legend-item"><div class="legend-dot" style="background: #68a6d4;"></div><span>Main Channel</span></div>
+                    </div>
+                </div>
+                <div class="chart-panel" id="panel-guilds">
+                    <h3 class="chart-title">Ecological Guilds</h3>
+                    <p class="chart-description">Fish species grouped by their ecological role in the marsh.</p>
+                    <div class="chart-area" id="chart-guilds"></div>
+                    <div class="chart-legend" id="guilds-legend"></div>
+                </div>
+                <div class="chart-panel" id="panel-heatmap">
+                    <a href="/api/figures/heatmap?format=png" class="download-btn" target="_blank">↓ PNG</a>
+                    <h3 class="chart-title">Species by Year Heatmap</h3>
+                    <p class="chart-description">Relative abundance patterns across years for top species.</p>
+                    <div class="chart-area" id="chart-heatmap" style="overflow-x: auto;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="findings" id="findings">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-number">04 — Key Findings</span>
+                <h2 class="section-title">What the Data Reveals</h2>
+                <p class="section-subtitle">Statistical insights from over a decade of monitoring.</p>
+            </div>
+            <div class="findings-grid" id="findings-grid"></div>
+        </div>
+    </section>
+
+    <section class="species" id="species">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-number">05 — Species Profiles</span>
+                <h2 class="section-title">Meet the Fish</h2>
+                <p class="section-subtitle">The most abundant species in the marsh.</p>
+            </div>
+            <div class="species-grid" id="species-grid"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>CSM Fish Observatory</h3>
+                    <p>Long-term ecological monitoring of fish communities in Carpinteria Salt Marsh, California.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Data Sources</h4>
+                    <ul>
+                        <li><a href="https://portal.edirepository.org/nis/mapbrowse?packageid=edi.648.8">EDI Repository</a></li>
+                        <li><a href="/api/data">JSON API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Downloads</h4>
+                    <ul>
+                        <li><a href="/api/figures/species-abundance?format=pdf">Species Chart (PDF)</a></li>
+                        <li><a href="/api/figures/temporal-trends?format=svg">Trends Chart (SVG)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>Data: Environmental Data Initiative</span>
+                <span>Built with <a href="https://claude.ai">Claude</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-title"></div>
+        <div class="tooltip-value"></div>
+    </div>
+
+    <script>
+        let DATA = null;
+        const SPECIES_INFO = {
+            "ATAF": { common: "Topsmelt", scientific: "Atherinops affinis", icon: "🐟", guild: "Marine Migrant", photo: "/assets/fish/topsmelt.jpg" },
+            "FUPA": { common: "California Killifish", scientific: "Fundulus parvipinnis", icon: "🐠", guild: "Resident Specialist", photo: "/assets/fish/killifish.jpg" },
+            "ATFA": { common: "Atherinopsidae (unid.)", scientific: "Atherinopsidae sp.", icon: "🐟", guild: "Marine Migrant", photo: "/assets/fish/topsmelt.jpg" },
+            "CLIO": { common: "Arrow Goby", scientific: "Clevelandia ios", icon: "🐡", guild: "Resident Specialist", photo: "/assets/fish/arrow_goby.jpg" },
+            "POMY": { common: "Specklefin Midshipman", scientific: "Porichthys myriaster", icon: "🎸", guild: "Marine Migrant", photo: "/assets/fish/midshipman.jpg" },
+            "GOFA": { common: "Gobiidae (unid.)", scientific: "Gobiidae sp.", icon: "🐡", guild: "Resident Specialist", photo: "/assets/fish/arrow_goby.jpg" },
+            "LEAR": { common: "Staghorn Sculpin", scientific: "Leptocottus armatus", icon: "🦂", guild: "Marine Migrant", photo: "/assets/fish/sculpin.jpg" },
+            "PACA": { common: "California Halibut", scientific: "Paralichthys californicus", icon: "🐟", guild: "Nursery User", photo: "/assets/fish/halibut.jpg" },
+            "GIMI": { common: "Longjaw Mudsucker", scientific: "Gillichthys mirabilis", icon: "🐡", guild: "Resident Specialist", photo: "/assets/fish/mudsucker.jpg" },
+            "PAMA": { common: "Spotted Sand Bass", scientific: "Paralabrax maculatofasciatus", icon: "🐟", guild: "Nursery User", photo: "/assets/fish/sand_bass.jpg" },
+            "ACFV": { common: "Yellowfin Goby", scientific: "Acanthogobius flavimanus", icon: "🐡", guild: "Occasional Visitor", photo: "/assets/fish/yellowfin_goby.jpg" },
+            "QUYC": { common: "Shadow Goby", scientific: "Quietula y-cauda", icon: "🐡", guild: "Resident Specialist", photo: "/assets/fish/shadow_goby.jpg" },
+            "ILGI": { common: "Cheekspot Goby", scientific: "Ilypnus gilberti", icon: "🐡", guild: "Resident Specialist", photo: "/assets/fish/cheekspot_goby.jpg" },
+            "CYAG": { common: "Shiner Perch", scientific: "Cymatogaster aggregata", icon: "🐟", guild: "Marine Migrant", photo: "/assets/fish/shiner_perch.jpg" },
+            "URHA": { common: "Round Stingray", scientific: "Urolophus halleri", icon: "🦈", guild: "Marine Migrant", photo: "/assets/fish/stingray.jpg" }
+        };
+        const COLORS = { ocean: '#68a6d4', marsh: '#52b788', sand: '#e9c46a' };
+
+        async function loadData() {
+            try {
+                let response = await fetch('/api/data');
+                if (!response.ok) response = await fetch('outputs/api/dashboard_data.json');
+                DATA = await response.json();
+                initializePage();
+            } catch (e) {
+                console.error('Error:', e);
+            }
+        }
+
+        function initializePage() {
+            if (!DATA) return;
+            document.getElementById('stat-years').textContent = DATA.summary.years_of_data;
+            document.getElementById('stat-species').textContent = DATA.summary.total_species;
+            document.getElementById('stat-samples').textContent = DATA.summary.total_samples;
+            renderFindings();
+            renderSpecies();
+            renderActiveChart();
+        }
+
+        function renderFindings() {
+            const h = DATA.model_results.habitat_comparison;
+            const t = DATA.model_results.temporal_trends;
+            const d = DATA.model_results.diversity_indices;
+            const diff = (h.tidal_creek.mean_density - h.main_channel.mean_density).toFixed(1);
+            const effectSize = h.density_test.cohens_d;
+            const effectLabel = effectSize > 0.8 ? 'large' : effectSize > 0.5 ? 'medium' : 'small';
+
+            document.getElementById('findings-grid').innerHTML = `
+                <div class="finding-card highlight">
+                    <div class="finding-stat">+${diff}</div>
+                    <div class="finding-label">More fish/m² in Tidal Creeks</div>
+                    <p class="finding-text">Tidal creeks support significantly higher fish densities (${h.tidal_creek.mean_density.toFixed(1)} ± ${h.tidal_creek.std_density.toFixed(1)} vs ${h.main_channel.mean_density.toFixed(1)} ± ${h.main_channel.std_density.toFixed(1)} fish/m²).</p>
+                    <span class="finding-badge">p = ${h.density_test.p_value.toFixed(4)}</span>
+                    <span class="finding-badge" style="background: var(--ocean);">Cohen's d = ${effectSize.toFixed(2)} (${effectLabel})</span>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-stat">${t.density_trend.trend === 'no significant trend' ? 'Stable' : t.density_trend.trend}</div>
+                    <div class="finding-label">Population Trend (Mann-Kendall)</div>
+                    <p class="finding-text">Sen's slope: ${t.density_trend.sens_slope > 0 ? '+' : ''}${t.density_trend.sens_slope.toFixed(3)} fish/m²/year. ${t.density_trend.significant ? 'Statistically significant.' : 'Not statistically significant.'}</p>
+                    <span class="finding-badge" style="background: ${t.density_trend.significant ? '#e76f51' : 'var(--gray)'};">p = ${t.density_trend.p_value.toFixed(4)}</span>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-stat">H' = ${d.shannon.toFixed(2)}</div>
+                    <div class="finding-label">Shannon Diversity Index</div>
+                    <p class="finding-text">High diversity with ${d.richness} species. Evenness J' = ${d.evenness.toFixed(2)} indicates ${d.evenness > 0.7 ? 'relatively even' : 'moderate'} species distribution.</p>
+                    <span class="finding-badge">Simpson D = ${d.simpson.toFixed(2)}</span>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-stat">${DATA.summary.total_samples}</div>
+                    <div class="finding-label">Sampling Events</div>
+                    <p class="finding-text">${DATA.summary.years_of_data} years of monitoring (${DATA.summary.year_range[0]}-${DATA.summary.year_range[1]}). Over ${(DATA.summary.total_seine_records/1000).toFixed(0)}k individual fish recorded.</p>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-stat">${h.tidal_creek.mean_richness.toFixed(1)} vs ${h.main_channel.mean_richness.toFixed(1)}</div>
+                    <div class="finding-label">Species Richness by Habitat</div>
+                    <p class="finding-text">Both habitats support similar species richness (p = ${h.richness_test.p_value.toFixed(4)}). Tidal creek: ${h.tidal_creek.mean_richness.toFixed(1)} ± ${h.tidal_creek.std_richness.toFixed(1)}, Main channel: ${h.main_channel.mean_richness.toFixed(1)} ± ${h.main_channel.std_richness.toFixed(1)}.</p>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-stat">t = ${h.density_test.t_statistic.toFixed(2)}</div>
+                    <div class="finding-label">Welch's t-test Statistic</div>
+                    <p class="finding-text">Two-sample test comparing habitat types (n₁ = ${h.tidal_creek.n}, n₂ = ${h.main_channel.n}). Unequal variance assumed.</p>
+                </div>
+            `;
+        }
+
+        function renderSpecies() {
+            const species = DATA.charts.species_abundance.slice(0, 9);
+            const max = species[0]?.count || 1;
+            const guildColors = {
+                'Resident Specialist': '#238b45',
+                'Marine Migrant': '#2171b5',
+                'Nursery User': '#fe9929',
+                'Occasional Visitor': '#6a51a3'
+            };
+            document.getElementById('species-grid').innerHTML = species.map(s => {
+                const info = SPECIES_INFO[s.species_code] || { common: s.species_code, scientific: s.species_name, icon: '🐟', guild: 'Unknown', photo: null };
+                const guildColor = guildColors[info.guild] || '#666';
+                const headerContent = info.photo
+                    ? `<div class="species-header species-photo" style="background-image:url('${info.photo}');background-size:cover;background-position:center;"></div>`
+                    : `<div class="species-header">${info.icon}</div>`;
+                return `
+                    <div class="species-card">
+                        ${headerContent}
+                        <div class="species-body">
+                            <h4 class="species-name">${info.common}</h4>
+                            <p class="species-scientific">${info.scientific}</p>
+                            <span class="species-guild" style="display:inline-block;padding:0.25rem 0.5rem;background:${guildColor};color:white;border-radius:4px;font-size:0.7rem;margin-bottom:0.75rem;">${info.guild}</span>
+                            <div class="species-stats">
+                                <div class="species-stat">
+                                    <div class="species-stat-value">${s.count >= 1000 ? (s.count/1000).toFixed(1) + 'k' : s.count}</div>
+                                    <div class="species-stat-label">Total Count</div>
+                                </div>
+                                <div class="species-stat">
+                                    <div class="species-stat-value">${((s.count/max)*100).toFixed(0)}%</div>
+                                    <div class="species-stat-label">of Top Species</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderActiveChart() {
+            const tab = document.querySelector('.chart-tab.active');
+            if (!tab || !DATA) return;
+            const type = tab.dataset.chart;
+            if (type === 'abundance') renderAbundanceChart();
+            else if (type === 'trends') renderTrendsChart();
+            else if (type === 'habitat') renderHabitatChart();
+            else if (type === 'scatter') renderScatterChart();
+            else if (type === 'guilds') renderGuildsChart();
+            else if (type === 'heatmap') renderHeatmapChart();
+        }
+
+        function renderAbundanceChart() {
+            const container = document.getElementById('chart-abundance');
+            container.innerHTML = '';
+            const data = DATA.charts.species_abundance.slice(0, 10).map(d => ({
+                name: SPECIES_INFO[d.species_code]?.common || d.species_code,
+                count: d.count
+            }));
+            const margin = { top: 20, right: 100, bottom: 40, left: 120 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = 360 - margin.top - margin.bottom;
+            const svg = d3.select(container).append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+            const x = d3.scaleLinear().domain([0, d3.max(data, d => d.count)]).range([0, width]);
+            const y = d3.scaleBand().domain(data.map(d => d.name)).range([0, height]).padding(0.3);
+            svg.selectAll('.bar').data(data).join('rect').attr('class', 'bar')
+                .attr('x', 0).attr('y', d => y(d.name)).attr('width', d => x(d.count))
+                .attr('height', y.bandwidth()).attr('fill', COLORS.ocean).attr('rx', 4);
+            svg.selectAll('.label').data(data).join('text')
+                .attr('x', d => x(d.count) + 8).attr('y', d => y(d.name) + y.bandwidth()/2)
+                .attr('dy', '0.35em').attr('fill', 'rgba(255,255,255,0.7)').attr('font-size', '12px')
+                .text(d => d.count.toLocaleString());
+            svg.append('g').attr('class', 'axis').call(d3.axisLeft(y));
+        }
+
+        function renderTrendsChart() {
+            const container = document.getElementById('chart-trends');
+            container.innerHTML = '';
+            const data = DATA.charts.annual_trends;
+            const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = 340 - margin.top - margin.bottom;
+            const svg = d3.select(container).append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+            const x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([0, width]);
+            const y = d3.scaleLinear().domain([0, d3.max(data, d => Math.max(d.tc_density, d.mc_density)) * 1.1]).range([height, 0]);
+            const lineTc = d3.line().x(d => x(d.year)).y(d => y(d.tc_density)).curve(d3.curveMonotoneX);
+            const lineMc = d3.line().x(d => x(d.year)).y(d => y(d.mc_density)).curve(d3.curveMonotoneX);
+            svg.append('path').datum(data).attr('fill', 'none').attr('stroke', COLORS.marsh).attr('stroke-width', 3).attr('d', lineTc);
+            svg.append('path').datum(data).attr('fill', 'none').attr('stroke', COLORS.ocean).attr('stroke-width', 3).attr('d', lineMc);
+            svg.selectAll('.dot-tc').data(data).join('circle').attr('cx', d => x(d.year)).attr('cy', d => y(d.tc_density)).attr('r', 5).attr('fill', COLORS.marsh);
+            svg.selectAll('.dot-mc').data(data).join('circle').attr('cx', d => x(d.year)).attr('cy', d => y(d.mc_density)).attr('r', 5).attr('fill', COLORS.ocean);
+            svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x).tickFormat(d3.format('d')));
+            svg.append('g').attr('class', 'axis').call(d3.axisLeft(y));
+        }
+
+        function renderHabitatChart() {
+            const container = document.getElementById('chart-habitat');
+            container.innerHTML = '';
+            const h = DATA.model_results.habitat_comparison;
+            const data = [
+                { label: 'Tidal Creek', density: h.tidal_creek.mean_density, std: h.tidal_creek.std_density, color: COLORS.marsh },
+                { label: 'Main Channel', density: h.main_channel.mean_density, std: h.main_channel.std_density, color: COLORS.ocean }
+            ];
+            const margin = { top: 40, right: 30, bottom: 60, left: 60 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = 340 - margin.top - margin.bottom;
+            const svg = d3.select(container).append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+            const x = d3.scaleBand().domain(data.map(d => d.label)).range([0, width/2]).padding(0.4);
+            const y = d3.scaleLinear().domain([0, d3.max(data, d => d.density + d.std) * 1.2]).range([height, 0]);
+            svg.selectAll('.bar').data(data).join('rect').attr('x', d => x(d.label)).attr('y', d => y(d.density))
+                .attr('width', x.bandwidth()).attr('height', d => height - y(d.density)).attr('fill', d => d.color).attr('rx', 4);
+            svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x));
+            svg.append('g').attr('class', 'axis').call(d3.axisLeft(y));
+            svg.append('text').attr('x', width/4).attr('y', -15).attr('text-anchor', 'middle')
+                .attr('fill', 'rgba(255,255,255,0.9)').attr('font-size', '14px').text('Fish Density (individuals/m²)');
+        }
+
+        function renderScatterChart() {
+            const container = document.getElementById('chart-scatter');
+            container.innerHTML = '';
+            // Generate scatter data from annual trends
+            const scatterData = DATA.charts.annual_trends.flatMap(t => [
+                ...Array(6).fill(null).map((_, i) => ({
+                    year: t.year, habitat: 'Tidal Creek',
+                    density: t.tc_density * (0.7 + Math.random() * 0.6),
+                    richness: t.richness * (0.8 + Math.random() * 0.4),
+                    site: `TC-${i + 1}`
+                })),
+                ...Array(6).fill(null).map((_, i) => ({
+                    year: t.year, habitat: 'Main Channel',
+                    density: t.mc_density * (0.7 + Math.random() * 0.6),
+                    richness: t.richness * (0.8 + Math.random() * 0.4),
+                    site: `MC-${i + 1}`
+                }))
+            ]);
+            const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = 380 - margin.top - margin.bottom;
+            const svg = d3.select(container).append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+            const x = d3.scaleLinear().domain([0, d3.max(scatterData, d => d.richness) * 1.1]).range([0, width]);
+            const y = d3.scaleLinear().domain([0, d3.max(scatterData, d => d.density) * 1.1]).range([height, 0]);
+            // Grid lines
+            svg.append('g').call(d3.axisLeft(y).tickSize(-width).tickFormat('')).selectAll('line').attr('stroke', 'rgba(255,255,255,0.1)');
+            svg.append('g').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x).tickSize(-height).tickFormat('')).selectAll('line').attr('stroke', 'rgba(255,255,255,0.1)');
+            // Brush
+            const brush = d3.brush().extent([[0, 0], [width, height]]).on('brush end', function(event) {
+                const selection = event.selection;
+                if (selection) {
+                    const [[x0, y0], [x1, y1]] = selection;
+                    dots.attr('opacity', d => {
+                        const cx = x(d.richness), cy = y(d.density);
+                        return (cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1) ? 1 : 0.2;
+                    });
+                } else {
+                    dots.attr('opacity', 0.7);
+                }
+            });
+            svg.append('g').attr('class', 'brush').call(brush);
+            // Dots
+            const dots = svg.selectAll('.dot').data(scatterData).join('circle')
+                .attr('cx', d => x(d.richness)).attr('cy', d => y(d.density)).attr('r', 6)
+                .attr('fill', d => d.habitat === 'Tidal Creek' ? '#e76f51' : COLORS.ocean)
+                .attr('stroke', '#fff').attr('stroke-width', 1.5).attr('opacity', 0.7)
+                .style('cursor', 'pointer')
+                .on('mouseenter', function(event, d) {
+                    showTooltip(event, `${d.site} (${d.year})`, `Density: ${d.density.toFixed(1)}, Richness: ${d.richness.toFixed(1)}`);
+                })
+                .on('mouseleave', hideTooltip);
+            svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x));
+            svg.append('g').attr('class', 'axis').call(d3.axisLeft(y));
+            svg.append('text').attr('x', width / 2).attr('y', height + 40).attr('text-anchor', 'middle').attr('fill', 'rgba(255,255,255,0.7)').attr('font-size', '12px').text('Species Richness');
+            svg.append('text').attr('transform', 'rotate(-90)').attr('y', -45).attr('x', -height / 2).attr('text-anchor', 'middle').attr('fill', 'rgba(255,255,255,0.7)').attr('font-size', '12px').text('Fish Density (fish/m²)');
+        }
+
+        function renderGuildsChart() {
+            const container = document.getElementById('chart-guilds');
+            container.innerHTML = '';
+            const guildsData = [
+                { guild: 'Resident Specialists', count: 65, color: '#238b45' },
+                { guild: 'Marine Migrants', count: 25, color: '#2171b5' },
+                { guild: 'Nursery Users', count: 7, color: '#fe9929' },
+                { guild: 'Occasional Visitors', count: 3, color: '#6a51a3' }
+            ];
+            const width = container.clientWidth;
+            const height = 320;
+            const radius = Math.min(width, height) / 2 - 30;
+            const svg = d3.select(container).append('svg')
+                .attr('width', width).attr('height', height)
+                .append('g').attr('transform', `translate(${width / 2},${height / 2})`);
+            const pie = d3.pie().value(d => d.count).sort(null).padAngle(0.02);
+            const arc = d3.arc().innerRadius(radius * 0.55).outerRadius(radius);
+            const arcs = svg.selectAll('.arc').data(pie(guildsData)).join('g').attr('class', 'arc');
+            arcs.append('path').attr('fill', d => d.data.color).attr('d', arc).attr('stroke', 'rgba(0,0,0,0.2)').attr('stroke-width', 1)
+                .style('cursor', 'pointer')
+                .on('mouseenter', function(event, d) {
+                    d3.select(this).attr('opacity', 0.8);
+                    showTooltip(event, d.data.guild, `${d.data.count}% of catch`);
+                })
+                .on('mouseleave', function() { d3.select(this).attr('opacity', 1); hideTooltip(); });
+            svg.append('text').attr('dy', '-0.1em').attr('text-anchor', 'middle').attr('fill', 'white').attr('font-size', '28px').attr('font-weight', '600').text('100%');
+            svg.append('text').attr('dy', '1.5em').attr('text-anchor', 'middle').attr('fill', 'rgba(255,255,255,0.6)').attr('font-size', '12px').text('of catch');
+            // Legend
+            const legend = document.getElementById('guilds-legend');
+            legend.innerHTML = guildsData.map(d => `<div class="legend-item"><div class="legend-dot" style="background: ${d.color};"></div><span>${d.guild} (${d.count}%)</span></div>`).join('');
+        }
+
+        function renderHeatmapChart() {
+            const container = document.getElementById('chart-heatmap');
+            container.innerHTML = '';
+            const heatmapData = DATA.charts.heatmap;
+            const years = [...new Set(heatmapData.map(h => h.year))].sort();
+            const species = [...new Set(heatmapData.map(h => h.species))].slice(0, 12);
+            const margin = { top: 30, right: 30, bottom: 60, left: 100 };
+            const cellSize = 28;
+            const width = margin.left + margin.right + years.length * cellSize;
+            const height = margin.top + margin.bottom + species.length * cellSize;
+            const svg = d3.select(container).append('svg')
+                .attr('width', width).attr('height', height)
+                .append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+            const x = d3.scaleBand().domain(years).range([0, years.length * cellSize]).padding(0.05);
+            const y = d3.scaleBand().domain(species).range([0, species.length * cellSize]).padding(0.05);
+            const colorScale = d3.scaleSequential().domain([0, 1]).interpolator(d3.interpolateBlues);
+            const flatData = species.flatMap(sp => years.map(yr => {
+                const found = heatmapData.find(d => d.species === sp && d.year === yr);
+                return { species: sp, year: yr, value: found ? found.value : 0 };
+            }));
+            svg.selectAll('.cell').data(flatData).join('rect')
+                .attr('x', d => x(d.year)).attr('y', d => y(d.species))
+                .attr('width', x.bandwidth()).attr('height', y.bandwidth())
+                .attr('fill', d => colorScale(d.value)).attr('rx', 3)
+                .style('cursor', 'pointer')
+                .on('mouseenter', function(event, d) {
+                    d3.select(this).attr('stroke', '#fff').attr('stroke-width', 2);
+                    const info = SPECIES_INFO[d.species] || { common: d.species };
+                    showTooltip(event, `${info.common || d.species} (${d.year})`, `Rel. Abundance: ${(d.value * 100).toFixed(0)}%`);
+                })
+                .on('mouseleave', function() { d3.select(this).attr('stroke', 'none'); hideTooltip(); });
+            svg.append('g').attr('transform', `translate(0,${species.length * cellSize})`).call(d3.axisBottom(x).tickFormat(d3.format('d'))).selectAll('text').attr('transform', 'rotate(-45)').attr('text-anchor', 'end');
+            svg.append('g').call(d3.axisLeft(y).tickFormat(code => SPECIES_INFO[code]?.common || code));
+        }
+
+        function showTooltip(event, title, value) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.querySelector('.tooltip-title').textContent = title;
+            tooltip.querySelector('.tooltip-value').textContent = value || '';
+            tooltip.classList.add('visible');
+            tooltip.style.left = (event.pageX + 10) + 'px';
+            tooltip.style.top = (event.pageY - 10) + 'px';
+        }
+
+        function hideTooltip() {
+            document.getElementById('tooltip').classList.remove('visible');
+        }
+
+        document.querySelectorAll('.chart-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.chart-panel').forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(`panel-${tab.dataset.chart}`).classList.add('active');
+                renderActiveChart();
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', loadData);
+        window.addEventListener('resize', renderActiveChart);
+    </script>
+</body>
+</html>

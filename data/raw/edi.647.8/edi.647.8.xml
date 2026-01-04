@@ -1,0 +1,2698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml packageId="edi.647.8" system="https://pasta.edirepository.org"
+  xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0"
+  xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://nis.lternet.edu/schemas/EML/eml-2.2.0/xsd/eml.xsd">
+   <access
+    authSystem="https://pasta.edirepository.org/authentication"
+    order="allowFirst" scope="document"
+      system="https://pasta.edirepository.org">
+      <allow>
+         <principal>uid=EDI,o=EDI,dc=edirepository,dc=org</principal>
+         <permission>all</permission>
+      </allow>
+      <allow>
+         <principal>uid=dhuang,o=EDI,dc=edirepository,dc=org</principal>
+         <permission>all</permission>
+      </allow>
+      <allow>
+         <principal>public</principal>
+         <permission>read</permission>
+      </allow>
+   </access>
+   <dataset>
+      <alternateIdentifier
+      system="https://msi-norco.ucsb.edu">1-20250828141245</alternateIdentifier>
+      <alternateIdentifier
+        system="https://doi.org">doi:10.6073/pasta/643f86b3043a15cb7d597e10fcff47a2</alternateIdentifier><shortName>UCSB SONGS Wetland Survey - Fish Abundance</shortName>
+      <title>UCSB SONGS Mitigation Monitoring: Wetland Survey - Fish Abundance</title>
+      <creator>
+         <individualName>
+            <givenName>Stephen</givenName>
+            <givenName>C</givenName>
+            <surName>Schroeter</surName>
+         </individualName>
+         <address>
+            <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+            <city>Santa Barbara</city>
+            <administrativeArea>CA</administrativeArea>
+            <postalCode>93106-6150</postalCode>
+            <country>US</country>
+         </address>
+         <phone>760-438-5953</phone>
+         <electronicMailAddress>stephen.schroeter@lifesci.ucsb.edu</electronicMailAddress>
+      </creator>
+      <creator>
+         <individualName>
+            <givenName>Henry</givenName>
+            <givenName>M</givenName>
+            <surName>Page</surName>
+         </individualName>
+         <address>
+            <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+            <city>Santa Barbara</city>
+            <administrativeArea>CA</administrativeArea>
+            <postalCode>93106-6150</postalCode>
+            <country>US</country>
+         </address>
+         <phone>805-893-7568</phone>
+         <electronicMailAddress>mark.page@lifesci.ucsb.edu</electronicMailAddress>
+      </creator>
+      <creator>
+         <individualName>
+            <givenName>Daniel</givenName>
+            <givenName>C</givenName>
+            <surName>Reed</surName>
+         </individualName>
+         <address>
+            <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+            <city>Santa Barbara</city>
+            <administrativeArea>CA</administrativeArea>
+            <postalCode>93106-6150</postalCode>
+            <country>US</country>
+         </address>
+         <phone>805-893-8363</phone>
+         <electronicMailAddress>dan.reed@lifesci.ucsb.edu</electronicMailAddress>
+         <userId
+          directory="https://orcid.org/">https://orcid.org/0000-0003-3015-8717</userId>
+      </creator>
+      <creator>
+         <individualName>
+            <givenName>Kathryn</givenName>
+            <givenName>M</givenName>
+            <surName>Beheshti</surName>
+         </individualName>
+         <address>
+            <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+            <city>Santa Barbara</city>
+            <administrativeArea>CA</administrativeArea>
+            <postalCode>93106-6150</postalCode>
+            <country>US</country>
+         </address>
+         <phone>805-893-5511</phone>
+         <electronicMailAddress>katbeheshti@ucsb.edu</electronicMailAddress>
+      </creator>
+      <creator>
+         <individualName>
+            <givenName>Rachel</givenName>
+            <givenName>S</givenName>
+            <surName>Smith</surName>
+         </individualName>
+         <address>
+            <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+            <city>Santa Barbara</city>
+            <administrativeArea>CA</administrativeArea>
+            <postalCode>93106-6150</postalCode>
+            <country>US</country>
+         </address>
+         <phone>805-893-5511</phone>
+         <electronicMailAddress>rssmith@ucsb.edu</electronicMailAddress>
+      </creator>
+      <creator>
+         <individualName>
+            <givenName>David</givenName>
+            <givenName>Y</givenName>
+            <surName>Huang</surName>
+         </individualName>
+         <address>
+            <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+            <city>Santa Barbara</city>
+            <administrativeArea>CA</administrativeArea>
+            <postalCode>93106-6150</postalCode>
+            <country>US</country>
+         </address>
+         <phone>805-893-5559</phone>
+         <electronicMailAddress>davidhuang@ucsb.edu</electronicMailAddress>
+      </creator>
+      <creator>
+         <organizationName>SONGS Mitigation Monitoring</organizationName>
+         <address>
+            <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+            <city>Santa Barbara</city>
+            <administrativeArea>CA</administrativeArea>
+            <postalCode>93106</postalCode>
+            <country>USA</country>
+         </address>
+         <electronicMailAddress>songsmmp@lifesci.ucsb.edu</electronicMailAddress>
+      </creator>
+      <pubDate>2025-08-28</pubDate>
+      <language>English</language>
+      <abstract>
+         <section>
+            <para>
+        These data describe annual estimates of the density of fish in main channel and tidal creek habitats collected as part of the SONGS San Dieguito Wetland Restoration mitigation monitoring program designed to evaluate compliance of the restoration project with conditions of the SONGS permit. 
+Monitoring began in 2012 in the San Dieguito Wetlands and Tijuana Estuary in San Diego County, CA, Carpinteria Salt Marsh in Santa Barbara County, CA, and Mugu Lagoon in Ventura County, CA. 
+Beginning in 2024, Los Penasquitos Lagoon in San Diego County replaced Tijuana Estuary. 
+The abundance of fish is determined using beach seine and enclosure trap sampling at six main channel and six tidal creek locations at each wetland. 
+Both seine and enclosure trap sampling consist of several hauls through an enclosed volume of water. 
+Sampling is conducted annually in early fall.
+        </para>
+         </section>
+      </abstract>
+      <intellectualRights>
+         <para>
+      This data package is released under the Creative Commons License
+      Attribution 4.0 International (CC BY 4.0, see
+      https://creativecommons.org/licenses/by/4.0/). This license states
+      that consumers ("Data Users" herein) may distribute, adapt,
+      reuse, remix, and build upon this work, as long as they give
+      appropriate credit, provide a link to the license, and indicate if
+      changes were made. If redistributed, a Data User may not apply
+      additional restrictions or technological measures that prevent access.
+      </para>
+         <para>
+      The Data User has an ethical obligation to cite the data source
+      appropriately in any publication or product that results from its use,
+      and notify the data contact or creator. Communication, collaboration,
+      or co-authorship (as appropriate) with the creators of this data
+      package is encouraged to prevent duplicate research or publication.
+      The Data User is urged to contact the authors of these data if any
+      questions about methodology or results occur. The Data User should
+      realize that these data may be actively used by others for ongoing
+      research and that coordination may be necessary to prevent duplication
+      or inappropriate use. The Data User should realize that
+      misinterpretation may occur if data are used outside of the context of
+      the original study. The Data User should be aware that data are
+      updated periodically and it is the responsibility of the Data User to
+      check for new versions of the data.
+      </para>
+         <para>
+      While substantial efforts are made to ensure the accuracy of data and
+      associated documentation, complete accuracy of data sets cannot be
+      guaranteed. This data package (with its components) is made available
+      “as is” and with no warranty of accuracy or fitness for use. The
+      creators of this data package and the repository where these data were
+      obtained shall not be liable for any damages resulting from
+      misinterpretation, use or misuse of the data package or its
+      components.
+      </para>
+      </intellectualRights>
+      <distribution>
+         <online>
+            <url
+      function="information">http://marinemitigation.msi.ucsb.edu/</url>
+         </online>
+      </distribution>
+      <distribution
+      id="10.6073/pasta/643f86b3043a15cb7d597e10fcff47a2" scope="system"
+          system="https://pasta.edirepository.org"><online><url
+        function="information">https://doi.org/10.6073/pasta/643f86b3043a15cb7d597e10fcff47a2</url></online></distribution><coverage>
+         <geographicCoverage>
+            <geographicDescription>CSM: Carpinteria Salt Marsh, located in Santa Barbara County, California</geographicDescription>
+            <boundingCoordinates>
+               <westBoundingCoordinate>-119.537990</westBoundingCoordinate>
+               <eastBoundingCoordinate>-119.537990</eastBoundingCoordinate>
+               <northBoundingCoordinate>34.401189</northBoundingCoordinate>
+               <southBoundingCoordinate>34.401189</southBoundingCoordinate>
+            </boundingCoordinates>
+         </geographicCoverage>
+         <geographicCoverage>
+            <geographicDescription>MUL: Mugu Lagoon, located in Ventura County, California</geographicDescription>
+            <boundingCoordinates>
+               <westBoundingCoordinate>-119.097011</westBoundingCoordinate>
+               <eastBoundingCoordinate>-119.097011</eastBoundingCoordinate>
+               <northBoundingCoordinate>34.102007</northBoundingCoordinate>
+               <southBoundingCoordinate>34.102007</southBoundingCoordinate>
+            </boundingCoordinates>
+         </geographicCoverage>
+         <geographicCoverage>
+            <geographicDescription>SDW: San Dieguito Wetland, located in San Diego County, California</geographicDescription>
+            <boundingCoordinates>
+               <westBoundingCoordinate>-117.26047</westBoundingCoordinate>
+               <eastBoundingCoordinate>-117.26047</eastBoundingCoordinate>
+               <northBoundingCoordinate>32.969545</northBoundingCoordinate>
+               <southBoundingCoordinate>32.969545</southBoundingCoordinate>
+            </boundingCoordinates>
+         </geographicCoverage>
+         <geographicCoverage>
+            <geographicDescription>TJE: Tijuana Estuary, located in San Diego County, California</geographicDescription>
+            <boundingCoordinates>
+               <westBoundingCoordinate>-117.126712</westBoundingCoordinate>
+               <eastBoundingCoordinate>-117.126712</eastBoundingCoordinate>
+               <northBoundingCoordinate>32.569901</northBoundingCoordinate>
+               <southBoundingCoordinate>32.569901</southBoundingCoordinate>
+            </boundingCoordinates>
+         </geographicCoverage>
+         <geographicCoverage>
+            <geographicDescription>LPL: Los Penasquitos Lagoon, located in San Diego County, California</geographicDescription>
+            <boundingCoordinates>
+               <westBoundingCoordinate>-117.252049</westBoundingCoordinate>
+               <eastBoundingCoordinate>-117.252049</eastBoundingCoordinate>
+               <northBoundingCoordinate>32.930770</northBoundingCoordinate>
+               <southBoundingCoordinate>32.930770</southBoundingCoordinate>
+            </boundingCoordinates>
+         </geographicCoverage>
+         <temporalCoverage>
+            <rangeOfDates>
+               <beginDate>
+                  <calendarDate>2011-02-10</calendarDate>
+               </beginDate>
+               <endDate>
+                  <calendarDate>2024-11-07</calendarDate>
+               </endDate>
+            </rangeOfDates>
+         </temporalCoverage>
+         <taxonomicCoverage>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Clevelandia ios</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Ilypnus gilberti</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Quietula y_cauda</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Unknown species of gobiidae gobiidae</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Unknown species of osteichthyes osteichthyes</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Acanthogobius flavimanus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Anchoa compressa</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Atherinops affinis</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Cosmocampus arctus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Cymatogaster aggregata</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Fundulus parvipinnis</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Gambusia affinis</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Gillichthys mirabilis</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Girella nigricans</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Hypsoblennius gentilis</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Hypsopsetta guttulata</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Leptocottus armatus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Leuresthes tenuis</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Mugil cephalus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Myliobatis californicus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Paralabrax clathratus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Paralabrax maculatofasciatus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Paralabrax nebulifer</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Paralichthys californicus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Pleuronichthys ritteri</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Sardinops sagax</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Seriphus politus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Strongylura exilis</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Syngnathus auliscus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Syngnathus leptorhynchus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Unknown species of syngnathidae syngnathidae</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Urolophus halleri</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Gibbonsia gibbonsia</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Symphurus atricauda</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Porichthys myriaster</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Gymnura marmorata</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Unknown species of osteichthyes osteichthyes</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Heterostichus rostratus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Unknown species of atherinopsidae atherinopsidae</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Hypsoblennius gilberti</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Unknown species of pleuronectiformes pleuronectiformes</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Gibbonsia metzi</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Unknown species of sciaenidae sciaenidae</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Hypsoblennius hypsoblennius</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Engraulis mordax</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Sebastes rastrelliger</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Clupea pallasii</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Unknown species of cottidae cottidae</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Pleuronichthys coenosus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Girella girella</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Neoclinus uninotatus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Mustelus californicus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Paralabrax paralabrax</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Triakis semifasciata</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Anisotremus davidsoni</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Sphoeroides annulatus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Rhinobatos productus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Menticirrhus undulatus</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Sphyraena argentea</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Hermosilla azurea</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Ctenogobius sagittula</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Atherinops californiensis</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Unkonwn species of albula vulpes</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Xenistius californiensis</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Ophichthus zophochir</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Platyrhinoidis triesriata</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Neoclinus blanchardi</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Umbrina roncador</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Menidia beryllina</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Unknown species of scorpaenidae scorpaenidae</taxonRankValue>
+            </taxonomicClassification>
+            <taxonomicClassification>
+               <taxonRankName>species</taxonRankName>
+               <taxonRankValue>Poecilia latipinna</taxonRankValue>
+            </taxonomicClassification>
+         </taxonomicCoverage>
+      </coverage>
+      <contact>
+         <positionName>Information Manager, SONGS Mitigation Monitoring Project</positionName>
+         <address
+        scope="document">
+            <deliveryPoint>Marine Science Institute</deliveryPoint>
+            <deliveryPoint>University of California</deliveryPoint>
+            <city>Santa Barbara</city>
+            <administrativeArea>California</administrativeArea>
+            <postalCode>93106-6150</postalCode>
+            <country>United States</country>
+         </address>
+         <phone
+        phonetype="voice">805-893-5511</phone>
+         <electronicMailAddress>songsmmp@lifesci.ucsb.edu</electronicMailAddress>
+         <onlineUrl>http://marinemitigation.msi.ucsb.edu</onlineUrl>
+      </contact>
+      <publisher>
+         <organizationName>Environmental Data Initiative</organizationName>
+         <electronicMailAddress>info@edirepository.org</electronicMailAddress>
+         <onlineUrl>https://edirepository.org</onlineUrl>
+         <userId
+              directory="https://ror.org">0330j0z60</userId>
+      </publisher>
+      <pubPlace>Environmental Data Initiative</pubPlace>
+      <methods>
+         <methodStep>
+            <description>
+               <section>
+                  <title>Overview</title>
+                  <para>
+The coastal development permit for SONGS Units 2 and 3 requires Southern California Edison to create or substantially restore a minimum of 150 acres of coastal tidal wetland. 
+The permit establishes biological performance standards that must be met by the restored wetland. 
+One of these standards requires that within 4 years of construction, the total densities and number of species of fish shall be similar to the densities and number of species of fish in similar habitats in the reference wetlands.
+</para>
+               </section>
+               <section>
+                  <title>Study Sites</title>
+                  <para>
+Time series data of the fish community were collected in tidal creek and main channel / basin habitats using a combination of 0.43 m2 x 0.9 m circular enclosure traps and beach seines (generally 100m2) at the San Dieguito Wetland restoration site (32.9695450N, 117.260470W) and three reference wetlands (Tijuana Estuary 32.5699010N, 117.1267120W (2012-2023); Los Penasquitos Lagoon  32.92950N, 117.25310W (2024-present); Mugu Lagoon 34.1020070N, 119.0970110W; Carpinteria Salt Marsh 34.4011890N, 119.5379900W) as part of a long-term study designed to evaluate the performance of the restoration project. 
+Beginning in 2024, Tijuana Estuary was replaced with Los Penasquitos Lagoon. 
+The reference wetlands were chosen to represent relatively undisturbed, natural tidal wetlands within the Southern California Bight. 
+Samples were collected annually in late-summer to fall (September – October). There are six tidal creeks and six main channel sampling locations in each lagoon. 
+In 2024, four tidal creeks and six main channels were sampled at San Dieguito Wetlands. 
+
+Enclosure traps were used to sample gobies, which are small, numerically abundant fishes that are poorly sampled by other methods (Steele et al., 1996a). 
+There were five enclosure sampling stations at each tidal creek and main channel location. 
+Traps were deployed in undisturbed areas during mid to low tides in main channels and at the thalweg of tidal creeks. 
+Deployment depths were ≤ 0.9 m NGVD to avoid flooding the enclosed sampling area. 
+Fish within the trap were collected using a Benthic Ichthyofauna Net for Coral/Kelp Environments (BINCKE), identified to species, counted and released (Anderson and Carr, 1998). 
+Each trap was sampled with hauls of the BINCKE until no fish were collected in a total of three passes of the net. 
+An annual survey using this method consisted of sampling five enclosure traps spaced ~10 m apart at each main channel and tidal creek location.
+
+Beach seines in combination with blocking nets were used to sample larger more mobile fishes (Steele et al., 1996b). 
+Main channel sampling locations were blocked off with two blocking nets (2 m high x 12.2 m wide and 2 m high x 24.4 m wide) rolled out 7.62 m apart on shore. 
+They were deployed perpendicular to the shore reaching a depth of ~1.5 m or a distance of 12.2 m from shore, whichever came first. 
+A dowel was placed marking the corner of the sampling area and the remaining length of the nets were pulled toward each other to close the blocked area. 
+A beach seine (2 m high x 7.62 m wide) was hauled through the blocked area five times and non-goby fishes were identified to species, counted  and released. 
+The two blocking nets were then pulled in and sampled for fish. 
+The area sampled in tidal creeks was blocked off with two blocking nets (2 m high x 12.2 m wide) deployed perpendicular to the shore 7.62 m apart and extending across the creek. 
+A beach seine (2 m high x 7.62 m wide) was hauled through the blocked area five times and non-goby fishes were identified to species, counted and released. 
+The blocking net closest to the inlet of the creek was pulled in, sampled for fish, and then redeployed 7.62 m from the upland side of the still deployed blocking net. 
+This second section of the tidal creek was sampled with five hauls of the beach seine and then the two blocking nets were pulled in and sampled for fish. 
+This method was repeated on three dates. 
+An annual survey using beach seines consisted of repeating this method at each main channel and tidal creek location on three different dates during late summer –fall. 
+The location of the sampling areas on the three dates was slightly offset to minimize effects of physical alteration of habitat and to avoid sampling areas that might have been affected by previous sampling.  
+
+Anderson, T.W. and M. H. Carr. 1998. BINCKE: a highly efficient net for collecting reef fishes. Environmental Biology of Fishes 51: 111-115.
+ 
+Steele, M. A, S. C. Schroeter, and H. M. Page. 2006a. Sampling characteristics and biases of enclosure sampling fishes in estuaries. Estuaries and Coasts 29:630-638.
+ 
+Steele, M. A, S. C. Schroeter, and H. M. Page. 2006b. Sampling characteristics and biases of enclosure sampling fishes in estuaries. Estuaries and Coasts 29:1172-1184.
+</para>
+               </section>
+            </description>
+            <protocol>
+               <title>UCSB SONGS Wetland Survey Methods - Fish Abundance</title>
+               <creator>
+                  <individualName>
+                     <givenName>Stephen</givenName>
+                     <givenName>C</givenName>
+                     <surName>Schroeter</surName>
+                  </individualName>
+                  <address>
+                     <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+                     <city>Santa Barbara</city>
+                     <administrativeArea>CA</administrativeArea>
+                     <postalCode>93106-6150</postalCode>
+                     <country>US</country>
+                  </address>
+                  <phone>760-438-5953</phone>
+                  <electronicMailAddress>stephen.schroeter@lifesci.ucsb.edu</electronicMailAddress>
+               </creator>
+               <creator>
+                  <individualName>
+                     <givenName>Henry</givenName>
+                     <givenName>M</givenName>
+                     <surName>Page</surName>
+                  </individualName>
+                  <address>
+                     <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+                     <city>Santa Barbara</city>
+                     <administrativeArea>CA</administrativeArea>
+                     <postalCode>93106-6150</postalCode>
+                     <country>US</country>
+                  </address>
+                  <phone>805-893-7568</phone>
+                  <electronicMailAddress>mark.page@lifesci.ucsb.edu</electronicMailAddress>
+               </creator>
+               <creator>
+                  <individualName>
+                     <givenName>Daniel</givenName>
+                     <givenName>C</givenName>
+                     <surName>Reed</surName>
+                  </individualName>
+                  <address>
+                     <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+                     <city>Santa Barbara</city>
+                     <administrativeArea>CA</administrativeArea>
+                     <postalCode>93106-6150</postalCode>
+                     <country>US</country>
+                  </address>
+                  <phone>805-893-8363</phone>
+                  <electronicMailAddress>dan.reed@lifesci.ucsb.edu</electronicMailAddress>
+                  <userId
+                directory="https://orcid.org/">https://orcid.org/0000-0003-3015-8717</userId>
+               </creator>
+               <creator>
+                  <individualName>
+                     <givenName>Kathryn</givenName>
+                     <givenName>M</givenName>
+                     <surName>Beheshti</surName>
+                  </individualName>
+                  <address>
+                     <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+                     <city>Santa Barbara</city>
+                     <administrativeArea>CA</administrativeArea>
+                     <postalCode>93106-6150</postalCode>
+                     <country>US</country>
+                  </address>
+                  <phone>805-893-5511</phone>
+                  <electronicMailAddress>katbeheshti@ucsb.edu</electronicMailAddress>
+               </creator>
+               <creator>
+                  <individualName>
+                     <givenName>Rachel</givenName>
+                     <givenName>S</givenName>
+                     <surName>Smith</surName>
+                  </individualName>
+                  <address>
+                     <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+                     <city>Santa Barbara</city>
+                     <administrativeArea>CA</administrativeArea>
+                     <postalCode>93106-6150</postalCode>
+                     <country>US</country>
+                  </address>
+                  <phone>805-893-5511</phone>
+                  <electronicMailAddress>rssmith@ucsb.edu</electronicMailAddress>
+               </creator>
+               <creator>
+                  <individualName>
+                     <givenName>David</givenName>
+                     <givenName>Y</givenName>
+                     <surName>Huang</surName>
+                  </individualName>
+                  <address>
+                     <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+                     <city>Santa Barbara</city>
+                     <administrativeArea>CA</administrativeArea>
+                     <postalCode>93106-6150</postalCode>
+                     <country>US</country>
+                  </address>
+                  <phone>805-893-5559</phone>
+                  <electronicMailAddress>davidhuang@ucsb.edu</electronicMailAddress>
+               </creator>
+               <distribution>
+                  <online>
+                     <url
+        function="download">https://drive.google.com/file/d/1qPcHP3wzX6hFBh_cuBZnGmbtn8StQ30e/view?usp=drive_link</url>
+                  </online>
+               </distribution>
+            </protocol>
+         </methodStep>
+      </methods>
+      <project>
+         <title>SONGS Mitigation Monitoring Project</title>
+         <personnel
+        scope="document">
+            <individualName>
+               <givenName>Stephen</givenName>
+               <givenName>C</givenName>
+               <surName>Schroeter</surName>
+            </individualName>
+            <address>
+               <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+               <city>Santa Barbara</city>
+               <administrativeArea>CA</administrativeArea>
+               <postalCode>93106-6150</postalCode>
+               <country>US</country>
+            </address>
+            <phone>760-438-5953</phone>
+            <electronicMailAddress>stephen.schroeter@lifesci.ucsb.edu</electronicMailAddress>
+            <role>principalInvestigator</role>
+         </personnel>
+         <personnel
+        scope="document">
+            <individualName>
+               <givenName>Henry</givenName>
+               <givenName>M</givenName>
+               <surName>Page</surName>
+            </individualName>
+            <address>
+               <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+               <city>Santa Barbara</city>
+               <administrativeArea>CA</administrativeArea>
+               <postalCode>93106-6150</postalCode>
+               <country>US</country>
+            </address>
+            <phone>805-893-7568</phone>
+            <electronicMailAddress>mark.page@lifesci.ucsb.edu</electronicMailAddress>
+            <role>principalInvestigator</role>
+         </personnel>
+         <personnel
+          scope="document">
+            <individualName>
+               <givenName>Daniel</givenName>
+               <givenName>C</givenName>
+               <surName>Reed</surName>
+            </individualName>
+            <address>
+               <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+               <city>Santa Barbara</city>
+               <administrativeArea>CA</administrativeArea>
+               <postalCode>93106-6150</postalCode>
+               <country>US</country>
+            </address>
+            <phone>805-893-8363</phone>
+            <electronicMailAddress>dan.reed@lifesci.ucsb.edu</electronicMailAddress>
+            <userId
+        directory="https://orcid.org/">https://orcid.org/0000-0003-3015-8717</userId>
+            <role>principalInvestigator</role>
+         </personnel>
+         <personnel
+        scope="document">
+            <individualName>
+               <givenName>Kathryn</givenName>
+               <givenName>M</givenName>
+               <surName>Beheshti</surName>
+            </individualName>
+            <address>
+               <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+               <city>Santa Barbara</city>
+               <administrativeArea>CA</administrativeArea>
+               <postalCode>93106-6150</postalCode>
+               <country>US</country>
+            </address>
+            <phone>805-893-5511</phone>
+            <electronicMailAddress>katbeheshti@ucsb.edu</electronicMailAddress>
+            <role>principalInvestigator</role>
+         </personnel>
+         <personnel
+        scope="document">
+            <individualName>
+               <givenName>Rachel</givenName>
+               <givenName>S</givenName>
+               <surName>Smith</surName>
+            </individualName>
+            <address>
+               <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+               <city>Santa Barbara</city>
+               <administrativeArea>CA</administrativeArea>
+               <postalCode>93106-6150</postalCode>
+               <country>US</country>
+            </address>
+            <phone>805-893-5511</phone>
+            <electronicMailAddress>rssmith@ucsb.edu</electronicMailAddress>
+            <role>principalInvestigator</role>
+         </personnel>
+         <personnel
+      scope="document">
+            <individualName>
+               <givenName>David</givenName>
+               <givenName>Y</givenName>
+               <surName>Huang</surName>
+            </individualName>
+            <address>
+               <deliveryPoint>Marine Science Institute University of California</deliveryPoint>
+               <city>Santa Barbara</city>
+               <administrativeArea>CA</administrativeArea>
+               <postalCode>93106-6150</postalCode>
+               <country>US</country>
+            </address>
+            <phone>805-893-5559</phone>
+            <electronicMailAddress>davidhuang@ucsb.edu</electronicMailAddress>
+            <role>pointOfContact</role>
+         </personnel>
+         <abstract>
+            <section>
+               <para>
+          The San Onofre Nuclear Generating Station (SONGS) Mitigation Monitoring Program is based at the Marine Science Institute, University of California Santa Barbara.
+          Long-term monitoring and evaluation of the SONGS mitigation projects is a condition of the coastal development permit issued by the California Coastal Commission (CCC) for the operation of SONGS Units 2 and 3.
+          The Permit requires Southern California Edison (SCE) as majority owner and operating agent of SONGS to design and build mitigation projects that adequately compensate for the adverse effects of the power plant’s once-through seawater cooling system on coastal marine resources.
+          UCSB scientists working under the direction of the Executive Director of the CCC are responsible for designing and implementing monitoring programs aimed at determining the effectiveness of these mitigation projects.
+          </para>
+            </section>
+         </abstract>
+         <funding>
+            <section>
+               <para>Funding for the SONGS Mitigation Monitoring Program is provided by SCE as a requirement of their coastal development permit for operating SONGS.</para>
+            </section>
+         </funding>
+      </project>
+      <dataTable
+      id="8c3e35d92cb89c98514df81d6260e270" scope="document"
+          system="https://pasta.edirepository.org">
+         <entityName>Wetland community survey, fish enclosures, all years</entityName>
+         <entityDescription>This data table describes the abundance of fish collected in enclosure traps.</entityDescription>
+         <physical>
+            <objectName>wetland_ts_fish_enclosure-2025-08-27_14-40-54.csv</objectName>
+            <size
+              unit="byte">10472286</size>
+            <dataFormat>
+               <textFormat>
+                  <numHeaderLines>1</numHeaderLines>
+                  <recordDelimiter>\n</recordDelimiter>
+                  <attributeOrientation>column</attributeOrientation>
+                  <simpleDelimited>
+                     <fieldDelimiter>,</fieldDelimiter>
+                     <collapseDelimiters>no</collapseDelimiters>
+                  </simpleDelimited>
+               </textFormat>
+            </dataFormat>
+            <distribution>
+               <online>
+                  <url
+            function="download">https://pasta.lternet.edu/package/data/eml/edi/647/8/8c3e35d92cb89c98514df81d6260e270</url>
+               </online>
+            </distribution>
+         </physical>
+         <coverage>
+            <temporalCoverage>
+               <rangeOfDates>
+                  <beginDate>
+                     <calendarDate>2011-02-10</calendarDate>
+                  </beginDate>
+                  <endDate>
+                     <calendarDate>2024-11-07</calendarDate>
+                  </endDate>
+               </rangeOfDates>
+            </temporalCoverage>
+            <taxonomicCoverage>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Clevelandia ios</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Ilypnus gilberti</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Quietula y_cauda</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Unknown species of gobiidae gobiidae</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Unknown species of osteichthyes osteichthyes</taxonRankValue>
+               </taxonomicClassification>
+            </taxonomicCoverage>
+         </coverage>
+         <attributeList>
+            <attribute>
+               <attributeName>year</attributeName>
+               <attributeLabel>year</attributeLabel>
+               <attributeDefinition>Calendar year of survey (YYYY).</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">int</storageType>
+               <measurementScale>
+                  <dateTime>
+                     <formatString>YYYY</formatString>
+                     <dateTimePrecision>1</dateTimePrecision>
+                     <dateTimeDomain/>
+                  </dateTime>
+               </measurementScale>
+            </attribute>
+            <attribute>
+               <attributeName>date</attributeName>
+               <attributeLabel>date</attributeLabel>
+               <attributeDefinition>The date of data collection (YYYY-MM-DD).</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">date</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>survey</attributeName>
+               <attributeLabel>survey</attributeLabel>
+               <attributeDefinition>Survey number</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">smallint</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text values formatted as integers (12 to 30)</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>wetland_code</attributeName>
+               <attributeLabel>wetland</attributeLabel>
+               <attributeDefinition>Code for wetland site.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">char</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>area_code</attributeName>
+               <attributeLabel>area code</attributeLabel>
+               <attributeDefinition>Code referring to a distinct area found within a lagoon.</attributeDefinition>
+               <storageType
+                  typeSystem="MySQL">char</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <enumeratedDomain
+            enforced="yes">
+                           <codeDefinition>
+                              <code>2A</code>
+                              <definition>Area 2A</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3</code>
+                              <definition>Area 3</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>CSM</code>
+                              <definition>Area encompasses entire lagoon</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>PML</code>
+                              <definition>Area encompasses entire lagoon</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>LPL</code>
+                              <definition>Area encompasses entire lagoon</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>TJE</code>
+                              <definition>Area encompasses entire lagoon</definition>
+                           </codeDefinition>
+                        </enumeratedDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>module_code</attributeName>
+               <attributeLabel>module</attributeLabel>
+               <attributeDefinition>Code for wetland module. The San Dieguito Wetlands comprises 25 modules. All other wetlands have a single module.</attributeDefinition>
+               <storageType
+                  typeSystem="MySQL">char</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <enumeratedDomain
+            enforced="yes">
+                           <codeDefinition>
+                              <code>W1</code>
+                              <definition>Module W1</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>W2</code>
+                              <definition>Module W2</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>W4</code>
+                              <definition>Module W4</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>FGB</code>
+                              <definition>Fish and Game Basin</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>CSM</code>
+                              <definition>Module encompasses entire lagoon</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>MUL</code>
+                              <definition>Module encompasses entire lagoon</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>LPL</code>
+                              <definition>Module encompasses entire lagoon</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>TJE</code>
+                              <definition>Module encompasses entire lagoon</definition>
+                           </codeDefinition>
+                        </enumeratedDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>tc_mc_code</attributeName>
+               <attributeLabel>tidal creek / main channel site number</attributeLabel>
+               <attributeDefinition>Code for main channel or tidal creek location.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">varchar</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>habitat_code</attributeName>
+               <attributeLabel>habitat</attributeLabel>
+               <attributeDefinition>Code for habitat type.</attributeDefinition>
+               <storageType
+                  typeSystem="MySQL">char</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <enumeratedDomain
+            enforced="yes">
+                           <codeDefinition>
+                              <code>TC</code>
+                              <definition>Tidal Creek</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>BNMC</code>
+                              <definition>Basin, Main Channel</definition>
+                           </codeDefinition>
+                        </enumeratedDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>enclosure_number</attributeName>
+               <attributeLabel>sampling station number</attributeLabel>
+               <attributeDefinition>Code used to identify enclosure within habitat types.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">smallint</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text values formatted as integers (1 to 125)</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>sampling_station_label</attributeName>
+               <attributeLabel>sampling station label</attributeLabel>
+               <attributeDefinition>Unique identification code assigned to a sampling station. The value of the code identifies the wetland, module, tidal creek / main channel site number, and sampling station number.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">varchar</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>depth</attributeName>
+               <attributeLabel>depth</attributeLabel>
+               <attributeDefinition>Water depth measured at the center of the sampling area at time of sampling.</attributeDefinition>
+               <storageType
+                    typeSystem="MySQL">tinyint</storageType>
+               <measurementScale>
+                  <ratio>
+                     <unit>
+                        <standardUnit>centimeter</standardUnit>
+                     </unit>
+                     <numericDomain>
+                        <numberType>whole</numberType>
+                        <bounds>
+                           <minimum
+                    exclusive="false">0</minimum>
+                           <maximum
+            exclusive="false">108</maximum>
+                        </bounds>
+                     </numericDomain>
+                  </ratio>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>haul_no</attributeName>
+               <attributeLabel>haul</attributeLabel>
+               <attributeDefinition>The ordinal repetition number of the haul.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">tinyint</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text values formatted as integers (0 to 23)</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>species_id</attributeName>
+               <attributeLabel>species id</attributeLabel>
+               <attributeDefinition>Unique identification number assigned to each individual species.</attributeDefinition>
+               <storageType
+                  typeSystem="MySQL">int</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <enumeratedDomain
+            enforced="yes">
+                           <codeDefinition>
+                              <code>2709</code>
+                              <definition>Goby: Clevelandia ios: Arrow Goby</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2751</code>
+                              <definition>Goby: Ilypnus gilberti: Cheekspot Goby</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2839</code>
+                              <definition>Goby: Quietula y_cauda: Shadow Goby</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2964</code>
+                              <definition>Goby: Unknown species of gobiidae gobiidae: Unknown Species Of Goby</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2991</code>
+                              <definition>Bony fish: Unknown species of osteichthyes osteichthyes: Unknown Species Of Bony Fish</definition>
+                           </codeDefinition>
+                        </enumeratedDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>species_code</attributeName>
+               <attributeLabel>species code</attributeLabel>
+               <attributeDefinition>Code used to identify a species, generally composed of the first two letters of the genus (G) name and the first two letters of the species (S) name (format=GGSS). Species may have several codes used to identify different characteristics (e.g. size, age classes, etc). Some codes represent groups of unidentifiable or indistinguishable species.</attributeDefinition>
+               <storageType
+                  typeSystem="MySQL">char</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <enumeratedDomain
+            enforced="yes">
+                           <codeDefinition>
+                              <code>CLIO</code>
+                              <definition>Goby: Clevelandia ios: Arrow Goby</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>GOFA</code>
+                              <definition>Goby: Unknown species of gobiidae gobiidae: Unknown Species Of Goby</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>ILGI</code>
+                              <definition>Goby: Ilypnus gilberti: Cheekspot Goby</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>OSCR</code>
+                              <definition>Bony fish: Unknown species of osteichthyes osteichthyes: Unknown Species Of Bony Fish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>QUYC</code>
+                              <definition>Goby: Quietula y_cauda: Shadow Goby</definition>
+                           </codeDefinition>
+                        </enumeratedDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>genus_name</attributeName>
+               <attributeLabel>genus</attributeLabel>
+               <attributeDefinition>Taxonomic genus name.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">varchar</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>species_name</attributeName>
+               <attributeLabel>species</attributeLabel>
+               <attributeDefinition>Taxonomic species name.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">varchar</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>count</attributeName>
+               <attributeLabel>count</attributeLabel>
+               <attributeDefinition>Number of individuals counted.</attributeDefinition>
+               <storageType
+                    typeSystem="MySQL">decimal</storageType>
+               <measurementScale>
+                  <ratio>
+                     <unit>
+                        <standardUnit>number</standardUnit>
+                     </unit>
+                     <numericDomain>
+                        <numberType>real</numberType>
+                        <bounds>
+                           <minimum
+                    exclusive="false">0</minimum>
+                           <maximum
+            exclusive="false">137</maximum>
+                        </bounds>
+                     </numericDomain>
+                  </ratio>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>enclosure_area</attributeName>
+               <attributeLabel>area sampled</attributeLabel>
+               <attributeDefinition>Area sampled by enclosure.</attributeDefinition>
+               <storageType
+                    typeSystem="MySQL">decimal</storageType>
+               <measurementScale>
+                  <ratio>
+                     <unit>
+                        <standardUnit>squareMeter</standardUnit>
+                     </unit>
+                     <numericDomain>
+                        <numberType>real</numberType>
+                        <bounds>
+                           <minimum
+                    exclusive="false">0.43</minimum>
+                           <maximum
+      exclusive="false">0.43</maximum>
+                        </bounds>
+                     </numericDomain>
+                  </ratio>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+         </attributeList>
+         <numberOfRecords>91370</numberOfRecords>
+      </dataTable>
+      <dataTable
+      id="44dc7a48b659dcc41e145ee5135d0947" scope="document"
+          system="https://pasta.edirepository.org">
+         <entityName>Wetland community survey, fish seine, all years</entityName>
+         <entityDescription>This data table describes the abundance of fish collected in beach seines.</entityDescription>
+         <physical>
+            <objectName>wetland_ts_fish_seine-2025-08-27_14-42-14.csv</objectName>
+            <size
+              unit="byte">149510713</size>
+            <dataFormat>
+               <textFormat>
+                  <numHeaderLines>1</numHeaderLines>
+                  <recordDelimiter>\n</recordDelimiter>
+                  <attributeOrientation>column</attributeOrientation>
+                  <simpleDelimited>
+                     <fieldDelimiter>,</fieldDelimiter>
+                     <collapseDelimiters>no</collapseDelimiters>
+                  </simpleDelimited>
+               </textFormat>
+            </dataFormat>
+            <distribution>
+               <online>
+                  <url
+            function="download">https://pasta.lternet.edu/package/data/eml/edi/647/8/44dc7a48b659dcc41e145ee5135d0947</url>
+               </online>
+            </distribution>
+         </physical>
+         <coverage>
+            <temporalCoverage>
+               <rangeOfDates>
+                  <beginDate>
+                     <calendarDate>2012-06-04</calendarDate>
+                  </beginDate>
+                  <endDate>
+                     <calendarDate>2024-11-07</calendarDate>
+                  </endDate>
+               </rangeOfDates>
+            </temporalCoverage>
+            <taxonomicCoverage>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Acanthogobius flavimanus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Anchoa compressa</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Atherinops affinis</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Cosmocampus arctus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Cymatogaster aggregata</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Fundulus parvipinnis</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Gambusia affinis</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Gillichthys mirabilis</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Girella nigricans</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Hypsoblennius gentilis</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Hypsopsetta guttulata</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Leptocottus armatus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Leuresthes tenuis</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Mugil cephalus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Myliobatis californicus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Paralabrax clathratus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Paralabrax maculatofasciatus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Paralabrax nebulifer</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Paralichthys californicus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Pleuronichthys ritteri</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Sardinops sagax</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Seriphus politus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Strongylura exilis</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Syngnathus auliscus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Syngnathus leptorhynchus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Unknown species of syngnathidae syngnathidae</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Urolophus halleri</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Gibbonsia gibbonsia</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Symphurus atricauda</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Porichthys myriaster</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Gymnura marmorata</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Unknown species of osteichthyes osteichthyes</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Heterostichus rostratus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Unknown species of atherinopsidae atherinopsidae</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Hypsoblennius gilberti</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Unknown species of pleuronectiformes pleuronectiformes</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Gibbonsia metzi</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Unknown species of sciaenidae sciaenidae</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Hypsoblennius hypsoblennius</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Engraulis mordax</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Sebastes rastrelliger</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Clupea pallasii</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Unknown species of cottidae cottidae</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Pleuronichthys coenosus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Girella girella</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Neoclinus uninotatus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Mustelus californicus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Paralabrax paralabrax</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Triakis semifasciata</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Anisotremus davidsoni</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Sphoeroides annulatus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Rhinobatos productus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Menticirrhus undulatus</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Sphyraena argentea</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Hermosilla azurea</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Ctenogobius sagittula</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Atherinops californiensis</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Unkonwn species of albula vulpes</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Xenistius californiensis</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Ophichthus zophochir</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Platyrhinoidis triesriata</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Neoclinus blanchardi</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Umbrina roncador</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Menidia beryllina</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Unknown species of scorpaenidae scorpaenidae</taxonRankValue>
+               </taxonomicClassification>
+               <taxonomicClassification>
+                  <taxonRankName>species</taxonRankName>
+                  <taxonRankValue>Poecilia latipinna</taxonRankValue>
+               </taxonomicClassification>
+            </taxonomicCoverage>
+         </coverage>
+         <attributeList>
+            <attribute>
+               <attributeName>year</attributeName>
+               <attributeLabel>year</attributeLabel>
+               <attributeDefinition>Calendar year of survey (YYYY).</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">int</storageType>
+               <measurementScale>
+                  <dateTime>
+                     <formatString>YYYY</formatString>
+                     <dateTimePrecision>1</dateTimePrecision>
+                     <dateTimeDomain/>
+                  </dateTime>
+               </measurementScale>
+            </attribute>
+            <attribute>
+               <attributeName>survey</attributeName>
+               <attributeLabel>survey</attributeLabel>
+               <attributeDefinition>Survey number</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">smallint</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text values formatted as integers (16 to 30)</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>date</attributeName>
+               <attributeLabel>date</attributeLabel>
+               <attributeDefinition>The date of data collection (YYYY-MM-DD).</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">date</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>wetland_code</attributeName>
+               <attributeLabel>wetland</attributeLabel>
+               <attributeDefinition>Code for wetland site.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">char</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>module_code</attributeName>
+               <attributeLabel>module</attributeLabel>
+               <attributeDefinition>Code for wetland module. The San Dieguito Wetlands comprises 25 modules. All other wetlands have a single module.</attributeDefinition>
+               <storageType
+                  typeSystem="MySQL">char</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <enumeratedDomain
+            enforced="yes">
+                           <codeDefinition>
+                              <code>W1</code>
+                              <definition>Module W1</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>W2</code>
+                              <definition>Module W2</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>W4</code>
+                              <definition>Module W4</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>CSM</code>
+                              <definition>Module encompasses entire lagoon</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>MUL</code>
+                              <definition>Module encompasses entire lagoon</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>LPL</code>
+                              <definition>Module encompasses entire lagoon</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>TJE</code>
+                              <definition>Module encompasses entire lagoon</definition>
+                           </codeDefinition>
+                        </enumeratedDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>tc_mc_code</attributeName>
+               <attributeLabel>tidal creek / main channel site number</attributeLabel>
+               <attributeDefinition>Code for main channel or tidal creek location.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">varchar</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>habitat_code</attributeName>
+               <attributeLabel>habitat</attributeLabel>
+               <attributeDefinition>Code for habitat type.</attributeDefinition>
+               <storageType
+                  typeSystem="MySQL">char</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <enumeratedDomain
+            enforced="yes">
+                           <codeDefinition>
+                              <code>TC</code>
+                              <definition>Tidal Creek</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>BNMC</code>
+                              <definition>Basin, Main Channel</definition>
+                           </codeDefinition>
+                        </enumeratedDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>seine_section_code</attributeName>
+               <attributeLabel>seine section</attributeLabel>
+               <attributeDefinition>Code used to identify portion of seining area when it is divided into multiple smaller sections to sample effectively.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">enum</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>seine_label</attributeName>
+               <attributeLabel>seine label</attributeLabel>
+               <attributeDefinition>Unique identification code assigned to a seine sampling location. The value of the code identifies the wetland, module, tidal creek / main channel site number, and section (if applicable).</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">varchar</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>seine_sample_width</attributeName>
+               <attributeLabel>sample width</attributeLabel>
+               <attributeDefinition>Width of seine area.</attributeDefinition>
+               <storageType
+                    typeSystem="MySQL">decimal</storageType>
+               <measurementScale>
+                  <ratio>
+                     <unit>
+                        <standardUnit>meter</standardUnit>
+                     </unit>
+                     <numericDomain>
+                        <numberType>real</numberType>
+                        <bounds>
+                           <minimum
+                    exclusive="false">3.00</minimum>
+                           <maximum
+            exclusive="false">15.20</maximum>
+                        </bounds>
+                     </numericDomain>
+                  </ratio>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>seine_sample_length</attributeName>
+               <attributeLabel>sample length</attributeLabel>
+               <attributeDefinition>Length of seine area.</attributeDefinition>
+               <storageType
+                    typeSystem="MySQL">decimal</storageType>
+               <measurementScale>
+                  <ratio>
+                     <unit>
+                        <standardUnit>meter</standardUnit>
+                     </unit>
+                     <numericDomain>
+                        <numberType>real</numberType>
+                        <bounds>
+                           <minimum
+                    exclusive="false">1.70</minimum>
+                           <maximum
+            exclusive="false">22.00</maximum>
+                        </bounds>
+                     </numericDomain>
+                  </ratio>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>seine_sample_area</attributeName>
+               <attributeLabel>sample area</attributeLabel>
+               <attributeDefinition>Area of habitat sampled. Value is derived from product of habitat width and habitat length.</attributeDefinition>
+               <storageType
+                    typeSystem="MySQL">decimal</storageType>
+               <measurementScale>
+                  <ratio>
+                     <unit>
+                        <standardUnit>squareMeter</standardUnit>
+                     </unit>
+                     <numericDomain>
+                        <numberType>real</numberType>
+                        <bounds>
+                           <minimum
+                    exclusive="false">12.9540</minimum>
+                           <maximum
+            exclusive="false">167.6400</maximum>
+                        </bounds>
+                     </numericDomain>
+                  </ratio>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>depth</attributeName>
+               <attributeLabel>depth</attributeLabel>
+               <attributeDefinition>Water depth measured at the center of the sampling area at time of sampling.</attributeDefinition>
+               <storageType
+                    typeSystem="MySQL">smallint</storageType>
+               <measurementScale>
+                  <ratio>
+                     <unit>
+                        <standardUnit>centimeter</standardUnit>
+                     </unit>
+                     <numericDomain>
+                        <numberType>whole</numberType>
+                        <bounds>
+                           <minimum
+                    exclusive="false">0</minimum>
+                           <maximum
+            exclusive="false">248</maximum>
+                        </bounds>
+                     </numericDomain>
+                  </ratio>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>haul_no</attributeName>
+               <attributeLabel>haul</attributeLabel>
+               <attributeDefinition>The ordinal repetition number of the haul.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">tinyint</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text values formatted as integers (1 to 7)</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>species_id</attributeName>
+               <attributeLabel>species id</attributeLabel>
+               <attributeDefinition>Unique identification number assigned to each individual species.</attributeDefinition>
+               <storageType
+                  typeSystem="MySQL">int</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <enumeratedDomain
+            enforced="yes">
+                           <codeDefinition>
+                              <code>2665</code>
+                              <definition>Goby: Acanthogobius flavimanus: Yellowfin Goby</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2672</code>
+                              <definition>Clupeiformes: Anchoa compressa: Deepbody Anchovy</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2681</code>
+                              <definition>Silverside: Atherinops affinis: Topsmelt</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2712</code>
+                              <definition>Pipefish: Cosmocampus arctus: Snubnose Pipefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2719</code>
+                              <definition>Perciformes: Cymatogaster aggregata: Shiner Surfperch</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2732</code>
+                              <definition>Killifish: Fundulus parvipinnis: California Killifish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2733</code>
+                              <definition>Killifish: Gambusia affinis: Mosquitofish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2734</code>
+                              <definition>Goby: Gillichthys mirabilis: Longjaw Mudsucker</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2735</code>
+                              <definition>Kyphosid: Girella nigricans: Opaleye</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2749</code>
+                              <definition>Blenny: Hypsoblennius gentilis: Bay Blenny</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2750</code>
+                              <definition>Flatfish: Hypsopsetta guttulata: Diamond Turbot</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2764</code>
+                              <definition>Sculpin: Leptocottus armatus: Staghorn Sculpin</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2766</code>
+                              <definition>Silverside: Leuresthes tenuis: California Grunion</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2790</code>
+                              <definition>Perciformes: Mugil cephalus: Striped Mullet</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2792</code>
+                              <definition>Ray: Myliobatis californicus: Bat Ray</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2812</code>
+                              <definition>Bass: Paralabrax clathratus: Kelp Bass</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2813</code>
+                              <definition>Bass: Paralabrax maculatofasciatus: Spotted Sand Bass</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2814</code>
+                              <definition>Bass: Paralabrax nebulifer: Barred Sand Bass</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2815</code>
+                              <definition>Flatfish: Paralichthys californicus: California Halibut</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2825</code>
+                              <definition>Flatfish: Pleuronichthys ritteri: Spotted Turbot</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2849</code>
+                              <definition>Clupeiformes: Sardinops sagax: Pacific Sardine</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2854</code>
+                              <definition>Croaker: Seriphus politus: Queenfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2863</code>
+                              <definition>Needlefish: Strongylura exilis: California Needlefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2865</code>
+                              <definition>Pipefish: Syngnathus auliscus: Barred Pipefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2866</code>
+                              <definition>Pipefish: Syngnathus leptorhynchus: Bay Pipefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2867</code>
+                              <definition>Pipefish: Unknown species of syngnathidae syngnathidae: Unknown Species Of Pipefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2933</code>
+                              <definition>Ray: Urolophus halleri: Round Stingray</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2971</code>
+                              <definition>Kelpfish: Gibbonsia gibbonsia: Unknown Species Of Kelpfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2983</code>
+                              <definition>Flatfish: Symphurus atricauda: California Tonguefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2984</code>
+                              <definition>Toadfish: Porichthys myriaster: Specklefin Midshipman</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2985</code>
+                              <definition>Ray: Gymnura marmorata: Butterfly Ray</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2991</code>
+                              <definition>Bony fish: Unknown species of osteichthyes osteichthyes: Unknown Species Of Bony Fish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2992</code>
+                              <definition>Kelpfish: Heterostichus rostratus: Giant Kelpfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>2993</code>
+                              <definition>Silverside: Unknown species of atherinopsidae atherinopsidae: Unknown Species Of Smelt</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3007</code>
+                              <definition>Blenny: Hypsoblennius gilberti: Rockpool Blenny</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3064</code>
+                              <definition>Flatfish: Unknown species of pleuronectiformes pleuronectiformes: Unknown Species Of Flat Fish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3065</code>
+                              <definition>Kelpfish: Gibbonsia metzi: Striped Kelpfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3172</code>
+                              <definition>Croaker: Unknown species of sciaenidae sciaenidae: Unknown Species Of Drums Or Croaker</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3174</code>
+                              <definition>Blenny: Hypsoblennius hypsoblennius: Unknown Species Of Blenny</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3177</code>
+                              <definition>Clupeiformes: Engraulis mordax: Northern Anchovy</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3178</code>
+                              <definition>Rockfish: Sebastes rastrelliger: Grass Rockfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3179</code>
+                              <definition>Clupeiformes: Clupea pallasii: Pacific Herring</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3219</code>
+                              <definition>Sculpin: Unknown species of cottidae cottidae: Unknown Species Of Sculpin</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3230</code>
+                              <definition>Flatfish: Pleuronichthys coenosus: C-o Turbot</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3284</code>
+                              <definition>Kyphosid: Girella girella: 'doug' Unknown Juvenile Opaleye. To Be Identified.</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3292</code>
+                              <definition>Perciformes: Neoclinus uninotatus: Onespot Fringehead</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3293</code>
+                              <definition>Shark: Mustelus californicus: Grey Smoothhound</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3301</code>
+                              <definition>Bass: Paralabrax paralabrax: Unknown Species Of Bass</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3303</code>
+                              <definition>Shark: Triakis semifasciata: Leopard Shark</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3323</code>
+                              <definition>Perciformes: Anisotremus davidsoni: Sargo</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3324</code>
+                              <definition>Pufferfish: Sphoeroides annulatus: Bullseye Puffer</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3325</code>
+                              <definition>Ray: Rhinobatos productus: Shovelnose Guitarfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3326</code>
+                              <definition>Croaker: Menticirrhus undulatus: California Corbina</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3328</code>
+                              <definition>Perciformes: Sphyraena argentea: Barracuda</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3343</code>
+                              <definition>Kyphosid: Hermosilla azurea: Zebraperch</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3344</code>
+                              <definition>Goby: Ctenogobius sagittula: Longtail Goby</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3348</code>
+                              <definition>Silverside: Atherinops californiensis: Jacksmelt</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3350</code>
+                              <definition>Bonefish: Unkonwn species of albula vulpes: Bonefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3378</code>
+                              <definition>Perciformes: Xenistius californiensis: Salema</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3383</code>
+                              <definition>Eel: Ophichthus zophochir: Yellow Snake-eel</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3399</code>
+                              <definition>Ray: Platyrhinoidis triesriata: Thornback Guitarfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3401</code>
+                              <definition>Perciformes: Neoclinus blanchardi: Sarcastic Fringehead</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3409</code>
+                              <definition>Croaker: Umbrina roncador: Yellowfin Croaker</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3418</code>
+                              <definition>Silverside: Menidia beryllina: Inland Silverside</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3423</code>
+                              <definition>Scorpionfish: Unknown species of scorpaenidae scorpaenidae: Unknown Species Of Scorpaenidae</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>3424</code>
+                              <definition>Bony fish: Poecilia latipinna: Sailfin Molly</definition>
+                           </codeDefinition>
+                        </enumeratedDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>species_code</attributeName>
+               <attributeLabel>species code</attributeLabel>
+               <attributeDefinition>Code used to identify a species, generally composed of the first two letters of the genus (G) name and the first two letters of the species (S) name (format=GGSS). Species may have several codes used to identify different characteristics (e.g. size, age classes, etc). Some codes represent groups of unidentifiable or indistinguishable species.</attributeDefinition>
+               <storageType
+                  typeSystem="MySQL">char</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <enumeratedDomain
+            enforced="yes">
+                           <codeDefinition>
+                              <code>ACFV</code>
+                              <definition>Goby: Acanthogobius flavimanus: Yellowfin Goby</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>ALVU</code>
+                              <definition>Bonefish: Unkonwn species of albula vulpes: Bonefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>ANCO</code>
+                              <definition>Clupeiformes: Anchoa compressa: Deepbody Anchovy</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>ANDA</code>
+                              <definition>Perciformes: Anisotremus davidsoni: Sargo</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>ATAF</code>
+                              <definition>Silverside: Atherinops affinis: Topsmelt</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>ATCA</code>
+                              <definition>Silverside: Atherinops californiensis: Jacksmelt</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>ATFA</code>
+                              <definition>Silverside: Unknown species of atherinopsidae atherinopsidae: Unknown Species Of Smelt</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>CLHA</code>
+                              <definition>Clupeiformes: Clupea pallasii: Pacific Herring</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>COAC</code>
+                              <definition>Pipefish: Cosmocampus arctus: Snubnose Pipefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>COFA</code>
+                              <definition>Sculpin: Unknown species of cottidae cottidae: Unknown Species Of Sculpin</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>CTSA</code>
+                              <definition>Goby: Ctenogobius sagittula: Longtail Goby</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>CYAG</code>
+                              <definition>Perciformes: Cymatogaster aggregata: Shiner Surfperch</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>DOUG</code>
+                              <definition>Kyphosid: Girella girella: 'doug' Unknown Juvenile Opaleye. To Be Identified.</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>ENMO</code>
+                              <definition>Clupeiformes: Engraulis mordax: Northern Anchovy</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>FUPA</code>
+                              <definition>Killifish: Fundulus parvipinnis: California Killifish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>GAAF</code>
+                              <definition>Killifish: Gambusia affinis: Mosquitofish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>GIGE</code>
+                              <definition>Kelpfish: Gibbonsia gibbonsia: Unknown Species Of Kelpfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>GIME</code>
+                              <definition>Kelpfish: Gibbonsia metzi: Striped Kelpfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>GIMI</code>
+                              <definition>Goby: Gillichthys mirabilis: Longjaw Mudsucker</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>GINI</code>
+                              <definition>Kyphosid: Girella nigricans: Opaleye</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>GYMA</code>
+                              <definition>Ray: Gymnura marmorata: Butterfly Ray</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>HEAZ</code>
+                              <definition>Kyphosid: Hermosilla azurea: Zebraperch</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>HERO</code>
+                              <definition>Kelpfish: Heterostichus rostratus: Giant Kelpfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>HYGE</code>
+                              <definition>Blenny: Hypsoblennius gentilis: Bay Blenny</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>HYGI</code>
+                              <definition>Blenny: Hypsoblennius gilberti: Rockpool Blenny</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>HYGU</code>
+                              <definition>Flatfish: Hypsopsetta guttulata: Diamond Turbot</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>HYPG</code>
+                              <definition>Blenny: Hypsoblennius hypsoblennius: Unknown Species Of Blenny</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>LEAR</code>
+                              <definition>Sculpin: Leptocottus armatus: Staghorn Sculpin</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>LETN</code>
+                              <definition>Silverside: Leuresthes tenuis: California Grunion</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>MEBE</code>
+                              <definition>Silverside: Menidia beryllina: Inland Silverside</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>MEUN</code>
+                              <definition>Croaker: Menticirrhus undulatus: California Corbina</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>MUCA</code>
+                              <definition>Shark: Mustelus californicus: Grey Smoothhound</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>MUCE</code>
+                              <definition>Perciformes: Mugil cephalus: Striped Mullet</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>MYCA</code>
+                              <definition>Ray: Myliobatis californicus: Bat Ray</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>NEBL</code>
+                              <definition>Perciformes: Neoclinus blanchardi: Sarcastic Fringehead</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>NEUN</code>
+                              <definition>Perciformes: Neoclinus uninotatus: Onespot Fringehead</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>OPZO</code>
+                              <definition>Eel: Ophichthus zophochir: Yellow Snake-eel</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>OSCL</code>
+                              <definition>Bony fish: Unknown species of osteichthyes osteichthyes: Unknown Species Of Bony Fish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>PACA</code>
+                              <definition>Flatfish: Paralichthys californicus: California Halibut</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>PACL</code>
+                              <definition>Bass: Paralabrax clathratus: Kelp Bass</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>PAMA</code>
+                              <definition>Bass: Paralabrax maculatofasciatus: Spotted Sand Bass</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>PANE</code>
+                              <definition>Bass: Paralabrax nebulifer: Barred Sand Bass</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>PARG</code>
+                              <definition>Bass: Paralabrax paralabrax: Unknown Species Of Bass</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>PLCO</code>
+                              <definition>Flatfish: Pleuronichthys coenosus: C-o Turbot</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>PLOR</code>
+                              <definition>Flatfish: Unknown species of pleuronectiformes pleuronectiformes: Unknown Species Of Flat Fish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>PLRI</code>
+                              <definition>Flatfish: Pleuronichthys ritteri: Spotted Turbot</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>PLTR</code>
+                              <definition>Ray: Platyrhinoidis triesriata: Thornback Guitarfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>POLA</code>
+                              <definition>Bony fish: Poecilia latipinna: Sailfin Molly</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>POMY</code>
+                              <definition>Toadfish: Porichthys myriaster: Specklefin Midshipman</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>RHPR</code>
+                              <definition>Ray: Rhinobatos productus: Shovelnose Guitarfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>SASA</code>
+                              <definition>Clupeiformes: Sardinops sagax: Pacific Sardine</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>SCFA</code>
+                              <definition>Croaker: Unknown species of sciaenidae sciaenidae: Unknown Species Of Drums Or Croaker</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>SCOF</code>
+                              <definition>Scorpionfish: Unknown species of scorpaenidae scorpaenidae: Unknown Species Of Scorpaenidae</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>SEPO</code>
+                              <definition>Croaker: Seriphus politus: Queenfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>SERA</code>
+                              <definition>Rockfish: Sebastes rastrelliger: Grass Rockfish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>SPAN</code>
+                              <definition>Pufferfish: Sphoeroides annulatus: Bullseye Puffer</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>SPAR</code>
+                              <definition>Perciformes: Sphyraena argentea: Barracuda</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>STEX</code>
+                              <definition>Needlefish: Strongylura exilis: California Needlefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>SYAT</code>
+                              <definition>Flatfish: Symphurus atricauda: California Tonguefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>SYAU</code>
+                              <definition>Pipefish: Syngnathus auliscus: Barred Pipefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>SYFA</code>
+                              <definition>Pipefish: Unknown species of syngnathidae syngnathidae: Unknown Species Of Pipefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>SYLE</code>
+                              <definition>Pipefish: Syngnathus leptorhynchus: Bay Pipefish</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>TRSE</code>
+                              <definition>Shark: Triakis semifasciata: Leopard Shark</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>UMRO</code>
+                              <definition>Croaker: Umbrina roncador: Yellowfin Croaker</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>URHA</code>
+                              <definition>Ray: Urolophus halleri: Round Stingray</definition>
+                           </codeDefinition>
+                           <codeDefinition>
+                              <code>XECA</code>
+                              <definition>Perciformes: Xenistius californiensis: Salema</definition>
+                           </codeDefinition>
+                        </enumeratedDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>genus_name</attributeName>
+               <attributeLabel>genus</attributeLabel>
+               <attributeDefinition>Taxonomic genus name.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">varchar</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>species_name</attributeName>
+               <attributeLabel>species</attributeLabel>
+               <attributeDefinition>Taxonomic species name.</attributeDefinition>
+               <storageType
+            typeSystem="MySQL">varchar</storageType>
+               <measurementScale>
+                  <nominal>
+                     <nonNumericDomain>
+                        <textDomain>
+                           <definition>text</definition>
+                        </textDomain>
+                     </nonNumericDomain>
+                  </nominal>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+            <attribute>
+               <attributeName>count</attributeName>
+               <attributeLabel>count</attributeLabel>
+               <attributeDefinition>Number of individuals counted.</attributeDefinition>
+               <storageType
+                    typeSystem="MySQL">decimal</storageType>
+               <measurementScale>
+                  <ratio>
+                     <unit>
+                        <standardUnit>number</standardUnit>
+                     </unit>
+                     <numericDomain>
+                        <numberType>real</numberType>
+                        <bounds>
+                           <minimum
+                    exclusive="false">0</minimum>
+                           <maximum exclusive="false">3056</maximum>
+                        </bounds>
+                     </numericDomain>
+                  </ratio>
+               </measurementScale>
+               <missingValueCode>
+                  <code>.</code>
+                  <codeExplanation>value not recorded or not available</codeExplanation>
+               </missingValueCode>
+            </attribute>
+         </attributeList>
+         <numberOfRecords>1296108</numberOfRecords>
+      </dataTable>
+   </dataset>
+   <additionalMetadata>
+      <metadata>
+         <compilation>
+            <cuid>18</cuid>
+            <plmts>2025-06-13 16:24:26</plmts>
+            <dents>
+               <dt>
+                  <base>wetland_ts_fish_enclosure</base>
+                  <tdluts>2025-08-27 14:40:54</tdluts>
+               </dt>
+               <dt>
+                  <base>wetland_ts_fish_seine</base>
+                  <tdluts>2025-08-27 14:42:14</tdluts>
+               </dt>
+            </dents>
+         </compilation>
+      </metadata>
+   </additionalMetadata>
+</eml:eml>

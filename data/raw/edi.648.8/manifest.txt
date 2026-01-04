@@ -1,0 +1,5 @@
+Manifest file for edi.648.8.zip created on Mon Dec 01 13:46:46 UTC 2025
+wetland_ps_fish_abundance_and_richness-2025-08-27_14-22-49.csv (25600 bytes)
+edi.648.8.xml (46917 bytes)
+edi.648.8.txt (23958 bytes)
+edi.648.8.report.xml (31217 bytes)

@@ -21,3 +21,6 @@ Thumbs.db
 # Large data files (stored separately - use EDI links in README)
 edi.647.8/*.csv
 edi.648.8/*.csv
+
+# Large data files (original - use split parts instead)
+data/raw/edi.647.8/wetland_ts_fish_seine.csv
