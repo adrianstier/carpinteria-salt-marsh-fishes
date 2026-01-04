@@ -1,11 +1,11 @@
 # Carpinteria Salt Marsh Fish Observatory
-# Makefile for automated data pipeline builds
+# Makefile for R-based data pipeline
 
-.PHONY: all clean data api dashboard report serve help
+.PHONY: all clean data analysis json serve help
 
 # Default target
-all: data api
-	@echo "Build complete! Run 'make serve' to start the server."
+all: json
+	@echo "Build complete! Run 'make serve' to view the observatory."
 
 # Help
 help:
@@ -14,58 +14,54 @@ help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
-	@echo "  all       - Run full pipeline (data + api)"
+	@echo "  all       - Run full R pipeline (data → analysis → json)"
 	@echo "  data      - Download data from EDI repository"
-	@echo "  api       - Generate dashboard API JSON from data"
-	@echo "  serve     - Start the FastAPI server (http://localhost:8000)"
-	@echo "  report    - Render R Markdown report (requires R)"
-	@echo "  clean     - Remove generated files"
+	@echo "  analysis  - Run statistical analyses in R"
+	@echo "  json      - Export analysis results to JSON for D3"
+	@echo "  serve     - Start local HTTP server (http://localhost:8000)"
+	@echo "  clean     - Remove generated outputs"
 	@echo "  help      - Show this help message"
 	@echo ""
 	@echo "Quick start:"
-	@echo "  make all       # Build everything"
-	@echo "  make serve     # Start the observatory server"
+	@echo "  make all       # Run full pipeline"
+	@echo "  make serve     # View the observatory"
 
 # Download data from EDI repository
-data:
+data: data/raw/edi.648.8/wetland_ts_fish_enclosure_trap.csv
+
+data/raw/edi.648.8/wetland_ts_fish_enclosure_trap.csv:
 	@echo "Downloading data from EDI repository..."
-	python3 -m src.etl.download
+	Rscript R/01_download_data.R
 	@echo "Data download complete."
 
-# Generate dashboard API JSON
-api: outputs/api/dashboard_data.json
+# Run statistical analyses
+analysis: outputs/analysis_results.rds
 
-outputs/api/dashboard_data.json: data/raw/edi.648.8/*.csv data/raw/edi.647.8/*.csv src/export/dashboard_api.py
-	@echo "Generating dashboard API..."
-	@mkdir -p outputs/api outputs/stats
-	python3 -m src.export.dashboard_api
-	@echo "API generated: outputs/api/dashboard_data.json"
+outputs/analysis_results.rds: data R/02_analysis.R
+	@echo "Running statistical analyses..."
+	Rscript R/02_analysis.R
+	@echo "Analysis complete."
 
-# Render R Markdown report (optional - requires R and rmarkdown)
-report: carpinteria_salt_marsh_fishes.html
+# Export to JSON for D3 dashboard
+json: outputs/dashboard_data.json
 
-carpinteria_salt_marsh_fishes.html: carpinteria_salt_marsh_fishes.Rmd
-	@echo "Rendering R Markdown report..."
-	@if command -v Rscript >/dev/null 2>&1; then \
-		Rscript -e "rmarkdown::render('carpinteria_salt_marsh_fishes.Rmd')"; \
-	else \
-		echo "Warning: R not found. Skipping report generation."; \
-	fi
+outputs/dashboard_data.json: outputs/analysis_results.rds R/03_export_json.R
+	@echo "Exporting JSON for D3 dashboard..."
+	Rscript R/03_export_json.R
+	@echo "JSON export complete: outputs/dashboard_data.json"
 
-# Start the FastAPI server
+# Start local HTTP server for static site
 serve:
 	@echo "Starting Carpinteria Salt Marsh Fish Observatory..."
 	@echo "Visit: http://localhost:8000"
-	@echo "API Docs: http://localhost:8000/docs"
 	@echo "Press Ctrl+C to stop"
-	python3 -m src.api.server
+	python3 -m http.server 8000
 
 # Clean generated files
 clean:
-	@echo "Cleaning generated files..."
-	rm -rf outputs/api/*.json
-	rm -rf outputs/stats/*.json
-	rm -rf data/processed/*.parquet
+	@echo "Cleaning generated outputs..."
+	rm -f outputs/dashboard_data.json
+	rm -f outputs/analysis_results.rds
 	@echo "Clean complete."
 
 # Deep clean - also remove downloaded data
