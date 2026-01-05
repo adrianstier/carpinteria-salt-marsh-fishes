@@ -332,6 +332,71 @@
             50% { opacity: 0.7; }
         }
 
+        /* Title shimmer effect */
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .hero-title em {
+            background: linear-gradient(90deg, var(--sky) 0%, var(--sand-light) 25%, var(--sky) 50%, var(--sand-light) 75%, var(--sky) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 8s linear infinite;
+        }
+
+        /* Section wave dividers */
+        .wave-divider {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 60px;
+        }
+        .wave-divider-top {
+            top: -1px;
+            bottom: auto;
+            transform: rotate(180deg);
+        }
+
+        /* Organic ripple effect on hover */
+        @keyframes ripple {
+            0% { transform: scale(0); opacity: 0.4; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--ocean-light) 0%, transparent 70%);
+            pointer-events: none;
+            width: 100px;
+            height: 100px;
+            transform: scale(0);
+        }
+
+        /* Scroll-triggered reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
         /* Sections */
         section { padding: var(--section-padding) 0; }
         .section-container {
@@ -447,7 +512,7 @@
         .method-card {
             background: var(--white);
             padding: 2.5rem;
-            border-radius: 4px;
+            border-radius: 6px;
             box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
             border: 1px solid rgba(0,0,0,0.04);
             transition: all 0.5s var(--ease-out-expo);
@@ -466,11 +531,21 @@
             transform-origin: left;
             transition: transform 0.5s var(--ease-out-expo);
         }
+        .method-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(168, 212, 239, 0.08) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.8s var(--ease-out-expo);
+        }
         .method-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 50px -15px rgba(0,0,0,0.15);
+            box-shadow: 0 25px 60px -15px rgba(10, 22, 40, 0.18);
+            border-color: rgba(61, 122, 179, 0.1);
         }
         .method-card:hover::before { transform: scaleX(1); }
+        .method-card:hover::after { transform: translateX(100%); }
         .method-icon {
             width: 3.5rem;
             height: 3.5rem;
@@ -543,18 +618,32 @@
             cursor: pointer;
             transition: all 0.4s var(--ease-out-expo);
             letter-spacing: 0.01em;
+            position: relative;
+            overflow: hidden;
+        }
+        .chart-tab::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
         }
         .chart-tab:hover {
             background: rgba(255,255,255,0.1);
             color: var(--white);
-            border-color: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+        .chart-tab:hover::before {
+            transform: translateX(100%);
         }
         .chart-tab.active {
-            background: var(--sand);
+            background: linear-gradient(135deg, var(--sand), var(--sunset));
             border-color: var(--sand);
             color: var(--navy-deep);
             font-weight: 600;
-            box-shadow: 0 4px 20px rgba(233, 196, 106, 0.3);
+            box-shadow: 0 8px 20px -5px rgba(233, 196, 106, 0.4);
         }
         .chart-container {
             background: rgba(255,255,255,0.03);
@@ -712,17 +801,29 @@
         }
         .species-card {
             background: var(--white);
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 10px 40px -15px rgba(0,0,0,0.1);
             border: 1px solid rgba(0,0,0,0.04);
             transition: all 0.5s var(--ease-out-expo);
             position: relative;
         }
-        .species-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px -15px rgba(0,0,0,0.2);
+        .species-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 50%, rgba(61, 122, 179, 0.03) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 1;
         }
+        .species-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px -15px rgba(10, 22, 40, 0.25);
+            border-color: rgba(61, 122, 179, 0.15);
+        }
+        .species-card:hover::before { opacity: 1; }
         .species-header {
             height: 140px;
             background: linear-gradient(145deg, var(--navy) 0%, var(--navy-light) 100%);
@@ -908,6 +1009,13 @@
             </div>
         </div>
         <div class="scroll-indicator">Scroll to explore</div>
+        <!-- Organic wave transition -->
+        <div class="wave-divider">
+            <svg viewBox="0 0 1200 60" preserveAspectRatio="none" fill="var(--white)">
+                <path d="M0,60 C200,20 400,40 600,30 C800,20 1000,50 1200,30 L1200,60 L0,60 Z" opacity="0.5"/>
+                <path d="M0,60 C150,40 350,20 550,35 C750,50 950,25 1200,40 L1200,60 L0,60 Z"/>
+            </svg>
+        </div>
     </section>
 
     <section class="intro" id="intro">
@@ -1235,6 +1343,13 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Wave transition to dashboard -->
+        <div class="wave-divider">
+            <svg viewBox="0 0 1200 60" preserveAspectRatio="none" fill="var(--navy-deep)">
+                <path d="M0,60 C300,30 500,50 700,35 C900,20 1100,45 1200,25 L1200,60 L0,60 Z" opacity="0.6"/>
+                <path d="M0,60 C200,45 400,25 600,40 C800,55 1000,30 1200,45 L1200,60 L0,60 Z"/>
+            </svg>
         </div>
     </section>
 
