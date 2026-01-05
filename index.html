@@ -1368,6 +1368,9 @@
                 <button class="chart-tab" data-chart="nmds">NMDS Ordination</button>
                 <button class="chart-tab" data-chart="gam">GAM Predictions</button>
                 <button class="chart-tab" data-chart="heatmap">Species Heatmap</button>
+                <button class="chart-tab" data-chart="seasonality">Seasonality</button>
+                <button class="chart-tab" data-chart="guilds">Ecological Guilds</button>
+                <button class="chart-tab" data-chart="stability">Community Stability</button>
             </div>
             <div class="chart-container">
                 <div class="chart-panel active" id="panel-abundance">
@@ -1417,6 +1420,21 @@
                     <h3 class="chart-title">Species by Year Heatmap</h3>
                     <p class="chart-description">Relative abundance patterns across years for top species (normalized within species).</p>
                     <div class="chart-area" id="chart-heatmap" style="overflow-x: auto;"></div>
+                </div>
+                <div class="chart-panel" id="panel-seasonality">
+                    <h3 class="chart-title">Seasonal Fish Abundance</h3>
+                    <p class="chart-description">Monthly catch-per-unit-effort reveals peak abundance in summer months.</p>
+                    <div class="chart-area" id="chart-seasonality"></div>
+                </div>
+                <div class="chart-panel" id="panel-guilds">
+                    <h3 class="chart-title">Ecological Guild Composition</h3>
+                    <p class="chart-description">Fish community structure by feeding guild and habitat affinity over time.</p>
+                    <div class="chart-area" id="chart-guilds"></div>
+                </div>
+                <div class="chart-panel" id="panel-stability">
+                    <h3 class="chart-title">Community Stability</h3>
+                    <p class="chart-description">Year-to-year turnover (Bray-Curtis dissimilarity) measures community change.</p>
+                    <div class="chart-area" id="chart-stability"></div>
                 </div>
             </div>
         </div>
@@ -1814,7 +1832,10 @@
                 accumulation: renderAccumulationChart,
                 nmds: renderNMDSChart,
                 gam: renderGAMChart,
-                heatmap: renderHeatmapChart
+                heatmap: renderHeatmapChart,
+                seasonality: renderSeasonalityChart,
+                guilds: renderGuildsChart,
+                stability: renderStabilityChart
             };
             if (chartFunctions[type]) chartFunctions[type]();
         }
@@ -2083,6 +2104,112 @@
                 .on('mouseleave', function() { d3.select(this).attr('stroke', 'none'); hideTooltip(); });
             svg.append('g').attr('transform', `translate(0,${species.length * cellSize})`).call(d3.axisBottom(x).tickFormat(d3.format('d'))).selectAll('text').attr('transform', 'rotate(-45)').attr('text-anchor', 'end');
             svg.append('g').call(d3.axisLeft(y).tickFormat(code => SPECIES_INFO[code]?.common || code));
+        }
+
+        // NEW: Seasonality Chart
+        function renderSeasonalityChart() {
+            const container = document.getElementById('chart-seasonality');
+            container.innerHTML = '';
+            if (!DATA.advanced?.seasonality?.monthly) {
+                container.innerHTML = '<p style="color: var(--sand); text-align: center; padding: 3rem;">Seasonality data not available. Run advanced analysis.</p>';
+                return;
+            }
+            const data = DATA.advanced.seasonality.monthly;
+            const margin = { top: 30, right: 30, bottom: 60, left: 70 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = 350 - margin.top - margin.bottom;
+            const svg = d3.select(container).append('svg').attr('width', width + margin.left + margin.right).attr('height', height + margin.top + margin.bottom).append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+            const x = d3.scaleBand().domain(data.map(d => d.month_name)).range([0, width]).padding(0.3);
+            const y = d3.scaleLinear().domain([0, d3.max(data, d => d.cpue) * 1.1]).range([height, 0]);
+            // Gradient for bars
+            const defs = svg.append('defs');
+            const gradient = defs.append('linearGradient').attr('id', 'seasonGradient').attr('x1', '0%').attr('y1', '100%').attr('x2', '0%').attr('y2', '0%');
+            gradient.append('stop').attr('offset', '0%').attr('stop-color', '#2d6a4f');
+            gradient.append('stop').attr('offset', '100%').attr('stop-color', '#52b788');
+            svg.selectAll('.bar').data(data).join('rect').attr('class', 'bar').attr('x', d => x(d.month_name)).attr('y', d => y(d.cpue)).attr('width', x.bandwidth()).attr('height', d => height - y(d.cpue)).attr('fill', 'url(#seasonGradient)').attr('rx', 4).style('opacity', 0.9)
+                .on('mouseenter', function(event, d) { d3.select(this).style('opacity', 1); showTooltip(event, d.month_name, `CPUE: ${d.cpue.toFixed(1)} fish/sample`); })
+                .on('mouseleave', function() { d3.select(this).style('opacity', 0.9); hideTooltip(); });
+            svg.append('g').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x)).selectAll('text').style('fill', 'rgba(255,255,255,0.7)');
+            svg.append('g').call(d3.axisLeft(y)).selectAll('text').style('fill', 'rgba(255,255,255,0.7)');
+            svg.append('text').attr('transform', 'rotate(-90)').attr('y', -50).attr('x', -height/2).attr('text-anchor', 'middle').style('fill', 'rgba(255,255,255,0.6)').style('font-size', '0.8rem').text('Catch per Unit Effort (fish/sample)');
+            // Peak indicator
+            const peakMonth = data.reduce((a, b) => a.cpue > b.cpue ? a : b);
+            svg.append('text').attr('x', x(peakMonth.month_name) + x.bandwidth()/2).attr('y', y(peakMonth.cpue) - 10).attr('text-anchor', 'middle').style('fill', '#e9c46a').style('font-size', '0.75rem').style('font-weight', '600').text('Peak');
+        }
+
+        // NEW: Ecological Guilds Chart
+        function renderGuildsChart() {
+            const container = document.getElementById('chart-guilds');
+            container.innerHTML = '';
+            if (!DATA.advanced?.guilds?.feeding_summary) {
+                container.innerHTML = '<p style="color: var(--sand); text-align: center; padding: 3rem;">Guild data not available. Run advanced analysis.</p>';
+                return;
+            }
+            const feedingData = DATA.advanced.guilds.feeding_summary;
+            const habitatData = DATA.advanced.guilds.habitat_summary;
+            const margin = { top: 30, right: 30, bottom: 40, left: 30 };
+            const totalWidth = container.clientWidth;
+            const pieWidth = (totalWidth - 60) / 2;
+            const height = 300;
+            const radius = Math.min(pieWidth, height) / 2 - 40;
+            // Feeding guild pie
+            const svg1 = d3.select(container).append('svg').attr('width', pieWidth).attr('height', height).append('g').attr('transform', `translate(${pieWidth/2},${height/2})`);
+            const feedingColors = d3.scaleOrdinal().domain(feedingData.map(d => d.feeding_guild)).range(['#52b788', '#3d7ab3', '#e9c46a', '#e76f51', '#95d5b2']);
+            const pie = d3.pie().value(d => d.mean_proportion).sort(null);
+            const arc = d3.arc().innerRadius(radius * 0.5).outerRadius(radius);
+            svg1.selectAll('path').data(pie(feedingData)).join('path').attr('d', arc).attr('fill', d => feedingColors(d.data.feeding_guild)).attr('stroke', '#0a1628').attr('stroke-width', 2)
+                .on('mouseenter', function(event, d) { d3.select(this).attr('opacity', 0.8); showTooltip(event, d.data.feeding_guild, `${(d.data.mean_proportion * 100).toFixed(1)}%`); })
+                .on('mouseleave', function() { d3.select(this).attr('opacity', 1); hideTooltip(); });
+            svg1.append('text').attr('y', -height/2 + 20).attr('text-anchor', 'middle').style('fill', 'rgba(255,255,255,0.8)').style('font-size', '0.85rem').style('font-weight', '600').text('Feeding Guilds');
+            // Legend for feeding
+            const legend1 = svg1.selectAll('.legend').data(feedingData).join('g').attr('transform', (d, i) => `translate(${radius + 20}, ${-feedingData.length * 10 + i * 22})`);
+            legend1.append('rect').attr('width', 12).attr('height', 12).attr('fill', d => feedingColors(d.feeding_guild)).attr('rx', 2);
+            legend1.append('text').attr('x', 18).attr('y', 10).style('fill', 'rgba(255,255,255,0.7)').style('font-size', '0.7rem').text(d => d.feeding_guild);
+            // Habitat guild pie
+            const svg2 = d3.select(container).append('svg').attr('width', pieWidth).attr('height', height).append('g').attr('transform', `translate(${pieWidth/2},${height/2})`);
+            const habitatColors = d3.scaleOrdinal().domain(habitatData.map(d => d.habitat_guild)).range(['#3d7ab3', '#52b788']);
+            svg2.selectAll('path').data(pie(habitatData)).join('path').attr('d', arc).attr('fill', d => habitatColors(d.data.habitat_guild)).attr('stroke', '#0a1628').attr('stroke-width', 2)
+                .on('mouseenter', function(event, d) { d3.select(this).attr('opacity', 0.8); showTooltip(event, d.data.habitat_guild, `${(d.data.mean_proportion * 100).toFixed(1)}%`); })
+                .on('mouseleave', function() { d3.select(this).attr('opacity', 1); hideTooltip(); });
+            svg2.append('text').attr('y', -height/2 + 20).attr('text-anchor', 'middle').style('fill', 'rgba(255,255,255,0.8)').style('font-size', '0.85rem').style('font-weight', '600').text('Habitat Affinity');
+            const legend2 = svg2.selectAll('.legend').data(habitatData).join('g').attr('transform', (d, i) => `translate(${radius + 20}, ${-habitatData.length * 10 + i * 22})`);
+            legend2.append('rect').attr('width', 12).attr('height', 12).attr('fill', d => habitatColors(d.habitat_guild)).attr('rx', 2);
+            legend2.append('text').attr('x', 18).attr('y', 10).style('fill', 'rgba(255,255,255,0.7)').style('font-size', '0.7rem').text(d => d.habitat_guild);
+        }
+
+        // NEW: Community Stability Chart
+        function renderStabilityChart() {
+            const container = document.getElementById('chart-stability');
+            container.innerHTML = '';
+            if (!DATA.advanced?.stability?.turnover) {
+                container.innerHTML = '<p style="color: var(--sand); text-align: center; padding: 3rem;">Stability data not available. Run advanced analysis.</p>';
+                return;
+            }
+            const data = DATA.advanced.stability.turnover;
+            const meanTurnover = DATA.advanced.stability.mean_turnover;
+            const margin = { top: 30, right: 30, bottom: 50, left: 70 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = 350 - margin.top - margin.bottom;
+            const svg = d3.select(container).append('svg').attr('width', width + margin.left + margin.right).attr('height', height + margin.top + margin.bottom).append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+            const x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([0, width]);
+            const y = d3.scaleLinear().domain([0, 1]).range([height, 0]);
+            // Area under curve
+            const area = d3.area().x(d => x(d.year)).y0(height).y1(d => y(d.turnover)).curve(d3.curveMonotoneX);
+            svg.append('path').datum(data).attr('fill', 'rgba(61, 122, 179, 0.2)').attr('d', area);
+            // Line
+            const line = d3.line().x(d => x(d.year)).y(d => y(d.turnover)).curve(d3.curveMonotoneX);
+            svg.append('path').datum(data).attr('fill', 'none').attr('stroke', '#3d7ab3').attr('stroke-width', 3).attr('d', line);
+            // Points
+            svg.selectAll('.point').data(data).join('circle').attr('class', 'point').attr('cx', d => x(d.year)).attr('cy', d => y(d.turnover)).attr('r', 6).attr('fill', '#3d7ab3').attr('stroke', '#0a1628').attr('stroke-width', 2)
+                .on('mouseenter', function(event, d) { d3.select(this).attr('r', 8); showTooltip(event, `${d.year-1}→${d.year}`, `Turnover: ${(d.turnover * 100).toFixed(1)}%`); })
+                .on('mouseleave', function() { d3.select(this).attr('r', 6); hideTooltip(); });
+            // Mean line
+            svg.append('line').attr('x1', 0).attr('x2', width).attr('y1', y(meanTurnover)).attr('y2', y(meanTurnover)).attr('stroke', '#e9c46a').attr('stroke-width', 2).attr('stroke-dasharray', '8,4');
+            svg.append('text').attr('x', width - 5).attr('y', y(meanTurnover) - 8).attr('text-anchor', 'end').style('fill', '#e9c46a').style('font-size', '0.75rem').text(`Mean: ${(meanTurnover * 100).toFixed(1)}%`);
+            svg.append('g').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x).tickFormat(d3.format('d'))).selectAll('text').style('fill', 'rgba(255,255,255,0.7)');
+            svg.append('g').call(d3.axisLeft(y).tickFormat(d => `${(d * 100).toFixed(0)}%`)).selectAll('text').style('fill', 'rgba(255,255,255,0.7)');
+            svg.append('text').attr('transform', 'rotate(-90)').attr('y', -50).attr('x', -height/2).attr('text-anchor', 'middle').style('fill', 'rgba(255,255,255,0.6)').style('font-size', '0.8rem').text('Bray-Curtis Dissimilarity');
+            svg.append('text').attr('x', width/2).attr('y', height + 40).attr('text-anchor', 'middle').style('fill', 'rgba(255,255,255,0.6)').style('font-size', '0.8rem').text('Year');
         }
 
         function showTooltip(event, title, value) {

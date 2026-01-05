@@ -45,9 +45,12 @@ outputs/analysis_results.rds: data R/02_analysis.R
 # Export to JSON for D3 dashboard
 json: outputs/dashboard_data.json
 
-outputs/dashboard_data.json: outputs/analysis_results.rds R/03_export_json.R
+outputs/dashboard_data.json: outputs/analysis_results.rds R/03_export_json.R R/04_advanced_analysis.R R/05_export_advanced_json.R
 	@echo "Exporting JSON for D3 dashboard..."
 	Rscript R/03_export_json.R
+	@echo "Running advanced analyses..."
+	Rscript R/04_advanced_analysis.R
+	Rscript R/05_export_advanced_json.R
 	@echo "JSON export complete: outputs/dashboard_data.json"
 
 # Start local HTTP server for static site

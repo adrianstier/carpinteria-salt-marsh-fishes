@@ -3,7 +3,9 @@
     "source": "R Statistical Analysis",
     "generated": "2026-01-04T11:00:20Z",
     "r_version": "R version 4.5.2 (2025-10-31)",
-    "packages": ["vegan", "Kendall", "lme4", "mgcv"]
+    "packages": ["vegan", "Kendall", "lme4", "mgcv"],
+    "advanced_generated": "2026-01-05T00:19:47Z",
+    "advanced_analyses": ["seasonality", "community_stability", "core_satellite_species", "ecological_guilds", "rank_abundance", "nursery_function"]
   },
   "summary": {
     "years_of_data": 13,
@@ -1039,6 +1041,1204 @@
         "species": "POMY",
         "count": 851,
         "normalized": 1
+      }
+    ]
+  },
+  "advanced": {
+    "seasonality": {
+      "monthly": [
+        {
+          "month": 6,
+          "month_name": "Jun",
+          "cpue": 310.1333,
+          "n_samples": 15
+        },
+        {
+          "month": 7,
+          "month_name": "Jul",
+          "cpue": 1105.3333,
+          "n_samples": 6
+        },
+        {
+          "month": 8,
+          "month_name": "Aug",
+          "cpue": 261.5556,
+          "n_samples": 9
+        },
+        {
+          "month": 9,
+          "month_name": "Sep",
+          "cpue": 612.6771,
+          "n_samples": 96
+        },
+        {
+          "month": 10,
+          "month_name": "Oct",
+          "cpue": 354.2286,
+          "n_samples": 35
+        }
+      ],
+      "seasonal": [
+        {
+          "season": "Summer",
+          "total_count": 13638,
+          "mean_count": 0.1913,
+          "n_samples": 30,
+          "species_richness": 13,
+          "cpue": 454.6
+        },
+        {
+          "season": "Fall",
+          "total_count": 71215,
+          "mean_count": 0.2645,
+          "n_samples": 131,
+          "species_richness": 37,
+          "cpue": 543.626
+        }
+      ],
+      "species_peaks": [
+        {
+          "species_code": "ACFV",
+          "peak_month": 9,
+          "peak_month_name": "Sep"
+        },
+        {
+          "species_code": "ATAF",
+          "peak_month": 9,
+          "peak_month_name": "Sep"
+        },
+        {
+          "species_code": "ATFA",
+          "peak_month": 9,
+          "peak_month_name": "Sep"
+        },
+        {
+          "species_code": "CYAG",
+          "peak_month": 6,
+          "peak_month_name": "Jun"
+        },
+        {
+          "species_code": "FUPA",
+          "peak_month": 9,
+          "peak_month_name": "Sep"
+        },
+        {
+          "species_code": "GIMI",
+          "peak_month": 6,
+          "peak_month_name": "Jun"
+        },
+        {
+          "species_code": "LEAR",
+          "peak_month": 6,
+          "peak_month_name": "Jun"
+        },
+        {
+          "species_code": "PACA",
+          "peak_month": 9,
+          "peak_month_name": "Sep"
+        },
+        {
+          "species_code": "PAMA",
+          "peak_month": 9,
+          "peak_month_name": "Sep"
+        },
+        {
+          "species_code": "POMY",
+          "peak_month": 9,
+          "peak_month_name": "Sep"
+        }
+      ]
+    },
+    "stability": {
+      "turnover": [
+        {
+          "year": 2013,
+          "turnover": 0.2557
+        },
+        {
+          "year": 2014,
+          "turnover": 0.3348
+        },
+        {
+          "year": 2015,
+          "turnover": 0.5306
+        },
+        {
+          "year": 2016,
+          "turnover": 0.3642
+        },
+        {
+          "year": 2017,
+          "turnover": 0.4396
+        },
+        {
+          "year": 2018,
+          "turnover": 0.5087
+        },
+        {
+          "year": 2019,
+          "turnover": 0.5207
+        },
+        {
+          "year": 2020,
+          "turnover": 0.4243
+        },
+        {
+          "year": 2021,
+          "turnover": 0.2973
+        },
+        {
+          "year": 2022,
+          "turnover": 0.3378
+        },
+        {
+          "year": 2023,
+          "turnover": 0.4875
+        },
+        {
+          "year": 2024,
+          "turnover": 0.2729
+        }
+      ],
+      "community_cv": 0.582,
+      "mean_turnover": 0.3978,
+      "turnover_trend": -0.0194
+    },
+    "core_satellite": {
+      "summary": [
+        {
+          "category": "Common",
+          "n_species": 6,
+          "mean_cv": 1.3406
+        },
+        {
+          "category": "Core",
+          "n_species": 10,
+          "mean_cv": 1.3476
+        },
+        {
+          "category": "Satellite",
+          "n_species": 22,
+          "mean_cv": 3.0342
+        }
+      ],
+      "species": [
+        {
+          "species_code": "ATAF",
+          "occupancy": 1,
+          "cv": 0.6232,
+          "category": "Core"
+        },
+        {
+          "species_code": "ATFA",
+          "occupancy": 1,
+          "cv": 1.0605,
+          "category": "Core"
+        },
+        {
+          "species_code": "FUPA",
+          "occupancy": 1,
+          "cv": 1.3343,
+          "category": "Core"
+        },
+        {
+          "species_code": "LEAR",
+          "occupancy": 1,
+          "cv": 2.5887,
+          "category": "Core"
+        },
+        {
+          "species_code": "PACA",
+          "occupancy": 1,
+          "cv": 0.7472,
+          "category": "Core"
+        },
+        {
+          "species_code": "POMY",
+          "occupancy": 1,
+          "cv": 0.8381,
+          "category": "Core"
+        },
+        {
+          "species_code": "URHA",
+          "occupancy": 0.9231,
+          "cv": 0.8491,
+          "category": "Core"
+        },
+        {
+          "species_code": "ACFV",
+          "occupancy": 0.8462,
+          "cv": 2.3381,
+          "category": "Core"
+        },
+        {
+          "species_code": "GIMI",
+          "occupancy": 0.8462,
+          "cv": 2.1757,
+          "category": "Core"
+        },
+        {
+          "species_code": "HYGU",
+          "occupancy": 0.8462,
+          "cv": 0.9207,
+          "category": "Core"
+        },
+        {
+          "species_code": "MUCE",
+          "occupancy": 0.7692,
+          "cv": 0.97,
+          "category": "Common"
+        },
+        {
+          "species_code": "HYGE",
+          "occupancy": 0.6923,
+          "cv": 0.9149,
+          "category": "Common"
+        },
+        {
+          "species_code": "PAMA",
+          "occupancy": 0.6923,
+          "cv": 2.1143,
+          "category": "Common"
+        },
+        {
+          "species_code": "GINI",
+          "occupancy": 0.6154,
+          "cv": 1.0679,
+          "category": "Common"
+        },
+        {
+          "species_code": "SYLE",
+          "occupancy": 0.6154,
+          "cv": 1.1564,
+          "category": "Common"
+        },
+        {
+          "species_code": "SEPO",
+          "occupancy": 0.5385,
+          "cv": 1.82,
+          "category": "Common"
+        },
+        {
+          "species_code": "PACL",
+          "occupancy": 0.3846,
+          "cv": 1.6912,
+          "category": "Satellite"
+        },
+        {
+          "species_code": "CYAG",
+          "occupancy": 0.3077,
+          "cv": 2.896,
+          "category": "Satellite"
+        },
+        {
+          "species_code": "HYPG",
+          "occupancy": 0.3077,
+          "cv": 1.5612,
+          "category": "Satellite"
+        },
+        {
+          "species_code": "HYGI",
+          "occupancy": 0.2308,
+          "cv": 1.9967,
+          "category": "Satellite"
+        }
+      ]
+    },
+    "guilds": {
+      "feeding_summary": [
+        {
+          "feeding_guild": "Planktivore",
+          "mean_proportion": 0.6246
+        },
+        {
+          "feeding_guild": "Omnivore",
+          "mean_proportion": 0.3379
+        },
+        {
+          "feeding_guild": "Benthivore",
+          "mean_proportion": 0.0218
+        },
+        {
+          "feeding_guild": "Piscivore",
+          "mean_proportion": 0.0147
+        },
+        {
+          "feeding_guild": "Detritivore",
+          "mean_proportion": 0.0012
+        }
+      ],
+      "habitat_summary": [
+        {
+          "habitat_guild": "Marine Migrant",
+          "mean_proportion": 0.7127
+        },
+        {
+          "habitat_guild": "Resident",
+          "mean_proportion": 0.2873
+        }
+      ],
+      "feeding_trends": [
+        {
+          "year": 2012,
+          "feeding_guild": "Benthivore",
+          "total_count": 1236,
+          "year_total": 8521,
+          "proportion": 0.1451
+        },
+        {
+          "year": 2012,
+          "feeding_guild": "Omnivore",
+          "total_count": 2426,
+          "year_total": 8521,
+          "proportion": 0.2847
+        },
+        {
+          "year": 2012,
+          "feeding_guild": "Piscivore",
+          "total_count": 11,
+          "year_total": 8521,
+          "proportion": 0.0013
+        },
+        {
+          "year": 2012,
+          "feeding_guild": "Planktivore",
+          "total_count": 4848,
+          "year_total": 8521,
+          "proportion": 0.5689
+        },
+        {
+          "year": 2013,
+          "feeding_guild": "Benthivore",
+          "total_count": 375,
+          "year_total": 11906,
+          "proportion": 0.0315
+        },
+        {
+          "year": 2013,
+          "feeding_guild": "Omnivore",
+          "total_count": 5893,
+          "year_total": 11906,
+          "proportion": 0.495
+        },
+        {
+          "year": 2013,
+          "feeding_guild": "Piscivore",
+          "total_count": 21,
+          "year_total": 11906,
+          "proportion": 0.0018
+        },
+        {
+          "year": 2013,
+          "feeding_guild": "Planktivore",
+          "total_count": 5617,
+          "year_total": 11906,
+          "proportion": 0.4718
+        },
+        {
+          "year": 2014,
+          "feeding_guild": "Benthivore",
+          "total_count": 181,
+          "year_total": 13885,
+          "proportion": 0.013
+        },
+        {
+          "year": 2014,
+          "feeding_guild": "Omnivore",
+          "total_count": 10411,
+          "year_total": 13885,
+          "proportion": 0.7498
+        },
+        {
+          "year": 2014,
+          "feeding_guild": "Piscivore",
+          "total_count": 38,
+          "year_total": 13885,
+          "proportion": 0.0027
+        },
+        {
+          "year": 2014,
+          "feeding_guild": "Planktivore",
+          "total_count": 3255,
+          "year_total": 13885,
+          "proportion": 0.2344
+        },
+        {
+          "year": 2015,
+          "feeding_guild": "Benthivore",
+          "total_count": 70,
+          "year_total": 8992,
+          "proportion": 0.0078
+        },
+        {
+          "year": 2015,
+          "feeding_guild": "Detritivore",
+          "total_count": 11,
+          "year_total": 8992,
+          "proportion": 0.0012
+        },
+        {
+          "year": 2015,
+          "feeding_guild": "Omnivore",
+          "total_count": 2023,
+          "year_total": 8992,
+          "proportion": 0.225
+        },
+        {
+          "year": 2015,
+          "feeding_guild": "Piscivore",
+          "total_count": 114,
+          "year_total": 8992,
+          "proportion": 0.0127
+        },
+        {
+          "year": 2015,
+          "feeding_guild": "Planktivore",
+          "total_count": 6774,
+          "year_total": 8992,
+          "proportion": 0.7533
+        },
+        {
+          "year": 2016,
+          "feeding_guild": "Benthivore",
+          "total_count": 29,
+          "year_total": 6845,
+          "proportion": 0.0042
+        },
+        {
+          "year": 2016,
+          "feeding_guild": "Detritivore",
+          "total_count": 12,
+          "year_total": 6845,
+          "proportion": 0.0018
+        },
+        {
+          "year": 2016,
+          "feeding_guild": "Omnivore",
+          "total_count": 681,
+          "year_total": 6845,
+          "proportion": 0.0995
+        },
+        {
+          "year": 2016,
+          "feeding_guild": "Piscivore",
+          "total_count": 122,
+          "year_total": 6845,
+          "proportion": 0.0178
+        },
+        {
+          "year": 2016,
+          "feeding_guild": "Planktivore",
+          "total_count": 6001,
+          "year_total": 6845,
+          "proportion": 0.8767
+        },
+        {
+          "year": 2017,
+          "feeding_guild": "Benthivore",
+          "total_count": 67,
+          "year_total": 6298,
+          "proportion": 0.0106
+        },
+        {
+          "year": 2017,
+          "feeding_guild": "Detritivore",
+          "total_count": 5,
+          "year_total": 6298,
+          "proportion": 0.0008
+        },
+        {
+          "year": 2017,
+          "feeding_guild": "Omnivore",
+          "total_count": 2584,
+          "year_total": 6298,
+          "proportion": 0.4103
+        },
+        {
+          "year": 2017,
+          "feeding_guild": "Piscivore",
+          "total_count": 231,
+          "year_total": 6298,
+          "proportion": 0.0367
+        },
+        {
+          "year": 2017,
+          "feeding_guild": "Planktivore",
+          "total_count": 3411,
+          "year_total": 6298,
+          "proportion": 0.5416
+        },
+        {
+          "year": 2018,
+          "feeding_guild": "Benthivore",
+          "total_count": 32,
+          "year_total": 9343,
+          "proportion": 0.0034
+        },
+        {
+          "year": 2018,
+          "feeding_guild": "Detritivore",
+          "total_count": 2,
+          "year_total": 9343,
+          "proportion": 0.0002
+        },
+        {
+          "year": 2018,
+          "feeding_guild": "Omnivore",
+          "total_count": 831,
+          "year_total": 9343,
+          "proportion": 0.0889
+        },
+        {
+          "year": 2018,
+          "feeding_guild": "Piscivore",
+          "total_count": 161,
+          "year_total": 9343,
+          "proportion": 0.0172
+        },
+        {
+          "year": 2018,
+          "feeding_guild": "Planktivore",
+          "total_count": 8317,
+          "year_total": 9343,
+          "proportion": 0.8902
+        },
+        {
+          "year": 2019,
+          "feeding_guild": "Benthivore",
+          "total_count": 54,
+          "year_total": 4348,
+          "proportion": 0.0124
+        },
+        {
+          "year": 2019,
+          "feeding_guild": "Detritivore",
+          "total_count": 6,
+          "year_total": 4348,
+          "proportion": 0.0014
+        },
+        {
+          "year": 2019,
+          "feeding_guild": "Omnivore",
+          "total_count": 1222,
+          "year_total": 4348,
+          "proportion": 0.281
+        },
+        {
+          "year": 2019,
+          "feeding_guild": "Piscivore",
+          "total_count": 93,
+          "year_total": 4348,
+          "proportion": 0.0214
+        },
+        {
+          "year": 2019,
+          "feeding_guild": "Planktivore",
+          "total_count": 2973,
+          "year_total": 4348,
+          "proportion": 0.6838
+        },
+        {
+          "year": 2020,
+          "feeding_guild": "Benthivore",
+          "total_count": 15,
+          "year_total": 1762,
+          "proportion": 0.0085
+        },
+        {
+          "year": 2020,
+          "feeding_guild": "Detritivore",
+          "total_count": 1,
+          "year_total": 1762,
+          "proportion": 0.0006
+        },
+        {
+          "year": 2020,
+          "feeding_guild": "Omnivore",
+          "total_count": 358,
+          "year_total": 1762,
+          "proportion": 0.2032
+        },
+        {
+          "year": 2020,
+          "feeding_guild": "Piscivore",
+          "total_count": 24,
+          "year_total": 1762,
+          "proportion": 0.0136
+        },
+        {
+          "year": 2020,
+          "feeding_guild": "Planktivore",
+          "total_count": 1364,
+          "year_total": 1762,
+          "proportion": 0.7741
+        },
+        {
+          "year": 2021,
+          "feeding_guild": "Benthivore",
+          "total_count": 38,
+          "year_total": 3209,
+          "proportion": 0.0118
+        },
+        {
+          "year": 2021,
+          "feeding_guild": "Detritivore",
+          "total_count": 2,
+          "year_total": 3209,
+          "proportion": 0.0006
+        },
+        {
+          "year": 2021,
+          "feeding_guild": "Omnivore",
+          "total_count": 1076,
+          "year_total": 3209,
+          "proportion": 0.3353
+        },
+        {
+          "year": 2021,
+          "feeding_guild": "Piscivore",
+          "total_count": 36,
+          "year_total": 3209,
+          "proportion": 0.0112
+        },
+        {
+          "year": 2021,
+          "feeding_guild": "Planktivore",
+          "total_count": 2057,
+          "year_total": 3209,
+          "proportion": 0.641
+        },
+        {
+          "year": 2022,
+          "feeding_guild": "Benthivore",
+          "total_count": 25,
+          "year_total": 3643,
+          "proportion": 0.0069
+        },
+        {
+          "year": 2022,
+          "feeding_guild": "Detritivore",
+          "total_count": 4,
+          "year_total": 3643,
+          "proportion": 0.0011
+        },
+        {
+          "year": 2022,
+          "feeding_guild": "Omnivore",
+          "total_count": 2154,
+          "year_total": 3643,
+          "proportion": 0.5913
+        },
+        {
+          "year": 2022,
+          "feeding_guild": "Piscivore",
+          "total_count": 29,
+          "year_total": 3643,
+          "proportion": 0.008
+        },
+        {
+          "year": 2022,
+          "feeding_guild": "Planktivore",
+          "total_count": 1431,
+          "year_total": 3643,
+          "proportion": 0.3928
+        },
+        {
+          "year": 2023,
+          "feeding_guild": "Benthivore",
+          "total_count": 43,
+          "year_total": 2952,
+          "proportion": 0.0146
+        },
+        {
+          "year": 2023,
+          "feeding_guild": "Detritivore",
+          "total_count": 4,
+          "year_total": 2952,
+          "proportion": 0.0014
+        },
+        {
+          "year": 2023,
+          "feeding_guild": "Omnivore",
+          "total_count": 543,
+          "year_total": 2952,
+          "proportion": 0.1839
+        },
+        {
+          "year": 2023,
+          "feeding_guild": "Piscivore",
+          "total_count": 59,
+          "year_total": 2952,
+          "proportion": 0.02
+        },
+        {
+          "year": 2023,
+          "feeding_guild": "Planktivore",
+          "total_count": 2303,
+          "year_total": 2952,
+          "proportion": 0.7801
+        },
+        {
+          "year": 2024,
+          "feeding_guild": "Benthivore",
+          "total_count": 42,
+          "year_total": 3009,
+          "proportion": 0.014
+        },
+        {
+          "year": 2024,
+          "feeding_guild": "Detritivore",
+          "total_count": 10,
+          "year_total": 3009,
+          "proportion": 0.0033
+        },
+        {
+          "year": 2024,
+          "feeding_guild": "Omnivore",
+          "total_count": 1338,
+          "year_total": 3009,
+          "proportion": 0.4447
+        },
+        {
+          "year": 2024,
+          "feeding_guild": "Piscivore",
+          "total_count": 82,
+          "year_total": 3009,
+          "proportion": 0.0273
+        },
+        {
+          "year": 2024,
+          "feeding_guild": "Planktivore",
+          "total_count": 1537,
+          "year_total": 3009,
+          "proportion": 0.5108
+        }
+      ],
+      "habitat_trends": [
+        {
+          "year": 2012,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 5186,
+          "year_total": 8521,
+          "proportion": 0.6086
+        },
+        {
+          "year": 2012,
+          "habitat_guild": "Resident",
+          "total_count": 3335,
+          "year_total": 8521,
+          "proportion": 0.3914
+        },
+        {
+          "year": 2013,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 6184,
+          "year_total": 11906,
+          "proportion": 0.5194
+        },
+        {
+          "year": 2013,
+          "habitat_guild": "Resident",
+          "total_count": 5722,
+          "year_total": 11906,
+          "proportion": 0.4806
+        },
+        {
+          "year": 2014,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 3401,
+          "year_total": 13885,
+          "proportion": 0.2449
+        },
+        {
+          "year": 2014,
+          "habitat_guild": "Resident",
+          "total_count": 10484,
+          "year_total": 13885,
+          "proportion": 0.7551
+        },
+        {
+          "year": 2015,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 6941,
+          "year_total": 8992,
+          "proportion": 0.7719
+        },
+        {
+          "year": 2015,
+          "habitat_guild": "Resident",
+          "total_count": 2051,
+          "year_total": 8992,
+          "proportion": 0.2281
+        },
+        {
+          "year": 2016,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 6200,
+          "year_total": 6845,
+          "proportion": 0.9058
+        },
+        {
+          "year": 2016,
+          "habitat_guild": "Resident",
+          "total_count": 645,
+          "year_total": 6845,
+          "proportion": 0.0942
+        },
+        {
+          "year": 2017,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 4001,
+          "year_total": 6298,
+          "proportion": 0.6353
+        },
+        {
+          "year": 2017,
+          "habitat_guild": "Resident",
+          "total_count": 2297,
+          "year_total": 6298,
+          "proportion": 0.3647
+        },
+        {
+          "year": 2018,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 8638,
+          "year_total": 9343,
+          "proportion": 0.9245
+        },
+        {
+          "year": 2018,
+          "habitat_guild": "Resident",
+          "total_count": 705,
+          "year_total": 9343,
+          "proportion": 0.0755
+        },
+        {
+          "year": 2019,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 3484,
+          "year_total": 4348,
+          "proportion": 0.8013
+        },
+        {
+          "year": 2019,
+          "habitat_guild": "Resident",
+          "total_count": 864,
+          "year_total": 4348,
+          "proportion": 0.1987
+        },
+        {
+          "year": 2020,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 1509,
+          "year_total": 1762,
+          "proportion": 0.8564
+        },
+        {
+          "year": 2020,
+          "habitat_guild": "Resident",
+          "total_count": 253,
+          "year_total": 1762,
+          "proportion": 0.1436
+        },
+        {
+          "year": 2021,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 2482,
+          "year_total": 3209,
+          "proportion": 0.7734
+        },
+        {
+          "year": 2021,
+          "habitat_guild": "Resident",
+          "total_count": 727,
+          "year_total": 3209,
+          "proportion": 0.2266
+        },
+        {
+          "year": 2022,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 1579,
+          "year_total": 3643,
+          "proportion": 0.4334
+        },
+        {
+          "year": 2022,
+          "habitat_guild": "Resident",
+          "total_count": 2064,
+          "year_total": 3643,
+          "proportion": 0.5666
+        },
+        {
+          "year": 2023,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 2826,
+          "year_total": 2952,
+          "proportion": 0.9573
+        },
+        {
+          "year": 2023,
+          "habitat_guild": "Resident",
+          "total_count": 126,
+          "year_total": 2952,
+          "proportion": 0.0427
+        },
+        {
+          "year": 2024,
+          "habitat_guild": "Marine Migrant",
+          "total_count": 2504,
+          "year_total": 3009,
+          "proportion": 0.8322
+        },
+        {
+          "year": 2024,
+          "habitat_guild": "Resident",
+          "total_count": 505,
+          "year_total": 3009,
+          "proportion": 0.1678
+        }
+      ]
+    },
+    "rank_abundance": {
+      "data": [
+        {
+          "species_code": "ATAF",
+          "rank": 1,
+          "total_abundance": 39226,
+          "proportion": 0.4623,
+          "log_abundance": 4.5936
+        },
+        {
+          "species_code": "FUPA",
+          "rank": 2,
+          "total_abundance": 27410,
+          "proportion": 0.323,
+          "log_abundance": 4.4379
+        },
+        {
+          "species_code": "ATFA",
+          "rank": 3,
+          "total_abundance": 10662,
+          "proportion": 0.1257,
+          "log_abundance": 4.0278
+        },
+        {
+          "species_code": "POMY",
+          "rank": 4,
+          "total_abundance": 3546,
+          "proportion": 0.0418,
+          "log_abundance": 3.5497
+        },
+        {
+          "species_code": "LEAR",
+          "rank": 5,
+          "total_abundance": 1718,
+          "proportion": 0.0202,
+          "log_abundance": 3.235
+        },
+        {
+          "species_code": "PACA",
+          "rank": 6,
+          "total_abundance": 736,
+          "proportion": 0.0087,
+          "log_abundance": 2.8669
+        },
+        {
+          "species_code": "GIMI",
+          "rank": 7,
+          "total_abundance": 428,
+          "proportion": 0.005,
+          "log_abundance": 2.6314
+        },
+        {
+          "species_code": "PAMA",
+          "rank": 8,
+          "total_abundance": 260,
+          "proportion": 0.0031,
+          "log_abundance": 2.415
+        },
+        {
+          "species_code": "ACFV",
+          "rank": 9,
+          "total_abundance": 222,
+          "proportion": 0.0026,
+          "log_abundance": 2.3464
+        },
+        {
+          "species_code": "CYAG",
+          "rank": 10,
+          "total_abundance": 156,
+          "proportion": 0.0018,
+          "log_abundance": 2.1931
+        },
+        {
+          "species_code": "URHA",
+          "rank": 11,
+          "total_abundance": 126,
+          "proportion": 0.0015,
+          "log_abundance": 2.1004
+        },
+        {
+          "species_code": "SEPO",
+          "rank": 12,
+          "total_abundance": 85,
+          "proportion": 0.001,
+          "log_abundance": 1.9294
+        },
+        {
+          "species_code": "MUCE",
+          "rank": 13,
+          "total_abundance": 57,
+          "proportion": 0.0007,
+          "log_abundance": 1.7559
+        },
+        {
+          "species_code": "HYGU",
+          "rank": 14,
+          "total_abundance": 56,
+          "proportion": 0.0007,
+          "log_abundance": 1.7482
+        },
+        {
+          "species_code": "SPAR",
+          "rank": 15,
+          "total_abundance": 25,
+          "proportion": 0.0003,
+          "log_abundance": 1.3979
+        },
+        {
+          "species_code": "SASA",
+          "rank": 16,
+          "total_abundance": 24,
+          "proportion": 0.0003,
+          "log_abundance": 1.3802
+        },
+        {
+          "species_code": "HYGE",
+          "rank": 17,
+          "total_abundance": 22,
+          "proportion": 0.0003,
+          "log_abundance": 1.3424
+        },
+        {
+          "species_code": "GINI",
+          "rank": 18,
+          "total_abundance": 19,
+          "proportion": 0.0002,
+          "log_abundance": 1.2788
+        },
+        {
+          "species_code": "SYLE",
+          "rank": 19,
+          "total_abundance": 16,
+          "proportion": 0.0002,
+          "log_abundance": 1.2041
+        },
+        {
+          "species_code": "PACL",
+          "rank": 20,
+          "total_abundance": 15,
+          "proportion": 0.0002,
+          "log_abundance": 1.1761
+        }
+      ],
+      "dominance": {
+        "top_1": 0.4623,
+        "top_3": 0.911,
+        "top_5": 0.973
+      }
+    },
+    "nursery": [
+      {
+        "year": 2012,
+        "nursery_count": 4462,
+        "total_count": 8523,
+        "nursery_proportion": 0.5235,
+        "nursery_species_richness": 5
+      },
+      {
+        "year": 2013,
+        "nursery_count": 4710,
+        "total_count": 11918,
+        "nursery_proportion": 0.3952,
+        "nursery_species_richness": 6
+      },
+      {
+        "year": 2014,
+        "nursery_count": 2999,
+        "total_count": 13894,
+        "nursery_proportion": 0.2158,
+        "nursery_species_richness": 5
+      },
+      {
+        "year": 2015,
+        "nursery_count": 3723,
+        "total_count": 9018,
+        "nursery_proportion": 0.4128,
+        "nursery_species_richness": 7
+      },
+      {
+        "year": 2016,
+        "nursery_count": 5429,
+        "total_count": 6857,
+        "nursery_proportion": 0.7917,
+        "nursery_species_richness": 6
+      },
+      {
+        "year": 2017,
+        "nursery_count": 2680,
+        "total_count": 6312,
+        "nursery_proportion": 0.4246,
+        "nursery_species_richness": 6
+      },
+      {
+        "year": 2018,
+        "nursery_count": 7875,
+        "total_count": 9346,
+        "nursery_proportion": 0.8426,
+        "nursery_species_richness": 6
+      },
+      {
+        "year": 2019,
+        "nursery_count": 2085,
+        "total_count": 4358,
+        "nursery_proportion": 0.4784,
+        "nursery_species_richness": 6
+      },
+      {
+        "year": 2020,
+        "nursery_count": 1457,
+        "total_count": 1763,
+        "nursery_proportion": 0.8264,
+        "nursery_species_richness": 5
+      },
+      {
+        "year": 2021,
+        "nursery_count": 2441,
+        "total_count": 3218,
+        "nursery_proportion": 0.7585,
+        "nursery_species_richness": 6
+      },
+      {
+        "year": 2022,
+        "nursery_count": 1546,
+        "total_count": 3647,
+        "nursery_proportion": 0.4239,
+        "nursery_species_richness": 5
+      },
+      {
+        "year": 2023,
+        "nursery_count": 2143,
+        "total_count": 2976,
+        "nursery_proportion": 0.7201,
+        "nursery_species_richness": 4
+      },
+      {
+        "year": 2024,
+        "nursery_count": 2425,
+        "total_count": 3023,
+        "nursery_proportion": 0.8022,
+        "nursery_species_richness": 5
       }
     ]
   }
