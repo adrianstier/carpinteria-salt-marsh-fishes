@@ -1,10 +1,25 @@
 <!DOCTYPE html>
+<!--
+  ╔═══════════════════════════════════════════════════════════════════════════╗
+  ║  CARPINTERIA SALT MARSH FISH OBSERVATORY                                  ║
+  ║  ─────────────────────────────────────────────────────────────────────────║
+  ║  Developed by Adrian Stier & the Ocean Recoveries Lab at UC Santa Barbara ║
+  ║  Data: UCSB Marine Science Institute (SONGS Mitigation Program)           ║
+  ║  Visualization: D3.js | Analysis: R (vegan, lme4, mgcv)                   ║
+  ║                                                                           ║
+  ║  Questions? stier@ucsb.edu | https://oceanrecoveries.com                  ║
+  ║  Source: https://github.com/adrianstier/carpinteria-salt-marsh-fishes     ║
+  ║                                                                           ║
+  ║  v1.0 - January 2026                                                      ║
+  ╚═══════════════════════════════════════════════════════════════════════════╝
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carpinteria Salt Marsh Fish Observatory</title>
     <meta name="description" content="13 years of fish community monitoring in one of Southern California's last remaining coastal wetlands.">
+    <meta name="author" content="Adrian Stier, Ocean Recoveries Lab, UC Santa Barbara">
 
     <!-- Fonts - Cormorant Garamond (elegant serif) + DM Sans (clean modern) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -874,9 +889,9 @@
         <div class="hero-particles" id="particles"></div>
 
         <div class="hero-content">
-            <p class="hero-eyebrow">SONGS Mitigation Monitoring Program</p>
+            <p class="hero-eyebrow">SONGS Mitigation Monitoring Program · UC Santa Barbara</p>
             <h1 class="hero-title">Carpinteria Salt Marsh<br><em>Fish Observatory</em></h1>
-            <p class="hero-subtitle">Thirteen years of scientific monitoring reveal the hidden dynamics of fish communities in one of Southern California's last remaining coastal wetlands.</p>
+            <p class="hero-subtitle">230 acres of tidal flats, pickleweed, and fish. Thirteen years of scientific monitoring reveal the hidden dynamics of communities in one of Southern California's last remaining coastal wetlands.</p>
             <div class="hero-stats">
                 <div class="hero-stat">
                     <div class="hero-stat-value" id="stat-years">13</div>
@@ -1022,6 +1037,18 @@
                             <li style="padding: 0.5rem 0;"><strong style="color: var(--navy);">Counter-Shading:</strong> Dark on top, light below—providing protection throughout the water column.</li>
                         </ul>
                     </div>
+                </div>
+
+                <!-- Field Note callout -->
+                <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, var(--sand-light), var(--cream)); border-radius: 6px; border-left: 4px solid var(--sand);">
+                    <h5 style="font-family: var(--font-display); color: var(--navy-deep); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        Field Note
+                    </h5>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.7; font-style: italic; margin: 0;">
+                        "We've caught longjaw mudsuckers that survived overnight in the cooler after being accidentally left behind. That air-breathing adaptation is very real—these fish are incredibly tough."
+                        <span style="display: block; margin-top: 0.5rem; font-style: normal; font-size: 0.8rem; color: var(--navy);">— A. Stier, field observations</span>
+                    </p>
                 </div>
             </div>
 
@@ -1305,12 +1332,62 @@
         </div>
     </section>
 
+    <!-- About This Project -->
+    <section id="about" style="background: var(--navy-deep); padding: var(--section-padding) 0; color: var(--white);">
+        <div class="section-container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+                <div>
+                    <span class="section-number" style="color: var(--sand);">About This Project</span>
+                    <h2 class="section-title" style="color: var(--white); margin-bottom: 1.5rem;">Why We Built This</h2>
+                    <p style="color: rgba(255,255,255,0.85); line-height: 1.9; margin-bottom: 1.5rem;">
+                        This observatory was created by <strong>Adrian Stier</strong> and students in the <strong>Ocean Recoveries Lab</strong> at UC Santa Barbara to make 13 years of SONGS monitoring data accessible for teaching, research, and public engagement.
+                    </p>
+                    <p style="color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 1.5rem;">
+                        The data were collected by the UCSB Marine Science Institute as part of the San Onofre Nuclear Generating Station mitigation monitoring program. We wanted to transform these valuable long-term observations into an interactive resource that anyone—from undergraduate students to curious community members—can explore.
+                    </p>
+                    <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">
+                        This observatory was developed for students in <strong>EEMB 106 (Biology of Fishes)</strong> at UCSB, but we hope it's useful for anyone interested in salt marsh ecology, coastal conservation, or data visualization.
+                    </p>
+                </div>
+                <div>
+                    <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+                        <h4 style="color: var(--sand); margin-bottom: 1.25rem; font-family: var(--font-display);">Contact & Links</h4>
+                        <div style="display: grid; gap: 1rem;">
+                            <a href="mailto:stier@ucsb.edu" style="color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: rgba(255,255,255,0.05); border-radius: 6px; transition: background 0.2s;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                <span>stier@ucsb.edu</span>
+                            </a>
+                            <a href="https://oceanrecoveries.com" target="_blank" style="color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: rgba(255,255,255,0.05); border-radius: 6px; transition: background 0.2s;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                                <span>Ocean Recoveries Lab</span>
+                            </a>
+                            <a href="https://github.com/adrianstier/carpinteria-salt-marsh-fishes" target="_blank" style="color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: rgba(255,255,255,0.05); border-radius: 6px; transition: background 0.2s;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                                <span>View Source on GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 2rem;">
+                        <h4 style="color: var(--sand); margin-bottom: 1rem; font-family: var(--font-display);">Acknowledgments</h4>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem;">
+                            Data collection funded by Southern California Edison as part of the SONGS mitigation program. Analysis and visualization supported by UCSB.
+                        </p>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.6;">
+                            Special thanks to the Marine Science Institute field crews who have monitored these wetlands since 2012.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="section-container">
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3>CSM Fish Observatory</h3>
-                    <p>Long-term ecological monitoring of fish communities in Carpinteria Salt Marsh, California. Powered by R statistical analysis.</p>
+                    <p>A teaching and research resource from the <strong>Stier Lab</strong> at UC Santa Barbara. Data collected by UCSB Marine Science Institute as part of the SONGS Mitigation Monitoring Program.</p>
+                    <p style="margin-top: 0.75rem; font-size: 0.85rem; opacity: 0.7;">Santa Barbara, California</p>
                 </div>
                 <div class="footer-links">
                     <h4>Data Sources</h4>
@@ -1320,16 +1397,16 @@
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h4>Analysis</h4>
+                    <h4>Links</h4>
                     <ul>
-                        <li>R v4.5.2</li>
-                        <li>vegan, lme4, mgcv</li>
+                        <li><a href="https://oceanrecoveries.com" target="_blank">Ocean Recoveries Lab</a></li>
+                        <li><a href="mailto:stier@ucsb.edu">Contact: stier@ucsb.edu</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>Data: Environmental Data Initiative</span>
-                <span>Built with <a href="https://claude.ai">Claude</a></span>
+                <span>v1.0 · Last updated January 2026</span>
+                <span>Developed by <a href="https://oceanrecoveries.com" target="_blank">Adrian Stier</a> with <a href="https://claude.ai" target="_blank">Claude</a></span>
             </div>
         </div>
     </footer>
@@ -1340,6 +1417,12 @@
     </div>
 
     <script>
+        // Console easter egg for curious developers
+        console.log('%c🐟 Carpinteria Salt Marsh Fish Observatory', 'font-size: 16px; font-weight: bold; color: #2d6a4f;');
+        console.log('%cThanks for inspecting! 13 years of fish data, visualized with D3.js.', 'color: #666;');
+        console.log('%cData: https://portal.edirepository.org/nis/mapbrowse?packageid=edi.647.8', 'color: #3d7ab3;');
+        console.log('%cQuestions? stier@ucsb.edu | https://oceanrecoveries.com', 'color: #666;');
+
         let DATA = null;
 
         // SVG Icons for fish types
