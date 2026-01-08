@@ -2270,13 +2270,117 @@
         }
 
         function renderRandomEffects() {
-            // Placeholder for random effects visualization
             const container = document.getElementById('chart-random-effects');
             if (!DATA.model_results?.mixed_model || DATA.model_results.mixed_model.error) {
                 container.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.4);padding:2rem;">Mixed model not available (insufficient locations)</div>';
                 return;
             }
-            container.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.4);padding:2rem;">Random effects caterpillar plot available in R output</div>';
+
+            const locationData = DATA.model_results.mixed_model.random_effects.location_intercepts;
+            if (!locationData || locationData.length === 0) {
+                container.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.4);padding:2rem;">Random effects data not available</div>';
+                return;
+            }
+
+            container.innerHTML = '';
+
+            const margin = { top: 20, right: 30, bottom: 60, left: 100 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = Math.max(400, locationData.length * 20) - margin.top - margin.bottom;
+
+            const svg = d3.select(container).append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
+
+            // Scales
+            const x = d3.scaleLinear()
+                .domain([d3.min(locationData, d => d.lower), d3.max(locationData, d => d.upper)])
+                .nice()
+                .range([0, width]);
+
+            const y = d3.scaleBand()
+                .domain(locationData.map(d => d.location))
+                .range([0, height])
+                .padding(0.3);
+
+            // Grid
+            svg.append('g').attr('class', 'grid')
+                .call(d3.axisLeft(y).tickSize(0))
+                .selectAll('text')
+                .attr('fill', 'rgba(255,255,255,0.7)')
+                .attr('font-size', '11px');
+
+            // Zero reference line
+            svg.append('line')
+                .attr('x1', x(0))
+                .attr('x2', x(0))
+                .attr('y1', 0)
+                .attr('y2', height)
+                .attr('stroke', 'rgba(255,255,255,0.3)')
+                .attr('stroke-width', 2)
+                .attr('stroke-dasharray', '4,4');
+
+            // Confidence intervals
+            svg.selectAll('.ci-line')
+                .data(locationData)
+                .join('line')
+                .attr('class', 'ci-line')
+                .attr('x1', d => x(d.lower))
+                .attr('x2', d => x(d.upper))
+                .attr('y1', d => y(d.location) + y.bandwidth() / 2)
+                .attr('y2', d => y(d.location) + y.bandwidth() / 2)
+                .attr('stroke', COLORS.oceanLight)
+                .attr('stroke-width', 2)
+                .style('opacity', 0)
+                .transition()
+                .duration(800)
+                .delay((d, i) => i * 30)
+                .style('opacity', 0.6);
+
+            // Point estimates
+            svg.selectAll('.re-point')
+                .data(locationData)
+                .join('circle')
+                .attr('class', 're-point')
+                .attr('cx', d => x(d.intercept))
+                .attr('cy', d => y(d.location) + y.bandwidth() / 2)
+                .attr('r', 0)
+                .attr('fill', d => d.intercept > 0 ? COLORS.marsh : COLORS.coral)
+                .attr('stroke', 'rgba(255,255,255,0.8)')
+                .attr('stroke-width', 1.5)
+                .on('mouseover', function(event, d) {
+                    d3.select(this).attr('r', 6);
+                    showTooltip(event,
+                        d.location,
+                        `Intercept: ${d.intercept.toFixed(2)}<br>95% CI: [${d.lower.toFixed(2)}, ${d.upper.toFixed(2)}]`
+                    );
+                })
+                .on('mouseout', function() {
+                    d3.select(this).attr('r', 4);
+                    hideTooltip();
+                })
+                .transition()
+                .duration(800)
+                .delay((d, i) => i * 30 + 400)
+                .attr('r', 4);
+
+            // Axes
+            svg.append('g')
+                .attr('transform', `translate(0,${height})`)
+                .call(d3.axisBottom(x).ticks(6))
+                .selectAll('text')
+                .attr('fill', 'rgba(255,255,255,0.7)')
+                .attr('font-size', '11px');
+
+            svg.append('text')
+                .attr('x', width / 2)
+                .attr('y', height + 45)
+                .attr('text-anchor', 'middle')
+                .attr('fill', 'rgba(255,255,255,0.5)')
+                .attr('font-size', '11px')
+                .text('Random Intercept (deviation from mean)');
         }
 
         // Sidebar navigation highlighting

@@ -179,7 +179,15 @@ dashboard_data <- list(
         random_effects = list(
           location_variance = round(results$model_results$mixed_model$random_effects$location_variance, 3),
           residual_variance = round(results$model_results$mixed_model$random_effects$residual_variance, 3),
-          icc = round(results$model_results$mixed_model$random_effects$icc, 3)
+          icc = round(results$model_results$mixed_model$random_effects$icc, 3),
+          location_intercepts = lapply(1:nrow(results$model_results$mixed_model$random_effects$location_intercepts), function(i) {
+            list(
+              location = results$model_results$mixed_model$random_effects$location_intercepts$location[i],
+              intercept = round(results$model_results$mixed_model$random_effects$location_intercepts$intercept[i], 3),
+              lower = round(results$model_results$mixed_model$random_effects$location_intercepts$lower[i], 3),
+              upper = round(results$model_results$mixed_model$random_effects$location_intercepts$upper[i], 3)
+            )
+          })
         ),
         n_locations = results$model_results$mixed_model$n_locations
       )

@@ -379,6 +379,19 @@ if (n_locations > 3) {
   # Extract variance components
   var_comp <- as.data.frame(VarCorr(lmer_model))
 
+  # Extract random effects (BLUPs) for caterpillar plot
+  random_intercepts <- ranef(lmer_model)$location
+  random_intercepts$location <- rownames(random_intercepts)
+  names(random_intercepts)[1] <- "intercept"
+
+  # Calculate confidence intervals for random effects
+  re_se <- sqrt(var_comp$vcov[1])  # Standard error from location variance
+  random_intercepts$lower <- random_intercepts$intercept - 1.96 * re_se
+  random_intercepts$upper <- random_intercepts$intercept + 1.96 * re_se
+
+  # Order by intercept value
+  random_intercepts <- random_intercepts[order(random_intercepts$intercept), ]
+
   lmer_results <- list(
     formula = "density ~ habitat + year + (1|location)",
     fixed_effects = list(
@@ -389,7 +402,8 @@ if (n_locations > 3) {
     random_effects = list(
       location_variance = var_comp$vcov[1],
       residual_variance = var_comp$vcov[2],
-      icc = var_comp$vcov[1] / sum(var_comp$vcov)  # Intraclass correlation
+      icc = var_comp$vcov[1] / sum(var_comp$vcov),  # Intraclass correlation
+      location_intercepts = random_intercepts
     ),
     n_locations = n_locations,
     aic = AIC(lmer_model),
