@@ -927,10 +927,10 @@
             // GAM stats
             if (DATA.model_results?.gam) {
                 const gam = DATA.model_results.gam;
-                document.getElementById('gam-dev').textContent = (gam.deviance_explained * 100).toFixed(1) + '%';
+                document.getElementById('gam-dev').textContent = gam.deviance_explained.toFixed(1) + '%';
                 document.getElementById('gam-r2').textContent = gam.r_squared.toFixed(3);
-                document.getElementById('gam-edf').textContent = gam.smooth_terms.year.edf.toFixed(2);
-                document.getElementById('gam-f').textContent = gam.smooth_terms.year.F_stat.toFixed(2);
+                document.getElementById('gam-edf').textContent = gam.smooth_year?.edf?.toFixed(2) || 'N/A';
+                document.getElementById('gam-f').textContent = gam.smooth_year?.F_stat?.toFixed(2) || 'N/A';
             }
 
             // Mixed model stats
