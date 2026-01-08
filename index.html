@@ -600,140 +600,256 @@
         }
         .dashboard .section-title { color: var(--white); }
         .dashboard .section-subtitle { color: rgba(255,255,255,0.55); }
+
+        /* Chart Tabs - Scientific Journal Style */
         .chart-tabs {
             display: flex;
             justify-content: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             margin-bottom: 3rem;
             flex-wrap: wrap;
+            background: rgba(0,0,0,0.2);
+            padding: 0.5rem;
+            border-radius: 16px;
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
         }
         .chart-tab {
-            padding: 0.7rem 1.4rem;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 100px;
-            color: rgba(255,255,255,0.6);
-            font-size: 0.85rem;
+            padding: 0.65rem 1.25rem;
+            background: transparent;
+            border: none;
+            border-radius: 12px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.4s var(--ease-out-expo);
-            letter-spacing: 0.01em;
+            transition: all 0.35s var(--ease-out-expo);
+            letter-spacing: 0.02em;
             position: relative;
             overflow: hidden;
+            white-space: nowrap;
         }
         .chart-tab::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--marsh-light), var(--ocean-light));
+            transform: translateX(-50%);
+            transition: width 0.35s var(--ease-out-expo);
+            border-radius: 2px;
         }
         .chart-tab:hover {
-            background: rgba(255,255,255,0.1);
             color: var(--white);
-            border-color: rgba(255,255,255,0.25);
-            transform: translateY(-2px);
+            background: rgba(255,255,255,0.05);
         }
         .chart-tab:hover::before {
-            transform: translateX(100%);
+            width: 60%;
         }
         .chart-tab.active {
-            background: linear-gradient(135deg, var(--sand), var(--sunset));
-            border-color: var(--sand);
-            color: var(--navy-deep);
+            background: linear-gradient(135deg, rgba(82, 183, 136, 0.25), rgba(104, 166, 212, 0.25));
+            color: var(--white);
             font-weight: 600;
-            box-shadow: 0 8px 20px -5px rgba(233, 196, 106, 0.4);
-        }
-        .chart-container {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px;
-            padding: 2.5rem;
-            min-height: 520px;
-            position: relative;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             box-shadow:
-                0 0 0 1px rgba(255,255,255,0.05) inset,
-                0 20px 50px -20px rgba(0,0,0,0.5);
+                0 0 20px rgba(82, 183, 136, 0.2),
+                inset 0 1px 0 rgba(255,255,255,0.1);
         }
-        .chart-panel { display: none; }
+        .chart-tab.active::before {
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--marsh-light), var(--ocean-light), var(--sand));
+            box-shadow: 0 0 12px var(--marsh-light);
+        }
+
+        /* Chart Container - Glassmorphic with Depth */
+        .chart-container {
+            background: linear-gradient(165deg, rgba(26, 58, 92, 0.4) 0%, rgba(10, 22, 40, 0.6) 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 2.5rem 3rem;
+            min-height: 540px;
+            position: relative;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.03) inset,
+                0 25px 60px -15px rgba(0,0,0,0.5),
+                0 0 80px -20px rgba(82, 183, 136, 0.1);
+            overflow: hidden;
+        }
+        .chart-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        }
+        .chart-container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(ellipse, rgba(82, 183, 136, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .chart-panel { display: none; position: relative; z-index: 1; }
         .chart-panel.active {
             display: block;
-            animation: chartFadeIn 0.5s var(--ease-out-expo);
+            animation: chartFadeIn 0.6s var(--ease-out-expo);
         }
         @keyframes chartFadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(15px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
+
         .chart-title {
             font-family: var(--font-display);
-            font-size: 1.6rem;
+            font-size: 1.75rem;
             font-weight: 500;
-            margin-bottom: 0.6rem;
-            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--white) 0%, rgba(168, 212, 239, 0.9) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .chart-description {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
+            color: rgba(255,255,255,0.55);
+            font-size: 0.88rem;
             margin-bottom: 2rem;
-            font-weight: 300;
+            font-weight: 400;
+            line-height: 1.7;
+            max-width: 800px;
         }
-        .chart-area { width: 100%; height: 400px; }
+        .chart-description strong {
+            color: var(--sand);
+            font-weight: 600;
+        }
+        .chart-area {
+            width: 100%;
+            height: 400px;
+            position: relative;
+        }
+
+        /* Chart Legend - Refined */
         .chart-legend {
             display: flex;
             justify-content: center;
-            gap: 2.5rem;
+            gap: 2rem;
             margin-top: 2rem;
             flex-wrap: wrap;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
         }
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            color: rgba(255,255,255,0.6);
-            font-size: 0.85rem;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 0.4rem 0.8rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .legend-item:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-1px);
         }
         .legend-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            box-shadow: 0 0 10px currentColor;
+            box-shadow: 0 0 12px currentColor, 0 0 4px currentColor;
+            animation: legendPulse 3s ease-in-out infinite;
+        }
+        @keyframes legendPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
-        /* D3 chart styles */
+        /* D3 Chart Styles - Bioluminescent Theme */
         .chart-area .axis text {
-            fill: rgba(255,255,255,0.5);
+            fill: rgba(255,255,255,0.6);
             font-size: 11px;
             font-family: var(--font-body);
+            font-weight: 500;
         }
         .chart-area .axis line, .chart-area .axis path {
-            stroke: rgba(255,255,255,0.15);
+            stroke: rgba(255,255,255,0.12);
+        }
+        .chart-area .axis .domain {
+            stroke: rgba(255,255,255,0.2);
         }
         .chart-area .grid line {
-            stroke: rgba(255,255,255,0.06);
-            stroke-dasharray: 2,4;
+            stroke: rgba(255,255,255,0.04);
+            stroke-dasharray: 3,6;
         }
 
-        /* Stats Panel */
+        /* Chart bars with glow */
+        .chart-area rect.bar {
+            filter: drop-shadow(0 0 8px rgba(104, 166, 212, 0.3));
+            transition: all 0.3s ease;
+        }
+        .chart-area rect.bar:hover {
+            filter: drop-shadow(0 0 16px rgba(104, 166, 212, 0.5));
+        }
+
+        /* Chart lines with glow */
+        .chart-area path[fill="none"] {
+            filter: drop-shadow(0 0 6px currentColor);
+        }
+
+        /* Chart points */
+        .chart-area circle {
+            transition: all 0.25s ease;
+        }
+        .chart-area circle:hover {
+            filter: drop-shadow(0 0 10px currentColor);
+            transform-origin: center;
+        }
+
+        /* Stats Panel - Scientific Results */
         .stats-panel {
-            background: var(--white);
+            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
             padding: var(--section-padding) 0;
             position: relative;
+            overflow: hidden;
+        }
+        .stats-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(82, 183, 136, 0.3), transparent);
         }
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.75rem;
         }
         .stat-card {
-            background: var(--cream);
-            border-radius: 6px;
-            padding: 2rem;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.75rem 2rem;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s var(--ease-out-expo);
+            transition: all 0.5s var(--ease-out-expo);
+            box-shadow:
+                0 4px 20px -5px rgba(0,0,0,0.08),
+                0 0 0 1px rgba(0,0,0,0.03);
         }
         .stat-card::before {
             content: '';
@@ -742,52 +858,92 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: var(--ocean);
+            background: linear-gradient(180deg, var(--ocean), var(--ocean-light));
             transition: width 0.4s var(--ease-out-expo);
+            border-radius: 4px 0 0 4px;
+        }
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top right, rgba(104, 166, 212, 0.05) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 12px 40px -10px rgba(0,0,0,0.12),
+                0 0 0 1px rgba(104, 166, 212, 0.1);
         }
         .stat-card:hover::before { width: 6px; }
+        .stat-card:hover::after { opacity: 1; }
         .stat-card.highlight::before {
             background: linear-gradient(180deg, var(--marsh-light), var(--marsh));
         }
-        .stat-card.warning::before { background: var(--coral); }
+        .stat-card.highlight::after {
+            background: radial-gradient(ellipse at top right, rgba(82, 183, 136, 0.06) 0%, transparent 60%);
+        }
+        .stat-card.warning::before {
+            background: linear-gradient(180deg, var(--coral), #c44536);
+        }
         .stat-card h4 {
             font-family: var(--font-display);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--navy-deep);
             margin-bottom: 1.25rem;
-            padding-left: 0.5rem;
+            padding-left: 0.75rem;
+            letter-spacing: -0.01em;
+            position: relative;
         }
         .stat-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.6rem 0.5rem;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: background 0.2s ease;
+            padding: 0.7rem 0.75rem;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.25s ease;
+            border-radius: 6px;
+            margin: 0 -0.25rem;
         }
-        .stat-row:hover { background: rgba(255,255,255,0.5); }
+        .stat-row:hover {
+            background: linear-gradient(90deg, rgba(104, 166, 212, 0.04), transparent);
+            border-bottom-color: transparent;
+        }
         .stat-row:last-child { border-bottom: none; }
         .stat-label {
             color: var(--gray);
-            font-size: 0.88rem;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
         .stat-value {
             font-weight: 600;
             color: var(--navy);
             font-size: 0.95rem;
             font-family: var(--font-body);
+            transition: color 0.2s ease;
         }
         .stat-value.significant {
             color: var(--marsh);
             position: relative;
+            padding-right: 1rem;
         }
         .stat-value.significant::after {
-            content: '*';
+            content: '✓';
+            position: absolute;
+            right: 0;
+            font-size: 0.75rem;
             color: var(--marsh-light);
-            margin-left: 2px;
         }
-        .stat-value.not-significant { color: var(--gray); }
+        .stat-value.not-significant {
+            color: var(--gray);
+            opacity: 0.8;
+        }
 
         /* Species */
         .species {
@@ -941,23 +1097,53 @@
         }
         .footer-bottom a { color: var(--sand); text-decoration: none; }
 
-        /* Tooltip */
+        /* Tooltip - Refined Glassmorphic Style */
         .tooltip {
             position: absolute;
-            background: var(--navy-deep);
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.95), rgba(26, 58, 92, 0.9));
             color: var(--white);
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
             font-size: 0.85rem;
             pointer-events: none;
             opacity: 0;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            max-width: 250px;
+            box-shadow:
+                0 8px 32px rgba(0,0,0,0.4),
+                0 0 0 1px rgba(255,255,255,0.08) inset,
+                0 0 20px rgba(82, 183, 136, 0.15);
+            max-width: 280px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transform: translateY(5px) scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
-        .tooltip.visible { opacity: 1; }
-        .tooltip-title { font-weight: 600; margin-bottom: 0.25rem; }
-        .tooltip-value { color: var(--sand); font-family: var(--font-display); font-size: 1.1rem; }
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        }
+        .tooltip.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .tooltip-title {
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.9);
+        }
+        .tooltip-value {
+            color: var(--sand);
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-shadow: 0 0 20px rgba(233, 196, 106, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -1652,13 +1838,17 @@
             document.getElementById('enclosure-records').textContent = DATA.summary.enclosure_records.toLocaleString() + ' records';
             document.getElementById('seine-records').textContent = DATA.summary.seine_records.toLocaleString() + ' records';
 
-            // Update chart descriptions with actual values
-            document.getElementById('trend-tau').textContent = DATA.model_results.temporal_trends.density_trend.tau;
-            document.getElementById('trend-p').textContent = DATA.model_results.temporal_trends.density_trend.p_value;
-            document.getElementById('habitat-p').textContent = DATA.model_results.habitat_comparison.density_test.p_value;
-            document.getElementById('nmds-stress').textContent = DATA.model_results.nmds.stress;
-            document.getElementById('gam-dev').textContent = DATA.model_results.gam.deviance_explained + '%';
-            document.getElementById('gam-r2').textContent = DATA.model_results.gam.r_squared;
+            // Update chart descriptions with actual values (gracefully handle missing elements)
+            const setTextIfExists = (id, value) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = value;
+            };
+            setTextIfExists('trend-tau', DATA.model_results.temporal_trends.density_trend.tau);
+            setTextIfExists('trend-p', DATA.model_results.temporal_trends.density_trend.p_value);
+            setTextIfExists('habitat-p', DATA.model_results.habitat_comparison.density_test.p_value);
+            setTextIfExists('nmds-stress', DATA.model_results.nmds.stress);
+            setTextIfExists('gam-dev', DATA.model_results.gam.deviance_explained + '%');
+            setTextIfExists('gam-r2', DATA.model_results.gam.r_squared);
 
             renderStatsPanel();
             renderSpecies();
@@ -1872,54 +2062,160 @@
                 name: SPECIES_INFO[d.species_code]?.common || d.species_code,
                 count: d.count
             }));
-            const margin = { top: 20, right: 120, bottom: 40, left: 140 };
+            const margin = { top: 20, right: 120, bottom: 40, left: 150 };
             const width = container.clientWidth - margin.left - margin.right;
-            const height = 380 - margin.top - margin.bottom;
+            const height = 400 - margin.top - margin.bottom;
             const svg = d3.select(container).append('svg')
                 .attr('width', width + margin.left + margin.right)
                 .attr('height', height + margin.top + margin.bottom)
                 .append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+            // Create gradient definitions
+            const defs = svg.append('defs');
+            const gradient = defs.append('linearGradient')
+                .attr('id', 'abundanceGradient')
+                .attr('x1', '0%').attr('y1', '0%')
+                .attr('x2', '100%').attr('y2', '0%');
+            gradient.append('stop').attr('offset', '0%').attr('stop-color', '#1a5f7a');
+            gradient.append('stop').attr('offset', '50%').attr('stop-color', '#3d7ab3');
+            gradient.append('stop').attr('offset', '100%').attr('stop-color', '#68a6d4');
+
+            // Glow filter
+            const filter = defs.append('filter').attr('id', 'barGlow');
+            filter.append('feGaussianBlur').attr('stdDeviation', '3').attr('result', 'coloredBlur');
+            const feMerge = filter.append('feMerge');
+            feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+            feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
             const x = d3.scaleLinear().domain([0, d3.max(data, d => d.count)]).range([0, width]);
-            const y = d3.scaleBand().domain(data.map(d => d.name)).range([0, height]).padding(0.3);
+            const y = d3.scaleBand().domain(data.map(d => d.name)).range([0, height]).padding(0.25);
+
+            // Animated bars with gradient
             svg.selectAll('.bar').data(data).join('rect').attr('class', 'bar')
-                .attr('x', 0).attr('y', d => y(d.name)).attr('width', d => x(d.count))
-                .attr('height', y.bandwidth()).attr('fill', COLORS.ocean).attr('rx', 4)
-                .on('mouseenter', function(event, d) { showTooltip(event, d.name, d.count.toLocaleString() + ' individuals'); })
-                .on('mouseleave', hideTooltip);
+                .attr('x', 0).attr('y', d => y(d.name))
+                .attr('width', 0) // Start at 0 for animation
+                .attr('height', y.bandwidth())
+                .attr('fill', 'url(#abundanceGradient)')
+                .attr('rx', 6)
+                .style('filter', 'url(#barGlow)')
+                .on('mouseenter', function(event, d) {
+                    d3.select(this).transition().duration(150)
+                        .attr('fill', '#52b788')
+                        .style('filter', 'url(#barGlow) drop-shadow(0 0 12px rgba(82, 183, 136, 0.6))');
+                    showTooltip(event, d.name, d.count.toLocaleString() + ' individuals');
+                })
+                .on('mouseleave', function() {
+                    d3.select(this).transition().duration(300)
+                        .attr('fill', 'url(#abundanceGradient)')
+                        .style('filter', 'url(#barGlow)');
+                    hideTooltip();
+                })
+                .transition().duration(800).delay((d, i) => i * 60)
+                .ease(d3.easeElasticOut.amplitude(1).period(0.5))
+                .attr('width', d => x(d.count));
+
+            // Labels with fade-in
             svg.selectAll('.label').data(data).join('text')
-                .attr('x', d => x(d.count) + 8).attr('y', d => y(d.name) + y.bandwidth()/2)
-                .attr('dy', '0.35em').attr('fill', 'rgba(255,255,255,0.7)').attr('font-size', '11px')
-                .text(d => d.count.toLocaleString());
-            svg.append('g').attr('class', 'axis').call(d3.axisLeft(y));
+                .attr('x', d => x(d.count) + 12)
+                .attr('y', d => y(d.name) + y.bandwidth()/2)
+                .attr('dy', '0.35em')
+                .attr('fill', 'rgba(255,255,255,0)')
+                .attr('font-size', '12px')
+                .attr('font-weight', '500')
+                .text(d => d.count >= 1000 ? (d.count/1000).toFixed(1) + 'k' : d.count.toLocaleString())
+                .transition().duration(400).delay((d, i) => 600 + i * 60)
+                .attr('fill', 'rgba(255,255,255,0.8)');
+
+            // Styled axis
+            const axis = svg.append('g').attr('class', 'axis').call(d3.axisLeft(y).tickSize(0).tickPadding(12));
+            axis.selectAll('text')
+                .attr('fill', 'rgba(255,255,255,0.8)')
+                .attr('font-size', '12px')
+                .attr('font-weight', '400');
+            axis.select('.domain').attr('stroke', 'rgba(255,255,255,0.1)');
         }
 
         function renderTrendsChart() {
             const container = document.getElementById('chart-trends');
             container.innerHTML = '';
             const data = DATA.charts.annual_trends;
-            const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+            const margin = { top: 30, right: 30, bottom: 60, left: 70 };
             const width = container.clientWidth - margin.left - margin.right;
-            const height = 340 - margin.top - margin.bottom;
+            const height = 360 - margin.top - margin.bottom;
             const svg = d3.select(container).append('svg')
                 .attr('width', width + margin.left + margin.right)
                 .attr('height', height + margin.top + margin.bottom)
                 .append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+            // Gradient definitions
+            const defs = svg.append('defs');
+            const tcGradient = defs.append('linearGradient').attr('id', 'tcAreaGradient').attr('x1', '0%').attr('y1', '0%').attr('x2', '0%').attr('y2', '100%');
+            tcGradient.append('stop').attr('offset', '0%').attr('stop-color', 'rgba(82, 183, 136, 0.4)');
+            tcGradient.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(82, 183, 136, 0)');
+            const mcGradient = defs.append('linearGradient').attr('id', 'mcAreaGradient').attr('x1', '0%').attr('y1', '0%').attr('x2', '0%').attr('y2', '100%');
+            mcGradient.append('stop').attr('offset', '0%').attr('stop-color', 'rgba(104, 166, 212, 0.35)');
+            mcGradient.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(104, 166, 212, 0)');
+
+            // Glow filter for lines
+            const glowFilter = defs.append('filter').attr('id', 'lineGlow').attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%');
+            glowFilter.append('feGaussianBlur').attr('stdDeviation', '2').attr('result', 'coloredBlur');
+            const feMerge = glowFilter.append('feMerge');
+            feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+            feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
             const x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([0, width]);
-            const y = d3.scaleLinear().domain([0, d3.max(data, d => Math.max(d.tc_density, d.mc_density)) * 1.1]).range([height, 0]);
+            const y = d3.scaleLinear().domain([0, d3.max(data, d => Math.max(d.tc_density, d.mc_density)) * 1.15]).range([height, 0]);
+
+            // Grid lines
+            svg.append('g').attr('class', 'grid')
+                .call(d3.axisLeft(y).tickSize(-width).tickFormat('')).selectAll('line')
+                .attr('stroke', 'rgba(255,255,255,0.04)').attr('stroke-dasharray', '3,6');
+            svg.select('.grid .domain').remove();
+
+            // Area fills
+            const areaTc = d3.area().x(d => x(d.year)).y0(height).y1(d => y(d.tc_density)).curve(d3.curveMonotoneX);
+            const areaMc = d3.area().x(d => x(d.year)).y0(height).y1(d => y(d.mc_density)).curve(d3.curveMonotoneX);
+            svg.append('path').datum(data).attr('fill', 'url(#tcAreaGradient)').attr('d', areaTc);
+            svg.append('path').datum(data).attr('fill', 'url(#mcAreaGradient)').attr('d', areaMc);
+
+            // Lines with glow
             const lineTc = d3.line().x(d => x(d.year)).y(d => y(d.tc_density)).curve(d3.curveMonotoneX);
             const lineMc = d3.line().x(d => x(d.year)).y(d => y(d.mc_density)).curve(d3.curveMonotoneX);
-            svg.append('path').datum(data).attr('fill', 'none').attr('stroke', COLORS.marsh).attr('stroke-width', 3).attr('d', lineTc);
-            svg.append('path').datum(data).attr('fill', 'none').attr('stroke', COLORS.ocean).attr('stroke-width', 3).attr('d', lineMc);
-            svg.selectAll('.dot-tc').data(data).join('circle').attr('cx', d => x(d.year)).attr('cy', d => y(d.tc_density)).attr('r', 5).attr('fill', COLORS.marsh)
-                .on('mouseenter', function(event, d) { showTooltip(event, `Tidal Creek ${d.year}`, `${d.tc_density.toFixed(1)} fish/m2`); })
-                .on('mouseleave', hideTooltip);
-            svg.selectAll('.dot-mc').data(data).join('circle').attr('cx', d => x(d.year)).attr('cy', d => y(d.mc_density)).attr('r', 5).attr('fill', COLORS.ocean)
-                .on('mouseenter', function(event, d) { showTooltip(event, `Main Channel ${d.year}`, `${d.mc_density.toFixed(1)} fish/m2`); })
-                .on('mouseleave', hideTooltip);
-            svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x).tickFormat(d3.format('d')));
-            svg.append('g').attr('class', 'axis').call(d3.axisLeft(y));
-            svg.append('text').attr('x', width/2).attr('y', height + 40).attr('text-anchor', 'middle').attr('fill', 'rgba(255,255,255,0.6)').attr('font-size', '12px').text('Year');
-            svg.append('text').attr('transform', 'rotate(-90)').attr('y', -45).attr('x', -height/2).attr('text-anchor', 'middle').attr('fill', 'rgba(255,255,255,0.6)').attr('font-size', '12px').text('Fish Density (individuals/m2)');
+            svg.append('path').datum(data).attr('fill', 'none').attr('stroke', COLORS.marsh).attr('stroke-width', 3).attr('d', lineTc).style('filter', 'url(#lineGlow)');
+            svg.append('path').datum(data).attr('fill', 'none').attr('stroke', COLORS.ocean).attr('stroke-width', 3).attr('d', lineMc).style('filter', 'url(#lineGlow)');
+
+            // Animated dots - Tidal Creek
+            svg.selectAll('.dot-tc').data(data).join('circle').attr('class', 'dot-tc')
+                .attr('cx', d => x(d.year)).attr('cy', d => y(d.tc_density))
+                .attr('r', 0).attr('fill', COLORS.marsh).attr('stroke', '#0a1628').attr('stroke-width', 2)
+                .on('mouseenter', function(event, d) {
+                    d3.select(this).transition().duration(150).attr('r', 9);
+                    showTooltip(event, `Tidal Creek ${d.year}`, `${d.tc_density.toFixed(1)} fish/m²`);
+                })
+                .on('mouseleave', function() { d3.select(this).transition().duration(200).attr('r', 6); hideTooltip(); })
+                .transition().duration(500).delay((d, i) => 300 + i * 50).attr('r', 6);
+
+            // Animated dots - Main Channel
+            svg.selectAll('.dot-mc').data(data).join('circle').attr('class', 'dot-mc')
+                .attr('cx', d => x(d.year)).attr('cy', d => y(d.mc_density))
+                .attr('r', 0).attr('fill', COLORS.ocean).attr('stroke', '#0a1628').attr('stroke-width', 2)
+                .on('mouseenter', function(event, d) {
+                    d3.select(this).transition().duration(150).attr('r', 9);
+                    showTooltip(event, `Main Channel ${d.year}`, `${d.mc_density.toFixed(1)} fish/m²`);
+                })
+                .on('mouseleave', function() { d3.select(this).transition().duration(200).attr('r', 6); hideTooltip(); })
+                .transition().duration(500).delay((d, i) => 400 + i * 50).attr('r', 6);
+
+            // Styled axes
+            svg.append('g').attr('class', 'axis').attr('transform', `translate(0,${height})`)
+                .call(d3.axisBottom(x).tickFormat(d3.format('d')).ticks(6))
+                .selectAll('text').attr('fill', 'rgba(255,255,255,0.7)');
+            svg.append('g').attr('class', 'axis').call(d3.axisLeft(y).ticks(6))
+                .selectAll('text').attr('fill', 'rgba(255,255,255,0.7)');
+
+            // Axis labels
+            svg.append('text').attr('x', width/2).attr('y', height + 45).attr('text-anchor', 'middle').attr('fill', 'rgba(255,255,255,0.5)').attr('font-size', '11px').text('Year');
+            svg.append('text').attr('transform', 'rotate(-90)').attr('y', -55).attr('x', -height/2).attr('text-anchor', 'middle').attr('fill', 'rgba(255,255,255,0.5)').attr('font-size', '11px').text('Fish Density (fish/m²)');
         }
 
         function renderHabitatChart() {
