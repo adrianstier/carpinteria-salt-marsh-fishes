@@ -156,6 +156,18 @@
         }
         .nav-links a:hover { color: var(--white); }
         .nav-links a:hover::after { width: 100%; }
+        .nav-links a.nav-highlight {
+            background: linear-gradient(135deg, var(--marsh), var(--marsh-light));
+            color: var(--white);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .nav-links a.nav-highlight::after { display: none; }
+        .nav-links a.nav-highlight:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(82, 183, 136, 0.3);
+        }
         @media (max-width: 768px) { .nav-links { display: none; } }
 
         /* Hero */
@@ -1155,6 +1167,7 @@
             <li><a href="#conservation">Conservation</a></li>
             <li><a href="#methodology">Methods</a></li>
             <li><a href="#dashboard">Data</a></li>
+            <li><a href="analysis.html" class="nav-highlight">Analysis</a></li>
             <li><a href="#species">Species</a></li>
         </ul>
     </nav>
