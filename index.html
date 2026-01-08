@@ -1375,12 +1375,12 @@
             <div class="chart-container">
                 <div class="chart-panel active" id="panel-abundance">
                     <h3 class="chart-title">Top Fish Species by Abundance</h3>
-                    <p class="chart-description">Cumulative counts across all seine surveys from 2012-2024.</p>
+                    <p class="chart-description">Cumulative counts across all seine surveys from 2012-2024. Topsmelt alone accounts for <strong>46%</strong> of total catch. Shannon diversity H' = 1.35, Simpson = 0.66, Evenness = 0.37.</p>
                     <div class="chart-area" id="chart-abundance"></div>
                 </div>
                 <div class="chart-panel" id="panel-trends">
                     <h3 class="chart-title">Fish Density Over Time</h3>
-                    <p class="chart-description">Annual mean fish density by habitat type. Mann-Kendall trend test: tau = <span id="trend-tau">0.026</span>, p = <span id="trend-p">0.95</span></p>
+                    <p class="chart-description">Annual mean fish density (fish/m²) by habitat. Mann-Kendall trend test indicates <strong>no significant long-term trend</strong> (tau = 0.026, p = 0.95). Density peaked in 2015 at 56.7 fish/m² and fluctuates with interannual variability.</p>
                     <div class="chart-area" id="chart-trends"></div>
                     <div class="chart-legend">
                         <div class="legend-item"><div class="legend-dot" style="background: #52b788;"></div><span>Tidal Creek</span></div>
@@ -1389,7 +1389,7 @@
                 </div>
                 <div class="chart-panel" id="panel-habitat">
                     <h3 class="chart-title">Habitat Comparison</h3>
-                    <p class="chart-description">Mean density and richness with standard deviation. Welch's t-test for density: p = <span id="habitat-p">0.0016</span></p>
+                    <p class="chart-description">Tidal creeks support <strong>significantly higher fish density</strong> (30.9 vs 17.7 fish/m², Welch's t = 3.23, p = 0.0016, Cohen's d = 0.52). Species richness does not differ between habitats (p = 0.17). Error bars show ± 1 SD.</p>
                     <div class="chart-area" id="chart-habitat"></div>
                     <div class="chart-legend">
                         <div class="legend-item"><div class="legend-dot" style="background: #52b788;"></div><span>Tidal Creek (n=78)</span></div>
@@ -1398,17 +1398,17 @@
                 </div>
                 <div class="chart-panel" id="panel-accumulation">
                     <h3 class="chart-title">Species Accumulation Curve</h3>
-                    <p class="chart-description">Rarefaction curve showing expected species richness as sampling effort increases. Method: random permutation.</p>
+                    <p class="chart-description">Rarefaction curve (random permutation, 100 iterations) shows richness asymptote near <strong>38 species</strong> after ~400 sampling events. The curve's plateau indicates comprehensive sampling coverage of the fish assemblage.</p>
                     <div class="chart-area" id="chart-accumulation"></div>
                 </div>
                 <div class="chart-panel" id="panel-nmds">
                     <h3 class="chart-title">NMDS Ordination</h3>
-                    <p class="chart-description">Non-metric multidimensional scaling of community composition by year. Stress = <span id="nmds-stress">0.065</span></p>
+                    <p class="chart-description">Non-metric multidimensional scaling (Bray-Curtis distance) reveals community composition shifts over time. <strong>Stress = 0.065</strong> indicates excellent 2D representation. Mean beta diversity = 0.47; communities show moderate year-to-year variation.</p>
                     <div class="chart-area" id="chart-nmds"></div>
                 </div>
                 <div class="chart-panel" id="panel-gam">
                     <h3 class="chart-title">GAM Model Predictions</h3>
-                    <p class="chart-description">Generalized Additive Model: density ~ habitat + s(year). Deviance explained: <span id="gam-dev">31.4%</span>, R2 = <span id="gam-r2">0.292</span></p>
+                    <p class="chart-description">Generalized Additive Model captures <strong>non-linear temporal dynamics</strong>: density ~ habitat + s(year, edf=3.73). The smooth term is highly significant (F=13.0, p<0.001). Model explains 31.4% of deviance (R² = 0.29), revealing cyclical abundance patterns.</p>
                     <div class="chart-area" id="chart-gam"></div>
                     <div class="chart-legend">
                         <div class="legend-item"><div class="legend-dot" style="background: #e9c46a;"></div><span>Fitted Values</span></div>
@@ -1418,22 +1418,22 @@
                 </div>
                 <div class="chart-panel" id="panel-heatmap">
                     <h3 class="chart-title">Species by Year Heatmap</h3>
-                    <p class="chart-description">Relative abundance patterns across years for top species (normalized within species).</p>
+                    <p class="chart-description">Relative abundance patterns for the <strong>10 most abundant species</strong> (normalized within each species). Reveals species-specific temporal dynamics: <strong>10 core species</strong> appear >80% of years, while 22 satellite species occur sporadically.</p>
                     <div class="chart-area" id="chart-heatmap" style="overflow-x: auto;"></div>
                 </div>
                 <div class="chart-panel" id="panel-seasonality">
                     <h3 class="chart-title">Seasonal Fish Abundance</h3>
-                    <p class="chart-description">Monthly catch-per-unit-effort reveals peak abundance in summer months.</p>
+                    <p class="chart-description">Monthly CPUE (catch per unit effort) reveals strong seasonality with <strong>peak abundance in July</strong>. Summer months show highest fish use of the marsh, coinciding with recruitment of marine migrant species like topsmelt and shiner perch.</p>
                     <div class="chart-area" id="chart-seasonality"></div>
                 </div>
                 <div class="chart-panel" id="panel-guilds">
                     <h3 class="chart-title">Ecological Guild Composition</h3>
-                    <p class="chart-description">Fish community structure by feeding guild and habitat affinity over time.</p>
+                    <p class="chart-description">Community dominated by <strong>planktivores (62%)</strong> and omnivores (34%). Habitat affinity shows <strong>59% marine migrants</strong> using the marsh as nursery habitat, with 41% year-round residents. Guild classification follows Elliott et al. estuarine fish guilds.</p>
                     <div class="chart-area" id="chart-guilds"></div>
                 </div>
                 <div class="chart-panel" id="panel-stability">
                     <h3 class="chart-title">Community Stability</h3>
-                    <p class="chart-description">Year-to-year turnover (Bray-Curtis dissimilarity) measures community change.</p>
+                    <p class="chart-description">Year-to-year Bray-Curtis turnover averages <strong>40%</strong> (range: 16-78%), indicating moderate community change. Highest turnover occurred 2013→2014 and 2019→2020. Community coefficient of variation = 0.63, suggesting dynamic but persistent assemblage structure.</p>
                     <div class="chart-area" id="chart-stability"></div>
                 </div>
             </div>
@@ -1444,9 +1444,34 @@
         <div class="section-container">
             <div class="section-header">
                 <span class="section-number">05 - Statistical Results</span>
-                <h2 class="section-title">Model Summary</h2>
-                <p class="section-subtitle">Comprehensive statistical analysis from R</p>
+                <h2 class="section-title">Key Ecological Findings</h2>
+                <p class="section-subtitle">Results from R statistical analysis (vegan, lme4, mgcv packages)</p>
             </div>
+
+            <!-- Key Findings Summary -->
+            <div class="findings-summary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+                <div class="finding-card" style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; border-left: 4px solid var(--marsh-light);">
+                    <h4 style="color: var(--marsh-light); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Habitat Effect</h4>
+                    <p style="color: var(--white); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">1.7x Higher</p>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem;">Fish density in tidal creeks vs main channel (p = 0.0016)</p>
+                </div>
+                <div class="finding-card" style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; border-left: 4px solid var(--ocean);">
+                    <h4 style="color: var(--ocean-light); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Community Stability</h4>
+                    <p style="color: var(--white); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">40% Turnover</p>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem;">Mean annual Bray-Curtis dissimilarity indicates moderate change</p>
+                </div>
+                <div class="finding-card" style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; border-left: 4px solid var(--sand);">
+                    <h4 style="color: var(--sand); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Nursery Function</h4>
+                    <p style="color: var(--white); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">59% Marine</p>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem;">Proportion of fish using marsh as nursery habitat</p>
+                </div>
+                <div class="finding-card" style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; border-left: 4px solid var(--coral);">
+                    <h4 style="color: var(--coral); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Dominance</h4>
+                    <p style="color: var(--white); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">46% Topsmelt</p>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem;">Single species dominates; top 5 species = 96% of catch</p>
+                </div>
+            </div>
+
             <div class="stats-grid" id="stats-grid"></div>
         </div>
     </section>
