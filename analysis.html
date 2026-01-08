@@ -572,8 +572,8 @@
                 <div class="chart-card full-width">
                     <div class="chart-header">
                         <div>
-                            <div class="chart-title">Year-to-Year Dissimilarity Heatmap</div>
-                            <div class="chart-subtitle">Bray-Curtis distance (0 = identical, 1 = completely different)</div>
+                            <div class="chart-title">Community Dissimilarity Summary</div>
+                            <div class="chart-subtitle">Bray-Curtis dissimilarity across all year pairs (0 = identical, 1 = completely different)</div>
                         </div>
                         <span class="chart-badge">Bray-Curtis</span>
                     </div>
@@ -1242,85 +1242,102 @@
         }
 
         function renderBetaMatrix() {
-            if (!DATA.model_results?.beta_diversity?.matrix) return;
+            if (!DATA.model_results?.beta_diversity) return;
 
             const container = document.getElementById('chart-beta-matrix');
             container.innerHTML = '';
 
-            const matrix = DATA.model_results.beta_diversity.matrix;
-            const years = DATA.model_results.beta_diversity.years;
+            const beta = DATA.model_results.beta_diversity;
 
-            const margin = { top: 50, right: 20, bottom: 20, left: 60 };
-            const size = Math.min(container.clientWidth - margin.left - margin.right, 500);
-            const cellSize = size / years.length;
+            // Create simple bar chart showing dissimilarity range
+            const data = [
+                { label: 'Mean', value: beta.mean_dissimilarity, color: COLORS.ocean },
+                { label: 'Maximum', value: beta.max_dissimilarity, color: COLORS.coral },
+                { label: 'Minimum', value: beta.min_dissimilarity, color: COLORS.marsh }
+            ];
+
+            const margin = { top: 20, right: 30, bottom: 50, left: 120 };
+            const width = Math.min(container.clientWidth - margin.left - margin.right, 500);
+            const height = 200 - margin.top - margin.bottom;
 
             const svg = d3.select(container).append('svg')
-                .attr('width', size + margin.left + margin.right)
-                .attr('height', size + margin.top + margin.bottom)
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
                 .append('g')
                 .attr('transform', `translate(${margin.left},${margin.top})`);
 
-            // Custom color scale with better gradient
-            const colorScale = d3.scaleLinear()
-                .domain([0, 0.5, 1])
-                .range([COLORS.ocean, COLORS.sand, COLORS.coral]);
+            const x = d3.scaleLinear()
+                .domain([0, 1])
+                .range([0, width]);
 
-            // Cells with animation
-            let cellIndex = 0;
-            years.forEach((y1, i) => {
-                years.forEach((y2, j) => {
-                    const value = matrix[y1][y2];
-                    svg.append('rect')
-                        .attr('x', j * cellSize)
-                        .attr('y', i * cellSize)
-                        .attr('width', cellSize - 1)
-                        .attr('height', cellSize - 1)
-                        .attr('fill', colorScale(0))
-                        .attr('rx', 2)
-                        .style('cursor', 'pointer')
-                        .style('filter', 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))')
-                        .on('mouseenter', function(event) {
-                            d3.select(this)
-                                .transition().duration(150)
-                                .style('filter', 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))');
-                            showTooltip(event, `${y1} vs ${y2}`, `Dissimilarity: ${value.toFixed(3)}`);
-                        })
-                        .on('mouseleave', function() {
-                            d3.select(this)
-                                .transition().duration(150)
-                                .style('filter', 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))');
-                            hideTooltip();
-                        })
-                        .transition()
-                        .duration(600)
-                        .delay(cellIndex * 15)
-                        .ease(d3.easeCubicOut)
-                        .attr('fill', colorScale(value));
-                    cellIndex++;
-                });
+            const y = d3.scaleBand()
+                .domain(data.map(d => d.label))
+                .range([0, height])
+                .padding(0.3);
+
+            // Add gradient for bars
+            const defs = svg.append('defs');
+            data.forEach(d => {
+                const gradient = defs.append('linearGradient')
+                    .attr('id', `betaGrad${d.label}`)
+                    .attr('x1', '0%').attr('y1', '0%')
+                    .attr('x2', '100%').attr('y2', '0%');
+                gradient.append('stop').attr('offset', '0%').attr('stop-color', d.color).attr('stop-opacity', 0.7);
+                gradient.append('stop').attr('offset', '100%').attr('stop-color', d.color).attr('stop-opacity', 1);
             });
 
-            // Labels
-            svg.selectAll('.y-label')
-                .data(years)
-                .join('text')
-                .attr('x', -5)
-                .attr('y', (d, i) => i * cellSize + cellSize / 2)
-                .attr('dy', '0.35em')
-                .attr('text-anchor', 'end')
-                .attr('fill', 'rgba(255,255,255,0.6)')
-                .attr('font-size', '10px')
-                .text(d => d);
+            // Bars
+            svg.selectAll('.bar')
+                .data(data)
+                .join('rect')
+                .attr('x', 0)
+                .attr('y', d => y(d.label))
+                .attr('width', 0)
+                .attr('height', y.bandwidth())
+                .attr('fill', d => `url(#betaGrad${d.label})`)
+                .attr('rx', 6)
+                .style('filter', 'drop-shadow(0 2px 6px rgba(0,0,0,0.3))')
+                .transition()
+                .duration(1000)
+                .delay((d, i) => i * 150)
+                .ease(d3.easeCubicOut)
+                .attr('width', d => x(d.value));
 
-            svg.selectAll('.x-label')
-                .data(years)
+            // Value labels
+            svg.selectAll('.value-label')
+                .data(data)
                 .join('text')
-                .attr('x', (d, i) => i * cellSize + cellSize / 2)
-                .attr('y', -5)
+                .attr('x', d => x(d.value) + 10)
+                .attr('y', d => y(d.label) + y.bandwidth() / 2)
+                .attr('dy', '0.35em')
+                .attr('fill', 'rgba(255,255,255,0.8)')
+                .attr('font-size', '13px')
+                .attr('font-weight', '600')
+                .style('opacity', 0)
+                .text(d => d.value.toFixed(3))
+                .transition()
+                .duration(500)
+                .delay((d, i) => i * 150 + 1000)
+                .style('opacity', 1);
+
+            // Axis
+            svg.append('g')
+                .attr('transform', `translate(0,${height})`)
+                .call(d3.axisBottom(x).ticks(5));
+
+            svg.append('g')
+                .call(d3.axisLeft(y).tickSize(0).tickPadding(10))
+                .selectAll('text')
+                .attr('fill', 'rgba(255,255,255,0.8)')
+                .attr('font-size', '13px');
+
+            svg.append('text')
+                .attr('x', width / 2)
+                .attr('y', height + 40)
                 .attr('text-anchor', 'middle')
-                .attr('fill', 'rgba(255,255,255,0.6)')
-                .attr('font-size', '10px')
-                .text(d => d);
+                .attr('fill', 'rgba(255,255,255,0.5)')
+                .attr('font-size', '11px')
+                .text('Bray-Curtis Dissimilarity');
         }
 
         function renderSpeciesSeasonality() {
