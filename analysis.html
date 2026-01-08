@@ -623,6 +623,41 @@
                         <div class="stat-note">Density rebounded 2.7×</div>
                     </div>
                 </div>
+
+                <!-- Species-Level Impact Analysis -->
+                <div class="chart-card full-width" style="margin-top: 2rem;">
+                    <div class="chart-header">
+                        <div>
+                            <div class="chart-title">Species-Level Event Impacts</div>
+                            <div class="chart-subtitle">Common species abundance changes around major disturbance events (with 1-year lag analysis)</div>
+                        </div>
+                        <span class="chart-badge">Impact Assessment</span>
+                    </div>
+                    <div class="chart-area" id="chart-species-impacts"></div>
+                </div>
+
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-box">
+                        <div class="stat-label">Most Resilient</div>
+                        <div class="stat-value" id="resilient-species">--</div>
+                        <div class="stat-note">Recovered fastest post-2018</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Most Impacted</div>
+                        <div class="stat-value" id="impacted-species">--</div>
+                        <div class="stat-note">Largest decline 2017-2018</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Lag Effect</div>
+                        <div class="stat-value" id="lag-effect">1 year</div>
+                        <div class="stat-note">Delayed response observed</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Recovery Rate</div>
+                        <div class="stat-value" id="recovery-rate">--</div>
+                        <div class="stat-note">Average % change 2021-2024</div>
+                    </div>
+                </div>
             </section>
 
             <!-- Species Seasonality Detail -->
@@ -931,6 +966,7 @@
             renderOccupancyCV();
             renderBetaMatrix();
             renderEventsTimeline();
+            renderSpeciesImpacts();
             renderSpeciesSeasonality();
             renderTurnoverChart();
             renderNurseryChart();
@@ -1403,9 +1439,9 @@
             const years = DATA.model_results.temporal_trends.years;
             const densities = DATA.model_results.temporal_trends.annual_density;
             const yearData = years.map((year, i) => ({ year, density: densities[i] }));
-            const margin = { top: 40, right: 30, bottom: 60, left: 70 };
+            const margin = { top: 80, right: 30, bottom: 60, left: 80 };
             const width = container.clientWidth - margin.left - margin.right;
-            const height = 350 - margin.top - margin.bottom;
+            const height = 450 - margin.top - margin.bottom;
 
             const svg = d3.select(container).append('svg')
                 .attr('width', width + margin.left + margin.right)
@@ -1477,17 +1513,32 @@
                     .delay(1200)
                     .attr('opacity', 0.6);
 
-                // Event label
-                svg.append('text')
+                // Event label background
+                const labelText = svg.append('text')
                     .attr('x', eventX)
-                    .attr('y', -10)
+                    .attr('y', -25)
                     .attr('text-anchor', 'middle')
                     .attr('fill', event.color)
-                    .attr('font-size', '10px')
-                    .attr('font-weight', '600')
+                    .attr('font-size', '11px')
+                    .attr('font-weight', '700')
                     .style('opacity', 0)
-                    .text(event.label)
+                    .text(event.label);
+
+                const bbox = labelText.node().getBBox();
+                svg.insert('rect', () => labelText.node())
+                    .attr('x', bbox.x - 6)
+                    .attr('y', bbox.y - 2)
+                    .attr('width', bbox.width + 12)
+                    .attr('height', bbox.height + 4)
+                    .attr('fill', 'rgba(10, 22, 40, 0.85)')
+                    .attr('rx', 4)
+                    .style('opacity', 0)
                     .transition()
+                    .duration(400)
+                    .delay(1400)
+                    .style('opacity', 1);
+
+                labelText.transition()
                     .duration(400)
                     .delay(1400)
                     .style('opacity', 1);
@@ -1575,6 +1626,201 @@
                 .attr('fill', 'rgba(255,255,255,0.5)')
                 .attr('font-size', '11px')
                 .text('Mean Fish Density (fish/m²)');
+        }
+
+        function renderSpeciesImpacts() {
+            if (!DATA.model_results?.by_species) return;
+
+            const container = document.getElementById('chart-species-impacts');
+            container.innerHTML = '';
+
+            // Get top 5 most common species
+            const speciesData = DATA.model_results.by_species;
+            const speciesYears = {};
+
+            speciesData.forEach(d => {
+                if (!speciesYears[d.species]) {
+                    speciesYears[d.species] = {};
+                }
+                speciesYears[d.species][d.year] = d.count;
+            });
+
+            // Calculate total abundance per species
+            const speciesTotals = Object.keys(speciesYears).map(sp => ({
+                species: sp,
+                total: Object.values(speciesYears[sp]).reduce((a, b) => a + b, 0)
+            })).sort((a, b) => b.total - a.total).slice(0, 5);
+
+            const topSpecies = speciesTotals.map(d => d.species);
+
+            // Calculate percent changes around key events
+            const impacts = topSpecies.map(sp => {
+                const years = speciesYears[sp];
+                const pre2018 = years[2017] || 0;
+                const post2018 = years[2018] || 0;
+                const lag2019 = years[2019] || 0;
+                const recent2024 = years[2024] || 0;
+
+                return {
+                    species: sp,
+                    immediate: pre2018 > 0 ? ((post2018 - pre2018) / pre2018 * 100) : 0,
+                    lagged: pre2018 > 0 ? ((lag2019 - pre2018) / pre2018 * 100) : 0,
+                    recovery: post2018 > 0 ? ((recent2024 - post2018) / post2018 * 100) : 0
+                };
+            });
+
+            // Find most resilient and most impacted
+            const mostResilient = impacts.reduce((max, curr) =>
+                curr.recovery > max.recovery ? curr : max
+            );
+            const mostImpacted = impacts.reduce((min, curr) =>
+                Math.abs(curr.immediate) > Math.abs(min.immediate) ? curr : min
+            );
+
+            // Update stats
+            document.getElementById('resilient-species').textContent = mostResilient.species;
+            document.getElementById('impacted-species').textContent = mostImpacted.species;
+
+            const avgRecovery = impacts.reduce((sum, d) => sum + d.recovery, 0) / impacts.length;
+            document.getElementById('recovery-rate').textContent = avgRecovery.toFixed(0) + '%';
+
+            // Prepare data for multi-line chart
+            const chartData = topSpecies.map(sp => {
+                const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+                return {
+                    species: sp,
+                    values: years.map(year => ({
+                        year,
+                        count: speciesYears[sp][year] || 0
+                    }))
+                };
+            });
+
+            const margin = { top: 20, right: 120, bottom: 60, left: 70 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = 350 - margin.top - margin.bottom;
+
+            const svg = d3.select(container).append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
+
+            const x = d3.scaleLinear()
+                .domain([2015, 2024])
+                .range([0, width]);
+
+            const allCounts = chartData.flatMap(d => d.values.map(v => v.count));
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(allCounts) * 1.1])
+                .range([height, 0]);
+
+            const colorScale = d3.scaleOrdinal()
+                .domain(topSpecies)
+                .range([COLORS.marsh, COLORS.ocean, COLORS.sand, COLORS.sunset, COLORS.coral]);
+
+            // Grid
+            svg.append('g').attr('class', 'grid')
+                .call(d3.axisLeft(y).tickSize(-width).tickFormat(''));
+
+            // Event markers
+            const eventYears = [2018.02, 2024.13];
+            const eventLabels = ['Mudslide', 'Atm Rivers'];
+            const eventColors = [COLORS.marsh_dark, COLORS.sky];
+
+            eventYears.forEach((eventYear, i) => {
+                svg.append('line')
+                    .attr('x1', x(eventYear))
+                    .attr('x2', x(eventYear))
+                    .attr('y1', 0)
+                    .attr('y2', height)
+                    .attr('stroke', eventColors[i])
+                    .attr('stroke-width', 2)
+                    .attr('stroke-dasharray', '4,4')
+                    .attr('opacity', 0.4);
+
+                svg.append('text')
+                    .attr('x', x(eventYear))
+                    .attr('y', -5)
+                    .attr('text-anchor', 'middle')
+                    .attr('fill', eventColors[i])
+                    .attr('font-size', '10px')
+                    .attr('font-weight', '600')
+                    .text(eventLabels[i]);
+            });
+
+            // Lines
+            const line = d3.line()
+                .x(d => x(d.year))
+                .y(d => y(d.count))
+                .curve(d3.curveMonotoneX);
+
+            chartData.forEach(species => {
+                const path = svg.append('path')
+                    .datum(species.values)
+                    .attr('fill', 'none')
+                    .attr('stroke', colorScale(species.species))
+                    .attr('stroke-width', 2.5)
+                    .attr('d', line)
+                    .style('opacity', 0.8);
+
+                const totalLength = path.node().getTotalLength();
+                path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
+                    .attr('stroke-dashoffset', totalLength)
+                    .transition()
+                    .duration(1500)
+                    .ease(d3.easeCubicOut)
+                    .attr('stroke-dashoffset', 0);
+            });
+
+            // Legend
+            const legend = svg.append('g')
+                .attr('transform', `translate(${width + 15}, 0)`);
+
+            topSpecies.forEach((sp, i) => {
+                const g = legend.append('g')
+                    .attr('transform', `translate(0, ${i * 25})`);
+
+                g.append('line')
+                    .attr('x1', 0)
+                    .attr('x2', 20)
+                    .attr('y1', 0)
+                    .attr('y2', 0)
+                    .attr('stroke', colorScale(sp))
+                    .attr('stroke-width', 2.5);
+
+                g.append('text')
+                    .attr('x', 25)
+                    .attr('y', 4)
+                    .attr('fill', 'rgba(255,255,255,0.8)')
+                    .attr('font-size', '12px')
+                    .text(sp);
+            });
+
+            // Axes
+            svg.append('g')
+                .attr('transform', `translate(0,${height})`)
+                .call(d3.axisBottom(x).tickFormat(d3.format('d')));
+
+            svg.append('g')
+                .call(d3.axisLeft(y));
+
+            svg.append('text')
+                .attr('x', width / 2)
+                .attr('y', height + 50)
+                .attr('text-anchor', 'middle')
+                .attr('fill', 'rgba(255,255,255,0.5)')
+                .attr('font-size', '11px')
+                .text('Year');
+
+            svg.append('text')
+                .attr('transform', 'rotate(-90)')
+                .attr('x', -height / 2)
+                .attr('y', -50)
+                .attr('text-anchor', 'middle')
+                .attr('fill', 'rgba(255,255,255,0.5)')
+                .attr('font-size', '11px')
+                .text('Abundance (count)');
         }
 
         function renderSpeciesSeasonality() {
