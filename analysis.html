@@ -1386,7 +1386,7 @@
         }
 
         function renderEventsTimeline() {
-            if (!DATA.model_results?.temporal_trends?.by_year) return;
+            if (!DATA.model_results?.temporal_trends?.years) return;
 
             const container = document.getElementById('chart-events-timeline');
             container.innerHTML = '';
@@ -1400,7 +1400,9 @@
                 { year: 2024.13, label: 'Atmospheric Rivers', type: 'storm', color: COLORS.sky, impact: '10+ inches rainfall' }
             ];
 
-            const yearData = DATA.model_results.temporal_trends.by_year;
+            const years = DATA.model_results.temporal_trends.years;
+            const densities = DATA.model_results.temporal_trends.annual_density;
+            const yearData = years.map((year, i) => ({ year, density: densities[i] }));
             const margin = { top: 40, right: 30, bottom: 60, left: 70 };
             const width = container.clientWidth - margin.left - margin.right;
             const height = 350 - margin.top - margin.bottom;
@@ -1415,7 +1417,7 @@
                 .domain([2012, 2024])
                 .range([0, width]);
 
-            const maxDensity = d3.max(yearData, d => Math.max(d.tc_density, d.mc_density));
+            const maxDensity = d3.max(yearData, d => d.density);
             const y = d3.scaleLinear()
                 .domain([0, maxDensity * 1.1])
                 .range([height, 0]);
@@ -1491,12 +1493,6 @@
                     .style('opacity', 1);
             });
 
-            // Calculate mean density across both habitats
-            const meanData = yearData.map(d => ({
-                year: d.year,
-                density: (d.tc_density + d.mc_density) / 2
-            }));
-
             // Density line
             const line = d3.line()
                 .x(d => x(d.year))
@@ -1505,7 +1501,7 @@
 
             // Shadow line
             svg.append('path')
-                .datum(meanData)
+                .datum(yearData)
                 .attr('fill', 'none')
                 .attr('stroke', COLORS.ocean)
                 .attr('stroke-width', 5)
@@ -1515,7 +1511,7 @@
 
             // Main line with animation
             const path = svg.append('path')
-                .datum(meanData)
+                .datum(yearData)
                 .attr('fill', 'none')
                 .attr('stroke', 'url(#densityGradient)')
                 .attr('stroke-width', 3.5)
@@ -1532,7 +1528,7 @@
 
             // Data points
             svg.selectAll('.data-point')
-                .data(meanData)
+                .data(yearData)
                 .join('circle')
                 .attr('cx', d => x(d.year))
                 .attr('cy', d => y(d.density))
