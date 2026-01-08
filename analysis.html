@@ -1629,13 +1629,13 @@
         }
 
         function renderSpeciesImpacts() {
-            if (!DATA.model_results?.by_species) return;
+            if (!DATA.charts?.heatmap) return;
 
             const container = document.getElementById('chart-species-impacts');
             container.innerHTML = '';
 
             // Get top 5 most common species
-            const speciesData = DATA.model_results.by_species;
+            const speciesData = DATA.charts.heatmap;
             const speciesYears = {};
 
             speciesData.forEach(d => {
