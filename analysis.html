@@ -423,8 +423,12 @@
             stroke: rgba(255,255,255,0.1);
         }
         .grid line {
-            stroke: rgba(255,255,255,0.04);
+            stroke: rgba(255,255,255,0.03);
             stroke-dasharray: 2,4;
+            stroke-width: 0.5;
+        }
+        .grid path {
+            stroke: none;
         }
 
         /* Responsive */
@@ -962,14 +966,24 @@
                 .append('g')
                 .attr('transform', `translate(${margin.left},${margin.top})`);
 
-            // Create gradient
+            // Create gradients and filters
             const defs = svg.append('defs');
+
+            // Line gradient
             const gradient = defs.append('linearGradient')
                 .attr('id', 'raGradient')
                 .attr('x1', '0%').attr('y1', '0%')
                 .attr('x2', '100%').attr('y2', '0%');
-            gradient.append('stop').attr('offset', '0%').attr('stop-color', COLORS.marsh);
-            gradient.append('stop').attr('offset', '100%').attr('stop-color', COLORS.ocean);
+            gradient.append('stop').attr('offset', '0%').attr('stop-color', COLORS.marsh).attr('stop-opacity', 1);
+            gradient.append('stop').attr('offset', '50%').attr('stop-color', COLORS.ocean).attr('stop-opacity', 1);
+            gradient.append('stop').attr('offset', '100%').attr('stop-color', COLORS.sky).attr('stop-opacity', 0.7);
+
+            // Glow filter
+            const filter = defs.append('filter').attr('id', 'raGlow');
+            filter.append('feGaussianBlur').attr('stdDeviation', '3').attr('result', 'coloredBlur');
+            const feMerge = filter.append('feMerge');
+            feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+            feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
 
             const x = d3.scaleLinear()
                 .domain([1, data.length])
@@ -989,32 +1003,65 @@
                 .y(d => y(d.total_abundance))
                 .curve(d3.curveMonotoneX);
 
+            // Shadow line
             svg.append('path')
+                .datum(data)
+                .attr('fill', 'none')
+                .attr('stroke', COLORS.marsh)
+                .attr('stroke-width', 4)
+                .attr('stroke-opacity', 0.2)
+                .attr('d', line)
+                .attr('filter', 'url(#raGlow)');
+
+            // Main line with animation
+            const path = svg.append('path')
                 .datum(data)
                 .attr('fill', 'none')
                 .attr('stroke', 'url(#raGradient)')
                 .attr('stroke-width', 3)
+                .attr('stroke-linecap', 'round')
                 .attr('d', line);
 
-            // Points
+            // Animate line drawing
+            const totalLength = path.node().getTotalLength();
+            path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
+                .attr('stroke-dashoffset', totalLength)
+                .transition()
+                .duration(1500)
+                .ease(d3.easeCubicOut)
+                .attr('stroke-dashoffset', 0);
+
+            // Points with animation
             svg.selectAll('.point')
                 .data(data)
                 .join('circle')
                 .attr('cx', d => x(d.rank))
                 .attr('cy', d => y(d.total_abundance))
-                .attr('r', d => d.rank <= 5 ? 6 : 4)
+                .attr('r', 0)
                 .attr('fill', d => d.rank <= 5 ? COLORS.sand : COLORS.ocean)
                 .attr('stroke', '#0a1628')
                 .attr('stroke-width', 2)
+                .style('cursor', 'pointer')
                 .on('mouseenter', function(event, d) {
-                    d3.select(this).attr('r', 8);
+                    d3.select(this)
+                        .transition().duration(200)
+                        .attr('r', d.rank <= 5 ? 10 : 8)
+                        .attr('stroke-width', 3);
                     showTooltip(event, `Rank ${d.rank}: ${d.species_code}`,
                         `${d.total_abundance.toLocaleString()} (${(d.proportion * 100).toFixed(1)}%)`);
                 })
-                .on('mouseleave', function() {
-                    d3.select(this).attr('r', d => d.rank <= 5 ? 6 : 4);
+                .on('mouseleave', function(event, d) {
+                    d3.select(this)
+                        .transition().duration(200)
+                        .attr('r', d.rank <= 5 ? 6 : 4)
+                        .attr('stroke-width', 2);
                     hideTooltip();
-                });
+                })
+                .transition()
+                .duration(800)
+                .delay((d, i) => 1500 + i * 30)
+                .ease(d3.easeElasticOut.amplitude(1).period(0.5))
+                .attr('r', d => d.rank <= 5 ? 6 : 4);
 
             // Axes
             svg.append('g')
@@ -1071,7 +1118,18 @@
                 .range([0, height])
                 .padding(0.3);
 
-            // Bars
+            // Add gradients for bars
+            const defs = svg.append('defs');
+            ['Core', 'Common', 'Satellite'].forEach(cat => {
+                const gradient = defs.append('linearGradient')
+                    .attr('id', `csGrad${cat}`)
+                    .attr('x1', '0%').attr('y1', '0%')
+                    .attr('x2', '100%').attr('y2', '0%');
+                gradient.append('stop').attr('offset', '0%').attr('stop-color', colors[cat]).attr('stop-opacity', 0.8);
+                gradient.append('stop').attr('offset', '100%').attr('stop-color', colors[cat]).attr('stop-opacity', 1);
+            });
+
+            // Bars with glow
             svg.selectAll('.bar')
                 .data(data)
                 .join('rect')
@@ -1079,11 +1137,13 @@
                 .attr('y', d => y(d.category))
                 .attr('width', 0)
                 .attr('height', y.bandwidth())
-                .attr('fill', d => colors[d.category])
+                .attr('fill', d => `url(#csGrad${d.category})`)
                 .attr('rx', 6)
+                .style('filter', 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))')
                 .transition()
-                .duration(800)
-                .delay((d, i) => i * 100)
+                .duration(1000)
+                .delay((d, i) => i * 150)
+                .ease(d3.easeCubicOut)
                 .attr('width', d => x(d.n_species));
 
             // Labels
@@ -1128,23 +1188,48 @@
             const x = d3.scaleLinear().domain([0, 1]).range([0, width]);
             const y = d3.scaleLinear().domain([0, d3.max(data, d => d.cv)]).range([height, 0]);
 
-            // Points
+            // Add glow effect
+            const defs = svg.append('defs');
+            const filter = defs.append('filter').attr('id', 'scatterGlow');
+            filter.append('feGaussianBlur').attr('stdDeviation', '2').attr('result', 'coloredBlur');
+            const feMerge = filter.append('feMerge');
+            feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+            feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+            // Points with animation and glow
             svg.selectAll('.point')
                 .data(data)
                 .join('circle')
                 .attr('cx', d => x(d.occupancy))
                 .attr('cy', d => y(d.cv))
-                .attr('r', 5)
+                .attr('r', 0)
                 .attr('fill', d => colors[d.category])
-                .attr('opacity', 0.7)
+                .attr('opacity', 0.8)
+                .attr('stroke', d => colors[d.category])
+                .attr('stroke-width', 1.5)
+                .style('cursor', 'pointer')
+                .style('filter', 'url(#scatterGlow)')
                 .on('mouseenter', function(event, d) {
-                    d3.select(this).attr('r', 8).attr('opacity', 1);
+                    d3.select(this)
+                        .transition().duration(200)
+                        .attr('r', 9)
+                        .attr('opacity', 1)
+                        .attr('stroke-width', 2.5);
                     showTooltip(event, d.species_code, `Occupancy: ${(d.occupancy * 100).toFixed(0)}%, CV: ${d.cv.toFixed(2)}`);
                 })
                 .on('mouseleave', function() {
-                    d3.select(this).attr('r', 5).attr('opacity', 0.7);
+                    d3.select(this)
+                        .transition().duration(200)
+                        .attr('r', 6)
+                        .attr('opacity', 0.8)
+                        .attr('stroke-width', 1.5);
                     hideTooltip();
-                });
+                })
+                .transition()
+                .duration(600)
+                .delay((d, i) => i * 40)
+                .ease(d3.easeBackOut.overshoot(1.2))
+                .attr('r', 6);
 
             // Axes
             svg.append('g').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x).tickFormat(d3.format('.0%')));
@@ -1175,9 +1260,13 @@
                 .append('g')
                 .attr('transform', `translate(${margin.left},${margin.top})`);
 
-            const colorScale = d3.scaleSequential(d3.interpolateYlOrRd).domain([0, 1]);
+            // Custom color scale with better gradient
+            const colorScale = d3.scaleLinear()
+                .domain([0, 0.5, 1])
+                .range([COLORS.ocean, COLORS.sand, COLORS.coral]);
 
-            // Cells
+            // Cells with animation
+            let cellIndex = 0;
             years.forEach((y1, i) => {
                 years.forEach((y2, j) => {
                     const value = matrix[y1][y2];
@@ -1186,12 +1275,28 @@
                         .attr('y', i * cellSize)
                         .attr('width', cellSize - 1)
                         .attr('height', cellSize - 1)
-                        .attr('fill', colorScale(value))
+                        .attr('fill', colorScale(0))
                         .attr('rx', 2)
+                        .style('cursor', 'pointer')
+                        .style('filter', 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))')
                         .on('mouseenter', function(event) {
+                            d3.select(this)
+                                .transition().duration(150)
+                                .style('filter', 'drop-shadow(0 2px 6px rgba(0,0,0,0.4))');
                             showTooltip(event, `${y1} vs ${y2}`, `Dissimilarity: ${value.toFixed(3)}`);
                         })
-                        .on('mouseleave', hideTooltip);
+                        .on('mouseleave', function() {
+                            d3.select(this)
+                                .transition().duration(150)
+                                .style('filter', 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))');
+                            hideTooltip();
+                        })
+                        .transition()
+                        .duration(600)
+                        .delay(cellIndex * 15)
+                        .ease(d3.easeCubicOut)
+                        .attr('fill', colorScale(value));
+                    cellIndex++;
                 });
             });
 
@@ -1474,6 +1579,16 @@
             const yMax = d3.max(data, d => d.fitted + 2 * d.se);
             const y = d3.scaleLinear().domain([0, yMax]).range([height, 0]);
 
+            // Add gradient
+            const defs = svg.append('defs');
+            const gradient = defs.append('linearGradient')
+                .attr('id', 'gamGradient')
+                .attr('x1', '0%').attr('y1', '0%')
+                .attr('x2', '100%').attr('y2', '0%');
+            gradient.append('stop').attr('offset', '0%').attr('stop-color', COLORS.sand).attr('stop-opacity', 0.8);
+            gradient.append('stop').attr('offset', '50%').attr('stop-color', COLORS.sunset).attr('stop-opacity', 0.9);
+            gradient.append('stop').attr('offset', '100%').attr('stop-color', COLORS.coral).attr('stop-opacity', 1);
+
             // Confidence band
             const area = d3.area()
                 .x(d => x(d.year))
@@ -1483,13 +1598,33 @@
 
             svg.append('path')
                 .datum(data)
-                .attr('fill', 'rgba(233, 196, 106, 0.2)')
-                .attr('d', area);
+                .attr('fill', 'rgba(82, 183, 136, 0.15)')
+                .attr('d', area)
+                .style('opacity', 0)
+                .transition()
+                .duration(1000)
+                .style('opacity', 1);
 
-            // Line
+            // Shadow line
             const line = d3.line().x(d => x(d.year)).y(d => y(d.fitted)).curve(d3.curveMonotoneX);
             svg.append('path').datum(data).attr('fill', 'none').attr('stroke', COLORS.sand)
-                .attr('stroke-width', 3).attr('d', line);
+                .attr('stroke-width', 5).attr('stroke-opacity', 0.15).attr('d', line)
+                .attr('filter', 'blur(4px)');
+
+            // Main line with animation
+            const mainPath = svg.append('path').datum(data).attr('fill', 'none')
+                .attr('stroke', 'url(#gamGradient)')
+                .attr('stroke-width', 3.5)
+                .attr('stroke-linecap', 'round')
+                .attr('d', line);
+
+            const totalLength = mainPath.node().getTotalLength();
+            mainPath.attr('stroke-dasharray', totalLength + ' ' + totalLength)
+                .attr('stroke-dashoffset', totalLength)
+                .transition()
+                .duration(1800)
+                .ease(d3.easeCubicInOut)
+                .attr('stroke-dashoffset', 0);
 
             svg.append('g').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x).tickFormat(d3.format('d')));
             svg.append('g').call(d3.axisLeft(y));
