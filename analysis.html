@@ -1507,18 +1507,21 @@
 
             const terms = [
                 { name: '(Intercept)', estimate: glm.coefficients.intercept, p: glm.p_values.intercept },
-                { name: 'habitat (Main Channel)', estimate: glm.coefficients.habitat_main_channel, p: glm.p_values.habitat },
-                { name: 'year', estimate: glm.coefficients.year, p: glm.p_values.year }
+                { name: 'habitat', estimate: glm.coefficients.habitat_effect, p: glm.p_values.habitat },
+                { name: 'year', estimate: glm.coefficients.year_effect, p: glm.p_values.year }
             ];
 
             terms.forEach(t => {
                 const row = document.createElement('tr');
+                const est = t.estimate != null ? t.estimate.toFixed(3) : 'N/A';
+                const pVal = t.p != null ? (t.p < 0.001 ? '<0.001' : t.p.toFixed(4)) : 'N/A';
+                const isSignificant = t.p != null && t.p < 0.05;
                 row.innerHTML = `
                     <td class="code">${t.name}</td>
-                    <td>${t.estimate.toFixed(3)}</td>
+                    <td>${est}</td>
                     <td>--</td>
                     <td>--</td>
-                    <td class="${t.p < 0.05 ? 'significant' : ''}">${t.p < 0.001 ? '<0.001' : t.p.toFixed(4)}</td>
+                    <td class="${isSignificant ? 'significant' : ''}">${pVal}</td>
                 `;
                 tbody.appendChild(row);
             });
