@@ -464,6 +464,7 @@
                     <li><a href="#rank-abundance" class="active">Rank-Abundance</a></li>
                     <li><a href="#core-satellite">Core vs Satellite Species</a></li>
                     <li><a href="#beta-diversity">Beta Diversity Matrix</a></li>
+                    <li><a href="#environmental-events">Environmental Events</a></li>
                 </ul>
             </div>
             <div class="sidebar-section">
@@ -578,6 +579,49 @@
                         <span class="chart-badge">Bray-Curtis</span>
                     </div>
                     <div class="chart-area" id="chart-beta-matrix"></div>
+                </div>
+            </section>
+
+            <!-- Environmental Events Timeline -->
+            <section class="analysis-section" id="environmental-events">
+                <div class="section-header">
+                    <div class="section-label">Disturbance Ecology</div>
+                    <h2 class="section-title">Environmental Events & Community Response</h2>
+                    <p class="section-desc">Historical disturbance events and their impacts on fish community structure and density.</p>
+                </div>
+
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <div>
+                            <div class="chart-title">Fish Density & Major Events Timeline (2012-2024)</div>
+                            <div class="chart-subtitle">Vertical bars mark disturbance events; line shows mean density response</div>
+                        </div>
+                        <span class="chart-badge">Impact Analysis</span>
+                    </div>
+                    <div class="chart-area" id="chart-events-timeline"></div>
+                </div>
+
+                <div class="stats-grid" style="margin-top: 2rem;">
+                    <div class="stat-box">
+                        <div class="stat-label">Drought Period</div>
+                        <div class="stat-value">2012-2015</div>
+                        <div class="stat-note">Worst in 1,200 years</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Mudslide Event</div>
+                        <div class="stat-value">Jan 9, 2018</div>
+                        <div class="stat-note">15,000+ cubic yards debris</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Atmospheric Rivers</div>
+                        <div class="stat-value">Feb 2024</div>
+                        <div class="stat-note">10+ inches rainfall</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Recovery Observed</div>
+                        <div class="stat-value">2024</div>
+                        <div class="stat-note">Density rebounded 2.7×</div>
+                    </div>
                 </div>
             </section>
 
@@ -886,6 +930,7 @@
             renderCoreSatellite();
             renderOccupancyCV();
             renderBetaMatrix();
+            renderEventsTimeline();
             renderSpeciesSeasonality();
             renderTurnoverChart();
             renderNurseryChart();
@@ -1338,6 +1383,202 @@
                 .attr('fill', 'rgba(255,255,255,0.5)')
                 .attr('font-size', '11px')
                 .text('Bray-Curtis Dissimilarity');
+        }
+
+        function renderEventsTimeline() {
+            if (!DATA.model_results?.temporal_trends?.by_year) return;
+
+            const container = document.getElementById('chart-events-timeline');
+            container.innerHTML = '';
+
+            // Event data with impacts
+            const events = [
+                { year: 2013, label: 'Drought Intensifies', type: 'drought', color: COLORS.sunset, impact: 'Exceptional drought declared' },
+                { year: 2014.5, label: 'Peak Drought', type: 'drought', color: COLORS.coral, impact: '100% severe drought' },
+                { year: 2015.8, label: 'El Niño', type: 'storm', color: COLORS.ocean, impact: '76% above normal erosion' },
+                { year: 2018.02, label: 'Montecito Mudslide', type: 'mudslide', color: COLORS.marsh_dark, impact: '15,000 yd³ debris deposited' },
+                { year: 2024.13, label: 'Atmospheric Rivers', type: 'storm', color: COLORS.sky, impact: '10+ inches rainfall' }
+            ];
+
+            const yearData = DATA.model_results.temporal_trends.by_year;
+            const margin = { top: 40, right: 30, bottom: 60, left: 70 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = 350 - margin.top - margin.bottom;
+
+            const svg = d3.select(container).append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
+
+            const x = d3.scaleLinear()
+                .domain([2012, 2024])
+                .range([0, width]);
+
+            const maxDensity = d3.max(yearData, d => Math.max(d.tc_density, d.mc_density));
+            const y = d3.scaleLinear()
+                .domain([0, maxDensity * 1.1])
+                .range([height, 0]);
+
+            // Add gradient for line
+            const defs = svg.append('defs');
+            const gradient = defs.append('linearGradient')
+                .attr('id', 'densityGradient')
+                .attr('x1', '0%').attr('y1', '0%')
+                .attr('x2', '100%').attr('y2', '0%');
+            gradient.append('stop').attr('offset', '0%').attr('stop-color', COLORS.marsh).attr('stop-opacity', 0.8);
+            gradient.append('stop').attr('offset', '50%').attr('stop-color', COLORS.ocean).attr('stop-opacity', 0.9);
+            gradient.append('stop').attr('offset', '100%').attr('stop-color', COLORS.sand).attr('stop-opacity', 1);
+
+            // Grid
+            svg.append('g').attr('class', 'grid')
+                .call(d3.axisLeft(y).tickSize(-width).tickFormat(''));
+
+            // Event markers (vertical bars)
+            events.forEach(event => {
+                const eventX = x(event.year);
+
+                // Background bar
+                svg.append('rect')
+                    .attr('x', eventX - 3)
+                    .attr('y', 0)
+                    .attr('width', 6)
+                    .attr('height', height)
+                    .attr('fill', event.color)
+                    .attr('opacity', 0)
+                    .style('cursor', 'pointer')
+                    .on('mouseenter', function(e) {
+                        d3.select(this).attr('opacity', 0.15);
+                        showTooltip(e, event.label, event.impact);
+                    })
+                    .on('mouseleave', function() {
+                        d3.select(this).attr('opacity', 0);
+                        hideTooltip();
+                    })
+                    .transition()
+                    .duration(800)
+                    .delay(1000)
+                    .attr('opacity', 0.12);
+
+                // Event marker line
+                svg.append('line')
+                    .attr('x1', eventX)
+                    .attr('x2', eventX)
+                    .attr('y1', height)
+                    .attr('y2', 0)
+                    .attr('stroke', event.color)
+                    .attr('stroke-width', 2)
+                    .attr('stroke-dasharray', '4,4')
+                    .attr('opacity', 0)
+                    .transition()
+                    .duration(600)
+                    .delay(1200)
+                    .attr('opacity', 0.6);
+
+                // Event label
+                svg.append('text')
+                    .attr('x', eventX)
+                    .attr('y', -10)
+                    .attr('text-anchor', 'middle')
+                    .attr('fill', event.color)
+                    .attr('font-size', '10px')
+                    .attr('font-weight', '600')
+                    .style('opacity', 0)
+                    .text(event.label)
+                    .transition()
+                    .duration(400)
+                    .delay(1400)
+                    .style('opacity', 1);
+            });
+
+            // Calculate mean density across both habitats
+            const meanData = yearData.map(d => ({
+                year: d.year,
+                density: (d.tc_density + d.mc_density) / 2
+            }));
+
+            // Density line
+            const line = d3.line()
+                .x(d => x(d.year))
+                .y(d => y(d.density))
+                .curve(d3.curveMonotoneX);
+
+            // Shadow line
+            svg.append('path')
+                .datum(meanData)
+                .attr('fill', 'none')
+                .attr('stroke', COLORS.ocean)
+                .attr('stroke-width', 5)
+                .attr('stroke-opacity', 0.15)
+                .attr('d', line)
+                .attr('filter', 'blur(4px)');
+
+            // Main line with animation
+            const path = svg.append('path')
+                .datum(meanData)
+                .attr('fill', 'none')
+                .attr('stroke', 'url(#densityGradient)')
+                .attr('stroke-width', 3.5)
+                .attr('stroke-linecap', 'round')
+                .attr('d', line);
+
+            const totalLength = path.node().getTotalLength();
+            path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
+                .attr('stroke-dashoffset', totalLength)
+                .transition()
+                .duration(2000)
+                .ease(d3.easeCubicInOut)
+                .attr('stroke-dashoffset', 0);
+
+            // Data points
+            svg.selectAll('.data-point')
+                .data(meanData)
+                .join('circle')
+                .attr('cx', d => x(d.year))
+                .attr('cy', d => y(d.density))
+                .attr('r', 0)
+                .attr('fill', COLORS.sand)
+                .attr('stroke', '#0a1628')
+                .attr('stroke-width', 2)
+                .style('cursor', 'pointer')
+                .on('mouseenter', function(event, d) {
+                    d3.select(this).transition().duration(200).attr('r', 8);
+                    showTooltip(event, `Year ${d.year}`, `Mean Density: ${d.density.toFixed(1)} fish/m²`);
+                })
+                .on('mouseleave', function() {
+                    d3.select(this).transition().duration(200).attr('r', 5);
+                    hideTooltip();
+                })
+                .transition()
+                .duration(600)
+                .delay((d, i) => 2000 + i * 80)
+                .ease(d3.easeBackOut.overshoot(1.2))
+                .attr('r', 5);
+
+            // Axes
+            svg.append('g')
+                .attr('transform', `translate(0,${height})`)
+                .call(d3.axisBottom(x).tickFormat(d3.format('d')));
+
+            svg.append('g')
+                .call(d3.axisLeft(y));
+
+            svg.append('text')
+                .attr('x', width / 2)
+                .attr('y', height + 50)
+                .attr('text-anchor', 'middle')
+                .attr('fill', 'rgba(255,255,255,0.5)')
+                .attr('font-size', '11px')
+                .text('Year');
+
+            svg.append('text')
+                .attr('transform', 'rotate(-90)')
+                .attr('x', -height / 2)
+                .attr('y', -50)
+                .attr('text-anchor', 'middle')
+                .attr('fill', 'rgba(255,255,255,0.5)')
+                .attr('font-size', '11px')
+                .text('Mean Fish Density (fish/m²)');
         }
 
         function renderSpeciesSeasonality() {
