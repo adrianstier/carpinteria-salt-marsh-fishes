@@ -908,10 +908,12 @@
         function updateStabilityStats() {
             if (DATA.advanced?.stability) {
                 const s = DATA.advanced.stability;
-                document.getElementById('community-cv').textContent = s.community_cv.toFixed(3);
-                document.getElementById('mean-turnover').textContent = s.metrics.mean_turnover.toFixed(3);
-                document.getElementById('max-turnover').textContent = s.metrics.max_turnover.toFixed(3);
-                document.getElementById('turnover-trend').textContent = s.metrics.turnover_trend.toFixed(3);
+                document.getElementById('community-cv').textContent = s.community_cv?.toFixed(3) || '--';
+                document.getElementById('mean-turnover').textContent = s.mean_turnover?.toFixed(3) || '--';
+                // Calculate max turnover from data
+                const maxTurnover = s.turnover ? Math.max(...s.turnover.map(t => t.turnover)) : 0;
+                document.getElementById('max-turnover').textContent = maxTurnover.toFixed(3);
+                document.getElementById('turnover-trend').textContent = s.turnover_trend?.toFixed(3) || '--';
             }
         }
 
